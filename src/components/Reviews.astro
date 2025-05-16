@@ -1,8 +1,9 @@
 ---
-import { getLocale } from '@astrojs/i18n';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
 
-const locale = getLocale();
-const isEN = locale === 'en';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const isEN = lang === 'en';
 
 const title = isEN ? 'Customer Reviews' : 'Отзиви от клиенти';
 const subtitle = isEN 
@@ -44,13 +45,13 @@ const reviews = [
 <section id="reviews" class="py-20 bg-gray-50">
   <div class="container">
     <div class="text-center max-w-3xl mx-auto">
-      <h2 class="text-3xl font-bold text-gray-900">{title}</h2>
-      <p class="mt-4 text-xl text-gray-600">{subtitle}</p>
+      <h2 class="text-3xl font-bold text-gray-900">{t('reviews.title')}</h2>
+      <p class="mt-4 text-xl text-gray-600">{t('reviews.subtitle')}</p>
     </div>
     
     <div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
       {reviews.map(review => (
-        <div class="bg-white p-6 rounded-lg shadow-md">
+        <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow border border-gray-100">
           <div class="flex justify-between items-start">
             <div>
               <h3 class="font-semibold text-lg text-gray-900">{review.name}</h3>

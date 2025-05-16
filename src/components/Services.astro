@@ -1,8 +1,13 @@
 ---
-import { getLocale } from '@astrojs/i18n';
+// src/components/Services.astro
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
 
-const locale = getLocale();
-const isEN = locale === 'en';
+// Define a type for valid icon keys
+type IconKey = 'washing-machine' | 'refrigerator' | 'air-conditioner' | 'dishwasher' | 'oven' | 'other';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const isEN = lang === 'en';
 
 const title = isEN ? 'Our Services' : 'Нашите услуги';
 const subtitle = isEN 
@@ -11,42 +16,42 @@ const subtitle = isEN
 
 const services = [
   {
-    icon: 'washing-machine',
+    icon: 'washing-machine' as IconKey,
     title: isEN ? 'Washing Machines' : 'Перални',
     description: isEN 
       ? 'Repair of all brands and models of washing machines. We fix leaks, motor issues, electronics and more.'
       : 'Ремонт на всички марки и модели перални машини. Отстраняваме течове, проблеми с мотора, електрониката и други.',
   },
   {
-    icon: 'refrigerator',
+    icon: 'refrigerator' as IconKey,
     title: isEN ? 'Refrigerators' : 'Хладилници',
     description: isEN 
       ? 'Fast repair of refrigerators, freezers and wine coolers. Freon recharge, compressor repairs.'
       : 'Бърз ремонт на хладилници, фризери и винени хладилници. Зареждане с фреон, ремонт на компресори.',
   },
   {
-    icon: 'air-conditioner',
+    icon: 'air-conditioner' as IconKey,
     title: isEN ? 'Air Conditioners' : 'Климатици',
     description: isEN 
       ? 'Installation, maintenance and repair of air conditioners. Regular cleaning and filter replacements.'
       : 'Монтаж, поддръжка и ремонт на климатици. Редовно почистване и смяна на филтри.',
   },
   {
-    icon: 'dishwasher',
+    icon: 'dishwasher' as IconKey,
     title: isEN ? 'Dishwashers' : 'Съдомиялни',
     description: isEN 
       ? 'Troubleshooting and repair of dishwashers. Water inlet problems, draining issues, and electronics.'
       : 'Диагностика и ремонт на съдомиялни машини. Проблеми с подаването на вода, източването и електрониката.',
   },
   {
-    icon: 'oven',
+    icon: 'oven' as IconKey,
     title: isEN ? 'Ovens & Stoves' : 'Фурни и котлони',
     description: isEN 
       ? 'Repair of electric and gas ovens, cooktops and ranges. Heating elements, thermostats, control boards.'
       : 'Ремонт на електрически и газови фурни, плотове и печки. Нагревателни елементи, термостати, контролни платки.',
   },
   {
-    icon: 'other',
+    icon: 'other' as IconKey,
     title: isEN ? 'Other Appliances' : 'Други уреди',
     description: isEN 
       ? 'Repair of microwave ovens, coffee machines, hoods, dryers and other small household appliances.'
@@ -55,7 +60,7 @@ const services = [
 ];
 
 // SVG Icons for each service
-const icons = {
+const icons: Record<IconKey, string> = {
   'washing-machine': `<svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="20" x="3" y="2" rx="2"/><circle cx="12" cy="14" r="4"/><circle cx="12" cy="14" r="1"/><path d="M8 6h.01M11 6h.01M14 6h.01"/></svg>`,
   'refrigerator': `<svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z"/><path d="M5 10h14"/><path d="M9 2v4"/><path d="M9 16v2"/></svg>`,
   'air-conditioner': `<svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 9a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1z"/><path d="M12 12h.01"/><path d="m6 17-2 2"/><path d="m10 17-2 2"/><path d="m14 17 2 2"/><path d="m18 17 2 2"/></svg>`,
@@ -65,16 +70,16 @@ const icons = {
 };
 ---
 
-<section id="services" class="py-20">
+<section id="services" class="py-20 bg-white">
   <div class="container">
     <div class="text-center max-w-3xl mx-auto">
-      <h2 class="text-3xl font-bold text-gray-900">{title}</h2>
-      <p class="mt-4 text-xl text-gray-600">{subtitle}</p>
+      <h2 class="text-3xl font-bold text-gray-900">{t('services.title')}</h2>
+      <p class="mt-4 text-xl text-gray-600">{t('services.subtitle')}</p>
     </div>
     
     <div class="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
       {services.map(service => (
-        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+        <div class="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow border border-gray-100">
           <div class="text-primary">
             <Fragment set:html={icons[service.icon]} />
           </div>

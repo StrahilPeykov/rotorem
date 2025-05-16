@@ -1,9 +1,11 @@
 ---
-import { getLocale } from '@astrojs/i18n';
+import { getLangFromUrl, getRouteFromUrl, getLocalizedPath } from '../i18n/utils';
 
-const locale = getLocale();
-const target = locale === 'bg' ? '/en' : '/';
-const label = locale === 'bg' ? 'EN' : 'BG';
+const lang = getLangFromUrl(Astro.url);
+const route = getRouteFromUrl(Astro.url);
+const targetLang = lang === 'bg' ? 'en' : 'bg';
+const targetPath = getLocalizedPath(route, targetLang);
+const label = lang === 'bg' ? 'EN' : 'BG';
 ---
 
-<a href={target} class="underline hover:opacity-80 font-medium">{label}</a>
+<a href={targetPath} class="underline hover:opacity-80 font-medium">{label}</a>

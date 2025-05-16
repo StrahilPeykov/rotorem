@@ -1,6 +1,6 @@
 ---
 import { SEO } from 'astro-seo';
-import { getLocale } from '@astrojs/i18n';
+import { getLangFromUrl, useTranslations, getRouteFromUrl, getLocalizedPath } from '../i18n/utils';
 import LanguageToggle from '../components/LanguageToggle.astro';
 
 interface Props {
@@ -10,9 +10,10 @@ interface Props {
   noindex?: boolean;
 }
 
-const locale = getLocale();
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
-const isEN = locale === 'en';
+const isEN = lang === 'en';
 
 const {
   title = isEN ? 'TechnoFix Varna | Appliance Repair Services' : 'ТехноФикс Варна | Ремонт на битова техника',
@@ -24,11 +25,12 @@ const {
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const alternateURL = new URL(locale === 'bg' ? '/en' : '/', Astro.site);
+const route = getRouteFromUrl(Astro.url);
+const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'), Astro.site);
 ---
 
 <!DOCTYPE html>
-<html lang={locale}>
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -49,7 +51,7 @@ const alternateURL = new URL(locale === 'bg' ? '/en' : '/', Astro.site);
         },
         optional: {
           description,
-          locale,
+          locale: lang,
           siteName: isEN ? 'TechnoFix Varna' : 'ТехноФикс Варна',
         },
       }}
@@ -57,7 +59,7 @@ const alternateURL = new URL(locale === 'bg' ? '/en' : '/', Astro.site);
         link: [
           {
             rel: 'alternate',
-            hreflang: locale === 'bg' ? 'en' : 'bg',
+            hreflang: lang === 'bg' ? 'en' : 'bg',
             href: alternateURL.toString(),
           },
         ],
@@ -127,11 +129,16 @@ const alternateURL = new URL(locale === 'bg' ? '/en' : '/', Astro.site);
         --color-primary: #2563eb;
         --color-primary-dark: #1d4ed8;
         --color-accent: #f59e0b;
+        --color-bg: #f9fafb;
+        --color-text: #111827;
+        --color-text-light: #4b5563;
       }
       
       html {
         scroll-behavior: smooth;
         font-family: 'Inter', sans-serif;
+        background-color: var(--color-bg);
+        color: var(--color-text);
       }
       
       @layer components {
@@ -153,22 +160,22 @@ const alternateURL = new URL(locale === 'bg' ? '/en' : '/', Astro.site);
       }
     </style>
   </head>
-  <body class="min-h-screen">
-    <header class="py-6 border-b">
+  <body class="min-h-screen bg-gray-50">
+    <header class="py-4 bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
       <div class="container flex justify-between items-center">
         <a href={isEN ? '/en' : '/'} class="font-bold text-2xl text-primary">
           {isEN ? 'TechnoFix Varna' : 'ТехноФикс Варна'}
         </a>
         <div class="flex gap-8 items-center">
           <nav class="hidden md:flex gap-6">
-            <a href="#services" class="hover:text-primary">
-              {isEN ? 'Services' : 'Услуги'}
+            <a href="#services" class="hover:text-primary font-medium">
+              {t('nav.services')}
             </a>
-            <a href="#reviews" class="hover:text-primary">
-              {isEN ? 'Reviews' : 'Отзиви'}
+            <a href="#reviews" class="hover:text-primary font-medium">
+              {t('nav.reviews')}
             </a>
-            <a href="#contact" class="hover:text-primary">
-              {isEN ? 'Contact' : 'Контакти'}
+            <a href="#contact" class="hover:text-primary font-medium">
+              {t('nav.contact')}
             </a>
           </nav>
           <LanguageToggle />
@@ -180,11 +187,11 @@ const alternateURL = new URL(locale === 'bg' ? '/en' : '/', Astro.site);
       <slot />
     </main>
     
-    <footer class="bg-gray-100 py-10 mt-16">
+    <footer class="bg-gray-100 py-10 mt-16 border-t border-gray-200">
       <div class="container">
         <div class="flex flex-col md:flex-row justify-between items-center gap-6">
           <div>
-            <p class="font-semibold text-lg">
+            <p class="font-semibold text-lg text-gray-800">
               {isEN ? 'TechnoFix Varna' : 'ТехноФикс Варна'}
             </p>
             <p class="text-gray-600 mt-1">

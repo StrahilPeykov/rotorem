@@ -1,15 +1,14 @@
 ---
 import Layout from '../layouts/Base.astro';
-import { getLocale } from '@astrojs/i18n';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
 
-const locale = getLocale();
-const isEN = locale === 'en';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const isEN = lang === 'en';
 
-const title = isEN ? 'Book a Service | TechnoFix' : 'Запазете час | ТехноФикс';
-const heading = isEN ? 'Book a Service' : 'Запазете час';
-const successText = isEN 
-  ? 'Your booking has been submitted. We will contact you shortly!' 
-  : 'Вашата заявка е изпратена. Ще се свържем с вас скоро!';
+const title = t('book.title');
+const heading = t('book.heading');
+const successText = t('book.success');
 ---
 
 <Layout title={title} noindex={true}>
@@ -31,35 +30,35 @@ const successText = isEN
         <input 
           required 
           name="name" 
-          placeholder={isEN ? 'Name' : 'Име'} 
+          placeholder={t('book.name')} 
           class="input" 
         />
         
         <input 
           required 
           name="phone" 
-          placeholder={isEN ? 'Phone' : 'Телефон'} 
+          placeholder={t('book.phone')} 
           class="input" 
           type="tel"
         />
         
         <input 
           name="email" 
-          placeholder={isEN ? 'Email' : 'Имейл'} 
+          placeholder={t('book.email')} 
           class="input" 
           type="email"
         />
         
         <input 
           name="appliance" 
-          placeholder={isEN ? 'Appliance (e.g. washing machine)' : 'Уред (напр. пералня)'} 
+          placeholder={t('book.appliance')} 
           class="input" 
         />
         
         <div class="grid grid-cols-2 gap-4">
           <div>
             <label class="block text-sm text-gray-600 mb-1">
-              {isEN ? 'Preferred date' : 'Предпочитана дата'}
+              {t('book.date')}
             </label>
             <input 
               name="date" 
@@ -70,13 +69,13 @@ const successText = isEN
           
           <div>
             <label class="block text-sm text-gray-600 mb-1">
-              {isEN ? 'Preferred time' : 'Предпочитан час'}
+              {t('book.time')}
             </label>
             <select name="time" class="input">
-              <option value="">{isEN ? 'Select time' : 'Изберете час'}</option>
-              <option value="morning">{isEN ? 'Morning (9-12)' : 'Сутрин (9-12)'}</option>
-              <option value="afternoon">{isEN ? 'Afternoon (12-16)' : 'Следобед (12-16)'}</option>
-              <option value="evening">{isEN ? 'Evening (16-19)' : 'Вечер (16-19)'}</option>
+              <option value="">{t('book.selectTime')}</option>
+              <option value="morning">{t('book.morning')}</option>
+              <option value="afternoon">{t('book.afternoon')}</option>
+              <option value="evening">{t('book.evening')}</option>
             </select>
           </div>
         </div>
@@ -84,12 +83,12 @@ const successText = isEN
         <textarea 
           name="details" 
           rows="4" 
-          placeholder={isEN ? 'Description of the problem' : 'Описание на проблема'} 
+          placeholder={t('book.details')} 
           class="input"
         ></textarea>
 
         <button type="submit" class="btn-cta w-full">
-          {isEN ? 'Submit' : 'Изпрати'}
+          {t('book.submit')}
         </button>
       </form>
     </div>
