@@ -1,0 +1,97 @@
+---
+import Layout from '../layouts/Base.astro';
+import { getLocale } from '@astrojs/i18n';
+
+const locale = getLocale();
+const isEN = locale === 'en';
+
+const title = isEN ? 'Book a Service | TechnoFix' : 'Запазете час | ТехноФикс';
+const heading = isEN ? 'Book a Service' : 'Запазете час';
+const successText = isEN 
+  ? 'Your booking has been submitted. We will contact you shortly!' 
+  : 'Вашата заявка е изпратена. Ще се свържем с вас скоро!';
+---
+
+<Layout title={title} noindex={true}>
+  <section class="py-24">
+    <div class="container">
+      <h1 class="text-center text-3xl font-semibold mb-8">{heading}</h1>
+
+      <form
+        class="max-w-xl mx-auto grid gap-6"
+        name="booking"
+        method="POST"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        action="/thankyou"
+      >
+        <input type="hidden" name="form-name" value="booking" />
+        <input name="bot-field" class="hidden" />
+
+        <input 
+          required 
+          name="name" 
+          placeholder={isEN ? 'Name' : 'Име'} 
+          class="input" 
+        />
+        
+        <input 
+          required 
+          name="phone" 
+          placeholder={isEN ? 'Phone' : 'Телефон'} 
+          class="input" 
+          type="tel"
+        />
+        
+        <input 
+          name="email" 
+          placeholder={isEN ? 'Email' : 'Имейл'} 
+          class="input" 
+          type="email"
+        />
+        
+        <input 
+          name="appliance" 
+          placeholder={isEN ? 'Appliance (e.g. washing machine)' : 'Уред (напр. пералня)'} 
+          class="input" 
+        />
+        
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm text-gray-600 mb-1">
+              {isEN ? 'Preferred date' : 'Предпочитана дата'}
+            </label>
+            <input 
+              name="date" 
+              type="date" 
+              class="input" 
+            />
+          </div>
+          
+          <div>
+            <label class="block text-sm text-gray-600 mb-1">
+              {isEN ? 'Preferred time' : 'Предпочитан час'}
+            </label>
+            <select name="time" class="input">
+              <option value="">{isEN ? 'Select time' : 'Изберете час'}</option>
+              <option value="morning">{isEN ? 'Morning (9-12)' : 'Сутрин (9-12)'}</option>
+              <option value="afternoon">{isEN ? 'Afternoon (12-16)' : 'Следобед (12-16)'}</option>
+              <option value="evening">{isEN ? 'Evening (16-19)' : 'Вечер (16-19)'}</option>
+            </select>
+          </div>
+        </div>
+        
+        <textarea 
+          name="details" 
+          rows="4" 
+          placeholder={isEN ? 'Description of the problem' : 'Описание на проблема'} 
+          class="input"
+        ></textarea>
+
+        <button type="submit" class="btn-cta w-full">
+          {isEN ? 'Submit' : 'Изпрати'}
+        </button>
+      </form>
+    </div>
+  </section>
+</Layout>

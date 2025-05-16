@@ -1,0 +1,120 @@
+---
+import { getLocale } from '@astrojs/i18n';
+
+const locale = getLocale();
+const isEN = locale === 'en';
+
+const title = isEN ? 'Contact Us' : 'Свържете се с нас';
+const subtitle = isEN 
+  ? 'Have a broken appliance? Get in touch with us for a fast repair!' 
+  : 'Имате повреден уред? Свържете се с нас за бърз ремонт!';
+
+const phone = '+359878123456';
+const email = 'contact@technofixvarna.com';
+const address = isEN 
+  ? 'Varna, Bulgaria' 
+  : 'Варна, България';
+
+const contactInfo = [
+  {
+    icon: 'phone',
+    title: isEN ? 'Phone' : 'Телефон',
+    info: phone,
+    link: `tel:${phone}`,
+  },
+  {
+    icon: 'mail',
+    title: isEN ? 'Email' : 'Имейл',
+    info: email,
+    link: `mailto:${email}`,
+  },
+  {
+    icon: 'map',
+    title: isEN ? 'Address' : 'Адрес',
+    info: address,
+    link: 'https://goo.gl/maps/varna',
+  },
+];
+
+const ctaText = isEN ? 'Book a Service' : 'Запазете час';
+
+// SVG Icons for contact methods
+const icons = {
+  'phone': `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>`,
+  'mail': `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>`,
+  'map': `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>`,
+};
+
+const ownerTitle = isEN ? 'Meet Your Technician' : 'Запознайте се с вашия техник';
+const ownerName = isEN ? 'Stoyan Petrov' : 'Стоян Петров';
+const ownerDescription = isEN 
+  ? 'With over 15 years of experience repairing home appliances, Stoyan provides fast and reliable service for all major brands.' 
+  : 'С над 15 години опит в ремонта на домакински уреди, Стоян предоставя бърза и надеждна услуга за всички основни марки.';
+---
+
+<section id="contact" class="py-20">
+  <div class="container">
+    <div class="text-center max-w-3xl mx-auto">
+      <h2 class="text-3xl font-bold text-gray-900">{title}</h2>
+      <p class="mt-4 text-xl text-gray-600">{subtitle}</p>
+    </div>
+    
+    <div class="mt-12 grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {contactInfo.map(item => (
+            <a 
+              href={item.link} 
+              class="flex flex-col items-center p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow text-center"
+            >
+              <div class="text-primary mb-3">
+                <Fragment set:html={icons[item.icon]} />
+              </div>
+              <h3 class="font-medium text-gray-900">{item.title}</h3>
+              <p class="mt-2 text-gray-600">{item.info}</p>
+            </a>
+          ))}
+        </div>
+        
+        <div class="mt-8 flex justify-center">
+          <a href="/book" class="btn-cta inline-flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path></svg>
+            {ctaText}
+          </a>
+        </div>
+      </div>
+      
+      <div class="bg-white p-6 rounded-lg shadow-md">
+        <h3 class="text-xl font-semibold text-gray-900 mb-4">{ownerTitle}</h3>
+        
+        <div class="flex flex-col sm:flex-row gap-6 items-center">
+          <div class="flex-shrink-0 w-28 h-28 rounded-full overflow-hidden">
+            <img 
+              src="/img/owner.webp" 
+              alt={ownerName}
+              class="w-full h-full object-cover"
+              width="200"
+              height="200"
+            />
+          </div>
+          
+          <div>
+            <h4 class="text-lg font-medium text-gray-900">{ownerName}</h4>
+            <p class="mt-2 text-gray-600">{ownerDescription}</p>
+            
+            <div class="mt-4 flex items-center">
+              <div class="flex">
+                {Array.from({ length: 5 }).map(() => (
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-yellow-500" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+                ))}
+              </div>
+              <span class="ml-2 text-gray-600 text-sm">
+                {isEN ? '100+ satisfied customers' : '100+ доволни клиенти'}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Don't index the booking form page
+Disallow: /book
+Disallow: /thankyou
+
+Sitemap: https://technofixvarna.com/sitemap-index.xml

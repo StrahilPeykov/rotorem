@@ -1,0 +1,9 @@
+---
+import { getLocale } from '@astrojs/i18n';
+
+const locale = getLocale();
+const target = locale === 'bg' ? '/en' : '/';
+const label = locale === 'bg' ? 'EN' : 'BG';
+---
+
+<a href={target} class="underline hover:opacity-80 font-medium">{label}</a>
