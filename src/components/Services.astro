@@ -8,15 +8,20 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const isEN = lang === 'en';
 
-// Enhanced styling to make the section stand out
+// Enhanced styling for the section
 const sectionClass = "py-24 bg-gradient-to-b from-blue-50 to-white relative overflow-hidden";
 const titleClass = "text-4xl font-bold text-primary mb-2";
 const subtitleClass = "mt-4 text-xl text-gray-600 max-w-3xl mx-auto";
 
-// Service cards with enhanced styling
-const serviceCardClass = "bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-100 h-full flex flex-col";
-const serviceIconClass = "text-primary";
-const serviceTitleClass = "mt-2 text-xl font-semibold text-primary";
+// Color overlays for each service type - consistent style with original design
+const serviceColors = {
+  'washing-machine': 'from-blue-700/70 to-blue-600/70',
+  'refrigerator': 'from-cyan-700/70 to-cyan-600/70',
+  'air-conditioner': 'from-teal-700/70 to-teal-600/70',
+  'dishwasher': 'from-emerald-700/70 to-emerald-600/70',
+  'oven': 'from-amber-700/70 to-amber-600/70', 
+  'electrical': 'from-red-700/70 to-red-600/70',
+};
 
 // Adding the service area information
 const serviceArea = isEN 
@@ -73,7 +78,7 @@ const services = [
   },
 ];
 
-// SVG Icons for each service
+// SVG Icons for each service - white for visibility on color overlays
 const icons: Record<IconKey, string> = {
   'washing-machine': `<svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="20" x="3" y="2" rx="2"/><circle cx="12" cy="14" r="4"/><circle cx="12" cy="14" r="1"/><path d="M8 6h.01M11 6h.01M14 6h.01"/></svg>`,
   'refrigerator': `<svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z"/><path d="M5 10h14"/><path d="M9 2v4"/><path d="M9 16v2"/></svg>`,
@@ -98,15 +103,15 @@ const icons: Record<IconKey, string> = {
       
       <!-- Service area and guarantee info -->
       <div class="mt-6 flex flex-col sm:flex-row justify-center items-center gap-4">
-        <span class="bg-blue-50 text-primary px-4 py-2 rounded-full font-medium flex items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <span class="bg-blue-50 text-primary px-5 py-3 rounded-md border border-blue-200 font-medium flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
             <circle cx="12" cy="10" r="3"></circle>
           </svg>
           {serviceArea}
         </span>
-        <span class="bg-blue-50 text-primary px-4 py-2 rounded-full font-medium flex items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <span class="bg-blue-50 text-primary px-5 py-3 rounded-md border border-blue-200 font-medium flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path>
             <path d="m9 12 2 2 4-4"></path>
           </svg>
@@ -116,41 +121,52 @@ const icons: Record<IconKey, string> = {
     </div>
     
     <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-      {services.map(service => (
-        <div class={serviceCardClass}>
-          <!-- Image at top of card -->
-          <div class="h-48 overflow-hidden rounded-t-lg -mx-8 -mt-8 mb-6">
-            <img 
-              src={`/img/${service.icon}.webp`}
-              alt={service.title}
-              class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-              width="600"
-              height="400"
-              loading="lazy"
-            />
-          </div>
-          
-          <!-- Service icon and content -->
-          <div class="flex items-center gap-3">
-            <div class={serviceIconClass}>
-              <Fragment set:html={icons[service.icon]} />
+      {services.map(service => {
+        const gradientClass = serviceColors[service.icon as keyof typeof serviceColors] || 'from-gray-700/70 to-gray-600/70';
+        
+        return (
+          <div class="relative h-full rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow group">
+            <!-- Background image with gradient overlay -->
+            <div class="absolute inset-0">
+              <img 
+                src={`/img/${service.icon}.webp`}
+                alt=""
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                width="600"
+                height="400"
+                loading="lazy"
+              />
+              <!-- Gradient overlay that maintains good readability even on hover -->
+              <div class={`absolute inset-0 bg-gradient-to-br ${gradientClass} group-hover:opacity-75 transition-opacity duration-300`}></div>
+              
+              <!-- Additional darker gradient at the bottom for better text readability -->
+              <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
             </div>
-            <h3 class={serviceTitleClass}>{service.title}</h3>
+            
+            <!-- Content on top of the overlay - cleaner layout without separate cards -->
+            <div class="relative z-10 p-8 h-full flex flex-col text-white">
+              <div class="flex items-center gap-4 mb-4">
+                <div class="text-white drop-shadow-sm">
+                  <Fragment set:html={icons[service.icon]} />
+                </div>
+                <h3 class="text-xl font-semibold drop-shadow-sm">{service.title}</h3>
+              </div>
+              
+              <p class="mt-2 text-white flex-grow drop-shadow text-shadow">{service.description}</p>
+              
+              <!-- Call to action at the bottom -->
+              <div class="mt-6 pt-4 border-t border-white/20">
+                <a href="/book" class="text-white hover:text-white/80 font-medium flex items-center drop-shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path>
+                </svg>
+                {isEN ? 'Book repair' : 'Запази ремонт'}
+                </a>
+              </div>
+            </div>
           </div>
-          
-          <p class="mt-3 text-gray-600 flex-grow">{service.description}</p>
-          
-          <!-- Quick call to action for each service -->
-          <div class="mt-4 pt-4 border-t border-gray-100">
-            <a href="/book" class="text-primary hover:text-primary-dark font-medium flex items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path>
-              </svg>
-              {isEN ? 'Book repair' : 'Запази ремонт'}
-            </a>
-          </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
     
     <!-- Additional CTA at the bottom of services section -->
