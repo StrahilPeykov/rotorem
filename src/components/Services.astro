@@ -33,6 +33,11 @@ const guaranteeText = isEN
   ? 'All repairs come with professional service and warranty'
   : 'Всички ремонти се извършват професионално и с гаранция';
 
+// NEW: In-home service explanation
+const inHomeServiceText = isEN
+  ? 'All repairs are performed in your home - no need to transport heavy appliances'
+  : 'Всички ремонти се извършват във вашия дом - не е нужно да транспортирате тежки уреди';
+
 const services = [
   {
     icon: 'washing-machine' as IconKey,
@@ -101,22 +106,42 @@ const icons: Record<IconKey, string> = {
       <div class="w-24 h-1 bg-primary mx-auto my-4"></div>
       <p class={subtitleClass}>{t('services.subtitle')}</p>
       
-      <!-- Service area and guarantee info -->
-      <div class="mt-6 flex flex-col sm:flex-row justify-center items-center gap-4">
-        <span class="bg-blue-50 text-primary px-5 py-3 rounded-md border border-blue-200 font-medium flex items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
-            <circle cx="12" cy="10" r="3"></circle>
-          </svg>
-          {serviceArea}
-        </span>
-        <span class="bg-blue-50 text-primary px-5 py-3 rounded-md border border-blue-200 font-medium flex items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path>
-            <path d="m9 12 2 2 4-4"></path>
-          </svg>
-          {guaranteeText}
-        </span>
+      <!-- Compact service info box -->
+      <div class="mt-6 bg-blue-50 rounded-lg border border-blue-200 mx-auto max-w-2xl overflow-hidden">
+        <div class="grid md:grid-cols-3">
+          <!-- In-home service -->
+          <div class="p-4 border-b md:border-b-0 md:border-r border-blue-200 flex items-center gap-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-primary flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <p class="text-sm font-medium text-primary-dark">
+              {isEN ? 'We repair at your home' : 'Ремонт във вашия дом'}
+            </p>
+          </div>
+          
+          <!-- Service Area -->
+          <div class="p-4 border-b md:border-b-0 md:border-r border-blue-200 flex items-center gap-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-primary flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <p class="text-sm font-medium text-primary-dark">
+              {isEN ? 'Varna area (up to 20km)' : 'Варна и околности (до 20км)'}
+            </p>
+          </div>
+          
+          <!-- Warranty -->
+          <div class="p-4 flex items-center gap-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-primary flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path>
+              <path d="m9 12 2 2 4-4"></path>
+            </svg>
+            <p class="text-sm font-medium text-primary-dark">
+              {isEN ? 'Professional with warranty' : 'Професионално с гаранция'}
+            </p>
+          </div>
+        </div>
       </div>
     </div>
     
