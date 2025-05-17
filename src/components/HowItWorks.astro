@@ -1,0 +1,89 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const isEN = lang === 'en';
+
+// Define the steps for the process
+const steps = [
+  {
+    number: 1,
+    title: isEN ? 'Contact Us' : 'Свържете се с нас',
+    description: isEN 
+      ? 'Call us or fill out the online form to schedule a repair appointment.'
+      : 'Обадете се или попълнете онлайн формуляра, за да запазите час за ремонт.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>`
+  },
+  {
+    number: 2,
+    title: isEN ? 'We Come to You' : 'Идваме при вас',
+    description: isEN 
+      ? 'Our technician arrives at your home at the scheduled time with all necessary tools and parts.'
+      : 'Нашият техник пристига в дома ви в уговореното време с всички необходими инструменти и части.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>`
+  },
+  {
+    number: 3,
+    title: isEN ? 'Quick Repair' : 'Бърз ремонт',
+    description: isEN 
+      ? 'We diagnose and fix the problem professionally, ensuring your appliance works perfectly again.'
+      : 'Диагностицираме и отстраняваме проблема професионално, като гарантираме, че уредът ви работи отново перфектно.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg>`
+  }
+];
+
+// Section title and subtitle
+const title = isEN ? 'How It Works' : 'Как работим';
+const subtitle = isEN 
+  ? 'Simple and efficient process to get your appliances back in working order'
+  : 'Прост и ефективен процес, за да върнем уредите ви в работен ред';
+---
+
+<section class="py-16 bg-gradient-to-b from-white to-blue-50">
+  <div class="container">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <h2 class="text-3xl font-bold text-gray-900">{title}</h2>
+      <div class="w-20 h-1 bg-accent mx-auto my-4"></div>
+      <p class="text-gray-800 mt-4">{subtitle}</p>
+    </div>
+    
+    <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+      {steps.map((step, index) => (
+        <div class="relative bg-white p-6 rounded-lg shadow-sm border border-gray-100 text-center">
+          <!-- Step number -->
+          <div class="absolute -top-6 left-1/2 transform -translate-x-1/2">
+            <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white text-xl font-bold">
+              {step.number}
+            </div>
+          </div>
+          
+          <!-- Connector line between steps (hidden on mobile) -->
+          {index < steps.length - 1 && (
+            <div class="absolute top-6 -right-4 w-8 h-0.5 bg-gray-300 hidden md:block z-10"></div>
+          )}
+          
+          <!-- Icon and content -->
+          <div class="mt-6">
+            <div class="text-primary mx-auto w-12 h-12 mb-4">
+              <Fragment set:html={step.icon} />
+            </div>
+            
+            <h3 class="text-lg font-semibold mb-3 text-gray-900">{step.title}</h3>
+            <p class="text-gray-800">{step.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+    
+    <!-- CTA button -->
+    <div class="mt-12 text-center">
+      <a href="/book" class="btn-cta inline-flex items-center justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path>
+        </svg>
+        {isEN ? 'Book a Service Now' : 'Запазете час сега'}
+      </a>
+    </div>
+  </div>
+</section>

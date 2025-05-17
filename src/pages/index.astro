@@ -1,14 +1,20 @@
 ---
 import Layout from '../layouts/Base.astro';
-import Hero from '../components/Hero.astro';
+import Hero from '../components/Hero.astro'; // Your enhanced hero
+import StatsBar from '../components/StatsBar.astro'; // Option 2
+import HowItWorks from '../components/HowItWorks.astro'; // Option 3
 import Services from '../components/Services.astro';
 import Reviews from '../components/Reviews.astro';
 import Contact from '../components/Contact.astro';
+import Map from '../components/Map.astro';
 ---
 
 <Layout>
   <Hero />
+  /<StatsBar />
+  <HowItWorks />
   <Services />
   <Reviews />
   <Contact />
+  <Map />
 </Layout>

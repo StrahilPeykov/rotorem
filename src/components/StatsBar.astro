@@ -1,0 +1,40 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const isEN = lang === 'en';
+
+// You can modify these numbers to match your actual statistics
+const stats = [
+  {
+    value: '1000+',
+    label: isEN ? 'Repairs Completed' : 'Завършени ремонти'
+  },
+  {
+    value: '15+',
+    label: isEN ? 'Years Experience' : 'Години опит'
+  },
+  {
+    value: '24h',
+    label: isEN ? 'Response Time' : 'Време за реакция'
+  },
+  {
+    value: '6',
+    label: isEN ? 'Month Warranty' : 'Месеца гаранция'
+  }
+];
+---
+
+<section class="bg-primary py-8">
+  <div class="container">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+      {stats.map(stat => (
+        <div class="flex flex-col items-center justify-center p-2">
+          <div class="text-3xl font-bold text-white mb-1">{stat.value}</div>
+          <div class="text-sm text-white/90 font-medium">{stat.label}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
