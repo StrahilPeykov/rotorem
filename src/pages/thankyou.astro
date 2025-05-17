@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Base.astro';
-import { getLangFromUrl, useTranslations, getLocalizedPath } from '../i18n/utils';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -10,7 +10,7 @@ const title = t('thankyou.title');
 const heading = t('thankyou.heading');
 const message = t('thankyou.message');
 const buttonText = t('thankyou.button');
-const homePath = getLocalizedPath('/', lang);
+const homePath = isEN ? '/en' : '/';
 ---
 
 <Layout title={title} noindex={true}>

@@ -6,9 +6,14 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const isEN = lang === 'en';
 
+// Form styling with explicit colors
+const inputClass = "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-gray-800 bg-white";
+const textareaClass = "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-gray-800 bg-white";
+const selectClass = "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-gray-800 bg-white";
+const labelClass = "block text-sm text-gray-700 mb-1 font-medium";
+
 const title = t('book.title');
 const heading = t('book.heading');
-const successText = t('book.success');
 ---
 
 <Layout title={title} noindex={true}>
@@ -31,47 +36,52 @@ const successText = t('book.success');
           required 
           name="name" 
           placeholder={t('book.name')} 
-          class="input" 
+          class={inputClass}
+          style="color: #111827; background-color: white;"
         />
         
         <input 
           required 
           name="phone" 
           placeholder={t('book.phone')} 
-          class="input" 
+          class={inputClass}
           type="tel"
+          style="color: #111827; background-color: white;"
         />
         
         <input 
           name="email" 
           placeholder={t('book.email')} 
-          class="input" 
+          class={inputClass}
           type="email"
+          style="color: #111827; background-color: white;"
         />
         
         <input 
           name="appliance" 
           placeholder={t('book.appliance')} 
-          class="input" 
+          class={inputClass}
+          style="color: #111827; background-color: white;"
         />
         
         <div class="grid grid-cols-2 gap-4">
           <div>
-            <label class="block text-sm text-gray-600 mb-1">
+            <label class={labelClass}>
               {t('book.date')}
             </label>
             <input 
               name="date" 
               type="date" 
-              class="input" 
+              class={inputClass}
+              style="color: #111827; background-color: white;"
             />
           </div>
           
           <div>
-            <label class="block text-sm text-gray-600 mb-1">
+            <label class={labelClass}>
               {t('book.time')}
             </label>
-            <select name="time" class="input">
+            <select name="time" class={selectClass} style="color: #111827; background-color: white;">
               <option value="">{t('book.selectTime')}</option>
               <option value="morning">{t('book.morning')}</option>
               <option value="afternoon">{t('book.afternoon')}</option>
@@ -84,7 +94,8 @@ const successText = t('book.success');
           name="details" 
           rows="4" 
           placeholder={t('book.details')} 
-          class="input"
+          class={textareaClass}
+          style="color: #111827; background-color: white;"
         ></textarea>
 
         <button type="submit" class="btn-cta w-full">
