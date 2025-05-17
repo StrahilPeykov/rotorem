@@ -219,7 +219,7 @@ const heroClass = "relative overflow-hidden py-20 md:py-28";
       
       <!-- Mobile reviews - single review with navigation -->
       <div class="md:hidden">
-        <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+        <div class="bg-gray-50 p-4 rounded-lg shadow-sm" style="min-height: 200px;">
           <!-- First review only for initial display -->
           <div class="flex justify-between items-start mb-3">
             <div>
@@ -246,8 +246,8 @@ const heroClass = "relative overflow-hidden py-20 md:py-28";
         
         <!-- Navigation arrows and pagination dots -->
         <div class="flex justify-between items-center mt-4">
-          <button id="review-prev" class="w-8 h-8 flex items-center justify-center rounded-full bg-white border border-gray-200 text-gray-500">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <button id="review-prev" class="w-12 h-12 flex items-center justify-center rounded-full bg-white border border-gray-200 text-gray-500 hover:bg-gray-50 active:bg-gray-100 touch-manipulation">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="15 18 9 12 15 6"></polyline>
             </svg>
           </button>
@@ -258,8 +258,8 @@ const heroClass = "relative overflow-hidden py-20 md:py-28";
             <span class="review-dot w-2 h-2 rounded-full bg-gray-300"></span>
           </div>
           
-          <button id="review-next" class="w-8 h-8 flex items-center justify-center rounded-full bg-white border border-gray-200 text-gray-500">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <button id="review-next" class="w-12 h-12 flex items-center justify-center rounded-full bg-white border border-gray-200 text-gray-500 hover:bg-gray-50 active:bg-gray-100 touch-manipulation">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="9 18 15 12 9 6"></polyline>
             </svg>
           </button>
