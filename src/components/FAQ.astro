@@ -107,16 +107,20 @@ const contactText = isEN
     const detailsElements = document.querySelectorAll('details');
     
     detailsElements.forEach(details => {
-      details.addEventListener('click', (e) => {
-        // Close all other details when opening a new one
-        if (details.open) {
-          e.preventDefault(); // Prevent closing if already open
-        } else {
-          detailsElements.forEach(el => {
-            if (el !== details) el.removeAttribute('open');
-          });
-        }
-      });
+      const summary = details.querySelector('summary');
+      
+      // Only attach the listener to the summary element
+      if (summary) {
+        summary.addEventListener('click', (e) => {
+          // Don't prevent default behavior - let it toggle naturally
+          // Just close other details when opening a new one
+          if (!details.open) {
+            detailsElements.forEach(el => {
+              if (el !== details) el.removeAttribute('open');
+            });
+          }
+        });
+      }
     });
   });
 </script>
