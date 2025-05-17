@@ -29,6 +29,28 @@ const coreServices = [
   }
 ];
 
+// Reviews data - will only show 1 at a time on mobile
+const reviews = [
+  {
+    name: isEN ? 'Ivan Petrov' : 'Иван Петров',
+    date: isEN ? 'March 15, 2025' : '15 март, 2025',
+    text: isEN ? 'Very fast and professional service! My washing machine was repaired the same day I called.' : 'Много бърза и професионална услуга! Пералнята ми беше поправена същия ден, в който се обадих.',
+    appliance: isEN ? 'Washing Machine' : 'Перална'
+  },
+  {
+    name: isEN ? 'Maria Dimitrova' : 'Мария Димитрова',
+    date: isEN ? 'February 28, 2025' : '28 февруари, 2025',
+    text: isEN ? 'Excellent service! The technician was very knowledgeable and fixed my refrigerator quickly.' : 'Отлична услуга! Техникът беше много компетентен и поправи хладилника ми бързо.',
+    appliance: isEN ? 'Refrigerator' : 'Хладилник'
+  },
+  {
+    name: isEN ? 'Georgi Ivanov' : 'Георги Иванов',
+    date: isEN ? 'January 10, 2025' : '10 януари, 2025',
+    text: isEN ? 'Had an issue with my air conditioner, called TechnoFix and they came the next day. Very thorough service!' : 'Имах проблем с климатика, обадих се на ТехноФикс и дойдоха на следващия ден. Много обстойна услуга!',
+    appliance: isEN ? 'Air Conditioner' : 'Климатик'
+  }
+];
+
 // Enhanced Hero styling with full-width image
 const heroClass = "relative overflow-hidden py-20 md:py-28";
 ---
@@ -49,68 +71,91 @@ const heroClass = "relative overflow-hidden py-20 md:py-28";
   </div>
   
   <div class="container relative z-10">
-    <div class="grid md:grid-cols-5 gap-8 items-start">
-      <!-- Left column - empty space for balance -->
-      <div class="hidden md:block"></div>
+    <!-- Centered hero content -->
+    <div class="text-center max-w-2xl mx-auto mb-10">
+      <div class="inline-block px-4 py-1 bg-primary text-white text-sm font-semibold rounded-full mb-6">
+        {isEN ? 'In-home repairs in Varna area' : 'Ремонт на уреди във вашия дом'}
+      </div>
       
-      <!-- Center column - main content (spans 3 columns) -->
-      <div class="md:col-span-3">
-        <div class="text-center mb-10">
-          <div class="inline-block px-4 py-1 bg-primary text-white text-sm font-semibold rounded-full mb-6">
-            {isEN ? 'In-home repairs in Varna area' : 'Ремонт на уреди във вашия дом'}
-          </div>
-          
-          <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            {isEN ? 'Professional Appliance Repairs' : 'Професионален ремонт на домакински уреди'}
-          </h1>
-          
-          <p class="text-xl text-gray-700 mb-8">
-            {isEN 
-              ? 'Fast and reliable repairs for washing machines, refrigerators, and air conditioners. We come directly to your home.' 
-              : 'Бързи и надеждни ремонти на перални, хладилници и климатици. Идваме директно във вашия дом.'}
-          </p>
-          
-          <div class="flex flex-col sm:flex-row justify-center gap-4">
-            <a href="/book" class="btn-cta inline-flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path></svg>
-              {t('hero.cta')}
-            </a>
-            
-            <a href="tel:+359878123456" class="btn-primary inline-flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-              {t('hero.phone')}
-            </a>
-          </div>
-        </div>
+      <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+        {isEN ? 'Professional Appliance Repairs' : 'Професионален ремонт на домакински уреди'}
+      </h1>
+      
+      <p class="text-xl text-gray-700 mb-8">
+        {isEN 
+          ? 'Fast and reliable repairs for washing machines, refrigerators, and air conditioners. We come directly to your home.' 
+          : 'Бързи и надеждни ремонти на перални, хладилници и климатици. Идваме директно във вашия дом.'}
+      </p>
+      
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <a href="/book" class="btn-cta inline-flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path></svg>
+          {t('hero.cta')}
+        </a>
         
-        <!-- 2x2 Service grid below title -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-3">
-          {coreServices.map((service) => (
-            <a href="#services" class="block p-3 rounded-lg text-center bg-white/90 backdrop-blur shadow-sm border border-gray-100 transition-all hover:shadow-md hover:-translate-y-1">
-              <div class={`${service.color} w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2`}>
-                <Fragment set:html={service.icon} />
-              </div>
-              <h3 class="font-medium text-sm text-gray-900">{service.title}</h3>
-            </a>
-          ))}
-        </div>
-        
-        <div class="text-center mb-6">
-          <a href="#services" class="inline-flex items-center text-primary font-medium hover:underline text-sm">
-            {isEN ? 'See all services' : 'Вижте всички услуги'}
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
+        <a href="tel:+359878123456" class="btn-primary inline-flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          {t('hero.phone')}
+        </a>
+      </div>
+    </div>
+    
+    <!-- Service badges - Desktop: 4 in a row, Mobile: horizontal scroll with 2-3 visible -->
+    <div class="max-w-3xl mx-auto mb-3">
+      <!-- Desktop view -->
+      <div class="hidden md:grid md:grid-cols-4 gap-3">
+        {coreServices.map((service) => (
+          <a href="#services" class="block p-3 rounded-lg text-center bg-white/90 backdrop-blur shadow-sm border border-gray-100 transition-all hover:shadow-md hover:-translate-y-1">
+            <div class={`${service.color} w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2`}>
+              <Fragment set:html={service.icon} />
+            </div>
+            <h3 class="font-medium text-sm text-gray-900">{service.title}</h3>
           </a>
+        ))}
+      </div>
+      
+      <!-- Mobile view with horizontal scroll -->
+      <div class="md:hidden">
+        <div class="relative">
+          <!-- Scrollable container -->
+          <div class="flex overflow-x-auto pb-3 scrollbar-hide snap-x snap-mandatory">
+            <div class="flex gap-3">
+              {coreServices.map((service) => (
+                <a 
+                  href="#services" 
+                  class="block p-3 rounded-lg text-center bg-white/90 backdrop-blur shadow-sm border border-gray-100 transition-all flex-shrink-0 w-32 snap-start"
+                >
+                  <div class={`${service.color} w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2`}>
+                    <Fragment set:html={service.icon} />
+                  </div>
+                  <h3 class="font-medium text-sm text-gray-900">{service.title}</h3>
+                </a>
+              ))}
+            </div>
+          </div>
+          
+          <!-- Scroll indicator dots -->
+          <div class="flex justify-center mt-3 gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-gray-300"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-gray-300"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-gray-300"></span>
+          </div>
         </div>
       </div>
       
-      <!-- Right column - empty space for balance -->
-      <div class="hidden md:block"></div>
+      <div class="text-center mt-3">
+        <a href="#services" class="inline-flex items-center text-primary font-medium hover:underline text-sm">
+          {isEN ? 'See all services' : 'Вижте всички услуги'}
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </a>
+      </div>
     </div>
     
-    <!-- Reviews section -->
-    <div class="max-w-4xl mx-auto mt-10 bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+    <!-- Reviews section - Desktop: 3 in a row, Mobile: 1 with navigation -->
+    <div class="max-w-4xl mx-auto mt-16 bg-white rounded-xl p-6 shadow-sm border border-gray-100">
       <div class="flex items-center justify-between mb-4">
         <h2 class="text-lg font-semibold text-gray-900">
           {isEN ? 'What Our Customers Say' : 'Какво казват нашите клиенти'}
@@ -129,60 +174,93 @@ const heroClass = "relative overflow-hidden py-20 md:py-28";
         </div>
       </div>
       
-      <!-- Reviews carousel -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {Array.from({ length: 3 }).map((_, index) => {
-          // Customize reviews for each slot
-          const reviews = [
-            {
-              name: isEN ? 'Ivan Petrov' : 'Иван Петров',
-              date: isEN ? 'March 15, 2025' : '15 март, 2025',
-              text: isEN ? 'Very fast and professional service! My washing machine was repaired the same day I called.' : 'Много бърза и професионална услуга! Пералнята ми беше поправена същия ден, в който се обадих.',
-              appliance: isEN ? 'Washing Machine' : 'Перална'
-            },
-            {
-              name: isEN ? 'Maria Dimitrova' : 'Мария Димитрова',
-              date: isEN ? 'February 28, 2025' : '28 февруари, 2025',
-              text: isEN ? 'Excellent service! The technician was very knowledgeable and fixed my refrigerator quickly.' : 'Отлична услуга! Техникът беше много компетентен и поправи хладилника ми бързо.',
-              appliance: isEN ? 'Refrigerator' : 'Хладилник'
-            },
-            {
-              name: isEN ? 'Georgi Ivanov' : 'Георги Иванов',
-              date: isEN ? 'January 10, 2025' : '10 януари, 2025',
-              text: isEN ? 'Had an issue with my air conditioner, called TechnoFix and they came the next day. Very thorough service!' : 'Имах проблем с климатика, обадих се на ТехноФикс и дойдоха на следващия ден. Много обстойна услуга!',
-              appliance: isEN ? 'Air Conditioner' : 'Климатик'
-            }
-          ];
-          
-          const review = reviews[index];
-          
-          return (
-            <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
-              <div class="flex justify-between items-start mb-3">
-                <div>
-                  <h3 class="font-semibold text-gray-900">{review.name}</h3>
-                  <p class="text-sm text-gray-500">{review.date}</p>
-                </div>
-                <div class="flex">
-                  {Array.from({ length: 5 }).map(() => (
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-yellow-500" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-                    </svg>
-                  ))}
-                </div>
+      <!-- Desktop reviews grid - all 3 visible -->
+      <div class="hidden md:grid md:grid-cols-3 gap-4">
+        {reviews.map((review, index) => (
+          <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+            <div class="flex justify-between items-start mb-3">
+              <div>
+                <h3 class="font-semibold text-gray-900">{review.name}</h3>
+                <p class="text-sm text-gray-500">{review.date}</p>
               </div>
-              
-              <p class="text-gray-800">{review.text}</p>
-              
-              <div class="mt-3 pt-3 border-t border-gray-200">
-                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                  {review.appliance}
-                </span>
+              <div class="flex">
+                {Array.from({ length: 5 }).map(() => (
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-yellow-500" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                  </svg>
+                ))}
               </div>
             </div>
-          );
-        })}
+            
+            <p class="text-gray-800">{review.text}</p>
+            
+            <div class="mt-3 pt-3 border-t border-gray-200">
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                {review.appliance}
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+      
+      <!-- Mobile reviews - single review with navigation -->
+      <div class="md:hidden">
+        <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+          <!-- First review only for initial display -->
+          <div class="flex justify-between items-start mb-3">
+            <div>
+              <h3 class="font-semibold text-gray-900">{reviews[0].name}</h3>
+              <p class="text-sm text-gray-500">{reviews[0].date}</p>
+            </div>
+            <div class="flex">
+              {Array.from({ length: 5 }).map(() => (
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-yellow-500" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                </svg>
+              ))}
+            </div>
+          </div>
+          
+          <p class="text-gray-800">{reviews[0].text}</p>
+          
+          <div class="mt-3 pt-3 border-t border-gray-200">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+              {reviews[0].appliance}
+            </span>
+          </div>
+        </div>
+        
+        <!-- Navigation arrows and pagination dots -->
+        <div class="flex justify-between items-center mt-4">
+          <button class="w-8 h-8 flex items-center justify-center rounded-full bg-white border border-gray-200 text-gray-500">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          
+          <div class="flex gap-1">
+            <span class="w-2 h-2 rounded-full bg-primary"></span>
+            <span class="w-2 h-2 rounded-full bg-gray-300"></span>
+            <span class="w-2 h-2 rounded-full bg-gray-300"></span>
+          </div>
+          
+          <button class="w-8 h-8 flex items-center justify-center rounded-full bg-white border border-gray-200 text-gray-500">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  // Client-side JavaScript for mobile carousels
+  // This would handle the arrows and pagination in a real implementation
+  // For this demo, this is a placeholder
+  document.addEventListener('DOMContentLoaded', () => {
+    // Service carousel and Review carousel navigation would be implemented here
+    console.log('Carousels initialized');
+  });
+</script>
