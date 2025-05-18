@@ -42,14 +42,19 @@ const reviews = [
 ];
 ---
 
-<section id="reviews" class="py-20 bg-gray-50">
-  <div class="container">
+<section id="reviews" class="py-16 md:py-20 bg-gradient-to-b from-white to-gray-50 relative">
+  <!-- Semi-transparent overlay for better text readability on mobile -->
+  <div class="absolute inset-0 bg-gradient-to-b from-white/80 to-blue-900/50 md:hidden"></div>
+  
+  <div class="container relative z-10">
     <div class="text-center max-w-3xl mx-auto">
       <h2 class="text-3xl font-bold text-gray-900">{t('reviews.title')}</h2>
-      <p class="mt-4 text-xl text-gray-600">{t('reviews.subtitle')}</p>
+      <div class="w-20 h-1 bg-accent mx-auto my-4"></div>
+      <p class="mt-4 text-lg md:text-xl text-gray-600">{t('reviews.subtitle')}</p>
     </div>
     
-    <div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+    <!-- Desktop layout - grid of cards -->
+    <div class="mt-12 hidden md:grid gap-8 md:grid-cols-2 lg:grid-cols-3">
       {reviews.map(review => (
         <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow border border-gray-100">
           <div class="flex justify-between items-start">
@@ -74,5 +79,211 @@ const reviews = [
         </div>
       ))}
     </div>
+    
+    <!-- Enhanced Mobile layout - single prominent card with pagination -->
+    <div class="mt-8 md:hidden">
+      <div id="mobile-review-carousel" class="relative">
+        <!-- Visually enhanced card with border accent and background -->
+        <div class="bg-white/90 backdrop-blur-sm rounded-lg shadow-md overflow-hidden">
+          <div class="border-l-4 border-amber-500 p-5">
+            <div class="flex justify-between items-start mb-3">
+              <div>
+                <h3 id="review-name" class="font-semibold text-gray-900">{reviews[0].name}</h3>
+                <p id="review-date" class="text-sm text-gray-600">{reviews[0].date}</p>
+              </div>
+              <div class="flex">
+                {Array.from({ length: 5 }).map(() => (
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-yellow-500" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                  </svg>
+                ))}
+              </div>
+            </div>
+            
+            <div class="min-h-[100px]">
+              <p id="review-text" class="text-gray-700">{reviews[0].text}</p>
+            </div>
+            
+            <div class="mt-4 pt-3 border-t border-gray-200 flex justify-between items-center">
+              <span id="review-appliance" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                {reviews[0].appliance}
+              </span>
+              
+              <!-- "Verified customer" badge -->
+              <span class="inline-flex items-center text-xs text-green-700">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                {isEN ? 'Verified customer' : 'Проверен клиент'}
+              </span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Navigation arrows and pagination dots with improved styling -->
+        <div class="flex justify-between items-center mt-4">
+          <button id="review-prev" class="review-nav-btn w-10 h-10 flex items-center justify-center rounded-full bg-white/80 backdrop-blur border border-gray-200 text-gray-500 hover:bg-gray-50 active:bg-gray-100 shadow-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          
+          <div class="flex gap-1.5">
+            <span class="review-dot w-2.5 h-2.5 rounded-full bg-primary"></span>
+            <span class="review-dot w-2.5 h-2.5 rounded-full bg-gray-300"></span>
+            <span class="review-dot w-2.5 h-2.5 rounded-full bg-gray-300"></span>
+          </div>
+          
+          <button id="review-next" class="review-nav-btn w-10 h-10 flex items-center justify-center rounded-full bg-white/80 backdrop-blur border border-gray-200 text-gray-500 hover:bg-gray-50 active:bg-gray-100 shadow-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Simple call to action below reviews -->
+      <div class="mt-8 text-center">
+        <a 
+          href="/book" 
+          class="inline-flex items-center justify-center px-5 py-2.5 bg-primary text-white rounded-lg font-medium shadow-sm hover:bg-primary-dark transition-colors"
+        >
+          {isEN ? 'Join our satisfied customers' : 'Присъединете се към доволните ни клиенти'}
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14"></path>
+            <path d="m12 5 7 7-7 7"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
   </div>
 </section>
+
+<script>
+  // Mobile review carousel with enhanced transitions
+  document.addEventListener('DOMContentLoaded', () => {
+    // Set up our review carousel data
+    const reviewData = [
+      {
+        name: 'Иван Петров',
+        date: '15 март, 2025',
+        text: 'Много бърза и професионална услуга! Пералнята ми беше поправена същия ден, в който се обадих. Горещо препоръчвам!',
+        appliance: 'Пералня'
+      },
+      {
+        name: 'Мария Петрова',
+        date: '28 февруари, 2025',
+        text: 'Отлична услуга! Техникът беше много компетентен и поправи хладилника ми бързо. Цените също са разумни!',
+        appliance: 'Хладилник'
+      },
+      {
+        name: 'Георги Иванов',
+        date: '10 януари, 2025',
+        text: 'Имах проблем с климатика, обадих се на ТехноФикс и дойдоха на следващия ден. Много професионална и обстойна услуга!',
+        appliance: 'Климатик'
+      }
+    ];
+    
+    let currentIndex = 0;
+    
+    // Get DOM elements
+    const nameElement = document.getElementById('review-name');
+    const dateElement = document.getElementById('review-date');
+    const textElement = document.getElementById('review-text');
+    const applianceElement = document.getElementById('review-appliance');
+    const prevButton = document.getElementById('review-prev');
+    const nextButton = document.getElementById('review-next');
+    const dots = document.querySelectorAll('.review-dot');
+    
+    // Function to update the review content with transition
+    function updateReview(index: number) {
+      const carouselElement = document.getElementById('mobile-review-carousel');
+      
+      if (!nameElement || !dateElement || !textElement || !applianceElement || !carouselElement) return;
+      
+      // Add fade-out effect
+      carouselElement.classList.add('opacity-0');
+      
+      // Update content after a short delay
+      setTimeout(() => {
+        nameElement.textContent = reviewData[index].name;
+        dateElement.textContent = reviewData[index].date;
+        textElement.textContent = reviewData[index].text;
+        applianceElement.textContent = reviewData[index].appliance;
+        
+        // Update the dots
+        dots.forEach((dot, i) => {
+          if (i === index) {
+            dot.classList.remove('bg-gray-300');
+            dot.classList.add('bg-primary');
+          } else {
+            dot.classList.remove('bg-primary');
+            dot.classList.add('bg-gray-300');
+          }
+        });
+        
+        // Fade back in
+        carouselElement.classList.remove('opacity-0');
+      }, 200);
+    }
+    
+    // Set up event listeners for the buttons
+    if (prevButton) {
+      prevButton.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + reviewData.length) % reviewData.length;
+        updateReview(currentIndex);
+      });
+    }
+    
+    if (nextButton) {
+      nextButton.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % reviewData.length;
+        updateReview(currentIndex);
+      });
+    }
+    
+    // Set up touch swipe functionality for mobile
+    const carousel = document.getElementById('mobile-review-carousel');
+    if (carousel) {
+      let touchStartX = 0;
+      let touchEndX = 0;
+      
+      carousel.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+      
+      carousel.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+      }, { passive: true });
+      
+      function handleSwipe() {
+        if (touchEndX < touchStartX - 50) {
+          // Swipe left
+          currentIndex = (currentIndex + 1) % reviewData.length;
+          updateReview(currentIndex);
+        } else if (touchEndX > touchStartX + 50) {
+          // Swipe right
+          currentIndex = (currentIndex - 1 + reviewData.length) % reviewData.length;
+          updateReview(currentIndex);
+        }
+      }
+    }
+  });
+</script>
+
+<style>
+  /* Enhanced styling for mobile reviews */
+  #mobile-review-carousel {
+    transition: opacity 0.2s ease-in-out;
+  }
+  
+  .review-nav-btn {
+    transition: all 0.2s ease;
+  }
+  
+  .review-nav-btn:active {
+    transform: scale(0.95);
+  }
+</style>

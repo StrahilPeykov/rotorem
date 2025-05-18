@@ -21,18 +21,19 @@ const contactText = isEN
   : 'Обадете се, за да проверите дали обслужваме вашето местоположение';
 ---
 
-<section class="py-16 bg-gray-50 border-t border-gray-100">
+<section class="py-16 bg-gradient-to-b from-white to-gray-50 border-t border-gray-100">
   <div class="container">
-    <div class="text-center mb-10">
+    <div class="text-center mb-8 md:mb-10">
       <h2 class="text-2xl md:text-3xl font-bold text-gray-900">{title}</h2>
+      <div class="w-16 h-1 bg-accent mx-auto my-4"></div>
       <p class="mt-2 text-gray-700">{subtitle}</p>
     </div>
     
-    <div class="grid md:grid-cols-5 gap-8 items-start">
-      <!-- Left side: Map -->
-      <div class="md:col-span-3">
-        <div class="bg-white rounded-lg shadow-sm overflow-hidden border border-gray-100">
-          <div class="relative h-[400px] w-full">
+    <div class="grid md:grid-cols-5 gap-6 md:gap-8 items-start">
+      <!-- Left side: Map - Full-width on mobile, 3 columns on desktop -->
+      <div class="md:col-span-3 order-2 md:order-1">
+        <div class="bg-white rounded-lg shadow-md overflow-hidden border border-gray-100">
+          <div class="relative h-[300px] md:h-[400px] w-full">
             <iframe 
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d93863.19553341077!2d27.837949771951357!3d43.21719036667841!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40a4538baaf3d7a1%3A0x5727941c71a58b7c!2sVarna%2C%20Bulgaria!5e0!3m2!1sen!2sus!4v1715959693332!5m2!1sen!2sus" 
               width="600" 
@@ -44,40 +45,44 @@ const contactText = isEN
               class="absolute top-0 left-0 w-full h-full"
             ></iframe>
           </div>
-          
-          <!-- Map overlay showing 20km radius - optional, could be an SVG circle -->
-          <div class="absolute top-0 left-0 w-full h-full pointer-events-none hidden">
-            <!-- This would be a circle overlay showing the radius - omitted for simplicity -->
-          </div>
         </div>
       </div>
       
-      <!-- Right side: Coverage details -->
-      <div class="md:col-span-2 flex flex-col gap-6">
-        <!-- Neighborhoods we cover -->
-        <div class="bg-white rounded-lg p-6 shadow-sm border border-gray-100">
-          <h3 class="font-semibold text-lg text-gray-900 mb-3">
+      <!-- Right side: Coverage details - Mobile-first design -->
+      <div class="md:col-span-2 flex flex-col gap-5 order-1 md:order-2">
+        <!-- Neighborhoods we cover - Enhanced visual display -->
+        <div class="bg-gradient-to-r from-white to-blue-50 rounded-lg p-5 shadow-md border border-gray-100 transform transition-all duration-300 hover:shadow-lg">
+          <h3 class="font-semibold text-lg text-gray-900 mb-4 flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
             {areaLabel}
           </h3>
           
+          <!-- Enhanced mobile-friendly tags layout -->
           <div class="flex flex-wrap gap-2">
             {neighborhoods.map(neighborhood => (
-              <span class="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-blue-50 text-blue-800">
+              <span class="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-blue-100 text-blue-800 border border-blue-200 shadow-sm">
                 {neighborhood}
               </span>
             ))}
           </div>
         </div>
         
-        <!-- Contact info / call for other areas -->
-        <div class="bg-primary/5 rounded-lg p-6 border border-primary/10">
-          <h3 class="font-semibold text-lg text-gray-900 mb-2">
+        <!-- Contact info / call for other areas - Enhanced mobile styling -->
+        <div class="bg-gradient-to-r from-primary-dark/5 to-primary/10 rounded-lg p-5 border border-primary/10 shadow-md">
+          <h3 class="font-semibold text-lg text-gray-900 mb-3 flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
             {contactLabel}
           </h3>
           
           <p class="text-gray-700 mb-4">{contactText}</p>
           
-          <a href="tel:+359878123456" class="btn-primary inline-flex items-center justify-center w-full">
+          <!-- Enhanced call button -->
+          <a href="tel:+359878123456" class="btn-primary inline-flex items-center justify-center w-full shadow-md hover:scale-105 transition-transform duration-300">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
             </svg>
@@ -85,24 +90,31 @@ const contactText = isEN
           </a>
         </div>
         
-        <!-- Working hours - optional addition -->
-        <div class="bg-white rounded-lg p-6 shadow-sm border border-gray-100">
-          <h3 class="font-semibold text-lg text-gray-900 mb-3">
+        <!-- Working hours - Enhanced with better visual style -->
+        <div class="bg-gradient-to-r from-white to-blue-50 rounded-lg p-5 shadow-md border border-gray-100 transform transition-all duration-300 hover:shadow-lg">
+          <h3 class="font-semibold text-lg text-gray-900 mb-4 flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
             {isEN ? 'Working Hours' : 'Работно време'}
           </h3>
           
-          <div class="space-y-2">
-            <div class="flex justify-between">
-              <span class="text-gray-700">{isEN ? 'Monday - Friday' : 'Понеделник - Петък'}</span>
-              <span class="font-medium text-gray-900">8:00 - 19:00</span>
+          <!-- Enhanced working hours display with visual dividers -->
+          <div class="space-y-3">
+            <div class="flex justify-between items-center bg-white/50 p-2 rounded-lg">
+              <span class="text-gray-700 font-medium">{isEN ? 'Monday - Friday' : 'Понеделник - Петък'}</span>
+              <span class="font-semibold text-gray-900 bg-white py-1 px-3 rounded-full shadow-sm border border-gray-100">8:00 - 19:00</span>
             </div>
-            <div class="flex justify-between">
-              <span class="text-gray-700">{isEN ? 'Saturday' : 'Събота'}</span>
-              <span class="font-medium text-gray-900">9:00 - 15:00</span>
+            <div class="flex justify-between items-center bg-white/50 p-2 rounded-lg">
+              <span class="text-gray-700 font-medium">{isEN ? 'Saturday' : 'Събота'}</span>
+              <span class="font-semibold text-gray-900 bg-white py-1 px-3 rounded-full shadow-sm border border-gray-100">9:00 - 15:00</span>
             </div>
-            <div class="flex justify-between">
-              <span class="text-gray-700">{isEN ? 'Sunday' : 'Неделя'}</span>
-              <span class="font-medium text-gray-900">{isEN ? 'Closed' : 'Затворено'}</span>
+            <div class="flex justify-between items-center bg-white/50 p-2 rounded-lg">
+              <span class="text-gray-700 font-medium">{isEN ? 'Sunday' : 'Неделя'}</span>
+              <span class="font-semibold text-gray-900 bg-white py-1 px-3 rounded-full shadow-sm border border-gray-100">
+                {isEN ? 'Closed' : 'Затворено'}
+              </span>
             </div>
           </div>
         </div>

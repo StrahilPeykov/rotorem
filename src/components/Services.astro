@@ -9,18 +9,18 @@ const t = useTranslations(lang);
 const isEN = lang === 'en';
 
 // Enhanced styling for the section
-const sectionClass = "py-24 bg-gradient-to-b from-blue-50 to-white relative overflow-hidden";
-const titleClass = "text-4xl font-bold text-primary mb-2";
+const sectionClass = "py-16 md:py-24 bg-gradient-to-b from-blue-50 to-white relative overflow-hidden";
+const titleClass = "text-3xl md:text-4xl font-bold text-primary mb-2";
 const subtitleClass = "mt-4 text-xl text-gray-600 max-w-3xl mx-auto";
 
 // Color overlays for each service type - consistent style with original design
 const serviceColors = {
-  'washing-machine': 'from-blue-700/70 to-blue-600/70',
-  'refrigerator': 'from-cyan-700/70 to-cyan-600/70',
-  'air-conditioner': 'from-teal-700/70 to-teal-600/70',
-  'dishwasher': 'from-emerald-700/70 to-emerald-600/70',
-  'oven': 'from-amber-700/70 to-amber-600/70', 
-  'electrical': 'from-red-700/70 to-red-600/70',
+  'washing-machine': 'from-blue-700/80 to-blue-600/80',
+  'refrigerator': 'from-cyan-700/80 to-cyan-600/80',
+  'air-conditioner': 'from-teal-700/80 to-teal-600/80',
+  'dishwasher': 'from-emerald-700/80 to-emerald-600/80',
+  'oven': 'from-amber-700/80 to-amber-600/80', 
+  'electrical': 'from-red-700/80 to-red-600/80',
 };
 
 // Adding the service area information
@@ -101,13 +101,13 @@ const icons: Record<IconKey, string> = {
   <div class="absolute -bottom-20 -left-20 w-60 h-60 bg-blue-100 rounded-full opacity-30"></div>
 
   <div class="container relative z-10">
-    <div class="text-center max-w-3xl mx-auto mb-16"> 
+    <div class="text-center max-w-3xl mx-auto mb-8 md:mb-16"> 
       <h2 class={titleClass}>{t('services.title')}</h2>
       <div class="w-24 h-1 bg-primary mx-auto my-4"></div>
       <p class={subtitleClass}>{t('services.subtitle')}</p>
       
-      <!-- Compact service info box -->
-      <div class="mt-6 bg-blue-50 rounded-lg border border-blue-200 mx-auto max-w-2xl overflow-hidden">
+      <!-- Enhanced Mobile Service Info box -->
+      <div class="mt-6 bg-gradient-to-r from-blue-100 to-blue-50 rounded-lg border border-blue-200 mx-auto max-w-2xl overflow-hidden shadow-sm">
         <div class="grid md:grid-cols-3">
           <!-- In-home service -->
           <div class="p-4 border-b md:border-b-0 md:border-r border-blue-200 flex items-center gap-3">
@@ -145,13 +145,14 @@ const icons: Record<IconKey, string> = {
       </div>
     </div>
     
-    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+    <!-- Enhanced Mobile Service Cards -->
+    <div class="grid gap-6 md:gap-8 md:grid-cols-2 lg:grid-cols-3">
       {services.map(service => {
         const gradientClass = serviceColors[service.icon as keyof typeof serviceColors] || 'from-gray-700/70 to-gray-600/70';
         
         return (
-          <div class="relative h-full rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow group">
-            <!-- Background image with gradient overlay -->
+          <div class="relative rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow group">
+            <!-- Background image with enhanced gradient overlay -->
             <div class="absolute inset-0">
               <img 
                 src={`/img/${service.icon}.webp`}
@@ -161,27 +162,28 @@ const icons: Record<IconKey, string> = {
                 height="400"
                 loading="lazy"
               />
-              <!-- Gradient overlay that maintains good readability even on hover -->
+              <!-- Gradient overlay with improved contrast for mobile -->
               <div class={`absolute inset-0 bg-gradient-to-br ${gradientClass} group-hover:opacity-75 transition-opacity duration-300`}></div>
               
               <!-- Additional darker gradient at the bottom for better text readability -->
-              <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
             </div>
             
-            <!-- Content on top of the overlay - cleaner layout without separate cards -->
-            <div class="relative z-10 p-8 h-full flex flex-col text-white">
+            <!-- Enhanced Content Layout -->
+            <div class="relative z-10 p-6 md:p-8 h-full flex flex-col text-white">
               <div class="flex items-center gap-4 mb-4">
-                <div class="text-white drop-shadow-sm">
+                <!-- Icon with improved background for visibility -->
+                <div class="p-2 bg-white/20 rounded-full text-white">
                   <Fragment set:html={icons[service.icon]} />
                 </div>
                 <h3 class="text-xl font-semibold drop-shadow-sm">{service.title}</h3>
               </div>
               
-              <p class="mt-2 text-white flex-grow drop-shadow text-shadow">{service.description}</p>
+              <p class="mt-2 text-white/90 flex-grow text-shadow">{service.description}</p>
               
-              <!-- Call to action at the bottom -->
+              <!-- Enhanced Call to action at the bottom -->
               <div class="mt-6 pt-4 border-t border-white/20">
-                <a href="/book" class="text-white hover:text-white/80 font-medium flex items-center drop-shadow-sm">
+                <a href="/book" class="bg-white/30 hover:bg-white/40 backdrop-blur-sm text-white font-medium py-2 px-4 rounded-lg inline-flex items-center transition-colors shadow-sm">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path>
                 </svg>
@@ -194,9 +196,9 @@ const icons: Record<IconKey, string> = {
       })}
     </div>
     
-    <!-- Additional CTA at the bottom of services section -->
+    <!-- Enhanced CTA at the bottom of services section -->
     <div class="mt-12 text-center">
-      <a href="/book" class="btn-cta inline-flex items-center justify-center">
+      <a href="/book" class="btn-cta inline-flex items-center justify-center shadow-lg">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path>
         </svg>
@@ -205,3 +207,10 @@ const icons: Record<IconKey, string> = {
     </div>
   </div>
 </section>
+
+<style>
+  /* Add drop shadow for better text readability on mobile */
+  .text-shadow {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+</style>

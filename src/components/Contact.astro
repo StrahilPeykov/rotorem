@@ -29,7 +29,7 @@ const address = isEN
   ? 'Varna, Bulgaria' 
   : 'Варна, България';
 
-// NEW: Working hours information
+// Working hours information
 const workingHours = {
   title: isEN ? 'Working Hours' : 'Работно време',
   weekdays: isEN ? 'Monday - Friday' : 'Понеделник - Петък',
@@ -59,7 +59,7 @@ const contactInfo = [
     info: address,
     link: 'https://goo.gl/maps/varna',
   },
-  // NEW: Added working hours to the contact info grid
+  // Added working hours to the contact info grid
   {
     icon: 'clock',
     title: workingHours.title,
@@ -85,22 +85,25 @@ const ownerDescription = isEN
   : 'С над 15 години опит в ремонта на домакински уреди, Стоян предоставя бърза и надеждна услуга за всички основни марки.';
 ---
 
-<section id="contact" class="py-20 bg-white">
+<section id="contact" class="py-16 md:py-20 bg-gradient-to-b from-gray-50 to-white">
   <div class="container">
     <div class="text-center max-w-3xl mx-auto">
       <h2 class="text-3xl font-bold text-gray-900">{t('contact.title')}</h2>
-      <p class="mt-4 text-xl text-gray-600">{t('contact.subtitle')}</p>
+      <div class="w-20 h-1 bg-accent mx-auto my-4"></div>
+      <p class="mt-4 text-lg md:text-xl text-gray-600">{t('contact.subtitle')}</p>
     </div>
     
-    <div class="mt-12 grid md:grid-cols-2 gap-12 items-start">
+    <div class="mt-12 grid md:grid-cols-2 gap-8 items-start">
+      <!-- Enhanced Contact Info Cards for Mobile -->
       <div>
-        <div class="grid gap-6 grid-cols-1 sm:grid-cols-2">
+        <!-- Responsive grid that changes from 1 to 2 columns based on screen size -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {contactInfo.map(item => (
             <a 
               href={item.link} 
-              class="flex flex-col items-center p-6 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center border border-gray-100"
+              class="flex flex-col items-center p-5 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center bg-gradient-to-b from-white to-blue-50 border border-gray-100 hover:-translate-y-1 transition-transform duration-300"
             >
-              <div class="text-primary mb-3">
+              <div class="text-primary p-3 bg-primary/5 rounded-full mb-3">
                 <Fragment set:html={icons[item.icon as IconKey]} />
               </div>
               <h3 class="font-medium text-gray-900">{item.title}</h3>
@@ -117,23 +120,32 @@ const ownerDescription = isEN
           ))}
         </div>
         
+        <!-- Enhanced CTA Button -->
         <div class="mt-8 flex justify-center">
-          <a href="/book" class="btn-cta inline-flex items-center justify-center">
+          <a href="/book" class="btn-cta inline-flex items-center justify-center shadow-lg hover:scale-105 transition-transform duration-300">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path></svg>
             {ctaText}
           </a>
         </div>
       </div>
       
-      <div class="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-100">
-        <h3 class="text-xl font-semibold text-gray-900 mb-4">{ownerTitle}</h3>
+      <!-- Enhanced Technician Card -->
+      <div class="bg-gradient-to-r from-white to-blue-50 p-6 rounded-lg shadow-sm border border-gray-100 transform transition-all duration-300 hover:shadow-md">
+        <h3 class="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-2 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          {ownerTitle}
+        </h3>
         
         <div class="flex flex-col sm:flex-row gap-6 items-center">
-          <div class="flex-shrink-0 w-28 h-28 rounded-full overflow-hidden">
+          <!-- Enhanced image presentation with subtle shadow and border -->
+          <div class="flex-shrink-0 w-28 h-28 rounded-full overflow-hidden border-4 border-white shadow-md">
             <img 
               src="/img/owner.webp" 
               alt={ownerName}
-              class="w-full h-full object-cover"
+              class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
               width="200"
               height="200"
             />
@@ -143,6 +155,7 @@ const ownerDescription = isEN
             <h4 class="text-lg font-medium text-gray-900">{ownerName}</h4>
             <p class="mt-2 text-gray-600">{ownerDescription}</p>
             
+            <!-- Enhanced ratings display -->
             <div class="mt-4 flex items-center">
               <div class="flex">
                 {Array.from({ length: 5 }).map(() => (
@@ -153,9 +166,29 @@ const ownerDescription = isEN
                 {isEN ? '100+ satisfied customers' : '100+ доволни клиенти'}
               </span>
             </div>
+            
+            <!-- Added skill badges for visual enhancement -->
+            <div class="mt-3 flex flex-wrap gap-2">
+              <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">
+                {isEN ? 'Certified Technician' : 'Сертифициран техник'}
+              </span>
+              <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">
+                {isEN ? '15+ Years Experience' : '15+ години опит'}
+              </span>
+              <span class="px-2 py-1 bg-amber-100 text-amber-800 rounded-full text-xs font-medium">
+                {isEN ? 'All Brands' : 'Всички марки'}
+              </span>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<style>
+  /* Subtle animation on hover for contact cards */
+  a {
+    transition: all 0.3s ease;
+  }
+</style>
