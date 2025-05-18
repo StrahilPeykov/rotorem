@@ -1,4 +1,5 @@
-/** @type {import('tailwindcss').Config} */
+import { defineConfig } from 'tailwindcss';
+
 module.exports = {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
@@ -14,6 +15,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
+        heading: ['Montserrat', 'sans-serif'], // Added Montserrat for headings
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-out',

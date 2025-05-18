@@ -33,7 +33,7 @@ const allServices = [
   }
 ];
 
-// Reviews data - will only show 1 at a time on mobile
+// Reviews data - ensure they're preserved as in the original
 const reviews = [
   {
     name: isEN ? 'Ivan Petrov' : 'Иван Петров',
@@ -69,39 +69,80 @@ const reviews = [
   </div>
   
   <div class="container relative z-10 py-12 md:py-20">
-    <!-- Hero content with consistent text colors for all screens -->
-    <div class="text-center max-w-2xl mx-auto mb-10">
+    <!-- Mobile hero content - maximum simplicity -->
+    <div class="md:hidden text-center mb-4">
+      <!-- Diagnostic fee badge -->
+      <div class="inline-block px-4 py-1 bg-amber-500 text-white text-sm font-semibold rounded-full shadow-sm mb-6 font-heading">
+        {isEN ? 'Diagnostic fee: 30 BGN' : 'Диагностика: 30 лв.'}
+      </div>
+      
+      <!-- Larger, more impactful title for mobile -->
+      <h1 class="text-4xl font-bold text-white mb-4 uppercase tracking-wide font-heading">
+        {isEN ? 'APPLIANCE REPAIR' : 'РЕМОНТ НА УРЕДИ'}
+        <br />
+        {isEN ? 'VARNA' : 'ВАРНА'}
+      </h1>
+      
+      <!-- Super simplified subtitle -->
+      <p class="text-lg text-white mb-6 font-heading">
+        {isEN 
+          ? 'Fast repairs at your home, same-day service.' 
+          : 'Бързи ремонти още същия ден във вашия дом.'}
+      </p>
+      
+      <!-- Mobile-optimized CTA buttons - stacked with larger tap targets -->
+      <div class="flex flex-col gap-3 mb-6">
+        <a href="/book" class="btn-cta inline-flex items-center justify-center shadow-lg py-3">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path></svg>
+          {isEN ? 'Book Service' : 'Запазете час'}
+        </a>
+        
+        <a href="tel:+359898340982" class="btn-primary inline-flex items-center justify-center shadow-lg py-3">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          {isEN ? 'Call Now' : 'Обадете се'}
+        </a>
+      </div>
+      
+      <!-- Same-day service badge moved below buttons on mobile -->
+      <div class="text-center">
+        <p class="inline-flex items-center text-white text-sm px-3 py-2 bg-primary/30 rounded-full mb-4 font-heading">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          {isEN ? 'Same-day repairs!' : 'Ремонт още същия ден!'}
+        </p>
+      </div>
+    </div>
+    
+    <!-- Desktop hero content - keep original layout -->
+    <div class="hidden md:block text-center max-w-2xl mx-auto mb-10">
       <div class="flex flex-wrap gap-2 justify-center mb-4">
-        <div class="inline-block px-4 py-1 bg-primary text-white text-sm font-semibold rounded-full shadow-sm">
+        <div class="inline-block px-4 py-1 bg-primary text-white text-sm font-semibold rounded-full shadow-sm font-heading">
           {isEN ? 'In-home repairs in Varna area' : 'Ремонт на уреди във вашия дом'}
         </div>
-        <!-- Diagnostic fee badge -->
-        <div class="inline-block px-4 py-1 bg-amber-500 text-white text-sm font-semibold rounded-full shadow-sm">
+        <div class="inline-block px-4 py-1 bg-amber-500 text-white text-sm font-semibold rounded-full shadow-sm font-heading">
           {isEN ? 'Diagnostic fee: 30 BGN' : 'Диагностика: 30 лв.'}
         </div>
       </div>
       
-      <!-- Keep text white on ALL screen sizes -->
-      <h1 class="text-3xl md:text-5xl font-bold text-white mb-4 md:mb-6 drop-shadow-sm">
+      <h1 class="text-5xl font-bold text-white mb-6 drop-shadow-sm font-heading">
         {isEN ? 'Professional Appliance Repairs' : 'Професионален ремонт на домакински уреди'}
       </h1>
       
-      <p class="text-lg md:text-xl text-white mb-4 drop-shadow-sm">
+      <p class="text-xl text-white mb-4 drop-shadow-sm font-heading">
         {isEN 
           ? 'Fast and reliable repairs for washing machines, dishwashers, ovens, and electrical systems. We come to you.' 
           : 'Бързи и надеждни ремонти на перални, съдомиялни, фурни и електрически системи. Идваме на място.'}
       </p>
       
-      <!-- Same-day service highlight -->
-      <p class="text-lg text-white font-medium mb-8 flex items-center justify-center drop-shadow-sm">
+      <p class="text-lg text-white font-medium mb-8 flex items-center justify-center drop-shadow-sm font-heading">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/>
         </svg>
         {isEN ? 'Same-day repairs!' : 'Ремонт още същия ден!'}
       </p>
       
-      <!-- CTA buttons with shadows -->
-      <div class="flex flex-col sm:flex-row justify-center gap-3">
+      <div class="flex flex-row justify-center gap-3">
         <a href="/book" class="btn-cta inline-flex items-center justify-center shadow-lg">
           <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path></svg>
           {t('hero.cta')}
@@ -114,59 +155,57 @@ const reviews = [
       </div>
     </div>
     
-    <!-- Service badges with improved mobile display -->
+    <!-- Service icons/badges -->
     <div class="max-w-3xl mx-auto mb-3">
-      <!-- Desktop view - show 4 most common services -->
+      <!-- Desktop view - show 4 services with white cards -->
       <div class="hidden md:grid md:grid-cols-4 gap-3">
         {allServices.map((service) => (
           <a href="#services" class="block p-3 rounded-lg text-center bg-white/90 backdrop-blur shadow-sm border border-gray-100 transition-all hover:shadow-md hover:-translate-y-1">
             <div class={`${service.color} w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2`}>
               <Fragment set:html={service.icon} />
             </div>
-            <h3 class="font-medium text-sm text-gray-900">{service.title}</h3>
+            <h3 class="font-medium text-sm text-gray-900 font-heading">{service.title}</h3>
           </a>
         ))}
       </div>
       
-      <!-- Mobile view with horizontal scroll and gradient cards -->
+      <!-- Mobile view - simplified colorful service cards -->
       <div class="md:hidden">
-        <div class="relative">
-          <!-- Visually appealing scrollable container -->
-          <div class="flex overflow-x-auto pb-3 scrollbar-hide snap-x snap-mandatory">
-            <div class="flex gap-3 px-2">
-              {allServices.map((service) => (
-                <a 
-                  href="#services" 
-                  class={`block p-4 rounded-lg text-center shadow-md flex-shrink-0 w-32 snap-start bg-gradient-to-br ${service.gradientColor} text-white`}
-                >
-                  <div class="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2 bg-white/20">
-                    <Fragment set:html={service.icon} />
-                  </div>
-                  <h3 class="font-medium text-sm">{service.title}</h3>
-                </a>
-              ))}
-            </div>
+        <div class="flex overflow-x-auto pb-3 scrollbar-hide">
+          <div class="flex gap-3 px-2">
+            {allServices.map((service) => (
+              <a 
+                href="#services" 
+                class={`flex flex-col items-center p-4 rounded-lg shadow-md flex-shrink-0 w-28 bg-gradient-to-br ${service.gradientColor} text-white`}
+              >
+                <div class="bg-white/20 w-12 h-12 rounded-full flex items-center justify-center mb-2">
+                  <Fragment set:html={service.icon} />
+                </div>
+                <span class="font-medium text-sm text-center font-heading">{service.title}</span>
+              </a>
+            ))}
           </div>
         </div>
-      </div>
-      
-      <div class="text-center mt-3">
-        <a href="#services" class="inline-flex items-center text-white font-medium hover:underline text-sm">
-          {isEN ? 'See all services' : 'Вижте всички услуги'}
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="9 18 15 12 9 6"></polyline>
-          </svg>
-        </a>
+        
+        <!-- See all services link -->
+        <div class="text-center mt-2">
+          <a href="#services" class="inline-flex items-center text-white text-sm font-heading">
+            {isEN ? 'See all services' : 'Вижте всички услуги'}
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
     
-    <!-- Reviews section with mobile display -->
+    <!-- Reviews section - preserved as per original -->
     <div class="max-w-4xl mx-auto mt-16">
-      <!-- Desktop cards remain the same -->
+      <!-- Desktop reviews (kept as-is) -->
       <div class="hidden md:block">
         <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
           <div class="flex items-center justify-between mb-4">
-            <h2 class="text-lg font-semibold text-gray-900">
+            <h2 class="text-lg font-semibold text-gray-900 font-heading">
               {isEN ? 'What Our Customers Say' : 'Какво казват нашите клиенти'}
             </h2>
             
@@ -179,7 +218,7 @@ const reviews = [
                   </svg>
                 ))}
               </div>
-              <span class="ml-2 text-yellow-600 font-semibold">5.0</span>
+              <span class="ml-2 text-yellow-600 font-semibold font-heading">5.0</span>
             </div>
           </div>
           
@@ -188,7 +227,7 @@ const reviews = [
               <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
                 <div class="flex justify-between items-start mb-3">
                   <div>
-                    <h3 class="font-semibold text-gray-900">{review.name}</h3>
+                    <h3 class="font-semibold text-gray-900 font-heading">{review.name}</h3>
                     <p class="text-sm text-gray-500">{review.date}</p>
                   </div>
                   <div class="flex">
@@ -200,10 +239,10 @@ const reviews = [
                   </div>
                 </div>
                 
-                <p class="text-gray-800">{review.text}</p>
+                <p class="text-gray-800 font-heading">{review.text}</p>
                 
                 <div class="mt-3 pt-3 border-t border-gray-200">
-                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 font-heading">
                     {review.appliance}
                   </span>
                 </div>
@@ -217,7 +256,7 @@ const reviews = [
       <div class="md:hidden">
         <div class="px-4">
           <div class="flex items-center justify-between mb-4">
-            <h2 class="text-lg font-semibold text-white">
+            <h2 class="text-lg font-semibold text-white font-heading">
               {isEN ? 'What Our Customers Say' : 'Какво казват нашите клиенти'}
             </h2>
             
@@ -237,7 +276,7 @@ const reviews = [
             <!-- First review only for initial display -->
             <div class="flex justify-between items-start p-5 pb-0">
               <div>
-                <h3 id="review-name" class="font-semibold text-gray-900">{reviews[0].name}</h3>
+                <h3 id="review-name" class="font-semibold text-gray-900 font-heading">{reviews[0].name}</h3>
                 <p id="review-date" class="text-sm text-gray-500">{reviews[0].date}</p>
               </div>
               <div class="flex">
@@ -250,16 +289,16 @@ const reviews = [
             </div>
             
             <div class="flex-grow overflow-y-auto p-5 pt-3">
-              <p id="review-text" class="text-gray-800">{reviews[0].text}</p>
+              <p id="review-text" class="text-gray-800 font-heading">{reviews[0].text}</p>
             </div>
             
             <div class="px-5 pb-5 pt-3 border-t border-gray-200 flex justify-between items-center">
-              <span id="review-appliance" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+              <span id="review-appliance" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 font-heading">
                 {reviews[0].appliance}
               </span>
               
               <!-- "Verified customer" badge -->
-              <span class="inline-flex items-center text-xs text-green-700">
+              <span class="inline-flex items-center text-xs text-green-700 font-heading">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                   <polyline points="22 4 12 14.01 9 11.01"></polyline>
@@ -295,8 +334,20 @@ const reviews = [
   </div>
 </section>
 
+<style>
+  /* Hide scrollbar while allowing scrolling */
+  .scrollbar-hide {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+  }
+</style>
+
 <script>
-  // Client-side JavaScript for mobile carousels
+  // Client-side JavaScript for mobile carousels - preserved from original
   document.addEventListener('DOMContentLoaded', () => {
     // Reviews carousel functionality
     const reviewCarousel = {
@@ -370,20 +421,3 @@ const reviews = [
     reviewCarousel.init();
   });
 </script>
-
-<style>
-  /* Drop shadow for better text readability on mobile */
-  .text-shadow {
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Hide scrollbar while allowing scrolling */
-  .scrollbar-hide {
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
-  }
-  
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none; /* Chrome, Safari and Opera */
-  }
-</style>
