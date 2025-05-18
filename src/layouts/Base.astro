@@ -18,8 +18,8 @@ const isEN = lang === 'en';
 const {
   title = isEN ? 'TechnoFix Varna | Appliance Repair Services' : 'ТехноФикс Варна | Ремонт на битова техника',
   description = isEN 
-    ? 'Professional appliance repair services in Varna. Fast and reliable repairs for washing machines, refrigerators, air conditioners and more.'
-    : 'Професионален ремонт на битова техника във Варна. Бързи и надеждни ремонти на перални, хладилници, климатици и други.',
+    ? 'Professional appliance repair services in Varna. Fast and reliable repairs for washing machines, dishwashers, ovens and more.'
+    : 'Професионален ремонт на битова техника във Варна. Бързи и надеждни ремонти на перални, съдомиялни, фурни и други.',
   image = '/img/hero.webp',
   noindex = false,
 } = Astro.props;
@@ -81,8 +81,8 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
         "alternateName": "ТехноФикс Варна",
         "description": "Professional appliance repair services in Varna",
         "url": "https://technofixvarna.com",
-        "telephone": "+359878123456",
-        "email": "contact@gmail.com",
+        "telephone": "+359898340982",
+        "email": "n.ivanov.ivanov@abv.bg",
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Varna",
@@ -98,14 +98,14 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
           {
             "@type": "OpeningHoursSpecification",
             "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-            "opens": "09:00",
-            "closes": "18:00"
+            "opens": "08:00",
+            "closes": "19:00"
           },
           {
             "@type": "OpeningHoursSpecification",
             "dayOfWeek": "Saturday",
-            "opens": "10:00",
-            "closes": "14:00"
+            "opens": "09:00",
+            "closes": "15:00"
           }
         ],
         "priceRange": "$$",
@@ -148,11 +148,11 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
         }
         
         .btn-primary {
-          @apply bg-primary hover:bg-primary-dark text-white font-medium py-3 px-6 rounded-lg transition-colors;
+          @apply bg-primary hover:bg-primary-dark text-white font-medium py-2.5 px-5 rounded-lg transition-colors;
         }
         
         .btn-cta {
-          @apply bg-accent hover:bg-amber-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors;
+          @apply bg-accent hover:bg-amber-600 text-white font-semibold py-2.5 px-5 rounded-lg transition-colors;
         }
         
         .input {
@@ -193,7 +193,7 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
         transform: scale(1.03);
       }
       
-      /* Text shadow for better readability on image backgrounds */
+      /* Text shadow for good readability on image backgrounds */
       .text-shadow {
         text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
       }
@@ -243,7 +243,7 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
     </style>
   </head>
   <body class="min-h-screen bg-gray-50">
-    <!-- Enhanced mobile-friendly header with drop shadow -->
+    <!-- Mobile-friendly header with drop shadow -->
     <header class="py-4 bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
       <div class="container flex justify-between items-center">
         <a href={isEN ? '/en' : '/'} class="font-bold text-2xl text-primary">
@@ -268,7 +268,7 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
             <LanguageToggle />
           </div>
           
-          <!-- Mobile menu button - Hamburger (moved to right side) -->
+          <!-- Mobile menu button - Hamburger (right side) -->
           <button id="mobile-menu-button" class="md:hidden text-gray-700 hover:text-primary">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -277,7 +277,7 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
         </div>
       </div>
       
-      <!-- Mobile Navigation Overlay - Now opens from right -->
+      <!-- Mobile Navigation Overlay - Opens from right -->
       <div id="mobile-menu" class="fixed inset-0 bg-gray-900/80 z-50 hidden">
         <div class="h-full w-64 max-w-[80%] bg-white shadow-xl ml-auto flex flex-col">
           <!-- Mobile menu header -->
@@ -318,7 +318,7 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
           
           <!-- Mobile call-to-action -->
           <div class="mt-auto p-4 border-t border-gray-200">
-            <a href="tel:+359878123456" class="btn-primary w-full flex items-center justify-center shadow-sm mb-3">
+            <a href="tel:+359898340982" class="btn-primary w-full flex items-center justify-center shadow-sm mb-3">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
               </svg>
@@ -346,7 +346,7 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
       </svg>
     </a>
     
-    <!-- Enhanced footer with better mobile styling -->
+    <!-- Footer with better mobile styling -->
     <footer class="bg-gray-800 text-white py-10 mt-16">
       <div class="container">
         <div class="grid md:grid-cols-3 gap-8">
@@ -387,14 +387,14 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2 text-gray-400 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
                 </svg>
-                <a href="tel:+359878123456" class="hover:text-white">+359 878 123 456</a>
+                <a href="tel:+359898340982" class="hover:text-white">+359 89 834 0982</a>
               </li>
               <li class="flex items-start">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2 text-gray-400 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                   <polyline points="22,6 12,13 2,6"></polyline>
                 </svg>
-                <a href="mailto:contact@gmail.com" class="hover:text-white">contact@gmail.com</a>
+                <a href="mailto:n.ivanov.ivanov@abv.bg" class="hover:text-white">n.ivanov.ivanov@abv.bg</a>
               </li>
               <li class="flex items-start">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2 text-gray-400 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

@@ -80,7 +80,7 @@ const reviews = [
       ))}
     </div>
     
-    <!-- Enhanced Mobile layout - single prominent card with pagination -->
+    <!-- Mobile layout - single prominent card with pagination -->
     <div class="mt-8 md:hidden">
       <div id="mobile-review-carousel" class="relative">
         <!-- Visually enhanced card with border accent and background -->
@@ -121,7 +121,7 @@ const reviews = [
           </div>
         </div>
         
-        <!-- Navigation arrows and pagination dots with improved styling -->
+        <!-- Navigation arrows and pagination dots with styling -->
         <div class="flex justify-between items-center mt-4">
           <button id="review-prev" class="review-nav-btn w-10 h-10 flex items-center justify-center rounded-full bg-white/80 backdrop-blur border border-gray-200 text-gray-500 hover:bg-gray-50 active:bg-gray-100 shadow-sm">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -161,7 +161,7 @@ const reviews = [
 </section>
 
 <script>
-  // Mobile review carousel with enhanced transitions
+  // Mobile review carousel with transitions
   document.addEventListener('DOMContentLoaded', () => {
     // Set up our review carousel data
     const reviewData = [
@@ -202,7 +202,7 @@ const reviews = [
       
       if (!nameElement || !dateElement || !textElement || !applianceElement || !carouselElement) return;
       
-      // Add fade-out effect
+      // Fade-out effect
       carouselElement.classList.add('opacity-0');
       
       // Update content after a short delay

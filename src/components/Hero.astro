@@ -5,25 +5,13 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const isEN = lang === 'en';
 
-// Focus on just 4 core services for a cleaner look
+// Focus on core services for a cleaner look
 const allServices = [
   {
     icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="20" x="3" y="2" rx="2"/><circle cx="12" cy="14" r="4"/><circle cx="12" cy="14" r="1"/><path d="M8 6h.01M11 6h.01M14 6h.01"/></svg>`,
     title: isEN ? 'Washing Machines' : 'Перални',
     color: 'bg-blue-50 text-blue-700',
     gradientColor: 'from-blue-500 to-blue-700'
-  },
-  {
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v14a2 2 0 0 1-2-2H7a2 2 0 0 1-2-2z"/><path d="M5 10h14"/><path d="M9 2v4"/><path d="M9 16v2"/></svg>`,
-    title: isEN ? 'Refrigerators' : 'Хладилници',
-    color: 'bg-cyan-50 text-cyan-700',
-    gradientColor: 'from-cyan-500 to-cyan-700'
-  },
-  {
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 9a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1z"/><path d="M12 12h.01"/><path d="m6 17-2 2"/><path d="m10 17-2 2"/><path d="m14 17 2 2"/><path d="m18 17 2 2"/></svg>`,
-    title: isEN ? 'Air Conditioners' : 'Климатици',
-    color: 'bg-teal-50 text-teal-700',
-    gradientColor: 'from-teal-500 to-teal-700'
   },
   {
     icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M8 16v-4"/><path d="M16 16v-4"/><path d="M8 6h.01"/><path d="M12 6h.01"/><path d="M16 6h.01"/></svg>`,
@@ -42,12 +30,6 @@ const allServices = [
     title: isEN ? 'Electrical' : 'Електрически',
     color: 'bg-amber-50 text-amber-700',
     gradientColor: 'from-amber-500 to-amber-700'
-  },
-  {
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7l16-4"/><path d="M4 17l16-4"/><path d="M4 12h16"/></svg>`,
-    title: isEN ? 'Dryers' : 'Сушилни',
-    color: 'bg-indigo-50 text-indigo-700',
-    gradientColor: 'from-indigo-500 to-indigo-700'
   }
 ];
 
@@ -62,55 +44,55 @@ const reviews = [
   {
     name: isEN ? 'Maria Dimitrova' : 'Мария Димитрова',
     date: isEN ? 'February 28, 2025' : '28 февруари, 2025',
-    text: isEN ? 'Excellent service! The technician was very knowledgeable and fixed my refrigerator quickly.' : 'Отлична услуга! Техникът беше много компетентен и поправи хладилника ми бързо.',
-    appliance: isEN ? 'Refrigerator' : 'Хладилник'
+    text: isEN ? 'Excellent service! The technician was very knowledgeable and fixed my dishwasher quickly.' : 'Отлична услуга! Техникът беше много компетентен и поправи съдомиялната ми бързо.',
+    appliance: isEN ? 'Dishwasher' : 'Съдомиялна'
   },
   {
     name: isEN ? 'Georgi Ivanov' : 'Георги Иванов',
     date: isEN ? 'January 10, 2025' : '10 януари, 2025',
-    text: isEN ? 'Had an issue with my air conditioner, called TechnoFix and they came the next day. Very thorough service!' : 'Имах проблем с климатика, обадих се на ТехноФикс и дойдоха на следващия ден. Много обстойна услуга!',
-    appliance: isEN ? 'Air Conditioner' : 'Климатик'
+    text: isEN ? 'Had an issue with my oven, called TechnoFix and they came the next day. Very thorough service!' : 'Имах проблем с фурната, обадих се на ТехноФикс и дойдоха на следващия ден. Много обстойна услуга!',
+    appliance: isEN ? 'Oven' : 'Фурна'
   }
 ];
 ---
 
 <section class="relative overflow-hidden">
-  <!-- Background image with enhanced gradient overlay for both mobile and desktop -->
+  <!-- Background image with gradient overlay for both mobile and desktop -->
   <div class="absolute inset-0 z-0">
     <img 
       src="/img/hero.webp" 
       alt="" 
       class="w-full h-full object-cover object-center"
     />
-    <!-- Darkened overlay for better text contrast on ALL screen sizes -->
+    <!-- Darkened overlay for good text contrast on ALL screen sizes -->
     <div class="absolute inset-0 bg-gradient-to-r from-blue-900/70 to-blue-600/50"></div>
   </div>
   
-  <div class="container relative z-10 py-20 md:py-28">
+  <div class="container relative z-10 py-12 md:py-20">
     <!-- Hero content with consistent text colors for all screens -->
     <div class="text-center max-w-2xl mx-auto mb-10">
-      <div class="flex flex-wrap gap-2 justify-center mb-6">
+      <div class="flex flex-wrap gap-2 justify-center mb-4">
         <div class="inline-block px-4 py-1 bg-primary text-white text-sm font-semibold rounded-full shadow-sm">
           {isEN ? 'In-home repairs in Varna area' : 'Ремонт на уреди във вашия дом'}
         </div>
-        <!-- Diagnostic fee badge with improved visibility -->
+        <!-- Diagnostic fee badge -->
         <div class="inline-block px-4 py-1 bg-amber-500 text-white text-sm font-semibold rounded-full shadow-sm">
           {isEN ? 'Diagnostic fee: 30 BGN' : 'Диагностика: 30 лв.'}
         </div>
       </div>
       
       <!-- Keep text white on ALL screen sizes -->
-      <h1 class="text-4xl md:text-5xl font-bold text-white mb-6 drop-shadow-sm">
+      <h1 class="text-3xl md:text-5xl font-bold text-white mb-4 md:mb-6 drop-shadow-sm">
         {isEN ? 'Professional Appliance Repairs' : 'Професионален ремонт на домакински уреди'}
       </h1>
       
-      <p class="text-xl text-white mb-4 drop-shadow-sm">
+      <p class="text-lg md:text-xl text-white mb-4 drop-shadow-sm">
         {isEN 
-          ? 'Fast and reliable repairs for washing machines, refrigerators, and air conditioners. We come directly to your home.' 
-          : 'Бързи и надеждни ремонти на перални, хладилници и климатици. Идваме на място.'}
+          ? 'Fast and reliable repairs for washing machines, dishwashers, ovens, and electrical systems. We come to you.' 
+          : 'Бързи и надеждни ремонти на перални, съдомиялни, фурни и електрически системи. Идваме на място.'}
       </p>
       
-      <!-- Same-day service highlight with improved visibility -->
+      <!-- Same-day service highlight -->
       <p class="text-lg text-white font-medium mb-8 flex items-center justify-center drop-shadow-sm">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/>
@@ -118,14 +100,14 @@ const reviews = [
         {isEN ? 'Same-day repairs!' : 'Ремонт още същия ден!'}
       </p>
       
-      <!-- Enhanced CTA buttons with shadows for better visibility -->
-      <div class="flex flex-col sm:flex-row justify-center gap-4">
+      <!-- CTA buttons with shadows -->
+      <div class="flex flex-col sm:flex-row justify-center gap-3">
         <a href="/book" class="btn-cta inline-flex items-center justify-center shadow-lg">
           <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path></svg>
           {t('hero.cta')}
         </a>
         
-        <a href="tel:+359878123456" class="btn-primary inline-flex items-center justify-center shadow-lg">
+        <a href="tel:+359898340982" class="btn-primary inline-flex items-center justify-center shadow-lg">
           <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
           {t('hero.phone')}
         </a>
@@ -136,7 +118,7 @@ const reviews = [
     <div class="max-w-3xl mx-auto mb-3">
       <!-- Desktop view - show 4 most common services -->
       <div class="hidden md:grid md:grid-cols-4 gap-3">
-        {allServices.slice(0, 4).map((service) => (
+        {allServices.map((service) => (
           <a href="#services" class="block p-3 rounded-lg text-center bg-white/90 backdrop-blur shadow-sm border border-gray-100 transition-all hover:shadow-md hover:-translate-y-1">
             <div class={`${service.color} w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2`}>
               <Fragment set:html={service.icon} />
@@ -146,10 +128,10 @@ const reviews = [
         ))}
       </div>
       
-      <!-- Enhanced Mobile view with horizontal scroll and gradient cards -->
+      <!-- Mobile view with horizontal scroll and gradient cards -->
       <div class="md:hidden">
         <div class="relative">
-          <!-- More visually appealing scrollable container -->
+          <!-- Visually appealing scrollable container -->
           <div class="flex overflow-x-auto pb-3 scrollbar-hide snap-x snap-mandatory">
             <div class="flex gap-3 px-2">
               {allServices.map((service) => (
@@ -165,13 +147,6 @@ const reviews = [
               ))}
             </div>
           </div>
-          
-          <!-- Scroll indicator dots -->
-          <div class="flex justify-center mt-3 gap-1">
-            <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
-            <span class="w-1.5 h-1.5 rounded-full bg-gray-300"></span>
-            <span class="w-1.5 h-1.5 rounded-full bg-gray-300"></span>
-          </div>
         </div>
       </div>
       
@@ -185,7 +160,7 @@ const reviews = [
       </div>
     </div>
     
-    <!-- Reviews section with improved mobile display -->
+    <!-- Reviews section with mobile display -->
     <div class="max-w-4xl mx-auto mt-16">
       <!-- Desktop cards remain the same -->
       <div class="hidden md:block">
@@ -238,7 +213,7 @@ const reviews = [
         </div>
       </div>
       
-      <!-- Enhanced Mobile reviews with left border accent -->
+      <!-- Mobile reviews with left border accent -->
       <div class="md:hidden">
         <div class="px-4">
           <div class="flex items-center justify-between mb-4">
@@ -336,14 +311,14 @@ const reviews = [
         {
           name: 'Мария Димитрова',
           date: '28 февруари, 2025',
-          text: 'Отлична услуга! Техникът беше много компетентен и поправи хладилника ми бързо.',
-          appliance: 'Хладилник'
+          text: 'Отлична услуга! Техникът беше много компетентен и поправи съдомиялната ми бързо.',
+          appliance: 'Съдомиялна'
         },
         {
           name: 'Георги Иванов',
           date: '10 януари, 2025',
-          text: 'Имах проблем с климатика, обадих се на ТехноФикс и дойдоха на следващия ден. Много обстойна услуга!',
-          appliance: 'Климатик'
+          text: 'Имах проблем с фурната, обадих се на ТехноФикс и дойдоха на следващия ден. Много обстойна услуга!',
+          appliance: 'Фурна'
         }
       ],
       
@@ -397,7 +372,7 @@ const reviews = [
 </script>
 
 <style>
-  /* Add drop shadow for better text readability on mobile */
+  /* Drop shadow for better text readability on mobile */
   .text-shadow {
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   }

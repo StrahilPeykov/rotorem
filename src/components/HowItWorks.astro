@@ -54,7 +54,7 @@ const pricingText = isEN
       <p class="text-gray-800 mt-4">{subtitle}</p>
     </div>
     
-    <!-- Enhanced Mobile-friendly steps with gradients and better visual hierarchy -->
+    <!-- Mobile-friendly steps with gradients and good visual hierarchy -->
     <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
       {steps.map((step, index) => (
         <div class="relative bg-gradient-to-b from-white to-blue-50 p-6 rounded-lg shadow-sm border border-gray-100 text-center transform transition-transform hover:translate-y-[-4px] hover:shadow-md">
@@ -72,7 +72,7 @@ const pricingText = isEN
           
           <!-- Icon and content -->
           <div class="mt-6">
-            <div class="text-primary mx-auto w-12 h-12 mb-4">
+            <div class="text-primary flex justify-center items-center w-12 h-12 mx-auto mb-4">
               <Fragment set:html={step.icon} />
             </div>
             
@@ -83,7 +83,7 @@ const pricingText = isEN
       ))}
     </div>
     
-    <!-- Enhanced pricing info box with better mobile styling -->
+    <!-- Pricing info box with good mobile styling -->
     <div class="max-w-3xl mx-auto mt-10 md:mt-12">
       <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg border border-blue-200 shadow-sm overflow-hidden">
         <!-- Pricing header with accent color -->
@@ -99,11 +99,11 @@ const pricingText = isEN
           </div>
         </div>
         
-        <!-- Pricing content with improved mobile padding -->
+        <!-- Pricing content with good mobile padding -->
         <div class="p-6">
           <p class="text-gray-700">{pricingText}</p>
           
-          <!-- Added price comparison badges -->
+          <!-- Price comparison badges -->
           <div class="mt-4 flex flex-wrap gap-3">
             <div class="bg-white/70 backdrop-blur px-3 py-2 rounded-lg border border-blue-100 text-sm flex items-center">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2 text-green-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -131,7 +131,7 @@ const pricingText = isEN
       </div>
     </div>
     
-    <!-- Enhanced CTA button with shadow -->
+    <!-- CTA button with shadow -->
     <div class="mt-10 md:mt-12 text-center">
       <a href="/book" class="btn-cta inline-flex items-center justify-center shadow-lg">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

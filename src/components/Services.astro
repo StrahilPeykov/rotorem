@@ -2,13 +2,13 @@
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
 
 // Define a type for valid icon keys
-type IconKey = 'washing-machine' | 'refrigerator' | 'air-conditioner' | 'dishwasher' | 'oven' | 'electrical' | 'other';
+type IconKey = 'washing-machine' | 'dishwasher' | 'oven' | 'electrical' | 'other' | 'dryer';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const isEN = lang === 'en';
 
-// Enhanced styling for the section
+// Styling for the section
 const sectionClass = "py-16 md:py-24 bg-gradient-to-b from-blue-50 to-white relative overflow-hidden";
 const titleClass = "text-3xl md:text-4xl font-bold text-primary mb-2";
 const subtitleClass = "mt-4 text-xl text-gray-600 max-w-3xl mx-auto";
@@ -16,11 +16,10 @@ const subtitleClass = "mt-4 text-xl text-gray-600 max-w-3xl mx-auto";
 // Color overlays for each service type - consistent style with original design
 const serviceColors = {
   'washing-machine': 'from-blue-700/80 to-blue-600/80',
-  'refrigerator': 'from-cyan-700/80 to-cyan-600/80',
-  'air-conditioner': 'from-teal-700/80 to-teal-600/80',
   'dishwasher': 'from-emerald-700/80 to-emerald-600/80',
   'oven': 'from-amber-700/80 to-amber-600/80', 
   'electrical': 'from-red-700/80 to-red-600/80',
+  'dryer': 'from-indigo-700/80 to-indigo-600/80',
 };
 
 // Adding the service area information
@@ -33,7 +32,7 @@ const guaranteeText = isEN
   ? 'All repairs come with professional service and warranty'
   : 'Всички ремонти се извършват професионално и с гаранция';
 
-// NEW: In-home service explanation
+// In-home service explanation
 const inHomeServiceText = isEN
   ? 'All repairs are performed in your home - no need to transport heavy appliances'
   : 'Всички ремонти се извършват във вашия дом - не е нужно да транспортирате тежки уреди';
@@ -43,29 +42,15 @@ const services = [
     icon: 'washing-machine' as IconKey,
     title: isEN ? 'Washing Machines & Dryers' : 'Перални и Сушилни',
     description: isEN 
-      ? 'Fast repairs for all washing machine brands. We fix leaks, motor problems, electronics, and provide same-day emergency service.'
-      : 'Бързи ремонти на всички марки перални. Отстраняваме течове, проблеми с мотора, електрониката и предлагаме спешна услуга в същия ден.',
-  },
-  {
-    icon: 'refrigerator' as IconKey,
-    title: isEN ? 'Refrigerators & Freezers' : 'Хладилници и Фризери',
-    description: isEN 
-      ? 'Professional refrigerator repair with quality parts. Freon recharge, compressor repairs, and temperature regulation issues fixed quickly.'
-      : 'Професионален ремонт на хладилници с качествени части. Бързо отстраняване на проблеми със зареждане с фреон, ремонт на компресори и регулиране на температурата.',
-  },
-  {
-    icon: 'air-conditioner' as IconKey,
-    title: isEN ? 'Air Conditioners' : 'Климатици',
-    description: isEN 
-      ? 'Complete AC services: installation, maintenance, and repairs with warranty. Expert refrigerant handling and electrical diagnostics.'
-      : 'Пълно обслужване на климатици: монтаж, поддръжка и ремонт с гаранция. Експертна работа с хладилен агент и електрическа диагностика.',
+      ? 'Fast repairs for all washing machine and dryer brands. We fix leaks, motor problems, electronics, drum issues, and provide same-day emergency service.'
+      : 'Бързи ремонти на всички марки перални и сушилни. Отстраняваме течове, проблеми с мотора, барабана, електрониката и предлагаме спешна услуга в същия ден.',
   },
   {
     icon: 'dishwasher' as IconKey,
     title: isEN ? 'Dishwashers' : 'Съдомиялни',
     description: isEN 
-      ? 'Reliable dishwasher repairs for all major brands. We fix water inlet problems, draining issues, and electronics with genuine parts.'
-      : 'Надежден ремонт на съдомиялни от всички основни марки. Отстраняваме проблеми с подаването на вода, източването и електрониката с оригинални части.',
+      ? 'Reliable dishwasher repairs for all major brands. We fix water inlet problems, draining issues, and electronics with genuine parts. Same-day diagnosis.'
+      : 'Надежден ремонт на съдомиялни от всички основни марки. Отстраняваме проблеми с подаването на вода, източването и електрониката с оригинални части. Диагностика в същия ден.',
   },
   {
     icon: 'oven' as IconKey,
@@ -78,19 +63,18 @@ const services = [
     icon: 'electrical' as IconKey,
     title: isEN ? 'Electrical Services' : 'Електрически Услуги',
     description: isEN 
-      ? 'Installation and replacement of switches, sockets, light fixtures, and small electrical appliances. Safe, reliable, and code-compliant work.'
-      : 'Монтаж и подмяна на ключове, контакти, осветителни тела и малки електрически уреди. Безопасна, надеждна работа в съответствие със стандартите.',
+      ? 'Installation and replacement of switches, sockets, light fixtures, and small electrical appliances. Safe, reliable, and code-compliant work performed by certified engineers.'
+      : 'Монтаж и подмяна на ключове, контакти, осветителни тела и малки електрически уреди. Безопасна, надеждна работа в съответствие със стандартите, извършена от сертифицирани инженери.',
   },
 ];
 
-// SVG Icons for each service - white for visibility on color overlays
+// SVG Icons for each service
 const icons: Record<IconKey, string> = {
   'washing-machine': `<svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="20" x="3" y="2" rx="2"/><circle cx="12" cy="14" r="4"/><circle cx="12" cy="14" r="1"/><path d="M8 6h.01M11 6h.01M14 6h.01"/></svg>`,
-  'refrigerator': `<svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z"/><path d="M5 10h14"/><path d="M9 2v4"/><path d="M9 16v2"/></svg>`,
-  'air-conditioner': `<svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 9a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1z"/><path d="M12 12h.01"/><path d="m6 17-2 2"/><path d="m10 17-2 2"/><path d="m14 17 2 2"/><path d="m18 17 2 2"/></svg>`,
   'dishwasher': `<svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M8 16v-4"/><path d="M16 16v-4"/><path d="M8 6h.01"/><path d="M12 6h.01"/><path d="M16 6h.01"/></svg>`,
   'oven': `<svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2"/><path d="M7 16h10"/><path d="M7 8h10"/><path d="M7 12h10"/><path d="M7 7v6"/><path d="M17 7v6"/></svg>`,
   'electrical': `<svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 12h4l-1 8 6-11h-4l2-5z"/></svg>`,
+  'dryer': `<svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7l16-4"/><path d="M4 17l16-4"/><path d="M4 12h16"/></svg>`,
   'other': `<svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 3a2 2 0 0 0-2 2"/><path d="M18 3a2 2 0 0 1 2 2"/><path d="M18 21a2 2 0 0 1-2-2"/><path d="M18 21a2 2 0 0 0 2-2"/><path d="M6 3a2 2 0 0 0-2 2"/><path d="M6 3a2 2 0 0 1 2 2"/><path d="M6 21a2 2 0 0 0 2-2"/><path d="M6 21a2 2 0 0 1-2-2"/><path d="M3 9v0"/><path d="M3 15v0"/><path d="M21 9v0"/><path d="M21 15v0"/><path d="M9 3v0"/><path d="M9 21v0"/><path d="M15 3v0"/><path d="M15 21v0"/><path d="M9 12a3 3 0 1 0 6 0 3 3 0 1 0-6 0"/></svg>`,
 };
 ---
@@ -106,7 +90,7 @@ const icons: Record<IconKey, string> = {
       <div class="w-24 h-1 bg-primary mx-auto my-4"></div>
       <p class={subtitleClass}>{t('services.subtitle')}</p>
       
-      <!-- Enhanced Mobile Service Info box -->
+      <!-- Mobile Service Info box -->
       <div class="mt-6 bg-gradient-to-r from-blue-100 to-blue-50 rounded-lg border border-blue-200 mx-auto max-w-2xl overflow-hidden shadow-sm">
         <div class="grid md:grid-cols-3">
           <!-- In-home service -->
@@ -145,8 +129,8 @@ const icons: Record<IconKey, string> = {
       </div>
     </div>
     
-    <!-- Enhanced Mobile Service Cards -->
-    <div class="grid gap-6 md:gap-8 md:grid-cols-2 lg:grid-cols-3">
+    <!-- Mobile Service Cards -->
+    <div class="grid gap-6 md:gap-8 md:grid-cols-2 lg:grid-cols-2">
       {services.map(service => {
         const gradientClass = serviceColors[service.icon as keyof typeof serviceColors] || 'from-gray-700/70 to-gray-600/70';
         
@@ -196,7 +180,7 @@ const icons: Record<IconKey, string> = {
       })}
     </div>
     
-    <!-- Enhanced CTA at the bottom of services section -->
+    <!-- CTA at the bottom of services section -->
     <div class="mt-12 text-center">
       <a href="/book" class="btn-cta inline-flex items-center justify-center shadow-lg">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -209,7 +193,7 @@ const icons: Record<IconKey, string> = {
 </section>
 
 <style>
-  /* Add drop shadow for better text readability on mobile */
+  /* Add drop shadow for good text readability on mobile */
   .text-shadow {
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   }

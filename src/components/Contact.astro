@@ -1,5 +1,4 @@
 ---
-// src/components/Contact.astro
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
 
 // Define a type for valid icon keys
@@ -23,8 +22,8 @@ const subtitle = isEN
   ? 'Have a broken appliance? Get in touch with us for a fast repair!' 
   : 'Имате повреден уред? Свържете се с нас за бърз ремонт!';
 
-const phone = '+359878123456';
-const email = 'contact@gmail.com';
+const phone = '+359898340982';
+const email = 'n.ivanov.ivanov@abv.bg';
 const address = isEN 
   ? 'Varna, Bulgaria' 
   : 'Варна, България';
@@ -79,10 +78,10 @@ const icons: Record<IconKey, string> = {
 };
 
 const ownerTitle = isEN ? 'Meet Your Technician' : 'Запознайте се с вашия техник';
-const ownerName = isEN ? 'Stoyan Petrov' : 'Стоян Петров';
+const ownerName = isEN ? 'Engineer Nikolay Ivanov' : 'Инженер Николай Иванов';
 const ownerDescription = isEN 
-  ? 'With over 15 years of experience repairing home appliances, Stoyan provides fast and reliable service for all major brands.' 
-  : 'С над 15 години опит в ремонта на домакински уреди, Стоян предоставя бърза и надеждна услуга за всички основни марки.';
+  ? 'With over 15 years of experience repairing home appliances, Nikolay provides fast and reliable service for all major brands.' 
+  : 'С над 15 години опит в ремонта на домакински уреди, Николай предоставя бърза и надеждна услуга за всички основни марки.';
 ---
 
 <section id="contact" class="py-16 md:py-20 bg-gradient-to-b from-gray-50 to-white">
@@ -94,7 +93,7 @@ const ownerDescription = isEN
     </div>
     
     <div class="mt-12 grid md:grid-cols-2 gap-8 items-start">
-      <!-- Enhanced Contact Info Cards for Mobile -->
+      <!-- Contact Info Cards for Mobile -->
       <div>
         <!-- Responsive grid that changes from 1 to 2 columns based on screen size -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -120,7 +119,7 @@ const ownerDescription = isEN
           ))}
         </div>
         
-        <!-- Enhanced CTA Button -->
+        <!-- CTA Button -->
         <div class="mt-8 flex justify-center">
           <a href="/book" class="btn-cta inline-flex items-center justify-center shadow-lg hover:scale-105 transition-transform duration-300">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path></svg>
@@ -129,7 +128,7 @@ const ownerDescription = isEN
         </div>
       </div>
       
-      <!-- Enhanced Technician Card -->
+      <!-- Technician Card -->
       <div class="bg-gradient-to-r from-white to-blue-50 p-6 rounded-lg shadow-sm border border-gray-100 transform transition-all duration-300 hover:shadow-md">
         <h3 class="text-xl font-semibold text-gray-900 mb-4 flex items-center">
           <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-2 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -140,7 +139,7 @@ const ownerDescription = isEN
         </h3>
         
         <div class="flex flex-col sm:flex-row gap-6 items-center">
-          <!-- Enhanced image presentation with subtle shadow and border -->
+          <!-- Image presentation with subtle shadow and border -->
           <div class="flex-shrink-0 w-28 h-28 rounded-full overflow-hidden border-4 border-white shadow-md">
             <img 
               src="/img/owner.webp" 
@@ -155,7 +154,7 @@ const ownerDescription = isEN
             <h4 class="text-lg font-medium text-gray-900">{ownerName}</h4>
             <p class="mt-2 text-gray-600">{ownerDescription}</p>
             
-            <!-- Enhanced ratings display -->
+            <!-- Ratings display -->
             <div class="mt-4 flex items-center">
               <div class="flex">
                 {Array.from({ length: 5 }).map(() => (
@@ -167,16 +166,16 @@ const ownerDescription = isEN
               </span>
             </div>
             
-            <!-- Added skill badges for visual enhancement -->
+            <!-- Skill badges for visual enhancement -->
             <div class="mt-3 flex flex-wrap gap-2">
               <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">
-                {isEN ? 'Certified Technician' : 'Сертифициран техник'}
+                {isEN ? 'Certified Engineer' : 'Сертифициран инженер'}
               </span>
               <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">
                 {isEN ? '15+ Years Experience' : '15+ години опит'}
               </span>
               <span class="px-2 py-1 bg-amber-100 text-amber-800 rounded-full text-xs font-medium">
-                {isEN ? 'All Brands' : 'Всички марки'}
+                {isEN ? 'All Major Brands' : 'Всички основни марки'}
               </span>
             </div>
           </div>
