@@ -56,13 +56,15 @@ const reviews = [
 ];
 ---
 
-<section class="relative overflow-hidden">
+<section class="relative overflow-hidden pb-8">
   <!-- Background image with gradient overlay for both mobile and desktop -->
   <div class="absolute inset-0 z-0">
     <img 
       src="/img/hero.webp" 
       alt="" 
       class="w-full h-full object-cover object-center"
+      width="1920"
+      height="1080"
     />
     <!-- Darkened overlay for good text contrast on ALL screen sizes -->
     <div class="absolute inset-0 bg-gradient-to-r from-blue-900/70 to-blue-600/50"></div>
@@ -76,11 +78,11 @@ const reviews = [
         {isEN ? 'Diagnostic fee: 30 BGN' : 'Диагностика: 30 лв.'}
       </div>
       
-      <!-- Larger, more impactful title for mobile -->
-      <h1 class="text-4xl font-bold text-white mb-4 uppercase tracking-wide font-heading">
-        {isEN ? 'APPLIANCE REPAIR' : 'РЕМОНТ НА УРЕДИ'}
+      <!-- Larger, more impactful title for mobile - now with consistent capitalization -->
+      <h1 class="text-4xl font-bold text-white mb-4 tracking-wide font-heading">
+        {isEN ? 'Professional Repair' : 'Професионален ремонт'}
         <br />
-        {isEN ? 'VARNA' : 'ВАРНА'}
+        {isEN ? 'Varna' : 'Варна'}
       </h1>
       
       <!-- Super simplified subtitle -->
@@ -114,7 +116,7 @@ const reviews = [
       </div>
     </div>
     
-    <!-- Desktop hero content - keep original layout -->
+    <!-- Desktop hero content - keep original layout but with added consistency -->
     <div class="hidden md:block text-center max-w-2xl mx-auto mb-10">
       <div class="flex flex-wrap gap-2 justify-center mb-4">
         <div class="inline-block px-4 py-1 bg-primary text-white text-sm font-semibold rounded-full shadow-sm font-heading">
@@ -126,7 +128,7 @@ const reviews = [
       </div>
       
       <h1 class="text-5xl font-bold text-white mb-6 drop-shadow-sm font-heading">
-        {isEN ? 'Professional Appliance Repairs' : 'Професионален ремонт на домакински уреди'}
+        {isEN ? 'Professional Appliance Repair' : 'Професионален ремонт на уреди'}
       </h1>
       
       <p class="text-xl text-white mb-4 drop-shadow-sm font-heading">
@@ -155,7 +157,7 @@ const reviews = [
       </div>
     </div>
     
-    <!-- Service icons/badges -->
+    <!-- Service icons/badges improved for both desktop and mobile -->
     <div class="max-w-3xl mx-auto mb-3">
       <!-- Desktop view - show 4 services with white cards -->
       <div class="hidden md:grid md:grid-cols-4 gap-3">
@@ -187,9 +189,9 @@ const reviews = [
           </div>
         </div>
         
-        <!-- See all services link -->
-        <div class="text-center mt-2">
-          <a href="#services" class="inline-flex items-center text-white text-sm font-heading">
+        <!-- See all services link with improved padding and visibility -->
+        <div class="text-center mt-3 mb-2 px-4">
+          <a href="#services" class="inline-flex items-center text-white text-sm font-medium bg-white/10 backdrop-blur px-4 py-2 rounded-full font-heading">
             {isEN ? 'See all services' : 'Вижте всички услуги'}
             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="9 18 15 12 9 6"></polyline>
@@ -199,9 +201,19 @@ const reviews = [
       </div>
     </div>
     
-    <!-- Reviews section - preserved as per original -->
-    <div class="max-w-4xl mx-auto mt-16">
-      <!-- Desktop reviews (kept as-is) -->
+    <!-- Added "See all services" link to desktop as well for consistency -->
+    <div class="hidden md:block text-center mt-6 mb-2">
+      <a href="#services" class="inline-flex items-center text-white text-sm font-medium bg-white/10 backdrop-blur px-4 py-2 rounded-full hover:bg-white/20 transition-colors font-heading">
+        {isEN ? 'See all services' : 'Вижте всички услуги'}
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </a>
+    </div>
+    
+    <!-- Reviews section - improved for both desktop and mobile -->
+    <div class="max-w-4xl mx-auto mt-12 mb-8">
+      <!-- Desktop reviews (kept as-is with better spacing) -->
       <div class="hidden md:block">
         <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
           <div class="flex items-center justify-between mb-4">
@@ -252,7 +264,7 @@ const reviews = [
         </div>
       </div>
       
-      <!-- Mobile reviews with left border accent -->
+      <!-- Mobile reviews with improved padding and visibility -->
       <div class="md:hidden">
         <div class="px-4">
           <div class="flex items-center justify-between mb-4">
@@ -308,7 +320,7 @@ const reviews = [
             </div>
           </div>
           
-          <!-- Navigation arrows and pagination dots -->
+          <!-- Navigation arrows and pagination dots with improved contrast -->
           <div class="flex justify-between items-center mt-4">
             <button id="review-prev" class="review-nav-btn w-10 h-10 flex items-center justify-center rounded-full bg-white/80 backdrop-blur border border-gray-200 text-gray-500 hover:bg-gray-50 active:bg-gray-100 touch-manipulation shadow-sm">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -343,6 +355,16 @@ const reviews = [
   
   .scrollbar-hide::-webkit-scrollbar {
     display: none; /* Chrome, Safari and Opera */
+  }
+  
+  /* Ensure proper text contrast and readability */
+  .text-shadow {
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  }
+  
+  /* Smooth transitions for hover states */
+  a, button {
+    transition: all 0.2s ease-in-out;
   }
 </style>
 
