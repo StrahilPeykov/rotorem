@@ -1,8 +1,22 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-  <path d="M5 5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z"/>
-  <path d="M5 10h14"/>
-  <path d="M9 2v4"/>
-  <path d="M9 16v2"/>
-  <path d="M17 6h-4"/>
-  <path d="M17 14h-4"/>
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Roof, right wall, and partial floor (left floor omitted under “ЕМ”) -->
+  <polyline points="22,35 50,10 85,35 85,80 52,80"
+            fill="none" stroke="#000" stroke-width="4"
+            stroke-linejoin="round" stroke-linecap="round"/>
+
+  <!-- Letter “Р” as left wall, final narrow bowl -->
+  <path d="M22 35 v45
+           M22 35 h18
+           a9 9 0 1 1 0 18 h-18 z"
+        fill="none" stroke="#000" stroke-width="4"
+        stroke-linejoin="round" stroke-linecap="round"/>
+
+  <!-- Top word “ОТО” shifted left so rightmost “О” stays inside -->
+  <text x="50" y="55" font-family="Arial, sans-serif"
+        font-size="17" font-weight="bold">ОТО</text>
+
+  <!-- Bottom word “ЕМ” sitting on the floor -->
+  <text x="26" y="80" font-family="Arial, sans-serif"
+        font-size="17" font-weight="bold">ЕМ</text>
 </svg>
