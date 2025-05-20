@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://technofixvarna.com',
+  site: 'https://rotoremvarna.com',
   integrations: [
     tailwind({
       // Using a simple config without requiring daisyui directly

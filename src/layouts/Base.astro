@@ -16,7 +16,7 @@ const t = useTranslations(lang);
 const isEN = lang === 'en';
 
 const {
-  title = isEN ? 'TechnoFix Varna | Appliance Repair Services' : 'ТехноФикс Варна | Ремонт на битова техника',
+  title = isEN ? 'RotoRem Varna | Appliance Repair Services' : 'РотоРем Варна | Ремонт на битова техника',
   description = isEN 
     ? 'Professional appliance repair services in Varna. Fast and reliable repairs for washing machines, dishwashers, ovens and more.'
     : 'Професионален ремонт на битова техника във Варна. Бързи и надеждни ремонти на перални, съдомиялни, фурни и други.',
@@ -52,7 +52,7 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
         optional: {
           description,
           locale: lang,
-          siteName: isEN ? 'TechnoFix Varna' : 'ТехноФикс Варна',
+          siteName: isEN ? 'RotoRem Varna' : 'РотоРем Варна',
         },
       }}
       extend={{
@@ -77,10 +77,10 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
       {
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
-        "name": "TechnoFix Varna",
-        "alternateName": "ТехноФикс Варна",
+        "name": "RotoRem Varna",
+        "alternateName": "РотоРем Варна",
         "description": "Professional appliance repair services in Varna",
-        "url": "https://technofixvarna.com",
+        "url": "https://rotoremvarna.com",
         "telephone": "+359898340982",
         "email": "n.ivanov.ivanov@abv.bg",
         "address": {
@@ -109,9 +109,9 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
           }
         ],
         "priceRange": "$$",
-        "image": "https://technofixvarna.com/img/hero.webp",
+        "image": "https://rotoremvarna.com/img/hero.webp",
         "sameAs": [
-          "https://www.facebook.com/technofixvarna",
+          "https://www.facebook.com/rotoremvarna",
           "https://www.google.com/maps?cid=12345678"
         ]
       }
@@ -265,7 +265,7 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
     <header class="py-4 bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
       <div class="container flex justify-between items-center">
         <a href={isEN ? '/en' : '/'} class="font-bold text-2xl text-primary font-heading">
-          {isEN ? 'TechnoFix Varna' : 'ТехноФикс Варна'}
+          {isEN ? 'RotoRem Varna' : 'РотоРем Варна'}
         </a>
         <div class="flex gap-4 md:gap-8 items-center">
           <!-- Desktop navigation -->
@@ -301,7 +301,7 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
           <!-- Mobile menu header -->
           <div class="p-4 border-b border-gray-200 flex items-center justify-between">
             <a href={isEN ? '/en' : '/'} class="font-bold text-xl text-primary font-heading">
-              {isEN ? 'TechnoFix' : 'ТехноФикс'}
+              {isEN ? 'RotoRem' : 'РотоРем'}
             </a>
             <button id="close-menu-button" class="text-gray-500">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -371,7 +371,7 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
           <!-- Company info -->
           <div>
             <h3 class="font-semibold text-lg mb-4 font-heading">
-              {isEN ? 'TechnoFix Varna' : 'ТехноФикс Варна'}
+              {isEN ? 'RotoRem Varna' : 'РотоРем Варна'}
             </h3>
             <p class="text-gray-300 mb-4 font-heading">
               {isEN ? 'Professional home appliance repair services' : 'Професионален ремонт на домашни уреди'}
@@ -453,7 +453,7 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
         
         <div class="border-t border-gray-700 mt-8 pt-6 flex flex-col md:flex-row justify-between items-center">
           <p class="text-gray-400 text-sm">
-            &copy; {new Date().getFullYear()} TechnoFix Varna
+            &copy; {new Date().getFullYear()} RotoRem Varna
           </p>
           <p class="text-gray-500 text-sm mt-2 md:mt-0">
             <span>MIT © 2025 Strahil Peykov</span>

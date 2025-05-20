@@ -1,5 +1,5 @@
 ---
-import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { getLangFromUrl, useTranslations, getRouteFromUrl, getLocalizedPath } from '../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -50,7 +50,7 @@ const reviews = [
   {
     name: isEN ? 'Georgi Ivanov' : 'Георги Иванов',
     date: isEN ? 'January 10, 2025' : '10 януари, 2025',
-    text: isEN ? 'Had an issue with my oven, called TechnoFix and they came the next day. Very thorough service!' : 'Имах проблем с фурната, обадих се на ТехноФикс и дойдоха на следващия ден. Много обстойна услуга!',
+    text: isEN ? 'Had an issue with my oven, called RotoRem and they came the next day. Very thorough service!' : 'Имах проблем с фурната, обадих се на РотоРем и дойдоха на следващия ден. Много обстойна услуга!',
     appliance: isEN ? 'Oven' : 'Фурна'
   }
 ];
@@ -390,7 +390,7 @@ const reviews = [
         {
           name: 'Георги Иванов',
           date: '10 януари, 2025',
-          text: 'Имах проблем с фурната, обадих се на ТехноФикс и дойдоха на следващия ден. Много обстойна услуга!',
+          text: 'Имах проблем с фурната, обадих се на РотоРем и дойдоха на следващия ден. Много обстойна услуга!',
           appliance: 'Фурна'
         }
       ],
