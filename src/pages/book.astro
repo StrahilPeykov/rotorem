@@ -83,7 +83,7 @@ const bookedSlots = [
       >
         <input type="hidden" name="form-name" value="booking" />
         <input name="bot-field" class="hidden" />
-        <input type="hidden" name="subject" value="🔧 Нова заявка за ремонт - %{name} - %{date} %{time}" />
+        <input type="hidden" name="subject" value="🔧 Нова заявка за ремонт от rotoremvarna.com" />
 
         <!-- Contact Information -->
         <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200">
@@ -266,7 +266,7 @@ const bookedSlots = [
   </section>
 </Layout>
 
-<script define:vars={{ timeSlots, bookedSlots, isEN }}>
+<script define:vars={{ timeSlots, isEN }}>
   document.addEventListener('DOMContentLoaded', function() {
     const dateInput = document.getElementById('date-input');
     const timeSelect = document.getElementById('time-select');
@@ -274,8 +274,24 @@ const bookedSlots = [
     const submitBtn = document.getElementById('submit-btn');
     const btnText = document.getElementById('btn-text');
 
+    // Simple booking storage - in production, this would come from your booking system
+    function getBookedSlots() {
+      try {
+        return JSON.parse(localStorage.getItem('bookedSlots') || '[]');
+      } catch {
+        return [];
+      }
+    }
+
+    function saveBookedSlot(date, time) {
+      const bookedSlots = getBookedSlots();
+      bookedSlots.push({ date, time });
+      localStorage.setItem('bookedSlots', JSON.stringify(bookedSlots));
+    }
+
     // Function to check if a slot is booked
     function isSlotBooked(date, time) {
+      const bookedSlots = getBookedSlots();
       return bookedSlots.some(slot => slot.date === date && slot.time === time);
     }
 
@@ -313,13 +329,23 @@ const bookedSlots = [
     // Update time slots when date changes
     dateInput.addEventListener('change', updateTimeSlots);
 
-    // Simple form submission using existing Netlify Forms
+    // Form submission with slot booking
     form.addEventListener('submit', async function(e) {
       e.preventDefault();
       
       // Basic validation
       if (!timeSelect.value) {
         alert(isEN ? 'Please select a time slot' : 'Моля изберете час');
+        return false;
+      }
+
+      const selectedDate = dateInput.value;
+      const selectedTime = timeSelect.value;
+
+      // Check if slot is still available (double-check)
+      if (isSlotBooked(selectedDate, selectedTime)) {
+        alert(isEN ? 'This time slot has been booked. Please select another.' : 'Този час е вече зает. Моля изберете друг.');
+        updateTimeSlots(); // Refresh the dropdown
         return false;
       }
 
@@ -331,7 +357,7 @@ const bookedSlots = [
       try {
         const formData = new FormData(this);
 
-        // Submit to Netlify Forms (your existing working setup)
+        // Submit to Netlify Forms
         const response = await fetch('/', {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -339,6 +365,9 @@ const bookedSlots = [
         });
 
         if (response.ok) {
+          // Save the booked slot locally (for demo purposes)
+          saveBookedSlot(selectedDate, selectedTime);
+          
           // Redirect to thank you page
           window.location.href = '/thankyou';
         } else {
