@@ -248,10 +248,6 @@ const timeSlots = [
                     </svg>
                   </div>
                 </div>
-                <!-- Working days reminder -->
-                <p class="text-sm text-gray-600 mt-1">
-                  {isEN ? 'Working days: Monday-Friday (8:00-19:00), Saturday (9:00-15:00)' : 'Работни дни: понеделник-петък (8:00-19:00), събота (9:00-15:00)'}
-                </p>
               </div>
               
               <div>
@@ -469,26 +465,14 @@ const timeSlots = [
         return;
       }
 
-      // Check if it's Saturday and adjust time slots
-      const date = new Date(selectedDate + 'T00:00:00');
-      const dayOfWeek = date.getDay(); // 0 = Sunday, 6 = Saturday
-      const isSaturday = dayOfWeek === 6;
-      
-      // Use Saturday hours if it's Saturday, otherwise use regular hours
-      const availableTimeSlots = isSaturday ? [
-        { value: '09:00-11:00', label: isEN ? '9:00 AM - 11:00 AM' : '9:00 - 11:00' },
-        { value: '11:00-13:00', label: isEN ? '11:00 AM - 1:00 PM' : '11:00 - 13:00' },
-        { value: '13:00-15:00', label: isEN ? '1:00 PM - 3:00 PM' : '13:00 - 15:00' },
-      ] : timeSlots;
-
       // Enable the select and clear existing options
       timeSelect.disabled = false;
       timeSelect.innerHTML = `<option value="">${isEN ? 'Choose a time slot' : 'Изберете час'}</option>`;
 
       let availableSlots = 0;
 
-      // Add time slot options
-      availableTimeSlots.forEach(slot => {
+      // Add time slot options (weekdays only since weekends are blocked)
+      timeSlots.forEach(slot => {
         const isBooked = isSlotBooked(selectedDate, slot.value);
         console.log(`Processing slot ${slot.value}: ${isBooked ? 'BOOKED' : 'AVAILABLE'}`);
         
@@ -520,22 +504,26 @@ const timeSlots = [
         timeSelect.appendChild(noSlotsOption);
       }
       
-      console.log(`Time slots updated for ${isSaturday ? 'Saturday' : 'weekday'}. Available: ${availableSlots}, Total: ${availableTimeSlots.length}`);
+      console.log(`Time slots updated. Available: ${availableSlots}, Total: ${timeSlots.length}`);
     }
 
     // Update time slots when date changes
     dateInput.addEventListener('change', function() {
       const selectedDate = dateInput.value;
       
-      // Check if selected date is Sunday (we work on Saturday)
+      // Check if selected date is a weekend
       if (selectedDate) {
         const date = new Date(selectedDate + 'T00:00:00'); // Force local time
         const dayOfWeek = date.getDay(); // 0 = Sunday, 6 = Saturday
         
-        if (dayOfWeek === 0) { // Only block Sunday
+        if (dayOfWeek === 0 || dayOfWeek === 6) { // Block both Saturday and Sunday
+          const dayName = dayOfWeek === 0 ? 
+            (isEN ? 'Sunday' : 'неделя') : 
+            (isEN ? 'Saturday' : 'събота');
+          
           alert(isEN ? 
-            `We don't work on Sunday. Please select Monday-Saturday.` :
-            `Не работим в неделя. Моля изберете понеделник-събота.`
+            `We don't work on ${dayName}. Please select a weekday (Monday-Friday).` :
+            `Не работим в ${dayName}. Моля изберете делник (понеделник-петък).`
           );
           
           dateInput.value = '';
@@ -559,6 +547,19 @@ const timeSlots = [
       // Check if slot is still available (double-check)
       const selectedDate = dateInput.value;
       const selectedTime = timeSelect.value;
+      
+      // Validate that it's not a weekend day (additional safety check)
+      const date = new Date(selectedDate + 'T00:00:00');
+      const dayOfWeek = date.getDay();
+      if (dayOfWeek === 0 || dayOfWeek === 6) {
+        alert(isEN ? 
+          'Weekend days are not allowed. Please select a weekday (Monday-Friday).' :
+          'Уикендите не са разрешени. Моля изберете делник (понеделник-петък).'
+        );
+        dateInput.value = '';
+        updateTimeSlots();
+        return false;
+      }
       
       if (isSlotBooked(selectedDate, selectedTime)) {
         alert(isEN ? 'This time slot has just been booked by someone else. Please select another time.' : 'Този час току-що беше зает от друг клиент. Моля изберете друг час.');
@@ -651,21 +652,25 @@ const timeSlots = [
       const todayString = today.toISOString().split('T')[0];
       dateInput.min = todayString;
       
-      // Add event listener to prevent Sunday selection
+      // Add event listener to prevent weekend selection
       dateInput.addEventListener('input', function(e) {
         const selectedDate = e.target.value;
         if (selectedDate) {
           const date = new Date(selectedDate + 'T00:00:00');
           const dayOfWeek = date.getDay();
           
-          // If Sunday selected, clear it
-          if (dayOfWeek === 0) {
+          // If weekend day selected, clear it
+          if (dayOfWeek === 0 || dayOfWeek === 6) {
             e.target.value = '';
+            
+            const dayName = dayOfWeek === 0 ? 
+              (isEN ? 'Sunday' : 'неделя') : 
+              (isEN ? 'Saturday' : 'събота');
             
             setTimeout(() => {
               alert(isEN ? 
-                `We don't work on Sunday. Please select Monday-Saturday.` :
-                `Не работим в неделя. Моля изберете понеделник-събота.`
+                `We don't work on ${dayName}. Please select a weekday (Monday-Friday).` :
+                `Не работим в ${dayName}. Моля изберете делник (понеделник-петък).`
               );
             }, 100);
           }
