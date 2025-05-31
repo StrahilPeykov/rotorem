@@ -248,6 +248,10 @@ const timeSlots = [
                     </svg>
                   </div>
                 </div>
+                <!-- Working days reminder -->
+                <p class="text-sm text-gray-600 mt-1">
+                  {isEN ? 'Working days: Monday-Friday (8:00-19:00), Saturday (9:00-15:00)' : 'Работни дни: понеделник-петък (8:00-19:00), събота (9:00-15:00)'}
+                </p>
               </div>
               
               <div>
@@ -465,6 +469,18 @@ const timeSlots = [
         return;
       }
 
+      // Check if it's Saturday and adjust time slots
+      const date = new Date(selectedDate + 'T00:00:00');
+      const dayOfWeek = date.getDay(); // 0 = Sunday, 6 = Saturday
+      const isSaturday = dayOfWeek === 6;
+      
+      // Use Saturday hours if it's Saturday, otherwise use regular hours
+      const availableTimeSlots = isSaturday ? [
+        { value: '09:00-11:00', label: isEN ? '9:00 AM - 11:00 AM' : '9:00 - 11:00' },
+        { value: '11:00-13:00', label: isEN ? '11:00 AM - 1:00 PM' : '11:00 - 13:00' },
+        { value: '13:00-15:00', label: isEN ? '1:00 PM - 3:00 PM' : '13:00 - 15:00' },
+      ] : timeSlots;
+
       // Enable the select and clear existing options
       timeSelect.disabled = false;
       timeSelect.innerHTML = `<option value="">${isEN ? 'Choose a time slot' : 'Изберете час'}</option>`;
@@ -472,7 +488,7 @@ const timeSlots = [
       let availableSlots = 0;
 
       // Add time slot options
-      timeSlots.forEach(slot => {
+      availableTimeSlots.forEach(slot => {
         const isBooked = isSlotBooked(selectedDate, slot.value);
         console.log(`Processing slot ${slot.value}: ${isBooked ? 'BOOKED' : 'AVAILABLE'}`);
         
@@ -504,11 +520,32 @@ const timeSlots = [
         timeSelect.appendChild(noSlotsOption);
       }
       
-      console.log(`Time slots updated. Available: ${availableSlots}, Total: ${timeSlots.length}`);
+      console.log(`Time slots updated for ${isSaturday ? 'Saturday' : 'weekday'}. Available: ${availableSlots}, Total: ${availableTimeSlots.length}`);
     }
 
     // Update time slots when date changes
-    dateInput.addEventListener('change', updateTimeSlots);
+    dateInput.addEventListener('change', function() {
+      const selectedDate = dateInput.value;
+      
+      // Check if selected date is Sunday (we work on Saturday)
+      if (selectedDate) {
+        const date = new Date(selectedDate + 'T00:00:00'); // Force local time
+        const dayOfWeek = date.getDay(); // 0 = Sunday, 6 = Saturday
+        
+        if (dayOfWeek === 0) { // Only block Sunday
+          alert(isEN ? 
+            `We don't work on Sunday. Please select Monday-Saturday.` :
+            `Не работим в неделя. Моля изберете понеделник-събота.`
+          );
+          
+          dateInput.value = '';
+          updateTimeSlots();
+          return;
+        }
+      }
+      
+      updateTimeSlots();
+    });
 
     // Form submission
     form.addEventListener('submit', async function(e) {
@@ -606,6 +643,38 @@ const timeSlots = [
 
     // Initial load - fetch booked slots
     fetchBookedSlots();
+    
+    // Set up weekend restriction for date input
+    function setupWeekendRestriction() {
+      // Set minimum date to today
+      const today = new Date();
+      const todayString = today.toISOString().split('T')[0];
+      dateInput.min = todayString;
+      
+      // Add event listener to prevent Sunday selection
+      dateInput.addEventListener('input', function(e) {
+        const selectedDate = e.target.value;
+        if (selectedDate) {
+          const date = new Date(selectedDate + 'T00:00:00');
+          const dayOfWeek = date.getDay();
+          
+          // If Sunday selected, clear it
+          if (dayOfWeek === 0) {
+            e.target.value = '';
+            
+            setTimeout(() => {
+              alert(isEN ? 
+                `We don't work on Sunday. Please select Monday-Saturday.` :
+                `Не работим в неделя. Моля изберете понеделник-събота.`
+              );
+            }, 100);
+          }
+        }
+      });
+    }
+    
+    // Initialize weekend restriction
+    setupWeekendRestriction();
   });
 </script>
 
@@ -661,5 +730,11 @@ const timeSlots = [
   
   .animate-spin {
     animation: spin 1s linear infinite;
+  }
+
+  /* Try to make week start on Monday (browser dependent) */
+  input[type="date"] {
+    /* This might help in some browsers */
+    --start-of-week: 1; /* Monday = 1 */
   }
 </style>
