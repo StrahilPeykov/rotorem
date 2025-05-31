@@ -25,6 +25,22 @@ const inHomeDescription = isEN
 const feeNotice = isEN
   ? 'A diagnostic fee of 30 BGN applies to all in-home visits. This fee covers the inspection and diagnosis of your appliance issue.'
   : 'Такса за диагностика от 30 лв. се прилага за всички посещения на място. Тази такса покрива инспекцията и диагностиката на проблема с вашия уред.';
+
+// Define 2-hour time slots from 9 AM to 7 PM
+const timeSlots = [
+  { value: '09:00-11:00', label: isEN ? '9:00 AM - 11:00 AM' : '9:00 - 11:00' },
+  { value: '11:00-13:00', label: isEN ? '11:00 AM - 1:00 PM' : '11:00 - 13:00' },
+  { value: '13:00-15:00', label: isEN ? '1:00 PM - 3:00 PM' : '13:00 - 15:00' },
+  { value: '15:00-17:00', label: isEN ? '3:00 PM - 5:00 PM' : '15:00 - 17:00' },
+  { value: '17:00-19:00', label: isEN ? '5:00 PM - 7:00 PM' : '17:00 - 19:00' },
+];
+
+// Mock booked slots - in production, this would come from your booking system
+const bookedSlots = [
+  { date: '2025-06-02', time: '09:00-11:00' },
+  { date: '2025-06-02', time: '15:00-17:00' },
+  { date: '2025-06-03', time: '11:00-13:00' },
+];
 ---
 
 <Layout title={title} noindex={true}>
@@ -63,6 +79,7 @@ const feeNotice = isEN
         data-netlify="true"
         netlify-honeypot="bot-field"
         action="/thankyou"
+        id="booking-form"
       >
         <input type="hidden" name="form-name" value="booking" />
         <input name="bot-field" class="hidden" />
@@ -172,31 +189,41 @@ const feeNotice = isEN
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label class={labelClass}>
-                  {t('book.date')}
+                  {t('book.date')} *
                 </label>
-                <input 
-                  required
-                  name="date" 
-                  type="date" 
-                  class={inputClass}
-                  style="color: #111827; background-color: white;"
-                />
+                <div class="relative">
+                  <input 
+                    required
+                    id="date-input"
+                    name="date" 
+                    type="date" 
+                    class={inputClass}
+                    style="color: #111827; background-color: white;"
+                    min={new Date().toISOString().split('T')[0]}
+                  />
+                  <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                      <line x1="16" y1="2" x2="16" y2="6"></line>
+                      <line x1="8" y1="2" x2="8" y2="6"></line>
+                      <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                  </div>
+                </div>
               </div>
               
               <div>
                 <label class={labelClass}>
-                  {t('book.time')}
+                  {t('book.time')} *
                 </label>
                 <select 
                   required
+                  id="time-select"
                   name="time" 
                   class={selectClass} 
                   style="color: #111827; background-color: white;"
                 >
-                  <option value="">{t('book.selectTime')}</option>
-                  <option value="morning">{t('book.morning')}</option>
-                  <option value="afternoon">{t('book.afternoon')}</option>
-                  <option value="evening">{t('book.evening')}</option>
+                  <option value="">{isEN ? 'Select a date first' : 'Първо изберете дата'}</option>
                 </select>
               </div>
             </div>
@@ -212,11 +239,11 @@ const feeNotice = isEN
         </div>
 
         <!-- Submit button -->
-        <button type="submit" class="btn-cta w-full py-4 text-lg font-semibold shadow-lg hover:scale-105 transition-transform duration-300 flex items-center justify-center">
+        <button type="submit" id="submit-btn" class="btn-cta w-full py-4 text-lg font-semibold shadow-lg hover:scale-105 transition-transform duration-300 flex items-center justify-center">
           <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path>
           </svg>
-          {isEN ? 'Book Service' : 'Запази час'}
+          <span id="btn-text">{isEN ? 'Book Service' : 'Запази час'}</span>
         </button>
         
         <!-- Add service guarantee below the form -->
@@ -238,6 +265,106 @@ const feeNotice = isEN
   </section>
 </Layout>
 
+<script define:vars={{ timeSlots, bookedSlots, isEN }}>
+  document.addEventListener('DOMContentLoaded', function() {
+    const dateInput = document.getElementById('date-input');
+    const timeSelect = document.getElementById('time-select');
+    const form = document.getElementById('booking-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const btnText = document.getElementById('btn-text');
+
+    // Function to check if a slot is booked
+    function isSlotBooked(date, time) {
+      return bookedSlots.some(slot => slot.date === date && slot.time === time);
+    }
+
+    // Function to update time slots based on selected date
+    function updateTimeSlots() {
+      const selectedDate = dateInput.value;
+      
+      if (!selectedDate) {
+        timeSelect.innerHTML = `<option value="">${isEN ? 'Select a date first' : 'Първо изберете дата'}</option>`;
+        return;
+      }
+
+      // Clear existing options
+      timeSelect.innerHTML = `<option value="">${isEN ? 'Choose a time slot' : 'Изберете час'}</option>`;
+
+      // Add time slot options
+      timeSlots.forEach(slot => {
+        const isBooked = isSlotBooked(selectedDate, slot.value);
+        const option = document.createElement('option');
+        option.value = slot.value;
+        option.textContent = slot.label;
+        
+        if (isBooked) {
+          option.disabled = true;
+          option.style.color = '#9CA3AF';
+          option.style.backgroundColor = '#F3F4F6';
+        } else {
+          option.style.color = '#111827';
+        }
+        
+        timeSelect.appendChild(option);
+      });
+    }
+
+    // Update time slots when date changes
+    dateInput.addEventListener('change', updateTimeSlots);
+
+    // Simple form submission using existing Netlify Forms
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      // Basic validation
+      if (!timeSelect.value) {
+        alert(isEN ? 'Please select a time slot' : 'Моля изберете час');
+        return false;
+      }
+
+      // Update button to show loading state
+      submitBtn.disabled = true;
+      btnText.textContent = isEN ? 'Sending...' : 'Изпращане...';
+      submitBtn.classList.add('opacity-75');
+
+      try {
+        const formData = new FormData(this);
+
+        // Submit to Netlify Forms (your existing working setup)
+        const response = await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(formData).toString()
+        });
+
+        if (response.ok) {
+          // Redirect to thank you page
+          window.location.href = '/thankyou';
+        } else {
+          throw new Error('Network error');
+        }
+
+      } catch (error) {
+        console.error('Booking submission error:', error);
+        
+        // Reset button
+        submitBtn.disabled = false;
+        btnText.textContent = isEN ? 'Book Service' : 'Запази час';
+        submitBtn.classList.remove('opacity-75');
+        
+        // Show error message
+        alert(isEN 
+          ? 'There was an error submitting your booking. Please try again or call us directly.' 
+          : 'Възникна грешка при изпращането на заявката. Моля опитайте отново или се обадете директно.'
+        );
+      }
+    });
+
+    // Initial load
+    updateTimeSlots();
+  });
+</script>
+
 <style>
   /* Form styling */
   input:focus, textarea:focus, select:focus {
@@ -256,5 +383,29 @@ const feeNotice = isEN
   .bg-white:hover {
     transform: translateY(-2px);
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+  }
+
+  /* Ensure date input opens calendar on mobile */
+  input[type="date"] {
+    position: relative;
+  }
+
+  /* Custom calendar icon positioning */
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+  }
+
+  /* Style disabled options in select */
+  select option:disabled {
+    color: #9CA3AF !important;
+    background-color: #F3F4F6 !important;
+  }
+
+  /* Loading state for submit button */
+  .btn-cta:disabled {
+    cursor: not-allowed;
+    transform: none !important;
   }
 </style>
