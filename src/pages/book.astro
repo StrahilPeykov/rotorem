@@ -282,9 +282,17 @@ const bookedSlots = [
     // Fetch booked slots from Google Sheets
     async function fetchBookedSlots() {
       try {
+        console.log('Fetching booked slots from:', GOOGLE_SCRIPT_URL); // Debug log
         const response = await fetch(GOOGLE_SCRIPT_URL);
+        console.log('Fetch response status:', response.status); // Debug log
+        
         if (response.ok) {
-          bookedSlots = await response.json();
+          const data = await response.json();
+          console.log('Booked slots data:', data); // Debug log
+          bookedSlots = data;
+        } else {
+          console.warn('Failed to fetch booked slots:', response.status, response.statusText);
+          bookedSlots = [];
         }
       } catch (error) {
         console.error('Error fetching booked slots:', error);
@@ -349,22 +357,40 @@ const bookedSlots = [
         const formData = new FormData(this);
         const data = Object.fromEntries(formData);
 
+        console.log('Submitting data:', data); // Debug log
+
         // Submit to Google Sheets
         const response = await fetch(GOOGLE_SCRIPT_URL, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          mode: 'cors', // Add CORS mode
+          headers: { 
+            'Content-Type': 'application/json',
+          },
           body: JSON.stringify(data)
         });
 
+        console.log('Response status:', response.status); // Debug log
+        
+        if (!response.ok) {
+          console.error('Response not OK:', response.status, response.statusText);
+          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+
         const result = await response.json();
+        console.log('Response result:', result); // Debug log
 
         if (result.success) {
           // Also submit to Netlify Forms as backup
-          await fetch('/', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: new URLSearchParams(formData).toString()
-          });
+          try {
+            await fetch('/', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+              body: new URLSearchParams(formData).toString()
+            });
+          } catch (netlifyError) {
+            console.warn('Netlify backup failed:', netlifyError);
+            // Continue anyway since Google Sheets worked
+          }
           
           window.location.href = '/thankyou';
         } else if (result.error === 'Slot already booked') {
@@ -377,21 +403,43 @@ const bookedSlots = [
           submitBtn.classList.remove('opacity-75');
           return;
         } else {
-          throw new Error('Booking failed');
+          console.error('Booking failed with result:', result);
+          throw new Error(result.error || 'Booking failed');
         }
 
       } catch (error) {
         console.error('Booking submission error:', error);
+        
+        // Try fallback to Netlify Forms only
+        try {
+          console.log('Attempting Netlify Forms fallback...');
+          const formData = new FormData(form);
+          const fallbackResponse = await fetch('/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(formData).toString()
+          });
+
+          if (fallbackResponse.ok) {
+            console.log('Netlify Forms fallback successful');
+            window.location.href = '/thankyou';
+            return;
+          }
+        } catch (fallbackError) {
+          console.error('Fallback also failed:', fallbackError);
+        }
         
         // Reset button
         submitBtn.disabled = false;
         btnText.textContent = isEN ? 'Book Service' : 'Запази час';
         submitBtn.classList.remove('opacity-75');
         
-        alert(isEN 
-          ? 'There was an error submitting your booking. Please try again or call us directly.' 
-          : 'Възникна грешка при изпращането на заявката. Моля опитайте отново или се обадете директно.'
-        );
+        // Show detailed error for debugging
+        const errorMessage = isEN 
+          ? `There was an error submitting your booking: ${error.message}. Please try again or call us directly.`
+          : `Възникна грешка при изпращането на заявката: ${error.message}. Моля опитайте отново или се обадете директно.`;
+        
+        alert(errorMessage);
       }
     });
 
