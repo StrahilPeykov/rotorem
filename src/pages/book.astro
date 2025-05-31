@@ -89,30 +89,45 @@ const bookedSlots = [
           </h3>
           
           <div class="grid gap-4">
-            <input 
-              required 
-              name="name" 
-              placeholder={t('book.name')} 
-              class={inputClass}
-              style="color: #111827; background-color: white;"
-            />
+            <div>
+              <label class="block text-sm text-gray-700 mb-1 font-medium">
+                {t('book.name')} <span class="text-red-500">*</span>
+              </label>
+              <input 
+                required 
+                name="name" 
+                placeholder={t('book.name')} 
+                class={inputClass}
+                style="color: #111827; background-color: white;"
+              />
+            </div>
             
-            <input 
-              required 
-              name="phone" 
-              placeholder={t('book.phone')} 
-              class={inputClass}
-              type="tel"
-              style="color: #111827; background-color: white;"
-            />
+            <div>
+              <label class="block text-sm text-gray-700 mb-1 font-medium">
+                {t('book.phone')} <span class="text-red-500">*</span>
+              </label>
+              <input 
+                required 
+                name="phone" 
+                placeholder={t('book.phone')} 
+                class={inputClass}
+                type="tel"
+                style="color: #111827; background-color: white;"
+              />
+            </div>
             
-            <input 
-              name="email" 
-              placeholder={t('book.email')} 
-              class={inputClass}
-              type="email"
-              style="color: #111827; background-color: white;"
-            />
+            <div>
+              <label class="block text-sm text-gray-700 mb-1 font-medium">
+                {t('book.email')} <span class="text-gray-400">({isEN ? 'optional' : 'по желание'})</span>
+              </label>
+              <input 
+                name="email" 
+                placeholder={t('book.email')} 
+                class={inputClass}
+                type="email"
+                style="color: #111827; background-color: white;"
+              />
+            </div>
           </div>
         </div>
         
@@ -127,38 +142,59 @@ const bookedSlots = [
           </h3>
           
           <div class="grid gap-4">
-            <input 
-              required
-              name="address" 
-              placeholder={isEN ? 'Full address' : 'Пълен адрес'} 
-              class={inputClass}
-              style="color: #111827; background-color: white;"
-            />
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm text-gray-700 mb-1 font-medium">
+                {isEN ? 'Full address' : 'Пълен адрес'} <span class="text-red-500">*</span>
+              </label>
               <input 
-                name="apartment" 
-                placeholder={isEN ? 'Apartment/Floor' : 'Апартамент/Етаж'} 
+                required
+                name="address" 
+                placeholder={isEN ? 'Full address' : 'Пълен адрес'} 
                 class={inputClass}
-                style="color: #111827; background-color: white;"
-              />
-              
-              <input 
-                name="city" 
-                placeholder={isEN ? 'City' : 'Град'} 
-                class={inputClass}
-                value={isEN ? 'Varna' : 'Варна'} 
                 style="color: #111827; background-color: white;"
               />
             </div>
             
-            <textarea 
-              name="directions" 
-              rows="2" 
-              placeholder={isEN ? 'Access instructions (optional)' : 'Инструкции за достъп (по желание)'} 
-              class={textareaClass}
-              style="color: #111827; background-color: white;"
-            ></textarea>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm text-gray-700 mb-1 font-medium">
+                  {isEN ? 'Apartment/Floor' : 'Апартамент/Етаж'} <span class="text-gray-400">({isEN ? 'optional' : 'по желание'})</span>
+                </label>
+                <input 
+                  name="apartment" 
+                  placeholder={isEN ? 'Apartment/Floor' : 'Апартамент/Етаж'} 
+                  class={inputClass}
+                  style="color: #111827; background-color: white;"
+                />
+              </div>
+              
+              <div>
+                <label class="block text-sm text-gray-700 mb-1 font-medium">
+                  {isEN ? 'City' : 'Град'} <span class="text-red-500">*</span>
+                </label>
+                <input 
+                  required
+                  name="city" 
+                  placeholder={isEN ? 'City' : 'Град'} 
+                  class={inputClass}
+                  value={isEN ? 'Varna' : 'Варна'} 
+                  style="color: #111827; background-color: white;"
+                />
+              </div>
+            </div>
+            
+            <div>
+              <label class="block text-sm text-gray-700 mb-1 font-medium">
+                {isEN ? 'Access instructions' : 'Инструкции за достъп'} <span class="text-gray-400">({isEN ? 'optional' : 'по желание'})</span>
+              </label>
+              <textarea 
+                name="directions" 
+                rows="2" 
+                placeholder={isEN ? 'Access instructions (optional)' : 'Инструкции за достъп (по желание)'} 
+                class={textareaClass}
+                style="color: #111827; background-color: white;"
+              ></textarea>
+            </div>
           </div>
         </div>
         
@@ -172,18 +208,23 @@ const bookedSlots = [
           </h3>
           
           <div class="grid gap-4">
-            <input 
-              required
-              name="appliance" 
-              placeholder={t('book.appliance')} 
-              class={inputClass}
-              style="color: #111827; background-color: white;"
-            />
+            <div>
+              <label class="block text-sm text-gray-700 mb-1 font-medium">
+                {t('book.appliance')} <span class="text-red-500">*</span>
+              </label>
+              <input 
+                required
+                name="appliance" 
+                placeholder={t('book.appliance')} 
+                class={inputClass}
+                style="color: #111827; background-color: white;"
+              />
+            </div>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label class={labelClass}>
-                  {t('book.date')} *
+                  {t('book.date')} <span class="text-red-500">*</span>
                 </label>
                 <div class="relative">
                   <input 
@@ -208,7 +249,7 @@ const bookedSlots = [
               
               <div>
                 <label class={labelClass}>
-                  {t('book.time')} *
+                  {t('book.time')} <span class="text-red-500">*</span>
                 </label>
                 <select 
                   required
@@ -222,13 +263,18 @@ const bookedSlots = [
               </div>
             </div>
             
-            <textarea 
-              name="details" 
-              rows="4" 
-              placeholder={t('book.details')} 
-              class={textareaClass}
-              style="color: #111827; background-color: white;"
-            ></textarea>
+            <div>
+              <label class="block text-sm text-gray-700 mb-1 font-medium">
+                {t('book.details')} <span class="text-gray-400">({isEN ? 'optional' : 'по желание'})</span>
+              </label>
+              <textarea 
+                name="details" 
+                rows="4" 
+                placeholder={t('book.details')} 
+                class={textareaClass}
+                style="color: #111827; background-color: white;"
+              ></textarea>
+            </div>
           </div>
         </div>
 
@@ -272,61 +318,112 @@ const bookedSlots = [
     
     let bookedSlots = [];
 
-    // Fetch booked slots from Google Sheets using JSONP (CORS-free)
-    function fetchBookedSlotsJSONP() {
-      return new Promise((resolve, reject) => {
-        // Create a unique callback name
-        const callbackName = 'jsonp_callback_' + Math.round(100000 * Math.random());
-        
-        // Create script element
-        const script = document.createElement('script');
-        script.src = GOOGLE_SCRIPT_URL + '?callback=' + callbackName;
-        
-        // Set up callback
-        window[callbackName] = function(data) {
-          delete window[callbackName];
-          document.body.removeChild(script);
-          resolve(data);
-        };
-        
-        // Handle errors
-        script.onerror = function() {
-          delete window[callbackName];
-          document.body.removeChild(script);
-          reject(new Error('JSONP request failed'));
-        };
-        
-        // Add script to page
-        document.body.appendChild(script);
-        
-        // Timeout after 10 seconds
-        setTimeout(() => {
-          if (window[callbackName]) {
-            delete window[callbackName];
-            document.body.removeChild(script);
-            reject(new Error('JSONP request timeout'));
-          }
-        }, 10000);
+    // CORS-free method to fetch booked slots using iframe
+    function fetchBookedSlots() {
+      return new Promise((resolve) => {
+        try {
+          console.log('Fetching booked slots using CORS-free iframe method...');
+          
+          // Create hidden iframe
+          const iframe = document.createElement('iframe');
+          iframe.style.display = 'none';
+          iframe.name = 'booked_slots_frame';
+          document.body.appendChild(iframe);
+          
+          // Create form to get booked slots
+          const form = document.createElement('form');
+          form.method = 'GET';
+          form.action = GOOGLE_SCRIPT_URL;
+          form.target = 'booked_slots_frame';
+          
+          // Add timestamp parameter to prevent caching
+          const timestampInput = document.createElement('input');
+          timestampInput.type = 'hidden';
+          timestampInput.name = 't';
+          timestampInput.value = Date.now().toString();
+          form.appendChild(timestampInput);
+          
+          document.body.appendChild(form);
+          
+          // Set up iframe load handler
+          iframe.onload = function() {
+            try {
+              // Try to read the iframe content
+              const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+              const responseText = iframeDoc.body.textContent || iframeDoc.body.innerText;
+              
+              console.log('Raw iframe response:', responseText);
+              
+              // Try to parse JSON response
+              try {
+                const data = JSON.parse(responseText);
+                console.log('Parsed booked slots:', data);
+                bookedSlots = data || [];
+                console.log('Total booked slots loaded:', bookedSlots.length);
+                
+                // Log each booked slot
+                bookedSlots.forEach((slot, index) => {
+                  console.log(`Booked slot ${index + 1}: ${slot.date} at ${slot.time}`);
+                });
+              } catch (parseError) {
+                console.warn('Could not parse iframe response as JSON:', parseError);
+                bookedSlots = [];
+              }
+            } catch (iframeError) {
+              console.warn('Could not read iframe response (CORS), using fallback method');
+              // Fallback: assume some slots might be booked based on your Google Sheet
+              // You can manually add known booked slots for testing
+              bookedSlots = [
+                // Add your actual booked slots here for testing
+                // { date: '2025-06-03', time: '09:00-11:00' }
+              ];
+            }
+            
+            // Clean up
+            try {
+              document.body.removeChild(form);
+              document.body.removeChild(iframe);
+            } catch (e) {
+              console.log('Cleanup completed');
+            }
+            
+            resolve();
+          };
+          
+          // Handle iframe error
+          iframe.onerror = function() {
+            console.error('Iframe failed to load');
+            bookedSlots = [];
+            try {
+              document.body.removeChild(form);
+              document.body.removeChild(iframe);
+            } catch (e) {}
+            resolve();
+          };
+          
+          // Submit the form
+          console.log('Submitting GET request via iframe...');
+          form.submit();
+          
+          // Timeout after 10 seconds
+          setTimeout(() => {
+            if (iframe.parentNode) {
+              console.warn('Iframe request timed out');
+              bookedSlots = [];
+              try {
+                document.body.removeChild(form);
+                document.body.removeChild(iframe);
+              } catch (e) {}
+              resolve();
+            }
+          }, 10000);
+          
+        } catch (error) {
+          console.error('Error in fetchBookedSlots:', error);
+          bookedSlots = [];
+          resolve();
+        }
       });
-    }
-
-    // Fetch booked slots from Google Sheets
-    async function fetchBookedSlots() {
-      try {
-        console.log('Fetching booked slots from Google Sheets...');
-        const data = await fetchBookedSlotsJSONP();
-        console.log('Booked slots data received:', data);
-        bookedSlots = data || [];
-        console.log('Active booked slots:', bookedSlots.length);
-      } catch (error) {
-        console.error('Error fetching booked slots:', error);
-        console.log('Using fallback: manual booked slots for testing...');
-        // Fallback to manual data for testing
-        bookedSlots = [
-          { date: '2025-06-03', time: '09:00-11:00' }
-        ];
-        console.log('Manual booked slots loaded:', bookedSlots);
-      }
     }
 
     // Function to check if a slot is booked
@@ -335,22 +432,18 @@ const bookedSlots = [
       console.log('Available booked slots:', bookedSlots);
       
       const isBooked = bookedSlots.some(slot => {
-        console.log(`Comparing: ${date} === ${slot.date} && ${time} === ${slot.time}`);
+        console.log(`Comparing: ${slot.date} === ${date} && ${slot.time} === ${time}`);
         return slot.date === date && slot.time === time;
       });
       
-      if (isBooked) {
-        console.log(`Slot ${date} ${time} is BOOKED`);
-      } else {
-        console.log(`Slot ${date} ${time} is AVAILABLE`);
-      }
-      
+      console.log(`Slot ${date} ${time} is ${isBooked ? 'BOOKED' : 'AVAILABLE'}`);
       return isBooked;
     }
 
     // Function to update time slots based on selected date
     function updateTimeSlots() {
       const selectedDate = dateInput.value;
+      console.log('Updating time slots for date:', selectedDate);
       
       if (!selectedDate) {
         timeSelect.innerHTML = `<option value="">${isEN ? 'Select a date first' : 'Първо изберете дата'}</option>`;
@@ -363,6 +456,8 @@ const bookedSlots = [
       // Add time slot options
       timeSlots.forEach(slot => {
         const isBooked = isSlotBooked(selectedDate, slot.value);
+        console.log(`Processing slot ${slot.value}: ${isBooked ? 'BOOKED' : 'AVAILABLE'}`);
+        
         const option = document.createElement('option');
         option.value = slot.value;
         option.textContent = slot.label;
@@ -371,12 +466,17 @@ const bookedSlots = [
           option.disabled = true;
           option.style.color = '#9CA3AF';
           option.style.backgroundColor = '#F3F4F6';
+          option.textContent += ` (${isEN ? 'Booked' : 'Заето'})`;
+          console.log(`Made slot ${slot.value} disabled`);
         } else {
           option.style.color = '#111827';
+          console.log(`Made slot ${slot.value} available`);
         }
         
         timeSelect.appendChild(option);
       });
+      
+      console.log('Time slots updated. Total options:', timeSelect.children.length);
     }
 
     // Update time slots when date changes
@@ -388,6 +488,18 @@ const bookedSlots = [
       
       if (!timeSelect.value) {
         alert(isEN ? 'Please select a time slot' : 'Моля изберете час');
+        return false;
+      }
+
+      // Check if slot is still available (double-check)
+      const selectedDate = dateInput.value;
+      const selectedTime = timeSelect.value;
+      
+      if (isSlotBooked(selectedDate, selectedTime)) {
+        alert(isEN ? 'This time slot has just been booked by someone else. Please select another time.' : 'Този час току-що беше зает от друг клиент. Моля изберете друг час.');
+        // Refresh the time slots
+        await fetchBookedSlots();
+        updateTimeSlots();
         return false;
       }
 
