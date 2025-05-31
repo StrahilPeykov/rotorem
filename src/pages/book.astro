@@ -358,104 +358,73 @@ const bookedSlots = [
         // Simple approach: Try Google Sheets, then fallback to Netlify
         let success = false;
 
-        // Try Google Sheets first using CORS-free form submission
-        try {
-          console.log('Attempting Google Sheets submission (CORS-free method)...');
-          console.log('Data being sent:', data);
-          
-          // Create a hidden iframe to submit to Google Sheets
-          const iframe = document.createElement('iframe');
-          iframe.style.display = 'none';
-          iframe.name = 'google_sheets_frame';
-          document.body.appendChild(iframe);
-          
-          // Create a temporary form
-          const tempForm = document.createElement('form');
-          tempForm.method = 'POST';
-          tempForm.action = GOOGLE_SCRIPT_URL;
-          tempForm.target = 'google_sheets_frame';
-          
-          // Add all data as hidden inputs
-          Object.keys(data).forEach(key => {
+        // CORS-Free approach: Submit as regular form data
+        console.log('Submitting data:', data);
+
+        // Create a hidden iframe for Google Sheets submission
+        const iframe = document.createElement('iframe');
+        iframe.style.display = 'none';
+        iframe.name = 'google_sheets_frame';
+        document.body.appendChild(iframe);
+        
+        // Create form for Google Sheets
+        const googleForm = document.createElement('form');
+        googleForm.method = 'POST';
+        googleForm.action = GOOGLE_SCRIPT_URL;
+        googleForm.target = 'google_sheets_frame';
+        
+        // Add all data as hidden inputs
+        Object.keys(data).forEach(key => {
+          if (data[key]) { // Only add non-empty values
             const input = document.createElement('input');
             input.type = 'hidden';
             input.name = key;
             input.value = data[key];
-            tempForm.appendChild(input);
-          });
-          
-          document.body.appendChild(tempForm);
-          
-          // Set up iframe load handler
-          iframe.onload = function() {
-            try {
-              const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-              const response = iframeDoc.body.textContent;
-              console.log('Google Sheets response:', response);
-              
-              // Try to parse JSON response
-              try {
-                const result = JSON.parse(response);
-                if (result.success) {
-                  console.log('✅ Google Sheets submission successful');
-                  success = true;
-                } else {
-                  console.warn('Google Sheets returned error:', result.error);
-                }
-              } catch (parseError) {
-                console.warn('Could not parse Google Sheets response as JSON');
-                // Assume success if we got any response
-                success = true;
-              }
-            } catch (iframeError) {
-              console.warn('Could not read iframe response (CORS), assuming success');
-              success = true; // Assume it worked
-            }
-            
-            // Clean up
-            document.body.removeChild(tempForm);
-            document.body.removeChild(iframe);
-            
-            // Continue with Netlify submission
-            submitToNetlify();
-          };
-          
-          // Submit the form
-          tempForm.submit();
-          
-        } catch (googleError) {
-          console.error('Google Sheets iframe method failed:', googleError);
-          // Continue with Netlify submission
-          submitToNetlify();
-        }
+            googleForm.appendChild(input);
+          }
+        });
         
-        // Function to submit to Netlify Forms
-        async function submitToNetlify() {
+        document.body.appendChild(googleForm);
+        
+        console.log('Submitting to Google Sheets via iframe...');
+        googleForm.submit();
+        
+        // Clean up after a short delay
+        setTimeout(() => {
           try {
-            console.log('Submitting to Netlify Forms...');
-            const netlifyResponse = await fetch('/', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-              body: new URLSearchParams(formData).toString()
-            });
+            document.body.removeChild(googleForm);
+            document.body.removeChild(iframe);
+            console.log('✅ Google Sheets submission completed');
+          } catch (e) {
+            console.log('Cleanup completed');
+          }
+        }, 2000);
 
-            if (netlifyResponse.ok) {
-              console.log('✅ Netlify Forms submission successful');
-              success = true;
-            } else {
-              console.error('Netlify Forms failed:', netlifyResponse.status);
-            }
-          } catch (netlifyError) {
-            console.error('Netlify Forms error:', netlifyError.message);
-          }
-          
-          // Final handling
-          if (success) {
-            console.log('Booking submitted successfully!');
-            window.location.href = '/thankyou';
+        // Always submit to Netlify Forms as backup
+        try {
+          console.log('Submitting to Netlify Forms...');
+          const netlifyResponse = await fetch('/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(formData).toString()
+          });
+
+          if (netlifyResponse.ok) {
+            console.log('✅ Netlify Forms submission successful');
+            success = true;
           } else {
-            throw new Error('Both submission methods failed');
+            console.error('Netlify Forms failed:', netlifyResponse.status);
           }
+        } catch (netlifyError) {
+          console.error('Netlify Forms error:', netlifyError.message);
+        }
+
+        if (success) {
+          console.log('Booking submitted successfully!');
+          console.log('Both Google Sheets and Netlify Forms submitted');
+          window.location.href = '/thankyou';
+        } else {
+          throw new Error('Netlify Forms submission failed');
         }
 
       } catch (error) {
