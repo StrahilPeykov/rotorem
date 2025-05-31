@@ -318,35 +318,60 @@ const bookedSlots = [
     
     let bookedSlots = [];
 
-    // Fetch booked slots from Google Sheets using JSONP
+    // Fetch booked slots from Google Sheets
     async function fetchBookedSlots() {
       try {
         console.log('Fetching booked slots from Google Sheets...');
+        console.log('URL:', GOOGLE_SCRIPT_URL);
         
-        // Use simple GET request (bypasses CORS for GET)
         const response = await fetch(GOOGLE_SCRIPT_URL + '?action=getBookings&t=' + Date.now());
+        console.log('Fetch response status:', response.status);
+        console.log('Fetch response ok:', response.ok);
+        
         if (response.ok) {
           const data = await response.json();
           console.log('Booked slots received:', data);
           bookedSlots = data || [];
+          console.log('Total booked slots:', bookedSlots.length);
+          
+          // Log each booked slot for debugging
+          bookedSlots.forEach((slot, index) => {
+            console.log(`Slot ${index + 1}: ${slot.date} at ${slot.time}`);
+          });
         } else {
-          console.warn('Failed to fetch booked slots, using empty array');
+          console.warn('Failed to fetch booked slots, status:', response.status);
+          console.warn('Response text:', await response.text());
           bookedSlots = [];
         }
       } catch (error) {
         console.error('Error fetching booked slots:', error);
+        console.error('Error details:', {
+          name: error.name,
+          message: error.message,
+          stack: error.stack
+        });
         bookedSlots = []; // Fallback to empty array
       }
     }
 
     // Function to check if a slot is booked
     function isSlotBooked(date, time) {
-      return bookedSlots.some(slot => slot.date === date && slot.time === time);
+      console.log(`Checking if slot is booked: ${date} at ${time}`);
+      console.log('Available booked slots:', bookedSlots);
+      
+      const isBooked = bookedSlots.some(slot => {
+        console.log(`Comparing: ${slot.date} === ${date} && ${slot.time} === ${time}`);
+        return slot.date === date && slot.time === time;
+      });
+      
+      console.log(`Slot ${date} ${time} is ${isBooked ? 'BOOKED' : 'AVAILABLE'}`);
+      return isBooked;
     }
 
     // Function to update time slots based on selected date
     function updateTimeSlots() {
       const selectedDate = dateInput.value;
+      console.log('Updating time slots for date:', selectedDate);
       
       if (!selectedDate) {
         timeSelect.innerHTML = `<option value="">${isEN ? 'Select a date first' : 'Първо изберете дата'}</option>`;
@@ -359,6 +384,8 @@ const bookedSlots = [
       // Add time slot options
       timeSlots.forEach(slot => {
         const isBooked = isSlotBooked(selectedDate, slot.value);
+        console.log(`Processing slot ${slot.value}: ${isBooked ? 'BOOKED' : 'AVAILABLE'}`);
+        
         const option = document.createElement('option');
         option.value = slot.value;
         option.textContent = slot.label;
@@ -367,12 +394,17 @@ const bookedSlots = [
           option.disabled = true;
           option.style.color = '#9CA3AF';
           option.style.backgroundColor = '#F3F4F6';
+          option.textContent += ` (${isEN ? 'Booked' : 'Заето'})`;
+          console.log(`Made slot ${slot.value} disabled`);
         } else {
           option.style.color = '#111827';
+          console.log(`Made slot ${slot.value} available`);
         }
         
         timeSelect.appendChild(option);
       });
+      
+      console.log('Time slots updated. Total options:', timeSelect.children.length);
     }
 
     // Update time slots when date changes
