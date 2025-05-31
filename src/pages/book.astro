@@ -279,21 +279,51 @@ const bookedSlots = [
     
     let bookedSlots = [];
 
-    // Fetch booked slots from Google Sheets
+    // JSONP function to bypass CORS
+    function fetchBookedSlotsJSONP() {
+      return new Promise((resolve, reject) => {
+        // Create a unique callback name
+        const callbackName = 'jsonp_callback_' + Math.round(100000 * Math.random());
+        
+        // Create script element
+        const script = document.createElement('script');
+        script.src = GOOGLE_SCRIPT_URL + '?callback=' + callbackName;
+        
+        // Set up callback
+        window[callbackName] = function(data) {
+          delete window[callbackName];
+          document.body.removeChild(script);
+          resolve(data);
+        };
+        
+        // Handle errors
+        script.onerror = function() {
+          delete window[callbackName];
+          document.body.removeChild(script);
+          reject(new Error('JSONP request failed'));
+        };
+        
+        // Add script to page
+        document.body.appendChild(script);
+        
+        // Timeout after 10 seconds
+        setTimeout(() => {
+          if (window[callbackName]) {
+            delete window[callbackName];
+            document.body.removeChild(script);
+            reject(new Error('JSONP request timeout'));
+          }
+        }, 10000);
+      });
+    }
+
+    // Fetch booked slots from Google Sheets using JSONP
     async function fetchBookedSlots() {
       try {
-        console.log('Fetching booked slots from:', GOOGLE_SCRIPT_URL); // Debug log
-        const response = await fetch(GOOGLE_SCRIPT_URL);
-        console.log('Fetch response status:', response.status); // Debug log
-        
-        if (response.ok) {
-          const data = await response.json();
-          console.log('Booked slots data:', data); // Debug log
-          bookedSlots = data;
-        } else {
-          console.warn('Failed to fetch booked slots:', response.status, response.statusText);
-          bookedSlots = [];
-        }
+        console.log('Fetching booked slots from:', GOOGLE_SCRIPT_URL);
+        const data = await fetchBookedSlotsJSONP();
+        console.log('Booked slots data:', data);
+        bookedSlots = data || [];
       } catch (error) {
         console.error('Error fetching booked slots:', error);
         bookedSlots = []; // Fallback to empty array
@@ -359,75 +389,78 @@ const bookedSlots = [
 
         console.log('Submitting data:', data); // Debug log
 
-        // Submit to Google Sheets
-        const response = await fetch(GOOGLE_SCRIPT_URL, {
-          method: 'POST',
-          mode: 'cors', // Add CORS mode
-          headers: { 
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data)
-        });
-
-        console.log('Response status:', response.status); // Debug log
-        
-        if (!response.ok) {
-          console.error('Response not OK:', response.status, response.statusText);
-          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-        }
-
-        const result = await response.json();
-        console.log('Response result:', result); // Debug log
-
-        if (result.success) {
-          // Also submit to Netlify Forms as backup
-          try {
-            await fetch('/', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-              body: new URLSearchParams(formData).toString()
-            });
-          } catch (netlifyError) {
-            console.warn('Netlify backup failed:', netlifyError);
-            // Continue anyway since Google Sheets worked
-          }
-          
-          window.location.href = '/thankyou';
-        } else if (result.error === 'Slot already booked') {
-          alert(isEN ? 'This time slot has been booked. Please select another.' : 'Този час е вече зает. Моля изберете друг.');
-          await fetchBookedSlots(); // Refresh booked slots
-          updateTimeSlots();
-          // Reset button
-          submitBtn.disabled = false;
-          btnText.textContent = isEN ? 'Book Service' : 'Запази час';
-          submitBtn.classList.remove('opacity-75');
-          return;
-        } else {
-          console.error('Booking failed with result:', result);
-          throw new Error(result.error || 'Booking failed');
-        }
-
-      } catch (error) {
-        console.error('Booking submission error:', error);
-        
-        // Try fallback to Netlify Forms only
+        // Try to submit to Google Sheets first
         try {
-          console.log('Attempting Netlify Forms fallback...');
-          const formData = new FormData(form);
-          const fallbackResponse = await fetch('/', {
+          const response = await fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'cors',
+            headers: { 
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+          });
+
+          console.log('Response status:', response.status);
+          
+          if (response.ok) {
+            const result = await response.json();
+            console.log('Response result:', result);
+
+            if (result.success) {
+              console.log('Google Sheets submission successful');
+              
+              // Also submit to Netlify Forms as backup
+              try {
+                await fetch('/', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                  body: new URLSearchParams(formData).toString()
+                });
+                console.log('Netlify backup successful');
+              } catch (netlifyError) {
+                console.warn('Netlify backup failed:', netlifyError);
+                // Continue anyway since Google Sheets worked
+              }
+              
+              window.location.href = '/thankyou';
+              return;
+            } else if (result.error === 'Slot already booked') {
+              alert(isEN ? 'This time slot has been booked. Please select another.' : 'Този час е вече зает. Моля изберете друг.');
+              await fetchBookedSlots(); // Refresh booked slots
+              updateTimeSlots();
+              // Reset button
+              submitBtn.disabled = false;
+              btnText.textContent = isEN ? 'Book Service' : 'Запази час';
+              submitBtn.classList.remove('opacity-75');
+              return;
+            } else {
+              console.error('Booking failed with result:', result);
+              throw new Error(result.error || 'Booking failed');
+            }
+          } else {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+          }
+        } catch (googleSheetsError) {
+          console.warn('Google Sheets submission failed, using Netlify fallback:', googleSheetsError);
+          
+          // Fallback to Netlify Forms only
+          const netlifyResponse = await fetch('/', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: new URLSearchParams(formData).toString()
           });
 
-          if (fallbackResponse.ok) {
+          if (netlifyResponse.ok) {
             console.log('Netlify Forms fallback successful');
             window.location.href = '/thankyou';
             return;
+          } else {
+            throw new Error('Both Google Sheets and Netlify Forms failed');
           }
-        } catch (fallbackError) {
-          console.error('Fallback also failed:', fallbackError);
         }
+
+      } catch (error) {
+        console.error('Booking submission error:', error);
         
         // Reset button
         submitBtn.disabled = false;
