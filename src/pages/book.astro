@@ -273,25 +273,27 @@ const bookedSlots = [
     const form = document.getElementById('booking-form');
     const submitBtn = document.getElementById('submit-btn');
     const btnText = document.getElementById('btn-text');
+    
+    // Your Google Apps Script URL
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyEuA51niEYvOG3erkABkleEKnPySeYI_4dLwRYg79KmmK2inI32t5iVAhvCeGA8oxV1Q/exec';
+    
+    let bookedSlots = [];
 
-    // Simple booking storage - in production, this would come from your booking system
-    function getBookedSlots() {
+    // Fetch booked slots from Google Sheets
+    async function fetchBookedSlots() {
       try {
-        return JSON.parse(localStorage.getItem('bookedSlots') || '[]');
-      } catch {
-        return [];
+        const response = await fetch(GOOGLE_SCRIPT_URL);
+        if (response.ok) {
+          bookedSlots = await response.json();
+        }
+      } catch (error) {
+        console.error('Error fetching booked slots:', error);
+        bookedSlots = []; // Fallback to empty array
       }
-    }
-
-    function saveBookedSlot(date, time) {
-      const bookedSlots = getBookedSlots();
-      bookedSlots.push({ date, time });
-      localStorage.setItem('bookedSlots', JSON.stringify(bookedSlots));
     }
 
     // Function to check if a slot is booked
     function isSlotBooked(date, time) {
-      const bookedSlots = getBookedSlots();
       return bookedSlots.some(slot => slot.date === date && slot.time === time);
     }
 
@@ -329,23 +331,12 @@ const bookedSlots = [
     // Update time slots when date changes
     dateInput.addEventListener('change', updateTimeSlots);
 
-    // Form submission with slot booking
+    // Form submission
     form.addEventListener('submit', async function(e) {
       e.preventDefault();
       
-      // Basic validation
       if (!timeSelect.value) {
         alert(isEN ? 'Please select a time slot' : 'Моля изберете час');
-        return false;
-      }
-
-      const selectedDate = dateInput.value;
-      const selectedTime = timeSelect.value;
-
-      // Check if slot is still available (double-check)
-      if (isSlotBooked(selectedDate, selectedTime)) {
-        alert(isEN ? 'This time slot has been booked. Please select another.' : 'Този час е вече зает. Моля изберете друг.');
-        updateTimeSlots(); // Refresh the dropdown
         return false;
       }
 
@@ -356,22 +347,37 @@ const bookedSlots = [
 
       try {
         const formData = new FormData(this);
+        const data = Object.fromEntries(formData);
 
-        // Submit to Netlify Forms
-        const response = await fetch('/', {
+        // Submit to Google Sheets
+        const response = await fetch(GOOGLE_SCRIPT_URL, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams(formData).toString()
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
         });
 
-        if (response.ok) {
-          // Save the booked slot locally (for demo purposes)
-          saveBookedSlot(selectedDate, selectedTime);
+        const result = await response.json();
+
+        if (result.success) {
+          // Also submit to Netlify Forms as backup
+          await fetch('/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(formData).toString()
+          });
           
-          // Redirect to thank you page
           window.location.href = '/thankyou';
+        } else if (result.error === 'Slot already booked') {
+          alert(isEN ? 'This time slot has been booked. Please select another.' : 'Този час е вече зает. Моля изберете друг.');
+          await fetchBookedSlots(); // Refresh booked slots
+          updateTimeSlots();
+          // Reset button
+          submitBtn.disabled = false;
+          btnText.textContent = isEN ? 'Book Service' : 'Запази час';
+          submitBtn.classList.remove('opacity-75');
+          return;
         } else {
-          throw new Error('Network error');
+          throw new Error('Booking failed');
         }
 
       } catch (error) {
@@ -382,7 +388,6 @@ const bookedSlots = [
         btnText.textContent = isEN ? 'Book Service' : 'Запази час';
         submitBtn.classList.remove('opacity-75');
         
-        // Show error message
         alert(isEN 
           ? 'There was an error submitting your booking. Please try again or call us directly.' 
           : 'Възникна грешка при изпращането на заявката. Моля опитайте отново или се обадете директно.'
@@ -391,7 +396,9 @@ const bookedSlots = [
     });
 
     // Initial load
-    updateTimeSlots();
+    fetchBookedSlots().then(() => {
+      updateTimeSlots();
+    });
   });
 </script>
 
