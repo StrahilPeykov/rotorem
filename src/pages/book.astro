@@ -74,17 +74,10 @@ const bookedSlots = [
       <!-- Form -->
       <form
         class="grid gap-6"
-        name="booking"
-        method="POST"
-        data-netlify="true"
-        netlify-honeypot="bot-field"
-        action="/thankyou"
         id="booking-form"
       >
-        <input type="hidden" name="form-name" value="booking" />
-        <input name="bot-field" class="hidden" />
-        <input type="hidden" name="subject" value="🔧 Нова заявка за ремонт от rotoremvarna.com" />
-
+        <!-- Remove Netlify-specific hidden inputs since we're using Google Sheets -->
+        
         <!-- Contact Information -->
         <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200">
           <h3 class="text-lg font-medium text-gray-900 mb-4 flex items-center">
@@ -247,11 +240,6 @@ const bookedSlots = [
           <span id="btn-text">{isEN ? 'Book Service' : 'Запази час'}</span>
         </button>
         
-        <!-- Debug test button (temporary) -->
-        <button type="button" id="test-google-script" class="w-full py-2 text-sm bg-gray-200 text-gray-700 rounded border hover:bg-gray-300">
-          🧪 Test Google Script Connection (Debug)
-        </button>
-        
         <!-- Add service guarantee below the form -->
         <div class="text-center text-gray-500 text-sm flex flex-col items-center">
           <div class="flex items-center mb-1 text-primary">
@@ -386,7 +374,7 @@ const bookedSlots = [
         
         document.body.appendChild(googleForm);
         
-        console.log('Submitting to Google Sheets via iframe...');
+        console.log('Submitting to Google Sheets...');
         googleForm.submit();
         
         // Clean up after a short delay
@@ -400,32 +388,13 @@ const bookedSlots = [
           }
         }, 2000);
 
-        // Always submit to Netlify Forms as backup
-        try {
-          console.log('Submitting to Netlify Forms...');
-          const netlifyResponse = await fetch('/', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: new URLSearchParams(formData).toString()
-          });
-
-          if (netlifyResponse.ok) {
-            console.log('✅ Netlify Forms submission successful');
-            success = true;
-          } else {
-            console.error('Netlify Forms failed:', netlifyResponse.status);
-          }
-        } catch (netlifyError) {
-          console.error('Netlify Forms error:', netlifyError.message);
-        }
-
-        if (success) {
-          console.log('Booking submitted successfully!');
-          console.log('Both Google Sheets and Netlify Forms submitted');
+        // Success - redirect to thank you page
+        console.log('Booking submitted successfully to Google Sheets!');
+        
+        // Small delay to ensure Google Sheets processes the submission
+        setTimeout(() => {
           window.location.href = '/thankyou';
-        } else {
-          throw new Error('Netlify Forms submission failed');
-        }
+        }, 1500);
 
       } catch (error) {
         console.error('Complete booking failure:', error);
@@ -441,58 +410,6 @@ const bookedSlots = [
         );
       }
     });
-
-    // Debug: Test Google Script connection using CORS-free method
-    const testBtn = document.getElementById('test-google-script');
-    if (testBtn) {
-      testBtn.addEventListener('click', async function() {
-        console.log('🧪 Testing Google Script connection (CORS-free method)...');
-        
-        const testData = {
-          name: 'DEBUG TEST',
-          phone: '1234567890',
-          email: 'debug@test.com',
-          date: '2025-06-15',
-          time: '09:00-11:00',
-          address: 'Debug Address',
-          apartment: '1',
-          city: 'Varna',
-          appliance: 'Test Appliance',
-          details: 'Debug test from website',
-          directions: 'Debug directions'
-        };
-        
-        try {
-          console.log('Sending test data via form submission method:', testData);
-          
-          // Create a temporary form and submit it (bypasses CORS)
-          const tempForm = document.createElement('form');
-          tempForm.method = 'POST';
-          tempForm.action = GOOGLE_SCRIPT_URL;
-          tempForm.target = '_blank'; // Open in new tab so we can see the response
-          
-          // Add all data as hidden inputs
-          Object.keys(testData).forEach(key => {
-            const input = document.createElement('input');
-            input.type = 'hidden';
-            input.name = key;
-            input.value = testData[key];
-            tempForm.appendChild(input);
-          });
-          
-          document.body.appendChild(tempForm);
-          tempForm.submit();
-          document.body.removeChild(tempForm);
-          
-          console.log('✅ Test form submitted! Check the new tab and your Google Sheet.');
-          alert('✅ Test form submitted! Check the new tab for response and your Google Sheet for new row.');
-          
-        } catch (error) {
-          console.error('❌ Test error:', error);
-          alert('❌ Test error: ' + error.message);
-        }
-      });
-    }
 
     // Initial load
     fetchBookedSlots().then(() => {
