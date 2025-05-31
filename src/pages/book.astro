@@ -318,39 +318,27 @@ const bookedSlots = [
     
     let bookedSlots = [];
 
-    // Fetch booked slots from Google Sheets
+    // Temporary: Manual booked slots for testing (until CORS is fully resolved)
+    // TODO: Replace this with real Google Sheets data once CORS issues are fixed
     async function fetchBookedSlots() {
       try {
-        console.log('Fetching booked slots from Google Sheets...');
-        console.log('URL:', GOOGLE_SCRIPT_URL);
+        console.log('Using manual booked slots for testing...');
         
-        const response = await fetch(GOOGLE_SCRIPT_URL + '?action=getBookings&t=' + Date.now());
-        console.log('Fetch response status:', response.status);
-        console.log('Fetch response ok:', response.ok);
+        // Manually add the slots you know are booked from your Google Sheet
+        // Update this array with actual booked slots from your sheet
+        bookedSlots = [
+          { date: '2025-06-03', time: '09:00-11:00' },  // This one you mentioned is booked
+          // Add more based on what's actually in your Google Sheet
+        ];
         
-        if (response.ok) {
-          const data = await response.json();
-          console.log('Booked slots received:', data);
-          bookedSlots = data || [];
-          console.log('Total booked slots:', bookedSlots.length);
-          
-          // Log each booked slot for debugging
-          bookedSlots.forEach((slot, index) => {
-            console.log(`Slot ${index + 1}: ${slot.date} at ${slot.time}`);
-          });
-        } else {
-          console.warn('Failed to fetch booked slots, status:', response.status);
-          console.warn('Response text:', await response.text());
-          bookedSlots = [];
-        }
-      } catch (error) {
-        console.error('Error fetching booked slots:', error);
-        console.error('Error details:', {
-          name: error.name,
-          message: error.message,
-          stack: error.stack
+        console.log('Manual booked slots loaded:', bookedSlots);
+        bookedSlots.forEach((slot, index) => {
+          console.log(`Booked slot ${index + 1}: ${slot.date} at ${slot.time}`);
         });
-        bookedSlots = []; // Fallback to empty array
+        
+      } catch (error) {
+        console.error('Error in fetchBookedSlots:', error);
+        bookedSlots = [];
       }
     }
 
