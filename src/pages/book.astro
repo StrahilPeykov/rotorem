@@ -328,6 +328,28 @@ const timeSlots = [
     window.handleBookedSlotsResponse = function(data) {
       console.log('JSONP response received:', data);
       bookedSlots = Array.isArray(data) ? data : [];
+      
+      // Process dates to ensure consistent format and avoid timezone issues
+      bookedSlots = bookedSlots.map(slot => {
+        let processedDate = slot.date;
+        
+        // If the date looks like it might be a Date object string, parse it carefully
+        if (typeof processedDate === 'string' && processedDate.includes('T')) {
+          // This is likely an ISO string, extract just the date part
+          processedDate = processedDate.split('T')[0];
+        } else if (typeof processedDate === 'string' && processedDate.match(/^\d{4}-\d{2}-\d{2}$/)) {
+          // Already in YYYY-MM-DD format, use as-is
+          processedDate = processedDate;
+        }
+        
+        console.log(`Processing slot: original date="${slot.date}", processed date="${processedDate}", time="${slot.time}"`);
+        
+        return {
+          date: processedDate,
+          time: slot.time
+        };
+      });
+      
       console.log('Processed booked slots:', bookedSlots.length);
       
       // Log each booked slot for debugging
@@ -404,15 +426,25 @@ const timeSlots = [
         return false;
       }
       
-      console.log(`Checking if slot is booked: ${date} at ${time}`);
+      // Ensure the date is in YYYY-MM-DD format
+      let checkDate = date;
+      if (date.includes('T')) {
+        checkDate = date.split('T')[0];
+      }
+      
+      console.log(`Checking if slot is booked: ${checkDate} at ${time}`);
+      console.log('Available booked slots to check against:', bookedSlots);
       
       const isBooked = bookedSlots.some(slot => {
-        const matches = slot.date === date && slot.time === time;
-        console.log(`Comparing: ${slot.date} === ${date} && ${slot.time} === ${time} = ${matches}`);
+        const dateMatch = slot.date === checkDate;
+        const timeMatch = slot.time === time;
+        const matches = dateMatch && timeMatch;
+        
+        console.log(`Comparing: slot.date="${slot.date}" === checkDate="${checkDate}" (${dateMatch}) && slot.time="${slot.time}" === time="${time}" (${timeMatch}) = ${matches}`);
         return matches;
       });
       
-      console.log(`Slot ${date} ${time} is ${isBooked ? 'BOOKED' : 'AVAILABLE'}`);
+      console.log(`Final result: Slot ${checkDate} ${time} is ${isBooked ? 'BOOKED' : 'AVAILABLE'}`);
       return isBooked;
     }
 
