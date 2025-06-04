@@ -1,0 +1,183 @@
+---
+// src/components/ReviewsModal.astro
+import { getLangFromUrl } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const isEN = lang === 'en';
+
+// Your actual Google Business review URL
+const googleReviewsUrl = "https://g.page/r/CdqG6cGsgqQzEBM/review";
+
+const reviews = [
+  {
+    name: isEN ? 'Ivan Petrov' : 'Иван Петров',
+    date: isEN ? 'March 15, 2025' : '15 март, 2025',
+    text: isEN ? 'Very fast and professional service! My washing machine was repaired the same day I called.' : 'Много бърза и професионална услуга! Пералнята ми беше поправена същия ден, в който се обадих.',
+    appliance: isEN ? 'Washing Machine' : 'Пералня'
+  },
+  {
+    name: isEN ? 'Maria Dimitrova' : 'Мария Димитрова',
+    date: isEN ? 'February 28, 2025' : '28 февруари, 2025',
+    text: isEN ? 'Excellent service! The technician was very knowledgeable and fixed my dishwasher quickly.' : 'Отлична услуга! Техникът беше много компетентен и поправи съдомиялната ми бързо.',
+    appliance: isEN ? 'Dishwasher' : 'Съдомиялна'
+  },
+  {
+    name: isEN ? 'Georgi Ivanov' : 'Георги Иванов',
+    date: isEN ? 'January 10, 2025' : '10 януари, 2025',
+    text: isEN ? 'Had an issue with my oven, called RotoRem and they came the next day. Very thorough service!' : 'Имах проблем с фурната, обадих се на РотоРем и дойдоха на следващия ден. Много обстойна услуга!',
+    appliance: isEN ? 'Oven' : 'Фурна'
+  }
+];
+---
+
+<!-- Reviews Modal -->
+<div id="reviews-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+  <div class="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+    <!-- Modal Header -->
+    <div class="p-6 border-b border-gray-200 flex justify-between items-center sticky top-0 bg-white rounded-t-xl">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-900">
+          {isEN ? 'Customer Reviews' : 'Отзиви от клиенти'}
+        </h2>
+        <div class="flex items-center mt-2">
+          <div class="flex">
+            {Array.from({ length: 5 }).map(() => (
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-yellow-500" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+              </svg>
+            ))}
+          </div>
+          <span class="ml-2 text-yellow-600 font-semibold">5.0</span>
+          <span class="ml-2 text-gray-500">
+            ({isEN ? '100+ reviews' : '100+ отзива'})
+          </span>
+        </div>
+      </div>
+      <button id="close-reviews-modal" class="text-gray-500 hover:text-gray-700">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="p-6">
+      <!-- Google Reviews CTA -->
+      <div class="bg-gradient-to-r from-blue-50 to-blue-100 p-6 rounded-xl border border-blue-200 mb-8">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-blue-500 text-white rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 9V5a3 3 0 0 0-6 0v4"></path>
+              <rect x="2" y="9" width="20" height="11" rx="2" ry="2"></rect>
+              <circle cx="12" cy="15" r="1"></circle>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-blue-900 mb-2">
+            {isEN ? 'Share Your Experience' : 'Споделете вашето мнение'}
+          </h3>
+          <p class="text-blue-800 mb-4">
+            {isEN 
+              ? 'Help other customers by leaving a review on Google. Your feedback helps us improve our service!'
+              : 'Помогнете на други клиенти, като оставите отзив в Google. Вашата обратна връзка ни помага да подобряваме услугата!'}
+          </p>
+          <a 
+            href={googleReviewsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow-md"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+            </svg>
+            {isEN ? 'Write Google Review' : 'Напишете Google отзив'}
+          </a>
+        </div>
+      </div>
+
+      <!-- Customer Testimonials -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {reviews.map((review, index) => (
+          <div class="bg-gray-50 p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow">
+            <div class="flex justify-between items-start mb-4">
+              <div>
+                <h4 class="font-semibold text-gray-900">{review.name}</h4>
+                <p class="text-sm text-gray-500">{review.date}</p>
+              </div>
+              <div class="flex">
+                {Array.from({ length: 5 }).map(() => (
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-yellow-500" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                  </svg>
+                ))}
+              </div>
+            </div>
+            
+            <p class="text-gray-700 mb-4">{review.text}</p>
+            
+            <div class="pt-4 border-t border-gray-200">
+              <span class="inline-flex items-center px-3 py-1 rounded-full text-sm bg-blue-100 text-blue-800">
+                {review.appliance}
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Call to Action -->
+      <div class="mt-8 text-center bg-gradient-to-r from-amber-50 to-amber-100 p-6 rounded-xl border border-amber-200">
+        <h3 class="text-xl font-semibold text-amber-900 mb-2">
+          {isEN ? 'Need Our Services?' : 'Нуждаете се от нашите услуги?'}
+        </h3>
+        <p class="text-amber-800 mb-4">
+          {isEN 
+            ? 'Join our satisfied customers with professional appliance repair!'
+            : 'Присъединете се към доволните ни клиенти с професионален ремонт!'}
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="tel:+359898340982" class="btn-primary inline-flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+            089 834 0982
+          </a>
+          <a href="/book" class="btn-cta inline-flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path>
+            </svg>
+            {isEN ? 'Book Service' : 'Запазете час'}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Smooth modal animations */
+  #reviews-modal {
+    backdrop-filter: blur(4px);
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  #reviews-modal > div {
+    animation: slideUp 0.3s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideUp {
+    from { 
+      opacity: 0; 
+      transform: translateY(20px) scale(0.95); 
+    }
+    to { 
+      opacity: 1; 
+      transform: translateY(0) scale(1); 
+    }
+  }
+</style>

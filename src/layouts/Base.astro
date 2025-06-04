@@ -2,6 +2,7 @@
 import { SEO } from 'astro-seo';
 import { getLangFromUrl, useTranslations, getRouteFromUrl, getLocalizedPath } from '../i18n/utils';
 import LanguageToggle from '../components/LanguageToggle.astro';
+import ReviewsModal from '../components/ReviewsModal.astro';
 
 interface Props {
   title?: string;
@@ -341,20 +342,20 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
     <!-- Header with favicon logo -->
     <header class="py-4 bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
       <div class="container flex justify-between items-center">
-        <!-- Logo using favicon directly -->
-        <a href={isEN ? '/en' : '/'} class="flex items-center gap-3 group">
-          <!-- SVG Logo from favicon -->
-          <div class="w-10 h-10 flex-shrink-0">
+        <!-- Logo using favicon directly with perfect baseline alignment -->
+        <a href={isEN ? '/en' : '/'} class="flex items-end gap-3 group">
+          <!-- SVG Logo from favicon - made bigger -->
+          <div class="w-12 h-12 flex-shrink-0">
             <img 
               src="/favicon.svg" 
               alt="RotoRem Logo"
               class="w-full h-full transition-transform group-hover:scale-105"
-              width="40"
-              height="40"
+              width="48"
+              height="48"
             />
           </div>
-          <!-- Company name -->
-          <span class="font-bold text-xl md:text-2xl text-gray-900 font-heading group-hover:text-primary transition-colors">
+          <!-- Company name aligned to baseline with slight adjustment -->
+          <span class="font-bold text-xl md:text-2xl text-gray-900 font-heading group-hover:text-primary transition-colors leading-none pb-0.5">
             {isEN ? 'RotoRem Varna' : 'РотоРем Варна'}
           </span>
         </a>
@@ -365,9 +366,12 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
             <a href="#services" class="text-gray-700 hover:text-primary font-medium font-heading">
               {t('nav.services')}
             </a>
-            <a href="#reviews" class="text-gray-700 hover:text-primary font-medium font-heading">
+            <button 
+              id="reviews-modal-trigger"
+              class="text-gray-700 hover:text-primary font-medium font-heading"
+            >
               {t('nav.reviews')}
-            </a>
+            </button>
             <a href="#contact" class="text-gray-700 hover:text-primary font-medium font-heading">
               {t('nav.contact')}
             </a>
@@ -392,15 +396,15 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
         <div class="h-full w-64 max-w-[80%] bg-white shadow-xl ml-auto flex flex-col">
           <!-- Mobile menu header with favicon -->
           <div class="p-4 border-b border-gray-200 flex items-center justify-between">
-            <a href={isEN ? '/en' : '/'} class="flex items-center gap-2">
+            <a href={isEN ? '/en' : '/'} class="flex items-end gap-2">
               <img 
                 src="/favicon.svg" 
                 alt="RotoRem Logo"
-                class="w-8 h-8"
-                width="32"
-                height="32"
+                class="w-10 h-10"
+                width="40"
+                height="40"
               />
-              <span class="font-bold text-lg text-primary font-heading">
+              <span class="font-bold text-lg text-primary font-heading leading-none">
                 {isEN ? 'RotoRem' : 'РотоРем'}
               </span>
             </a>
@@ -416,9 +420,12 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
             <a href="#services" class="py-3 px-4 text-gray-700 hover:bg-gray-100 active:bg-gray-200 font-heading">
               {t('nav.services')}
             </a>
-            <a href="#reviews" class="py-3 px-4 text-gray-700 hover:bg-gray-100 active:bg-gray-200 font-heading">
+            <button 
+              id="reviews-modal-trigger-mobile"
+              class="py-3 px-4 text-gray-700 hover:bg-gray-100 active:bg-gray-200 font-heading text-left"
+            >
               {t('nav.reviews')}
-            </a>
+            </button>
             <a href="#contact" class="py-3 px-4 text-gray-700 hover:bg-gray-100 active:bg-gray-200 font-heading">
               {t('nav.contact')}
             </a>
@@ -454,6 +461,9 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
       </div>
     </header>
     
+    <!-- Reviews Modal -->
+    <ReviewsModal />
+    
     <main>
       <slot />
     </main>
@@ -471,15 +481,15 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
         <div class="grid md:grid-cols-3 gap-8">
           <!-- Company info -->
           <div>
-            <div class="flex items-center gap-2 mb-4">
+            <div class="flex items-end gap-2 mb-4">
               <img 
                 src="/favicon.svg" 
                 alt="RotoRem Logo"
-                class="w-8 h-8"
-                width="32"
-                height="32"
+                class="w-10 h-10"
+                width="40"
+                height="40"
               />
-              <h3 class="font-semibold text-lg font-heading">
+              <h3 class="font-semibold text-lg font-heading leading-none">
                 {isEN ? 'RotoRem Varna' : 'РотоРем Варна'}
               </h3>
             </div>
@@ -573,9 +583,10 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
     </footer>
   </body>
   
-  <!-- Mobile menu script -->
+  <!-- Mobile menu and Reviews modal script -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      // Mobile menu functionality
       const mobileMenuButton = document.getElementById('mobile-menu-button');
       const closeMenuButton = document.getElementById('close-menu-button');
       const mobileMenu = document.getElementById('mobile-menu');
@@ -621,6 +632,47 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
       
       mobileMenuLinks.forEach(link => {
         link.addEventListener('click', closeMenu);
+      });
+
+      // Reviews modal functionality
+      const modalTrigger = document.getElementById('reviews-modal-trigger');
+      const modalTriggerMobile = document.getElementById('reviews-modal-trigger-mobile');
+      const modal = document.getElementById('reviews-modal');
+      const closeModal = document.getElementById('close-reviews-modal');
+      
+      function openReviewsModal() {
+        modal?.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+        // Close mobile menu if open
+        closeMenu();
+      }
+      
+      function closeReviewsModal() {
+        modal?.classList.add('hidden');
+        document.body.style.overflow = '';
+      }
+      
+      // Open modal from desktop trigger
+      modalTrigger?.addEventListener('click', openReviewsModal);
+      
+      // Open modal from mobile trigger
+      modalTriggerMobile?.addEventListener('click', openReviewsModal);
+      
+      // Close modal
+      closeModal?.addEventListener('click', closeReviewsModal);
+      
+      // Close on backdrop click
+      modal?.addEventListener('click', function(e) {
+        if (e.target === modal) {
+          closeReviewsModal();
+        }
+      });
+      
+      // Close on Escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && !modal?.classList.contains('hidden')) {
+          closeReviewsModal();
+        }
       });
     });
   </script>
