@@ -1,7 +1,21 @@
 User-agent: *
 Allow: /
 
-# Block private/admin pages
+# Allow all pages including booking
+Allow: /book
+Allow: /запази
+Allow: /thankyou
+Allow: /благодарим
+
+# Allow sitemap
+Sitemap: https://www.rotorem.bg/sitemap.xml
+
+# Block admin areas (if any)
+Disallow: /admin/
 Disallow: /.netlify/
 
-Sitemap: https://www.rotorem.bg/sitemap.xml
+# Allow common assets
+Allow: /img/
+Allow: /css/
+Allow: /js/
+Allow: /_astro/

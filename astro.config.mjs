@@ -14,10 +14,12 @@ export default defineConfig({
       i18n: {
         defaultLocale: 'bg',
         locales: {
-          bg: 'bg',
-          en: 'en',
+          bg: '', // No prefix for Bulgarian (empty string)
+          en: 'en', // /en/ prefix for English
         },
       },
+      changefreq: 'weekly',
+      priority: 0.7,
     }),
   ],
 });
