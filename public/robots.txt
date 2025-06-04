@@ -1,8 +1,7 @@
 User-agent: *
 Allow: /
 
-# Don't index the booking form page
-Disallow: /book
-Disallow: /thankyou
+# Block private/admin pages
+Disallow: /.netlify/
 
-Sitemap: https://technofixvarna.com/sitemap-index.xml
+Sitemap: https://www.rotorem.bg/sitemap.xml

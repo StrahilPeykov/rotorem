@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://rotorem.bg',
+  site: 'https://www.rotorem.bg',
   integrations: [
     tailwind({
       // Using a simple config without requiring daisyui directly 
