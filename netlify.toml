@@ -2,7 +2,10 @@
   command = "pnpm install --no-frozen-lockfile && pnpm build"
   publish = "dist"
 
+# This will only redirect if the file doesn't exist
+# So /sitemap.xml will work if it exists in the dist folder
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+  force = false
