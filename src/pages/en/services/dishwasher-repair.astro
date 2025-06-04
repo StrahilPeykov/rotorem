@@ -11,6 +11,26 @@ const description = 'Dishwasher repair in Varna ✓ Fast on-site service ✓ War
 
 <Layout title={title} description={description}>
   <article class="py-16">
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-emerald-600 to-emerald-800 text-white py-16 mb-16">
+      <div class="container max-w-4xl text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6">
+          Dishwasher Repair Varna
+        </h1>
+        <p class="text-xl md:text-2xl text-emerald-100 max-w-3xl mx-auto mb-8">
+          Professional dishwasher repair in Varna and surrounding areas. Fast on-site service with quality guarantee.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="tel:+359898340982" class="bg-white text-emerald-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg">
+            📞 089 834 0982
+          </a>
+          <a href="/book" class="bg-amber-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-amber-600 transition-colors shadow-lg">
+            Book Online
+          </a>
+        </div>
+      </div>
+    </section>
+
     <div class="container max-w-4xl">
       <!-- Schema for Service Page -->
       <script type="application/ld+json">
@@ -46,127 +66,175 @@ const description = 'Dishwasher repair in Varna ✓ Fast on-site service ✓ War
       }
       </script>
 
-      <header class="text-center mb-12">
-        <h1 class="text-4xl font-bold text-gray-900 mb-4">
-          Dishwasher Repair Varna
-        </h1>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-          Professional dishwasher repair in Varna and surrounding areas. Fast on-site service with quality guarantee.
-        </p>
-      </header>
-
-      <div class="prose prose-lg max-w-none">
-        <section class="mb-12">
-          <h2>Why choose our dishwasher repair service in Varna?</h2>
-          
-          <div class="grid md:grid-cols-2 gap-8">
-            <div>
-              <h3>🔧 Fast on-site repair</h3>
-              <p>Our technician comes directly to your home in Varna to repair your dishwasher. No need to remove the appliance.</p>
-              
-              <h3>⚡ Same-day repair</h3>
-              <p>In most cases we repair dishwashers the same day in Varna. Quick diagnosis and efficient problem resolution.</p>
-              
-              <h3>🛡️ Quality guarantee</h3>
-              <p>All dishwasher repairs in Varna are performed with a guarantee for work quality.</p>
+      <!-- Why Choose Us Section -->
+      <section class="mb-16">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Why choose our dishwasher repair service in Varna?</h2>
+          <div class="w-20 h-1 bg-emerald-500 mx-auto"></div>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-gradient-to-br from-emerald-50 to-emerald-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-emerald-200">
+            <div class="w-12 h-12 bg-emerald-500 text-white rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
             </div>
-            
-            <div>
-              <h3>🏠 Service throughout Varna</h3>
-              <p>We repair dishwashers in neighborhoods: Chayka, Mladost, Asparuhovo, Levski, Vladislav Varnenchik and Varna center.</p>
-              
-              <h3>🔩 All dishwasher brands</h3>
-              <p>We repair dishwashers from all brands: Bosch, Siemens, Electrolux, Whirlpool, Indesit, Candy and others.</p>
-              
-              <h3>💰 Fair prices</h3>
-              <p>Diagnostic fee only 30 BGN. Clear prices with no hidden fees for dishwasher repair in Varna.</p>
+            <h3 class="text-xl font-semibold text-emerald-900 mb-3">Fast on-site repair</h3>
+            <p class="text-emerald-800">Our technician comes directly to your home in Varna to repair your dishwasher. No need to remove the appliance.</p>
+          </div>
+
+          <div class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-green-200">
+            <div class="w-12 h-12 bg-green-500 text-white rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-green-900 mb-3">Same-day repair</h3>
+            <p class="text-green-800">In most cases we repair dishwashers the same day in Varna. Quick diagnosis and efficient problem resolution.</p>
+          </div>
+
+          <div class="bg-gradient-to-br from-amber-50 to-amber-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-amber-200">
+            <div class="w-12 h-12 bg-amber-500 text-white rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-amber-900 mb-3">Quality guarantee</h3>
+            <p class="text-amber-800">All dishwasher repairs in Varna are performed with a guarantee for work quality.</p>
+          </div>
+
+          <div class="bg-gradient-to-br from-teal-50 to-teal-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-teal-200">
+            <div class="w-12 h-12 bg-teal-500 text-white rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-teal-900 mb-3">Service throughout Varna</h3>
+            <p class="text-teal-800">We repair dishwashers in neighborhoods: Chayka, Mladost, Asparuhovo, Levski, Vladislav Varnenchik and Varna center.</p>
+          </div>
+
+          <div class="bg-gradient-to-br from-cyan-50 to-cyan-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-cyan-200">
+            <div class="w-12 h-12 bg-cyan-500 text-white rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M8 16v-4"/><path d="M16 16v-4"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-cyan-900 mb-3">All dishwasher brands</h3>
+            <p class="text-cyan-800">We repair dishwashers from all brands: Bosch, Siemens, Electrolux, Whirlpool, Indesit, Candy and others.</p>
+          </div>
+
+          <div class="bg-gradient-to-br from-lime-50 to-lime-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-lime-200">
+            <div class="w-12 h-12 bg-lime-500 text-white rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="1" x2="12" y2="23"></line>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-lime-900 mb-3">Fair prices</h3>
+            <p class="text-lime-800">Diagnostic fee only 30 BGN. Clear prices with no hidden fees for dishwasher repair in Varna.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Common Problems Section -->
+      <section class="mb-16">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Most common dishwasher problems in Varna</h2>
+          <div class="w-20 h-1 bg-emerald-500 mx-auto"></div>
+        </div>
+        
+        <div class="bg-gradient-to-r from-emerald-50 via-white to-emerald-50 p-8 rounded-2xl shadow-xl border border-emerald-100">
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-emerald-500">
+              <h3 class="text-lg font-semibold text-emerald-900 mb-3">Dishwasher leaking water</h3>
+              <p class="text-emerald-800">Leaks from the bottom, door or hoses. Our technician will quickly find and fix the leak.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-blue-500">
+              <h3 class="text-lg font-semibold text-blue-900 mb-3">Dishwasher not draining water</h3>
+              <p class="text-blue-800">Problem with the drain pump or filter blockage. Professional cleaning and repair.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-red-500">
+              <h3 class="text-lg font-semibold text-red-900 mb-3">Dishwasher not heating water</h3>
+              <p class="text-red-800">Damaged heater or thermostat. Replacement with original or compatible spare parts.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-amber-500">
+              <h3 class="text-lg font-semibold text-amber-900 mb-3">Dishwasher not turning on</h3>
+              <p class="text-amber-800">Electrical problems, damaged contacts or control board. Diagnosis and repair in Varna.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-purple-500">
+              <h3 class="text-lg font-semibold text-purple-900 mb-3">Dishwasher not cleaning well</h3>
+              <p class="text-purple-800">Clogged nozzles, worn parts or water pressure problems. We restore full functionality.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-indigo-500">
+              <h3 class="text-lg font-semibold text-indigo-900 mb-3">Dishwasher making noise</h3>
+              <p class="text-indigo-800">Worn pumps, loose parts or foreign objects. We eliminate all causes of noise.</p>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section class="mb-12">
-          <h2>Most common dishwasher problems in Varna</h2>
-          
-          <div class="bg-green-50 p-6 rounded-lg">
-            <h3>🚰 Dishwasher leaking water</h3>
-            <p>Leaks from the bottom, door or hoses. Our technician will quickly find and fix the leak.</p>
-            
-            <h3>🌊 Dishwasher not draining water</h3>
-            <p>Problem with the drain pump or filter blockage. Professional cleaning and repair.</p>
-            
-            <h3>🔥 Dishwasher not heating water</h3>
-            <p>Damaged heater or thermostat. Replacement with original or compatible spare parts.</p>
-            
-            <h3>⚡ Dishwasher not turning on</h3>
-            <p>Electrical problems, damaged contacts or control board. Diagnosis and repair in Varna.</p>
-            
-            <h3>🧽 Dishwasher not cleaning well</h3>
-            <p>Clogged nozzles, worn parts or water pressure problems. We restore full functionality.</p>
-            
-            <h3>🔊 Dishwasher making noise</h3>
-            <p>Worn pumps, loose parts or foreign objects. We eliminate all causes of noise.</p>
-          </div>
-        </section>
-
-        <section class="mb-12">
-          <h2>Dishwasher brands we repair in Varna</h2>
-          
+      <!-- Brands Section - Clean text-focused approach -->
+      <section class="mb-16">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Dishwasher brands we repair in Varna</h2>
+          <div class="w-20 h-1 bg-emerald-500 mx-auto"></div>
+        </div>
+        
+        <div class="bg-gradient-to-r from-gray-50 to-white p-8 rounded-2xl shadow-lg">
           <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div class="bg-gray-50 p-4 rounded-lg text-center">
-              <h4 class="font-semibold">Bosch</h4>
-              <p class="text-sm text-gray-600">Bosch dishwasher repair</p>
-            </div>
-            <div class="bg-gray-50 p-4 rounded-lg text-center">
-              <h4 class="font-semibold">Siemens</h4>
-              <p class="text-sm text-gray-600">Siemens dishwasher repair</p>
-            </div>
-            <div class="bg-gray-50 p-4 rounded-lg text-center">
-              <h4 class="font-semibold">Electrolux</h4>
-              <p class="text-sm text-gray-600">Electrolux dishwasher repair</p>
-            </div>
-            <div class="bg-gray-50 p-4 rounded-lg text-center">
-              <h4 class="font-semibold">Whirlpool</h4>
-              <p class="text-sm text-gray-600">Whirlpool dishwasher repair</p>
-            </div>
-            <div class="bg-gray-50 p-4 rounded-lg text-center">
-              <h4 class="font-semibold">Indesit</h4>
-              <p class="text-sm text-gray-600">Indesit dishwasher repair</p>
-            </div>
-            <div class="bg-gray-50 p-4 rounded-lg text-center">
-              <h4 class="font-semibold">Candy</h4>
-              <p class="text-sm text-gray-600">Candy dishwasher repair</p>
-            </div>
-            <div class="bg-gray-50 p-4 rounded-lg text-center">
-              <h4 class="font-semibold">Miele</h4>
-              <p class="text-sm text-gray-600">Miele dishwasher repair</p>
-            </div>
-            <div class="bg-gray-50 p-4 rounded-lg text-center">
-              <h4 class="font-semibold">Other brands</h4>
-              <p class="text-sm text-gray-600">All other brands</p>
-            </div>
+            {[
+              'Bosch', 'Siemens', 'Electrolux', 'Whirlpool', 
+              'Indesit', 'Candy', 'Miele', 'Other brands'
+            ].map((brand) => (
+              <div class="bg-white p-4 rounded-lg text-center shadow-sm hover:shadow-md transition-shadow border border-gray-200 group hover:border-emerald-300">
+                <h4 class="font-semibold text-gray-900 mb-2 group-hover:text-emerald-600 transition-colors">
+                  {brand}
+                </h4>
+                <p class="text-xs text-gray-600">
+                  {brand === 'Other brands' ? 'All other brands' : `${brand} repair service`}
+                </p>
+                <div class="mt-2 inline-flex items-center text-xs text-emerald-600">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                    <polyline points="22 4 12 14.01 9 11.01"/>
+                  </svg>
+                  Certified service
+                </div>
+              </div>
+            ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section class="text-center bg-primary text-white p-8 rounded-lg">
-          <h2 class="text-white mb-4">Need dishwasher repair in Varna?</h2>
-          <p class="text-xl mb-6">Call now for fast on-site repair!</p>
-          
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="tel:+359898340982" class="bg-white text-primary px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-              📞 089 834 0982
-            </a>
-            <a href="/book" class="bg-accent text-white px-6 py-3 rounded-lg font-semibold hover:bg-amber-600 transition-colors">
-              📅 Book Online
-            </a>
-          </div>
-          
-          <div class="mt-6 text-center">
-            <p class="text-sm opacity-90">
-              Diagnostic fee: 30 BGN | Quality guarantee | Service throughout Varna
-            </p>
-          </div>
-        </section>
-      </div>
+      <!-- Final CTA -->
+      <section class="text-center bg-gradient-to-r from-emerald-600 to-emerald-800 text-white p-12 rounded-2xl shadow-2xl">
+        <h2 class="text-3xl font-bold mb-4">Need dishwasher repair in Varna?</h2>
+        <p class="text-xl mb-8 text-emerald-100">Call now for fast on-site repair!</p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-6">
+          <a href="tel:+359898340982" class="bg-white text-emerald-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg">
+            📞 089 834 0982
+          </a>
+          <a href="/book" class="bg-amber-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-amber-600 transition-colors shadow-lg">
+            Book Online
+          </a>
+        </div>
+        
+        <div class="text-emerald-100">
+          <p class="text-sm">
+            Diagnostic fee: 30 BGN • Quality guarantee • Service throughout Varna
+          </p>
+        </div>
+      </section>
     </div>
   </article>
 </Layout>

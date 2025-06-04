@@ -5,8 +5,8 @@ import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const title = 'Ремонт на Пералня Варна | Професионален Сервиз | РотоРем';
-const description = 'Ремонт на пералня във Варна ✓ Бърз сервиз на място ✓ Гаранция ✓ Същия ден ремонт ✓ Всички марки ✓ Майстор пералня Варна ☎ 089 834 0982';
+const title = 'Ремонт на перални машини Варна | Професионален сервиз | RotoRem';
+const description = 'Ремонт на перални машини във Варна ✓ Бърз сервиз на място ✓ Гаранция ✓ Ремонт в същия ден ✓ Всички марки ✓ Техник за перални Варна ☎ 089 834 0982';
 ---
 
 <Layout title={title} description={description}>
@@ -15,17 +15,17 @@ const description = 'Ремонт на пералня във Варна ✓ Бъ
     <section class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16 mb-16">
       <div class="container max-w-4xl text-center">
         <h1 class="text-4xl md:text-5xl font-bold mb-6">
-          Ремонт на Пералня Варна
+          Ремонт на перални машини Варна
         </h1>
         <p class="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto mb-8">
-          Професионален ремонт на перални машини във Варна и региона. Бърз сервиз на място с гаранция за качество.
+          Професионален ремонт на перални машини във Варна и околността. Бърз сервиз на място с гаранция за качество.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <a href="tel:+359898340982" class="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg">
             📞 089 834 0982
           </a>
-          <a href="/book" class="bg-amber-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-amber-600 transition-colors shadow-lg">
-            Запази час онлайн
+          <a href="/запази" class="bg-amber-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-amber-600 transition-colors shadow-lg">
+            Запази онлайн
           </a>
         </div>
       </div>
@@ -38,8 +38,8 @@ const description = 'Ремонт на пералня във Варна ✓ Бъ
         "@context": "https://schema.org",
         "@type": "Service",
         "name": "Ремонт на перални машини Варна",
-        "description": "Професионален ремонт на перални машини във Варна и региона. Бърз сервиз на място, гаранция, същия ден ремонт.",
-        "url": "https://rotorem.bg/services/washing-machine-repair",
+        "description": "Професионален ремонт на перални машини във Варна и околността. Бърз сервиз на място, гаранция, ремонт в същия ден.",
+        "url": "https://rotorem.bg/услуги/ремонт-перални-машини",
         "provider": {
           "@type": "LocalBusiness",
           "name": "РотоРем Варна",
@@ -54,21 +54,14 @@ const description = 'Ремонт на пералня във Варна ✓ Бъ
           {"@type": "City", "name": "Варна"},
           {"@type": "Place", "name": "Чайка"},
           {"@type": "Place", "name": "Младост"},
-          {"@type": "Place", "name": "Аспарухово"},
-          {"@type": "Place", "name": "Левски"},
-          {"@type": "Place", "name": "Владислав Варненчик"}
+          {"@type": "Place", "name": "Аспарухово"}
         ],
-        "serviceType": "Ремонт на битова техника",
+        "serviceType": "Appliance Repair",
         "offers": {
           "@type": "Offer",
           "price": "30",
           "priceCurrency": "BGN",
-          "priceSpecification": {
-            "@type": "PriceSpecification",
-            "price": "30",
-            "priceCurrency": "BGN",
-            "description": "Такса за диагностика"
-          }
+          "description": "Диагностика"
         }
       }
       </script>
@@ -76,7 +69,7 @@ const description = 'Ремонт на пералня във Варна ✓ Бъ
       <!-- Why Choose Us Section -->
       <section class="mb-16">
         <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">Защо да изберете нашия сервиз за ремонт на пералня във Варна?</h2>
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Защо да изберете нашия сервиз за перални машини във Варна?</h2>
           <div class="w-20 h-1 bg-blue-500 mx-auto"></div>
         </div>
         
@@ -89,7 +82,7 @@ const description = 'Ремонт на пералня във Варна ✓ Бъ
               </svg>
             </div>
             <h3 class="text-xl font-semibold text-blue-900 mb-3">Бърз ремонт на място</h3>
-            <p class="text-blue-800">Нашият техник идва директно във вашия дом във Варна за ремонт на пералнята. Не е нужно да транспортирате тежкия уред до сервиз.</p>
+            <p class="text-blue-800">Нашият техник идва директно във вашия дом във Варна, за да ремонтира пералната машина. Не е нужно да транспортирате тежкия уред до сервиз.</p>
           </div>
 
           <div class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-green-200">
@@ -99,8 +92,8 @@ const description = 'Ремонт на пералня във Варна ✓ Бъ
                 <polyline points="12 6 12 12 16 14"/>
               </svg>
             </div>
-            <h3 class="text-xl font-semibold text-green-900 mb-3">Същия ден ремонт</h3>
-            <p class="text-green-800">В повечето случаи ремонтираме пералнята още същия ден в Варна. Бързо диагностициране и ефективно отстраняване на проблема.</p>
+            <h3 class="text-xl font-semibold text-green-900 mb-3">Ремонт в същия ден</h3>
+            <p class="text-green-800">В повечето случаи ремонтираме перални машини в същия ден във Варна. Бърза диагностика и ефективно решаване на проблема.</p>
           </div>
 
           <div class="bg-gradient-to-br from-amber-50 to-amber-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-amber-200">
@@ -120,8 +113,8 @@ const description = 'Ремонт на пералня във Варна ✓ Бъ
                 <circle cx="12" cy="10" r="3"></circle>
               </svg>
             </div>
-            <h3 class="text-xl font-semibold text-purple-900 mb-3">Обслужване в цяла Варна</h3>
-            <p class="text-purple-800">Ремонтираме перални в квартали: Чайка, Младост, Аспарухово, Левски, Владислав Варненчик, Центъра и други райони на Варна.</p>
+            <h3 class="text-xl font-semibold text-purple-900 mb-3">Обслужваме цяла Варна</h3>
+            <p class="text-purple-800">Ремонтираме перални машини в кварталите: Чайка, Младост, Аспарухово, Левски, Владислав Варненчик, Център и други райони на Варна.</p>
           </div>
 
           <div class="bg-gradient-to-br from-indigo-50 to-indigo-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-indigo-200">
@@ -141,8 +134,8 @@ const description = 'Ремонт на пералня във Варна ✓ Бъ
                 <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
               </svg>
             </div>
-            <h3 class="text-xl font-semibold text-emerald-900 mb-3">Честни цени</h3>
-            <p class="text-emerald-800">Диагностика само 30 лв. Ясни цени без скрити такси за ремонт на пералня във Варна.</p>
+            <h3 class="text-xl font-semibold text-emerald-900 mb-3">Справедливи цени</h3>
+            <p class="text-emerald-800">Диагностика само 30 лв. Ясни цени без скрити такси за ремонт на перални машини във Варна.</p>
           </div>
         </div>
       </section>
@@ -150,39 +143,39 @@ const description = 'Ремонт на пералня във Варна ✓ Бъ
       <!-- Common Problems Section -->
       <section class="mb-16">
         <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">Най-чести проблеми с перални машини в Варна</h2>
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Най-чести проблеми с перални машини във Варна</h2>
           <div class="w-20 h-1 bg-blue-500 mx-auto"></div>
         </div>
         
         <div class="bg-gradient-to-r from-blue-50 via-white to-blue-50 p-8 rounded-2xl shadow-xl border border-blue-100">
           <div class="grid md:grid-cols-2 gap-6">
             <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-blue-500">
-              <h3 class="text-lg font-semibold text-blue-900 mb-3">Пералнята тече вода</h3>
-              <p class="text-blue-800">Течове от долната част, от вратата или от диспенсера за прах. Нашият майстор ще намери и отстрани течането бързо.</p>
+              <h3 class="text-lg font-semibold text-blue-900 mb-3">Пералната тече вода</h3>
+              <p class="text-blue-800">Течове отдолу, от вратата или от дозатора за препарати. Нашият техник ще намери и отстрани течът бързо.</p>
             </div>
 
             <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-green-500">
-              <h3 class="text-lg font-semibold text-green-900 mb-3">Пералнята не се върти</h3>
-              <p class="text-green-800">Барабанът не се върти поради проблем с двигателя, ремъка или електрониката. Ремонтираме на място във Варна.</p>
+              <h3 class="text-lg font-semibold text-green-900 mb-3">Пералната не центрофугира</h3>
+              <p class="text-green-800">Барабанът не се върти поради проблеми с мотора, ремъка или електрониката. Ремонтираме на място във Варна.</p>
             </div>
 
             <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-amber-500">
-              <h3 class="text-lg font-semibold text-amber-900 mb-3">Пералнята не изтичва водата</h3>
-              <p class="text-amber-800">Проблем с помпата за изпомпване или запушване на филтъра. Професионално почистване и ремонт.</p>
+              <h3 class="text-lg font-semibold text-amber-900 mb-3">Пералната не изпуска вода</h3>
+              <p class="text-amber-800">Проблем с помпата за изпускане или запушване на филтъра. Професионално почистване и ремонт.</p>
             </div>
 
             <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-red-500">
-              <h3 class="text-lg font-semibold text-red-900 mb-3">Пералнята не се включва</h3>
+              <h3 class="text-lg font-semibold text-red-900 mb-3">Пералната не се включва</h3>
               <p class="text-red-800">Електрически проблеми, повредени контакти или платка. Диагностика и ремонт от сертифициран техник във Варна.</p>
             </div>
 
             <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-purple-500">
-              <h3 class="text-lg font-semibold text-purple-900 mb-3">Пералнята не пере добре</h3>
-              <p class="text-purple-800">Проблеми с дозирането на прах, запушени филтри или износени части. Възстановяваме пълната функционалност.</p>
+              <h3 class="text-lg font-semibold text-purple-900 mb-3">Пералната не пере добре</h3>
+              <p class="text-purple-800">Проблеми с дозирането на препарати, запушени филтри или износени части. Възстановяваме пълната функционалност.</p>
             </div>
 
             <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-indigo-500">
-              <h3 class="text-lg font-semibold text-indigo-900 mb-3">Пералнята прави шум</h3>
+              <h3 class="text-lg font-semibold text-indigo-900 mb-3">Пералната прави шум</h3>
               <p class="text-indigo-800">Износени лагери, разхлабени болтове или чужди предмети в барабана. Отстраняваме всички причини за шум.</p>
             </div>
           </div>
@@ -192,7 +185,7 @@ const description = 'Ремонт на пералня във Варна ✓ Бъ
       <!-- Process Section -->
       <section class="mb-16">
         <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">Процес на ремонт на пералня във Варна</h2>
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Процес на ремонт на перални машини във Варна</h2>
           <div class="w-20 h-1 bg-blue-500 mx-auto"></div>
         </div>
         
@@ -202,12 +195,10 @@ const description = 'Ремонт на пералня във Варна ✓ Бъ
               <div class="w-20 h-20 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full flex items-center justify-center mx-auto shadow-lg group-hover:scale-110 transition-transform">
                 <span class="text-2xl font-bold">1</span>
               </div>
-              {/* Arrow for desktop */}
-              <div class="hidden md:block absolute top-10 left-full w-0 h-0 border-l-[20px] border-l-blue-300 border-t-[10px] border-t-transparent border-b-[10px] border-b-transparent"></div>
             </div>
             <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
-              <h3 class="text-xl font-semibold text-gray-900 mb-3">Обаждате се</h3>
-              <p class="text-gray-700">Звъннете на 089 834 0982 или запазете час онлайн за ремонт на пералня във Варна.</p>
+              <h3 class="text-xl font-semibold text-gray-900 mb-3">Вие ни звъните</h3>
+              <p class="text-gray-700">Обадете се на 089 834 0982 или запазете онлайн за ремонт на перална машина във Варна.</p>
             </div>
           </div>
           
@@ -216,10 +207,9 @@ const description = 'Ремонт на пералня във Варна ✓ Бъ
               <div class="w-20 h-20 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-full flex items-center justify-center mx-auto shadow-lg group-hover:scale-110 transition-transform">
                 <span class="text-2xl font-bold">2</span>
               </div>
-              <div class="hidden md:block absolute top-10 left-full w-0 h-0 border-l-[20px] border-l-green-300 border-t-[10px] border-t-transparent border-b-[10px] border-b-transparent"></div>
             </div>
             <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
-              <h3 class="text-xl font-semibold text-gray-900 mb-3">Идваме при вас</h3>
+              <h3 class="text-xl font-semibold text-gray-900 mb-3">Ние идваме при вас</h3>
               <p class="text-gray-700">Нашият техник пристига в уговореното време с всички необходими инструменти и части.</p>
             </div>
           </div>
@@ -232,13 +222,13 @@ const description = 'Ремонт на пералня във Варна ✓ Бъ
             </div>
             <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
               <h3 class="text-xl font-semibold text-gray-900 mb-3">Ремонтираме</h3>
-              <p class="text-gray-700">Диагностицираме проблема и ремонтираме пералнята още същия ден във вашия дом във Варна.</p>
+              <p class="text-gray-700">Диагностицираме проблема и ремонтираме пералната ви машина в същия ден в дома ви във Варна.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Brands Section -->
+      <!-- Brands Section - Clean text-focused approach -->
       <section class="mb-16">
         <div class="text-center mb-12">
           <h2 class="text-3xl font-bold text-gray-900 mb-4">Марки перални, които ремонтираме във Варна</h2>
@@ -246,14 +236,25 @@ const description = 'Ремонт на пералня във Варна ✓ Бъ
         </div>
         
         <div class="bg-gradient-to-r from-gray-50 to-white p-8 rounded-2xl shadow-lg">
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {['Bosch', 'Samsung', 'LG', 'Whirlpool', 'Indesit', 'Hotpoint', 'Candy', 'Други марки'].map((brand, index) => (
-              <div class="bg-white p-4 rounded-lg text-center shadow-md hover:shadow-lg transition-shadow border border-gray-200 group">
-                <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
-                  <span class="text-lg font-bold">{brand[0]}</span>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              'Bosch', 'Samsung', 'LG', 'Whirlpool', 
+              'Indesit', 'Hotpoint', 'Candy', 'Други марки'
+            ].map((brand) => (
+              <div class="bg-white p-4 rounded-lg text-center shadow-sm hover:shadow-md transition-shadow border border-gray-200 group hover:border-blue-300">
+                <h4 class="font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+                  {brand}
+                </h4>
+                <p class="text-xs text-gray-600">
+                  {brand === 'Други марки' ? 'Всички други марки' : `Ремонт на ${brand}`}
+                </p>
+                <div class="mt-2 inline-flex items-center text-xs text-blue-600">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                    <polyline points="22 4 12 14.01 9 11.01"/>
+                  </svg>
+                  Сертифициран сервиз
                 </div>
-                <h4 class="font-semibold text-gray-900 mb-1">{brand}</h4>
-                <p class="text-sm text-gray-600">Ремонт на перални {brand}</p>
               </div>
             ))}
           </div>
@@ -269,12 +270,12 @@ const description = 'Ремонт на пералня във Варна ✓ Бъ
         
         <div class="grid md:grid-cols-3 gap-6">
           {[
-            { area: 'Център на Варна', desc: 'Ремонт на перални в центъра на града' },
-            { area: 'Чайка', desc: 'Сервиз за перални в квартал Чайка' },
+            { area: 'Център на Варна', desc: 'Ремонт на перални в центъра' },
+            { area: 'Чайка', desc: 'Сервиз за перални в Чайка' },
             { area: 'Младост', desc: 'Ремонт на перални в Младост' },
             { area: 'Аспарухово', desc: 'Техник за перални в Аспарухово' },
-            { area: 'Левски', desc: 'Поправка на перални в Левски' },
-            { area: 'Владислав Варненчик', desc: 'Майстор за перални във В. Варненчик' }
+            { area: 'Левски', desc: 'Ремонт на перални в Левски' },
+            { area: 'Владислав Варненчик', desc: 'Ремонт на перални в В. Варненчик' }
           ].map((item, index) => (
             <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-blue-200">
               <h4 class="font-semibold text-blue-900 mb-2">{item.area}</h4>
@@ -286,21 +287,21 @@ const description = 'Ремонт на пералня във Варна ✓ Бъ
 
       <!-- Final CTA -->
       <section class="text-center bg-gradient-to-r from-blue-600 to-blue-800 text-white p-12 rounded-2xl shadow-2xl">
-        <h2 class="text-3xl font-bold mb-4">Нуждаете се от ремонт на пералня във Варна?</h2>
+        <h2 class="text-3xl font-bold mb-4">Нужен ви е ремонт на перална машина във Варна?</h2>
         <p class="text-xl mb-8 text-blue-100">Обадете се сега за бърз ремонт на място!</p>
         
         <div class="flex flex-col sm:flex-row gap-4 justify-center mb-6">
           <a href="tel:+359898340982" class="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg">
             📞 089 834 0982
           </a>
-          <a href="/book" class="bg-amber-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-amber-600 transition-colors shadow-lg">
-            Запази час онлайн
+          <a href="/запази" class="bg-amber-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-amber-600 transition-colors shadow-lg">
+            Запази онлайн
           </a>
         </div>
         
         <div class="text-blue-100">
           <p class="text-sm">
-            Диагностика: 30 лв. • Гаранция за качество • Обслужване в цяла Варна
+            Диагностика: 30 лв • Гаранция за качество • Сервиз в цяла Варна
           </p>
         </div>
       </section>

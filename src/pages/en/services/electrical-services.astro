@@ -11,6 +11,26 @@ const description = 'Electrical services in Varna ✓ Installation and repair �
 
 <Layout title={title} description={description}>
   <article class="py-16">
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-yellow-600 to-amber-700 text-white py-16 mb-16">
+      <div class="container max-w-4xl text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6">
+          Electrical Services Varna
+        </h1>
+        <p class="text-xl md:text-2xl text-yellow-100 max-w-3xl mx-auto mb-8">
+          Professional electrical services in Varna by certified engineers. Installation, repair and maintenance of electrical systems.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="tel:+359898340982" class="bg-white text-yellow-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg">
+            📞 089 834 0982
+          </a>
+          <a href="/book" class="bg-orange-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-orange-600 transition-colors shadow-lg">
+            Book Online
+          </a>
+        </div>
+      </div>
+    </section>
+
     <div class="container max-w-4xl">
       <!-- Schema for Service Page -->
       <script type="application/ld+json">
@@ -46,181 +66,311 @@ const description = 'Electrical services in Varna ✓ Installation and repair �
       }
       </script>
 
-      <header class="text-center mb-12">
-        <h1 class="text-4xl font-bold text-gray-900 mb-4">
-          Electrical Services Varna
-        </h1>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-          Professional electrical services in Varna by certified engineers. Installation, repair and maintenance of electrical systems.
-        </p>
-      </header>
+      <!-- Why Choose Us Section -->
+      <section class="mb-16">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Why choose our electrical services in Varna?</h2>
+          <div class="w-20 h-1 bg-yellow-500 mx-auto"></div>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-gradient-to-br from-yellow-50 to-yellow-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-yellow-200">
+            <div class="w-12 h-12 bg-yellow-500 text-white rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
+                <line x1="3" x2="21" y1="9" y2="9"/>
+                <line x1="9" x2="9" y1="21" y2="9"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-yellow-900 mb-3">Certified engineers</h3>
+            <p class="text-yellow-800">All electrical services are performed by certified electrical engineers with years of experience in Varna.</p>
+          </div>
 
-      <div class="prose prose-lg max-w-none">
-        <section class="mb-12">
-          <h2>Why choose our electrical services in Varna?</h2>
-          
-          <div class="grid md:grid-cols-2 gap-8">
-            <div>
-              <h3>⚡ Certified engineers</h3>
-              <p>All electrical services are performed by certified electrical engineers with years of experience in Varna.</p>
-              
-              <h3>🔧 Fast service</h3>
-              <p>In most cases we perform electrical services the same day in Varna. Fast and quality execution.</p>
-              
-              <h3>🛡️ Safety and warranty</h3>
-              <p>All electrical services in Varna are performed according to safety standards with quality guarantee.</p>
+          <div class="bg-gradient-to-br from-amber-50 to-amber-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-amber-200">
+            <div class="w-12 h-12 bg-amber-500 text-white rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
             </div>
-            
-            <div>
-              <h3>🏠 Service throughout Varna</h3>
-              <p>We provide electrical services in neighborhoods: Chayka, Mladost, Asparuhovo, Levski, Vladislav Varnenchik and center.</p>
-              
-              <h3>🔌 All types of work</h3>
-              <p>We perform all types of electrical services - from switch replacement to complete installations.</p>
-              
-              <h3>💰 Fair prices</h3>
-              <p>Inspection only 30 BGN. Clear prices with no hidden fees for electrical services in Varna.</p>
-            </div>
+            <h3 class="text-xl font-semibold text-amber-900 mb-3">Fast service</h3>
+            <p class="text-amber-800">In most cases we perform electrical services the same day in Varna. Fast and quality execution.</p>
           </div>
-        </section>
 
-        <section class="mb-12">
-          <h2>Electrical services we offer in Varna</h2>
-          
-          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="bg-yellow-50 p-6 rounded-lg border border-yellow-200">
-              <h3>🔌 Switches and outlets</h3>
-              <ul class="list-disc list-inside text-sm mt-2 space-y-1">
-                <li>Installation of new switches</li>
-                <li>Replacement of old switches</li>
-                <li>Installing outlets</li>
-                <li>Repair of switches and outlets</li>
-              </ul>
+          <div class="bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-orange-200">
+            <div class="w-12 h-12 bg-orange-500 text-white rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
             </div>
-            
-            <div class="bg-yellow-50 p-6 rounded-lg border border-yellow-200">
-              <h3>💡 Lighting</h3>
-              <ul class="list-disc list-inside text-sm mt-2 space-y-1">
-                <li>Installation of chandeliers</li>
-                <li>LED lighting</li>
-                <li>Outdoor lighting</li>
-                <li>Emergency lighting</li>
-              </ul>
-            </div>
-            
-            <div class="bg-yellow-50 p-6 rounded-lg border border-yellow-200">
-              <h3>🏠 Home installations</h3>
-              <ul class="list-disc list-inside text-sm mt-2 space-y-1">
-                <li>New electrical installations</li>
-                <li>Installation repairs</li>
-                <li>Cable replacement</li>
-                <li>Electrical panels</li>
-              </ul>
-            </div>
-            
-            <div class="bg-yellow-50 p-6 rounded-lg border border-yellow-200">
-              <h3>🔋 Small appliances</h3>
-              <ul class="list-disc list-inside text-sm mt-2 space-y-1">
-                <li>Small appliance repair</li>
-                <li>Cable replacement</li>
-                <li>Plug repair</li>
-                <li>Device diagnostics</li>
-              </ul>
-            </div>
-            
-            <div class="bg-yellow-50 p-6 rounded-lg border border-yellow-200">
-              <h3>⚡ Emergency repair</h3>
-              <ul class="list-disc list-inside text-sm mt-2 space-y-1">
-                <li>Emergency electrical repair</li>
-                <li>Short circuit elimination</li>
-                <li>Power restoration</li>
-                <li>Emergency panel repair</li>
-              </ul>
-            </div>
-            
-            <div class="bg-yellow-50 p-6 rounded-lg border border-yellow-200">
-              <h3>🔍 Diagnostics</h3>
-              <ul class="list-disc list-inside text-sm mt-2 space-y-1">
-                <li>Fault finding</li>
-                <li>Installation inspection</li>
-                <li>Voltage measurement</li>
-                <li>Electrical testing</li>
-              </ul>
-            </div>
+            <h3 class="text-xl font-semibold text-orange-900 mb-3">Safety and warranty</h3>
+            <p class="text-orange-800">All electrical services in Varna are performed according to safety standards with quality guarantee.</p>
           </div>
-        </section>
 
-        <section class="mb-12">
-          <h2>Most common electrical problems in Varna</h2>
-          
-          <div class="bg-red-50 p-6 rounded-lg">
-            <h3>⚡ No power in the room</h3>
-            <p>Blown fuses, tripped breakers or installation faults. Quick diagnosis and resolution.</p>
-            
-            <h3>🔌 Switches not working</h3>
-            <p>Damaged switches, outlets or wiring. Replacement and repair with quality materials.</p>
-            
-            <h3>💡 Lights flickering or not working</h3>
-            <p>Problems with electrical network, poor contacts or damaged bulbs. Professional repair.</p>
-            
-            <h3>🔥 Short circuit</h3>
-            <p>Dangerous situation requiring immediate intervention. Emergency repair and safety restoration.</p>
-            
-            <h3>🏠 Old electrical installation</h3>
-            <p>Outdated installations that need updating. Modernization according to current standards.</p>
+          <div class="bg-gradient-to-br from-lime-50 to-lime-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-lime-200">
+            <div class="w-12 h-12 bg-lime-500 text-white rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-lime-900 mb-3">Service throughout Varna</h3>
+            <p class="text-lime-800">We provide electrical services in neighborhoods: Chayka, Mladost, Asparuhovo, Levski, Vladislav Varnenchik and center.</p>
           </div>
-        </section>
 
-        <section class="mb-12">
-          <h2>Work process for electrical services</h2>
-          
-          <div class="grid md:grid-cols-4 gap-4">
-            <div class="text-center p-4 bg-white rounded-lg shadow-md">
-              <div class="text-3xl mb-2">📞</div>
-              <h4>1. Call</h4>
-              <p class="text-sm">Call for electrical services in Varna</p>
+          <div class="bg-gradient-to-br from-emerald-50 to-emerald-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-emerald-200">
+            <div class="w-12 h-12 bg-emerald-500 text-white rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14.5 4h-5L7 12h4l-1 8 6-11h-4l2-5z"/>
+              </svg>
             </div>
-            
-            <div class="text-center p-4 bg-white rounded-lg shadow-md">
-              <div class="text-3xl mb-2">🔍</div>
-              <h4>2. Inspection</h4>
-              <p class="text-sm">Free inspection and problem diagnosis</p>
-            </div>
-            
-            <div class="text-center p-4 bg-white rounded-lg shadow-md">
-              <div class="text-3xl mb-2">📋</div>
-              <h4>3. Quote</h4>
-              <p class="text-sm">Detailed quote with clear prices</p>
-            </div>
-            
-            <div class="text-center p-4 bg-white rounded-lg shadow-md">
-              <div class="text-3xl mb-2">⚡</div>
-              <h4>4. Execution</h4>
-              <p class="text-sm">Quality execution with warranty</p>
-            </div>
+            <h3 class="text-xl font-semibold text-emerald-900 mb-3">All types of work</h3>
+            <p class="text-emerald-800">We perform all types of electrical services - from switch replacement to complete installations.</p>
           </div>
-        </section>
 
-        <section class="text-center bg-primary text-white p-8 rounded-lg">
-          <h2 class="text-white mb-4">Need electrical services in Varna?</h2>
-          <p class="text-xl mb-6">Call now for professional electrical service!</p>
-          
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="tel:+359898340982" class="bg-white text-primary px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-              📞 089 834 0982
-            </a>
-            <a href="/book" class="bg-accent text-white px-6 py-3 rounded-lg font-semibold hover:bg-amber-600 transition-colors">
-              📅 Book Online
-            </a>
+          <div class="bg-gradient-to-br from-teal-50 to-teal-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-teal-200">
+            <div class="w-12 h-12 bg-teal-500 text-white rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="1" x2="12" y2="23"></line>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-teal-900 mb-3">Fair prices</h3>
+            <p class="text-teal-800">Inspection only 30 BGN. Clear prices with no hidden fees for electrical services in Varna.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Services Section -->
+      <section class="mb-16">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Electrical services we offer in Varna</h2>
+          <div class="w-20 h-1 bg-yellow-500 mx-auto"></div>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="bg-gradient-to-br from-yellow-50 to-yellow-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-yellow-200">
+            <div class="w-12 h-12 bg-yellow-500 text-white rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/>
+                <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-yellow-900 mb-3">Switches and outlets</h3>
+            <ul class="text-sm text-yellow-800 space-y-1">
+              <li>• Installation of new switches</li>
+              <li>• Replacement of old switches</li>
+              <li>• Installing outlets</li>
+              <li>• Repair of switches and outlets</li>
+            </ul>
           </div>
           
-          <div class="mt-6 text-center">
-            <p class="text-sm opacity-90">
-              Inspection: 30 BGN | Certified engineers | Service throughout Varna
-            </p>
+          <div class="bg-gradient-to-br from-amber-50 to-amber-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-amber-200">
+            <div class="w-12 h-12 bg-amber-500 text-white rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="5"/>
+                <line x1="12" y1="1" x2="12" y2="3"/>
+                <line x1="12" y1="21" x2="12" y2="23"/>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                <line x1="1" y1="12" x2="3" y2="12"/>
+                <line x1="21" y1="12" x2="23" y2="12"/>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-amber-900 mb-3">Lighting</h3>
+            <ul class="text-sm text-amber-800 space-y-1">
+              <li>• Installation of chandeliers</li>
+              <li>• LED lighting</li>
+              <li>• Outdoor lighting</li>
+              <li>• Emergency lighting</li>
+            </ul>
           </div>
-        </section>
-      </div>
+
+          <div class="bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-orange-200">
+            <div class="w-12 h-12 bg-orange-500 text-white rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                <polyline points="9 22 9 12 15 12 15 22"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-orange-900 mb-3">Home installations</h3>
+            <ul class="text-sm text-orange-800 space-y-1">
+              <li>• New electrical installations</li>
+              <li>• Installation repairs</li>
+              <li>• Cable replacement</li>
+              <li>• Electrical panels</li>
+            </ul>
+          </div>
+
+          <div class="bg-gradient-to-br from-lime-50 to-lime-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-lime-200">
+            <div class="w-12 h-12 bg-lime-500 text-white rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect width="16" height="10" x="4" y="7" rx="1" ry="1"/>
+                <line x1="7" y1="19" x2="7" y2="21"/>
+                <line x1="17" y1="19" x2="17" y2="21"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-lime-900 mb-3">Small appliances</h3>
+            <ul class="text-sm text-lime-800 space-y-1">
+              <li>• Small appliance repair</li>
+              <li>• Cable replacement</li>
+              <li>• Plug repair</li>
+              <li>• Device diagnostics</li>
+            </ul>
+          </div>
+
+          <div class="bg-gradient-to-br from-red-50 to-red-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-red-200">
+            <div class="w-12 h-12 bg-red-500 text-white rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                <line x1="12" y1="9" x2="12" y2="13"/>
+                <line x1="12" y1="17" x2="12.01" y2="17"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-red-900 mb-3">Emergency repair</h3>
+            <ul class="text-sm text-red-800 space-y-1">
+              <li>• Emergency electrical repair</li>
+              <li>• Short circuit elimination</li>
+              <li>• Power restoration</li>
+              <li>• Emergency panel repair</li>
+            </ul>
+          </div>
+
+          <div class="bg-gradient-to-br from-emerald-50 to-emerald-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-emerald-200">
+            <div class="w-12 h-12 bg-emerald-500 text-white rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.35-4.35"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-emerald-900 mb-3">Diagnostics</h3>
+            <ul class="text-sm text-emerald-800 space-y-1">
+              <li>• Fault finding</li>
+              <li>• Installation inspection</li>
+              <li>• Voltage measurement</li>
+              <li>• Electrical testing</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Common Problems Section -->
+      <section class="mb-16">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Most common electrical problems in Varna</h2>
+          <div class="w-20 h-1 bg-yellow-500 mx-auto"></div>
+        </div>
+        
+        <div class="bg-gradient-to-r from-red-50 via-white to-red-50 p-8 rounded-2xl shadow-xl border border-red-100">
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-red-500">
+              <h3 class="text-lg font-semibold text-red-900 mb-3">No power in the room</h3>
+              <p class="text-red-800">Blown fuses, tripped breakers or installation faults. Quick diagnosis and resolution.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-yellow-500">
+              <h3 class="text-lg font-semibold text-yellow-900 mb-3">Switches not working</h3>
+              <p class="text-yellow-800">Damaged switches, outlets or wiring. Replacement and repair with quality materials.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-amber-500">
+              <h3 class="text-lg font-semibold text-amber-900 mb-3">Lights flickering or not working</h3>
+              <p class="text-amber-800">Problems with electrical network, poor contacts or damaged bulbs. Professional repair.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-orange-500">
+              <h3 class="text-lg font-semibold text-orange-900 mb-3">Short circuit</h3>
+              <p class="text-orange-800">Dangerous situation requiring immediate intervention. Emergency repair and safety restoration.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-lime-500 md:col-span-2">
+              <h3 class="text-lg font-semibold text-lime-900 mb-3">Old electrical installation</h3>
+              <p class="text-lime-800">Outdated installations that need updating. Modernization according to current standards.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Process Section -->
+      <section class="mb-16">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Work process for electrical services</h2>
+          <div class="w-20 h-1 bg-yellow-500 mx-auto"></div>
+        </div>
+        
+        <div class="grid md:grid-cols-4 gap-6">
+          <div class="text-center group">
+            <div class="relative mb-6">
+              <div class="w-20 h-20 bg-gradient-to-r from-yellow-500 to-yellow-600 text-white rounded-full flex items-center justify-center mx-auto shadow-lg group-hover:scale-110 transition-transform">
+                <span class="text-2xl font-bold">1</span>
+              </div>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+              <h4 class="text-lg font-semibold text-gray-900 mb-2">Call</h4>
+              <p class="text-sm text-gray-700">Call for electrical services in Varna</p>
+            </div>
+          </div>
+          
+          <div class="text-center group">
+            <div class="relative mb-6">
+              <div class="w-20 h-20 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-full flex items-center justify-center mx-auto shadow-lg group-hover:scale-110 transition-transform">
+                <span class="text-2xl font-bold">2</span>
+              </div>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+              <h4 class="text-lg font-semibold text-gray-900 mb-2">Inspection</h4>
+              <p class="text-sm text-gray-700">Free inspection and problem diagnosis</p>
+            </div>
+          </div>
+          
+          <div class="text-center group">
+            <div class="relative mb-6">
+              <div class="w-20 h-20 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-full flex items-center justify-center mx-auto shadow-lg group-hover:scale-110 transition-transform">
+                <span class="text-2xl font-bold">3</span>
+              </div>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+              <h4 class="text-lg font-semibold text-gray-900 mb-2">Quote</h4>
+              <p class="text-sm text-gray-700">Detailed quote with clear prices</p>
+            </div>
+          </div>
+          
+          <div class="text-center group">
+            <div class="relative mb-6">
+              <div class="w-20 h-20 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-full flex items-center justify-center mx-auto shadow-lg group-hover:scale-110 transition-transform">
+                <span class="text-2xl font-bold">4</span>
+              </div>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+              <h4 class="text-lg font-semibold text-gray-900 mb-2">Execution</h4>
+              <p class="text-sm text-gray-700">Quality execution with warranty</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Final CTA -->
+      <section class="text-center bg-gradient-to-r from-yellow-600 to-amber-700 text-white p-12 rounded-2xl shadow-2xl">
+        <h2 class="text-3xl font-bold mb-4">Need electrical services in Varna?</h2>
+        <p class="text-xl mb-8 text-yellow-100">Call now for professional electrical service!</p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-6">
+          <a href="tel:+359898340982" class="bg-white text-yellow-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg">
+            📞 089 834 0982
+          </a>
+          <a href="/book" class="bg-orange-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-orange-600 transition-colors shadow-lg">
+            Book Online
+          </a>
+        </div>
+        
+        <div class="text-yellow-100">
+          <p class="text-sm">
+            Inspection: 30 BGN • Certified engineers • Service throughout Varna
+          </p>
+        </div>
+      </section>
     </div>
   </article>
 </Layout>

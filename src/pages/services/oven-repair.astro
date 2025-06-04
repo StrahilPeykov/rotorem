@@ -5,8 +5,8 @@ import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const title = 'Ремонт на Фурна Варна | Професионален Сервиз | РотоРем';
-const description = 'Ремонт на фурна във Варна ✓ Бърз сервиз на място ✓ Гаранция ✓ Същия ден ремонт ✓ Всички марки ✓ Майстор фурна Варна ☎ 089 834 0982';
+const title = 'Ремонт на фурни Варна | Професионален сервиз | RotoRem';
+const description = 'Ремонт на фурни във Варна ✓ Бърз сервиз на място ✓ Гаранция ✓ Ремонт в същия ден ✓ Всички марки ✓ Техник за фурни Варна ☎ 089 834 0982';
 ---
 
 <Layout title={title} description={description}>
@@ -15,17 +15,17 @@ const description = 'Ремонт на фурна във Варна ✓ Бърз
     <section class="bg-gradient-to-r from-orange-600 to-orange-800 text-white py-16 mb-16">
       <div class="container max-w-4xl text-center">
         <h1 class="text-4xl md:text-5xl font-bold mb-6">
-          Ремонт на Фурна Варна
+          Ремонт на фурни Варна
         </h1>
         <p class="text-xl md:text-2xl text-orange-100 max-w-3xl mx-auto mb-8">
-          Професионален ремонт на електрически фурни и котлони във Варна и региона. Бърз сервиз на място с гаранция за качество.
+          Професионален ремонт на електрически фурни и плотове във Варна и околността. Бърз сервиз на място с гаранция за качество.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <a href="tel:+359898340982" class="bg-white text-orange-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg">
             📞 089 834 0982
           </a>
-          <a href="/book" class="bg-amber-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-amber-600 transition-colors shadow-lg">
-            Запази час онлайн
+          <a href="/запази" class="bg-amber-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-amber-600 transition-colors shadow-lg">
+            Запази онлайн
           </a>
         </div>
       </div>
@@ -37,9 +37,9 @@ const description = 'Ремонт на фурна във Варна ✓ Бърз
       {
         "@context": "https://schema.org",
         "@type": "Service",
-        "name": "Ремонт на фурни и котлони Варна",
-        "description": "Професионален ремонт на електрически фурни и котлони във Варна и региона. Бърз сервиз на място, гаранция, същия ден ремонт.",
-        "url": "https://rotorem.bg/services/oven-repair",
+        "name": "Ремонт на фурни и плотове Варна",
+        "description": "Професионален ремонт на електрически фурни и плотове във Варна и околността. Бърз сервиз на място, гаранция, ремонт в същия ден.",
+        "url": "https://rotorem.bg/услуги/ремонт-фурни",
         "provider": {
           "@type": "LocalBusiness",
           "name": "РотоРем Варна",
@@ -56,12 +56,12 @@ const description = 'Ремонт на фурна във Варна ✓ Бърз
           {"@type": "Place", "name": "Младост"},
           {"@type": "Place", "name": "Аспарухово"}
         ],
-        "serviceType": "Ремонт на битова техника",
+        "serviceType": "Appliance Repair",
         "offers": {
           "@type": "Offer",
           "price": "30",
           "priceCurrency": "BGN",
-          "description": "Такса за диагностика"
+          "description": "Диагностика"
         }
       }
       </script>
@@ -69,7 +69,7 @@ const description = 'Ремонт на фурна във Варна ✓ Бърз
       <!-- Why Choose Us Section -->
       <section class="mb-16">
         <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">Защо да изберете нашия сервиз за ремонт на фурна във Варна?</h2>
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Защо да изберете нашия сервиз за фурни във Варна?</h2>
           <div class="w-20 h-1 bg-orange-500 mx-auto"></div>
         </div>
         
@@ -82,7 +82,7 @@ const description = 'Ремонт на фурна във Варна ✓ Бърз
               </svg>
             </div>
             <h3 class="text-xl font-semibold text-orange-900 mb-3">Бърз ремонт на място</h3>
-            <p class="text-orange-800">Нашият техник идва директно във вашия дом във Варна за ремонт на фурната. Ремонтираме вградени и свободностоящи фурни.</p>
+            <p class="text-orange-800">Нашият техник идва директно във вашия дом във Варна, за да ремонтира фурната. Ремонтираме вградени и свободностоящи фурни.</p>
           </div>
 
           <div class="bg-gradient-to-br from-red-50 to-red-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-red-200">
@@ -92,8 +92,8 @@ const description = 'Ремонт на фурна във Варна ✓ Бърз
                 <polyline points="12 6 12 12 16 14"/>
               </svg>
             </div>
-            <h3 class="text-xl font-semibold text-red-900 mb-3">Същия ден ремонт</h3>
-            <p class="text-red-800">В повечето случаи ремонтираме фурната още същия ден в Варна. Бързо диагностициране и ефективно отстраняване на проблема.</p>
+            <h3 class="text-xl font-semibold text-red-900 mb-3">Ремонт в същия ден</h3>
+            <p class="text-red-800">В повечето случаи ремонтираме фурни в същия ден във Варна. Бърза диагностика и ефективно решаване на проблема.</p>
           </div>
 
           <div class="bg-gradient-to-br from-amber-50 to-amber-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-amber-200">
@@ -113,8 +113,8 @@ const description = 'Ремонт на фурна във Варна ✓ Бърз
                 <circle cx="12" cy="10" r="3"></circle>
               </svg>
             </div>
-            <h3 class="text-xl font-semibold text-yellow-900 mb-3">Обслужване в цяла Варна</h3>
-            <p class="text-yellow-800">Ремонтираме фурни в квартали: Чайка, Младост, Аспарухово, Левски, Владислав Варненчик и центъра на Варна.</p>
+            <h3 class="text-xl font-semibold text-yellow-900 mb-3">Обслужваме цяла Варна</h3>
+            <p class="text-yellow-800">Ремонтираме фурни в кварталите: Чайка, Младост, Аспарухово, Левски, Владислав Варненчик и центъра на Варна.</p>
           </div>
 
           <div class="bg-gradient-to-br from-rose-50 to-rose-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-rose-200">
@@ -134,8 +134,8 @@ const description = 'Ремонт на фурна във Варна ✓ Бърз
                 <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
               </svg>
             </div>
-            <h3 class="text-xl font-semibold text-pink-900 mb-3">Честни цени</h3>
-            <p class="text-pink-800">Диагностика само 30 лв. Ясни цени без скрити такси за ремонт на фурна във Варна.</p>
+            <h3 class="text-xl font-semibold text-pink-900 mb-3">Справедливи цени</h3>
+            <p class="text-pink-800">Диагностика само 30 лв. Ясни цени без скрити такси за ремонт на фурни във Варна.</p>
           </div>
         </div>
       </section>
@@ -143,7 +143,7 @@ const description = 'Ремонт на фурна във Варна ✓ Бърз
       <!-- Common Problems Section -->
       <section class="mb-16">
         <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">Най-чести проблеми с фурни в Варна</h2>
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Най-чести проблеми с фурни във Варна</h2>
           <div class="w-20 h-1 bg-orange-500 mx-auto"></div>
         </div>
         
@@ -151,17 +151,17 @@ const description = 'Ремонт на фурна във Варна ✓ Бърз
           <div class="grid md:grid-cols-2 gap-6">
             <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-orange-500">
               <h3 class="text-lg font-semibold text-orange-900 mb-3">Фурната не загрява</h3>
-              <p class="text-orange-800">Повредени нагревателни елементи, термостат или управляваща платка. Диагностика и подмяна на части.</p>
+              <p class="text-orange-800">Повредени нагревателни елементи, термостат или управляваща платка. Диагностика и смяна на части.</p>
             </div>
 
             <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-red-500">
               <h3 class="text-lg font-semibold text-red-900 mb-3">Фурната не поддържа температура</h3>
-              <p class="text-red-800">Проблем с термостата, датчиците или изолацията. Професионален ремонт във Варна.</p>
+              <p class="text-red-800">Проблем с термостата, сензорите или изолацията. Професионален ремонт във Варна.</p>
             </div>
 
             <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-amber-500">
-              <h3 class="text-lg font-semibold text-amber-900 mb-3">Осветлението не работи</h3>
-              <p class="text-amber-800">Изгоряла крушка или повредена система за осветление. Подмяна с оригинални части.</p>
+              <h3 class="text-lg font-semibold text-amber-900 mb-3">Не работи осветлението</h3>
+              <p class="text-amber-800">Изгоряла крушка или повредена осветителна система. Смяна с оригинални части.</p>
             </div>
 
             <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-yellow-500">
@@ -170,7 +170,7 @@ const description = 'Ремонт на фурна във Варна ✓ Бърз
             </div>
 
             <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-rose-500">
-              <h3 class="text-lg font-semibold text-rose-900 mb-3">Вратата не се затваря добре</h3>
+              <h3 class="text-lg font-semibold text-rose-900 mb-3">Вратата не се затваря правилно</h3>
               <p class="text-rose-800">Повредени панти, уплътнения или заключваща система. Възстановяваме пълната функционалност.</p>
             </div>
 
@@ -199,7 +199,7 @@ const description = 'Ремонт на фурна във Варна ✓ Бърз
               </svg>
             </div>
             <h3 class="text-xl font-semibold text-orange-900 mb-4 text-center">Вградени фурни</h3>
-            <p class="text-orange-800 text-center">Ремонт на вградени електрически фурни всички марки. Работим с фурни с конвекция, грил и други функции.</p>
+            <p class="text-orange-800 text-center">Ремонт на вградени електрически фурни всички марки. Работим с конвекция, грил и други функции.</p>
           </div>
 
           <div class="bg-gradient-to-br from-red-50 to-red-100 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-red-200">
@@ -210,7 +210,7 @@ const description = 'Ремонт на фурна във Варна ✓ Бърз
               </svg>
             </div>
             <h3 class="text-xl font-semibold text-red-900 mb-4 text-center">Свободностоящи фурни</h3>
-            <p class="text-red-800 text-center">Ремонт на свободностоящи фурни и котлони с фурна. Всички размери и марки.</p>
+            <p class="text-red-800 text-center">Ремонт на свободностоящи фурни и комбинирани плотове с фурна. Всички размери и марки.</p>
           </div>
 
           <div class="bg-gradient-to-br from-amber-50 to-amber-100 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-amber-200">
@@ -221,7 +221,7 @@ const description = 'Ремонт на фурна във Варна ✓ Бърз
               </svg>
             </div>
             <h3 class="text-xl font-semibold text-amber-900 mb-4 text-center">Конвекционни фурни</h3>
-            <p class="text-amber-800 text-center">Специализиран ремонт на фурни с конвекция. Ремонт на вентилатори и контролни системи.</p>
+            <p class="text-amber-800 text-center">Специализиран ремонт на конвекционни фурни. Ремонт на вентилатори и управляващи системи.</p>
           </div>
 
           <div class="bg-gradient-to-br from-yellow-50 to-yellow-100 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-yellow-200">
@@ -236,7 +236,7 @@ const description = 'Ремонт на фурна във Варна ✓ Бърз
         </div>
       </section>
 
-      <!-- Brands Section -->
+      <!-- Brands Section - Clean text-focused approach -->
       <section class="mb-16">
         <div class="text-center mb-12">
           <h2 class="text-3xl font-bold text-gray-900 mb-4">Марки фурни, които ремонтираме във Варна</h2>
@@ -244,14 +244,25 @@ const description = 'Ремонт на фурна във Варна ✓ Бърз
         </div>
         
         <div class="bg-gradient-to-r from-gray-50 to-white p-8 rounded-2xl shadow-lg">
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {['Bosch', 'Siemens', 'Electrolux', 'Whirlpool', 'Beko', 'Indesit', 'Gorenje', 'Други марки'].map((brand, index) => (
-              <div class="bg-white p-4 rounded-lg text-center shadow-md hover:shadow-lg transition-shadow border border-gray-200 group">
-                <div class="w-12 h-12 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
-                  <span class="text-lg font-bold">{brand[0]}</span>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              'Bosch', 'Siemens', 'Electrolux', 'Whirlpool', 
+              'Beko', 'Indesit', 'Gorenje', 'Други марки'
+            ].map((brand) => (
+              <div class="bg-white p-4 rounded-lg text-center shadow-sm hover:shadow-md transition-shadow border border-gray-200 group hover:border-orange-300">
+                <h4 class="font-semibold text-gray-900 mb-2 group-hover:text-orange-600 transition-colors">
+                  {brand}
+                </h4>
+                <p class="text-xs text-gray-600">
+                  {brand === 'Други марки' ? 'Всички други марки' : `Ремонт на ${brand}`}
+                </p>
+                <div class="mt-2 inline-flex items-center text-xs text-orange-600">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                    <polyline points="22 4 12 14.01 9 11.01"/>
+                  </svg>
+                  Сертифициран сервиз
                 </div>
-                <h4 class="font-semibold text-gray-900 mb-1">{brand}</h4>
-                <p class="text-sm text-gray-600">Ремонт на фурни {brand}</p>
               </div>
             ))}
           </div>
@@ -260,21 +271,21 @@ const description = 'Ремонт на фурна във Варна ✓ Бърз
 
       <!-- Final CTA -->
       <section class="text-center bg-gradient-to-r from-orange-600 to-orange-800 text-white p-12 rounded-2xl shadow-2xl">
-        <h2 class="text-3xl font-bold mb-4">Нуждаете се от ремонт на фурна във Варна?</h2>
+        <h2 class="text-3xl font-bold mb-4">Нужен ви е ремонт на фурна във Варна?</h2>
         <p class="text-xl mb-8 text-orange-100">Обадете се сега за бърз ремонт на място!</p>
         
         <div class="flex flex-col sm:flex-row gap-4 justify-center mb-6">
           <a href="tel:+359898340982" class="bg-white text-orange-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg">
             📞 089 834 0982
           </a>
-          <a href="/book" class="bg-amber-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-amber-600 transition-colors shadow-lg">
-            Запази час онлайн
+          <a href="/запази" class="bg-amber-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-amber-600 transition-colors shadow-lg">
+            Запази онлайн
           </a>
         </div>
         
         <div class="text-orange-100">
           <p class="text-sm">
-            Диагностика: 30 лв. • Гаранция за качество • Обслужване в цяла Варна
+            Диагностика: 30 лв • Гаранция за качество • Сервиз в цяла Варна
           </p>
         </div>
       </section>
