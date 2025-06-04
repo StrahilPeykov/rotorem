@@ -354,8 +354,8 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
               height="48"
             />
           </div>
-          <!-- Company name aligned to baseline with slight adjustment -->
-          <span class="font-bold text-xl md:text-2xl text-gray-900 font-heading group-hover:text-primary transition-colors leading-none pb-0.5">
+          <!-- Company name aligned to baseline with more adjustment -->
+          <span class="font-bold text-xl md:text-2xl text-gray-900 font-heading group-hover:text-primary transition-colors leading-none translate-y-1">
             {isEN ? 'RotoRem Varna' : 'РотоРем Варна'}
           </span>
         </a>
@@ -394,20 +394,11 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
       <!-- Mobile Navigation Overlay -->
       <div id="mobile-menu" class="fixed inset-0 bg-gray-900/80 z-50 hidden">
         <div class="h-full w-64 max-w-[80%] bg-white shadow-xl ml-auto flex flex-col">
-          <!-- Mobile menu header with favicon -->
+          <!-- Mobile menu header - simplified -->
           <div class="p-4 border-b border-gray-200 flex items-center justify-between">
-            <a href={isEN ? '/en' : '/'} class="flex items-end gap-2">
-              <img 
-                src="/favicon.svg" 
-                alt="RotoRem Logo"
-                class="w-10 h-10"
-                width="40"
-                height="40"
-              />
-              <span class="font-bold text-lg text-primary font-heading leading-none">
-                {isEN ? 'RotoRem' : 'РотоРем'}
-              </span>
-            </a>
+            <span class="font-bold text-lg text-primary font-heading">
+              {isEN ? 'RotoRem' : 'РотоРем'}
+            </span>
             <button id="close-menu-button" class="text-gray-500">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -469,7 +460,7 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
     </main>
     
     <!-- Floating booking button -->
-    <a href="/book" class="floating-button">
+    <a href="/book" class="floating-button" id="floating-book-btn">
       <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path>
       </svg>
@@ -592,12 +583,17 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
       const mobileMenu = document.getElementById('mobile-menu');
       const mobileMenuLinks = document.querySelectorAll('#mobile-menu nav a');
       const menuPanel = mobileMenu?.querySelector('div');
+      const floatingButton = document.getElementById('floating-book-btn');
       
       function openMenu() {
         if (mobileMenu && menuPanel) {
           mobileMenu.classList.remove('hidden');
           menuPanel.classList.add('slide-in-right');
           document.body.style.overflow = 'hidden';
+          // Hide floating button when menu is open
+          if (floatingButton) {
+            floatingButton.style.display = 'none';
+          }
         }
       }
       
@@ -610,6 +606,10 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
             mobileMenu.classList.add('hidden');
             menuPanel.classList.remove('slide-out-right');
             document.body.style.overflow = '';
+            // Show floating button when menu is closed
+            if (floatingButton) {
+              floatingButton.style.display = 'flex';
+            }
           }, 300);
         }
       }
@@ -645,11 +645,19 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
         document.body.style.overflow = 'hidden';
         // Close mobile menu if open
         closeMenu();
+        // Hide floating button when modal is open
+        if (floatingButton) {
+          floatingButton.style.display = 'none';
+        }
       }
       
       function closeReviewsModal() {
         modal?.classList.add('hidden');
         document.body.style.overflow = '';
+        // Show floating button when modal is closed
+        if (floatingButton) {
+          floatingButton.style.display = 'flex';
+        }
       }
       
       // Open modal from desktop trigger
