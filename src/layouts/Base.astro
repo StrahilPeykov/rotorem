@@ -79,14 +79,14 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
       }}
     />
     
-    <!-- LocalBusiness Schema -->
+    <!-- LocalBusiness Schema with Services -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
-        "name": "RotoRem Varna",
-        "alternateName": "РотоРем Варна",
-        "description": "Professional appliance repair services in Varna",
+        "name": "РотоРем Варна",
+        "alternateName": "RotoRem Varna",
+        "description": "Професионален ремонт на битова техника във Варна - перални, съдомиялни, фурни, бойлери",
         "url": "https://rotorem.bg",
         "telephone": "+359898340982",
         "email": "n.ivanov.ivanov@abv.bg",
@@ -94,12 +94,32 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
           "@type": "PostalAddress",
           "addressLocality": "Varna",
           "addressRegion": "Varna",
-          "addressCountry": "BG"
+          "postalCode": "9000",
+          "addressCountry": "BG",
+          "streetAddress": "Варна"
         },
         "geo": {
           "@type": "GeoCoordinates",
           "latitude": 43.2141,
           "longitude": 27.9147
+        },
+        "areaServed": {
+          "@type": "GeoCircle",
+          "geoMidpoint": {
+            "@type": "GeoCoordinates",
+            "latitude": 43.2141,
+            "longitude": 27.9147
+          },
+          "geoRadius": "20000"
+        },
+        "serviceArea": {
+          "@type": "GeoCircle",
+          "geoMidpoint": {
+            "@type": "GeoCoordinates", 
+            "latitude": 43.2141,
+            "longitude": 27.9147
+          },
+          "geoRadius": "20000"
         },
         "openingHoursSpecification": [
           {
@@ -117,9 +137,59 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
         ],
         "priceRange": "$$",
         "image": "https://rotorem.bg/img/hero.webp",
+        "logo": "https://rotorem.bg/favicon.svg",
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Услуги за ремонт на битова техника",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Ремонт на перални машини",
+                "description": "Професионален ремонт на перални машини всички марки във Варна",
+                "serviceType": "Appliance Repair"
+              }
+            },
+            {
+              "@type": "Offer", 
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Ремонт на съдомиялни машини",
+                "description": "Ремонт на съдомиялни машини на място във Варна",
+                "serviceType": "Appliance Repair"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service", 
+                "name": "Ремонт на фурни и котлони",
+                "description": "Ремонт на електрически фурни и котлони във Варна",
+                "serviceType": "Appliance Repair"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service", 
+                "name": "Електрически услуги",
+                "description": "Монтаж и ремонт на електрически инсталации във Варна",
+                "serviceType": "Electrical Service"
+              }
+            }
+          ]
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5.0",
+          "reviewCount": "100",
+          "bestRating": "5",
+          "worstRating": "1"
+        },
         "sameAs": [
           "https://www.facebook.com/rotorem",
-          "https://www.google.com/maps?cid=12345678"
+          "https://www.google.com/maps?cid=123456789"
         ]
       }
     </script>

@@ -1,0 +1,195 @@
+---
+import Layout from '../../../layouts/Base.astro';
+import { getLangFromUrl, useTranslations } from '../../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const title = 'Oven Repair Varna | Professional Service | RotoRem';
+const description = 'Oven repair in Varna ✓ Fast on-site service ✓ Warranty ✓ Same day repair ✓ All brands ✓ Oven technician Varna ☎ 089 834 0982';
+---
+
+<Layout title={title} description={description}>
+  <article class="py-16">
+    <div class="container max-w-4xl">
+      <!-- Schema for Service Page -->
+      <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Oven and Cooktop Repair Varna",
+        "description": "Professional electric oven and cooktop repair in Varna and surrounding areas. Fast on-site service, warranty, same day repair.",
+        "url": "https://rotorem.bg/en/services/oven-repair",
+        "provider": {
+          "@type": "LocalBusiness",
+          "name": "RotoRem Varna",
+          "telephone": "+359898340982",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Varna",
+            "addressCountry": "BG"
+          }
+        },
+        "areaServed": [
+          {"@type": "City", "name": "Varna"},
+          {"@type": "Place", "name": "Chayka"},
+          {"@type": "Place", "name": "Mladost"},
+          {"@type": "Place", "name": "Asparuhovo"}
+        ],
+        "serviceType": "Appliance Repair",
+        "offers": {
+          "@type": "Offer",
+          "price": "30",
+          "priceCurrency": "BGN",
+          "description": "Diagnostic fee"
+        }
+      }
+      </script>
+
+      <header class="text-center mb-12">
+        <h1 class="text-4xl font-bold text-gray-900 mb-4">
+          Oven Repair Varna
+        </h1>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Professional electric oven and cooktop repair in Varna and surrounding areas. Fast on-site service with quality guarantee.
+        </p>
+      </header>
+
+      <div class="prose prose-lg max-w-none">
+        <section class="mb-12">
+          <h2>Why choose our oven repair service in Varna?</h2>
+          
+          <div class="grid md:grid-cols-2 gap-8">
+            <div>
+              <h3>🔧 Fast on-site repair</h3>
+              <p>Our technician comes directly to your home in Varna to repair your oven. We repair built-in and freestanding ovens.</p>
+              
+              <h3>⚡ Same-day repair</h3>
+              <p>In most cases we repair ovens the same day in Varna. Quick diagnosis and efficient problem resolution.</p>
+              
+              <h3>🛡️ Quality guarantee</h3>
+              <p>All oven repairs in Varna are performed with a guarantee for work quality and parts used.</p>
+            </div>
+            
+            <div>
+              <h3>🏠 Service throughout Varna</h3>
+              <p>We repair ovens in neighborhoods: Chayka, Mladost, Asparuhovo, Levski, Vladislav Varnenchik and Varna center.</p>
+              
+              <h3>🔩 All oven brands</h3>
+              <p>We repair electric ovens from all brands: Bosch, Siemens, Electrolux, Whirlpool, Indesit, Beko and others.</p>
+              
+              <h3>💰 Fair prices</h3>
+              <p>Diagnostic fee only 30 BGN. Clear prices with no hidden fees for oven repair in Varna.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="mb-12">
+          <h2>Most common oven problems in Varna</h2>
+          
+          <div class="bg-orange-50 p-6 rounded-lg">
+            <h3>🔥 Oven not heating</h3>
+            <p>Damaged heating elements, thermostat or control board. Diagnosis and parts replacement.</p>
+            
+            <h3>🌡️ Oven not maintaining temperature</h3>
+            <p>Problem with thermostat, sensors or insulation. Professional repair in Varna.</p>
+            
+            <h3>💡 Light not working</h3>
+            <p>Burnt bulb or damaged lighting system. Replacement with original parts.</p>
+            
+            <h3>⚡ Oven not turning on</h3>
+            <p>Electrical problems, damaged contacts or control board. Diagnosis and repair.</p>
+            
+            <h3>🚪 Door not closing properly</h3>
+            <p>Damaged hinges, seals or locking system. We restore full functionality.</p>
+            
+            <h3>⏰ Timer not working</h3>
+            <p>Problems with electronic control or display. Repair of electronic components.</p>
+          </div>
+        </section>
+
+        <section class="mb-12">
+          <h2>Types of ovens we repair in Varna</h2>
+          
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-white p-6 rounded-lg shadow-md">
+              <h3>🏠 Built-in ovens</h3>
+              <p>Repair of built-in electric ovens all brands. We work with convection, grill and other functions.</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+              <h3>🔲 Freestanding ovens</h3>
+              <p>Repair of freestanding ovens and cooktops with oven. All sizes and brands.</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+              <h3>🌀 Convection ovens</h3>
+              <p>Specialized repair of convection ovens. Repair of fans and control systems.</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+              <h3>🥩 Ovens with grill</h3>
+              <p>Repair of grill elements and roasting functions. Restoration of all programs.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="mb-12">
+          <h2>Oven brands we repair in Varna</h2>
+          
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="bg-gray-50 p-4 rounded-lg text-center">
+              <h4 class="font-semibold">Bosch</h4>
+              <p class="text-sm text-gray-600">Bosch oven repair</p>
+            </div>
+            <div class="bg-gray-50 p-4 rounded-lg text-center">
+              <h4 class="font-semibold">Siemens</h4>
+              <p class="text-sm text-gray-600">Siemens oven repair</p>
+            </div>
+            <div class="bg-gray-50 p-4 rounded-lg text-center">
+              <h4 class="font-semibold">Electrolux</h4>
+              <p class="text-sm text-gray-600">Electrolux oven repair</p>
+            </div>
+            <div class="bg-gray-50 p-4 rounded-lg text-center">
+              <h4 class="font-semibold">Whirlpool</h4>
+              <p class="text-sm text-gray-600">Whirlpool oven repair</p>
+            </div>
+            <div class="bg-gray-50 p-4 rounded-lg text-center">
+              <h4 class="font-semibold">Beko</h4>
+              <p class="text-sm text-gray-600">Beko oven repair</p>
+            </div>
+            <div class="bg-gray-50 p-4 rounded-lg text-center">
+              <h4 class="font-semibold">Indesit</h4>
+              <p class="text-sm text-gray-600">Indesit oven repair</p>
+            </div>
+            <div class="bg-gray-50 p-4 rounded-lg text-center">
+              <h4 class="font-semibold">Gorenje</h4>
+              <p class="text-sm text-gray-600">Gorenje oven repair</p>
+            </div>
+            <div class="bg-gray-50 p-4 rounded-lg text-center">
+              <h4 class="font-semibold">Other brands</h4>
+              <p class="text-sm text-gray-600">All other brands</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="text-center bg-primary text-white p-8 rounded-lg">
+          <h2 class="text-white mb-4">Need oven repair in Varna?</h2>
+          <p class="text-xl mb-6">Call now for fast on-site repair!</p>
+          
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="tel:+359898340982" class="bg-white text-primary px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+              📞 089 834 0982
+            </a>
+            <a href="/book" class="bg-accent text-white px-6 py-3 rounded-lg font-semibold hover:bg-amber-600 transition-colors">
+              📅 Book Online
+            </a>
+          </div>
+          
+          <div class="mt-6 text-center">
+            <p class="text-sm opacity-90">
+              Diagnostic fee: 30 BGN | Quality guarantee | Service throughout Varna
+            </p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </article>
+</Layout>

@@ -1,0 +1,282 @@
+---
+import Layout from '../../../layouts/Base.astro';
+import { getLangFromUrl, useTranslations } from '../../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const isEN = lang === 'en';
+
+const title = 'Appliance Repair Blog | Tips & Guides | RotoRem Varna';
+const description = 'Helpful tips and guides for appliance maintenance and repair from RotoRem Varna experts. Learn how to keep your appliances running smoothly.';
+
+// Blog posts data - English versions
+const blogPosts = [
+  {
+    title: '7 Tips to Extend Your Washing Machine Life',
+    excerpt: 'Learn essential maintenance tips that will keep your washing machine running efficiently for years to come. From cleaning filters to proper loading techniques.',
+    date: 'March 15, 2025',
+    readTime: '5 min read',
+    slug: 'washing-machine-maintenance-tips',
+    category: 'Maintenance',
+    image: '/img/blog/washing-machine-tips.webp'
+  },
+  {
+    title: 'When to Repair vs Replace Your Appliances',
+    excerpt: 'A comprehensive guide to help you decide whether to repair or replace your broken appliances. Consider cost, age, efficiency and environmental impact.',
+    date: 'March 10, 2025',
+    readTime: '7 min read',
+    slug: 'repair-vs-replace-appliances',
+    category: 'Buying Guide',
+    image: '/img/blog/repair-vs-replace.webp'
+  },
+  {
+    title: 'Most Common Dishwasher Problems in Varna',
+    excerpt: 'Discover the most frequent dishwasher issues we encounter in Varna homes and how to prevent them. Water quality impacts and local solutions.',
+    date: 'March 5, 2025',
+    readTime: '6 min read',
+    slug: 'common-dishwasher-problems-varna',
+    category: 'Troubleshooting',
+    image: '/img/blog/dishwasher-problems.webp'
+  },
+  {
+    title: 'How Varna\'s Water Quality Affects Your Appliances',
+    excerpt: 'Learn about Varna\'s water characteristics and how they impact your washing machines and dishwashers. Tips for protecting your appliances from hard water damage.',
+    date: 'February 28, 2025',
+    readTime: '8 min read',
+    slug: 'varna-water-quality-appliances',
+    category: 'Local Insights',
+    image: '/img/blog/water-quality.webp'
+  }
+];
+
+const categories = [
+  { name: 'All', slug: 'all' },
+  { name: 'Maintenance', slug: 'maintenance' },
+  { name: 'Troubleshooting', slug: 'troubleshooting' },
+  { name: 'Buying Guide', slug: 'buying-guide' },
+  { name: 'Local Insights', slug: 'local-insights' }
+];
+---
+
+<Layout title={title} description={description}>
+  <section class="py-16">
+    <div class="container max-w-6xl">
+      <!-- Header -->
+      <header class="text-center max-w-3xl mx-auto mb-12">
+        <h1 class="text-4xl font-bold text-gray-900 mb-4">
+          Appliance Repair Blog
+        </h1>
+        <div class="w-20 h-1 bg-accent mx-auto my-4"></div>
+        <p class="text-xl text-gray-600">
+          Expert tips and guides from RotoRem Varna to help you maintain and repair your appliances
+        </p>
+      </header>
+
+      <!-- Category Filter -->
+      <div class="mb-12">
+        <div class="flex flex-wrap justify-center gap-3">
+          {categories.map(category => (
+            <button 
+              class="px-4 py-2 rounded-full border border-gray-300 text-gray-700 hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 category-filter"
+              data-category={category.slug}
+            >
+              {category.name}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- Featured Post -->
+      <div class="mb-16">
+        <h2 class="text-2xl font-semibold mb-6 text-gray-900">
+          Featured Article
+        </h2>
+        <article class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+          <div class="md:flex">
+            <div class="md:w-1/2">
+              <img 
+                src={blogPosts[0].image} 
+                alt={blogPosts[0].title}
+                class="w-full h-64 md:h-full object-cover"
+                width="600"
+                height="400"
+              />
+            </div>
+            <div class="md:w-1/2 p-8">
+              <div class="flex items-center mb-4">
+                <span class="bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">
+                  {blogPosts[0].category}
+                </span>
+                <span class="ml-3 text-gray-500 text-sm">{blogPosts[0].date}</span>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-900 mb-4">
+                <a href={`/en/blog/${blogPosts[0].slug}`} class="hover:text-primary transition-colors">
+                  {blogPosts[0].title}
+                </a>
+              </h3>
+              <p class="text-gray-600 mb-6">
+                {blogPosts[0].excerpt}
+              </p>
+              <div class="flex items-center justify-between">
+                <a 
+                  href={`/en/blog/${blogPosts[0].slug}`}
+                  class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-dark transition-colors font-medium"
+                >
+                  Read More
+                </a>
+                <span class="text-gray-500 text-sm">{blogPosts[0].readTime}</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Blog Posts Grid -->
+      <div class="mb-12">
+        <h2 class="text-2xl font-semibold mb-6 text-gray-900">
+          Latest Articles
+        </h2>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="blog-posts-grid">
+          {blogPosts.slice(1).map(post => (
+            <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 blog-post" data-category={post.category.toLowerCase().replace(' ', '-')}>
+              <img 
+                src={post.image} 
+                alt={post.title}
+                class="w-full h-48 object-cover"
+                width="400"
+                height="200"
+              />
+              <div class="p-6">
+                <div class="flex items-center mb-3">
+                  <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">
+                    {post.category}
+                  </span>
+                  <span class="ml-3 text-gray-500 text-sm">{post.date}</span>
+                </div>
+                
+                <h3 class="text-xl font-semibold text-gray-900 mb-3">
+                  <a href={`/en/blog/${post.slug}`} class="hover:text-primary transition-colors">
+                    {post.title}
+                  </a>
+                </h3>
+                
+                <p class="text-gray-600 mb-4">
+                  {post.excerpt}
+                </p>
+                
+                <div class="flex items-center justify-between">
+                  <a 
+                    href={`/en/blog/${post.slug}`}
+                    class="text-primary font-medium hover:text-primary-dark transition-colors"
+                  >
+                    Read More →
+                  </a>
+                  <span class="text-gray-500 text-sm">{post.readTime}</span>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <!-- Newsletter Signup -->
+      <div class="bg-gradient-to-r from-primary to-primary-dark rounded-xl p-8 text-white text-center">
+        <h2 class="text-2xl font-bold mb-4">
+          Get Expert Tips Delivered
+        </h2>
+        <p class="text-xl mb-6 opacity-90">
+          Subscribe to our newsletter for the latest appliance maintenance tips and repair guides
+        </p>
+        
+        <form class="max-w-md mx-auto flex gap-3">
+          <input 
+            type="email" 
+            placeholder="Enter your email"
+            class="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-white"
+            required
+          />
+          <button 
+            type="submit" 
+            class="bg-accent hover:bg-amber-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+          >
+            Subscribe
+          </button>
+        </form>
+        
+        <p class="text-sm mt-4 opacity-75">
+          No spam, unsubscribe at any time. We respect your privacy.
+        </p>
+      </div>
+
+      <!-- Contact CTA -->
+      <div class="mt-16 text-center">
+        <h2 class="text-2xl font-semibold text-gray-900 mb-4">
+          Need Professional Help?
+        </h2>
+        <p class="text-gray-600 mb-6">
+          Can't find the answer you're looking for? Our expert technicians are here to help.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="tel:+359898340982" class="btn-primary inline-flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+            089 834 0982
+          </a>
+          <a href="/book" class="btn-cta inline-flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path>
+            </svg>
+            Book Service
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  // Category filtering functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const categoryButtons = document.querySelectorAll<HTMLButtonElement>('.category-filter');
+    const blogPosts = document.querySelectorAll<HTMLElement>('.blog-post');
+    
+    categoryButtons.forEach(button => {
+      button.addEventListener('click', function(event) {
+        const target = event.target as HTMLButtonElement;
+        const selectedCategory = target.getAttribute('data-category');
+        
+        // Update button states
+        categoryButtons.forEach(btn => {
+          btn.classList.remove('bg-primary', 'text-white', 'border-primary');
+          btn.classList.add('border-gray-300', 'text-gray-700');
+        });
+        
+        target.classList.add('bg-primary', 'text-white', 'border-primary');
+        target.classList.remove('border-gray-300', 'text-gray-700');
+        
+        // Filter posts
+        blogPosts.forEach(post => {
+          if (selectedCategory === 'all') {
+            post.style.display = 'block';
+          } else {
+            const postCategory = post.getAttribute('data-category');
+            if (postCategory === selectedCategory) {
+              post.style.display = 'block';
+            } else {
+              post.style.display = 'none';
+            }
+          }
+        });
+      });
+    });
+    
+    // Set "All" as active by default
+    const allButton = document.querySelector<HTMLButtonElement>('[data-category="all"]');
+    if (allButton) {
+      allButton.classList.add('bg-primary', 'text-white', 'border-primary');
+    }
+  });
+</script>

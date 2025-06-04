@@ -7,9 +7,16 @@ import Services from '../components/Services.astro';
 import FAQ from '../components/FAQ.astro';
 import Contact from '../components/Contact.astro';
 import Map from '../components/Map.astro';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const title = t('meta.homepage.title');
+const description = t('meta.homepage.description');
 ---
 
-<Layout>
+<Layout title={title} description={description}>
   <Hero />
   <StatsBar />
   <HowItWorks />

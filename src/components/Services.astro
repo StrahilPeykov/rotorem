@@ -44,6 +44,7 @@ const services = [
     description: isEN 
       ? 'Fast repairs for all washing machine and dryer brands. We fix leaks, motor problems, electronics, drum issues, and provide same-day emergency service.'
       : 'Бързи ремонти на всички марки перални и сушилни. Отстраняваме течове, проблеми с мотора, барабана, електрониката и предлагаме спешна услуга в същия ден.',
+    url: isEN ? '/en/services/washing-machine-repair' : '/services/washing-machine-repair',
   },
   {
     icon: 'dishwasher' as IconKey,
@@ -51,6 +52,7 @@ const services = [
     description: isEN 
       ? 'Reliable dishwasher repairs for all major brands. We fix water inlet problems, draining issues, and electronics with genuine parts. Same-day diagnosis.'
       : 'Надежден ремонт на съдомиялни от всички основни марки. Отстраняваме проблеми с подаването на вода, източването и електрониката с оригинални части. Диагностика в същия ден.',
+    url: isEN ? '/en/services/dishwasher-repair' : '/services/dishwasher-repair',
   },
   {
     icon: 'oven' as IconKey,
@@ -58,6 +60,7 @@ const services = [
     description: isEN 
       ? 'Expert repairs for electric ovens, cooktops, and water heaters. Heating elements, thermostats, and control boards fixed with quality assurance.'
       : 'Експертен ремонт на електрически фурни, котлони и бойлери. Нагревателни елементи, термостати и контролни платки се ремонтират с гаранция за качество.',
+    url: isEN ? '/en/services/oven-repair' : '/services/oven-repair',
   },
   {
     icon: 'electrical' as IconKey,
@@ -65,6 +68,7 @@ const services = [
     description: isEN 
       ? 'Installation and replacement of switches, sockets, light fixtures, and small electrical appliances. Safe, reliable, and code-compliant work performed by certified engineers.'
       : 'Монтаж и подмяна на ключове, контакти, осветителни тела и малки електрически уреди. Безопасна, надеждна работа в съответствие със стандартите, извършена от сертифицирани инженери.',
+    url: isEN ? '/en/services/electrical-services' : '/services/electrical-services',
   },
 ];
 
@@ -165,13 +169,13 @@ const icons: Record<IconKey, string> = {
               
               <p class="mt-2 text-white/90 flex-grow text-shadow">{service.description}</p>
               
-              <!-- Enhanced Call to action at the bottom -->
+              <!-- Enhanced Call to action at the bottom - Updated to use service URLs -->
               <div class="mt-6 pt-4 border-t border-white/20">
-                <a href="/book" class="bg-white/30 hover:bg-white/40 backdrop-blur-sm text-white font-medium py-2 px-4 rounded-lg inline-flex items-center transition-colors shadow-sm">
+                <a href={service.url} class="bg-white/30 hover:bg-white/40 backdrop-blur-sm text-white font-medium py-2 px-4 rounded-lg inline-flex items-center transition-colors shadow-sm">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path>
                 </svg>
-                {isEN ? 'Book repair' : 'Запази ремонт'}
+                {isEN ? 'Learn More' : 'Научете повече'}
                 </a>
               </div>
             </div>

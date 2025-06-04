@@ -1,0 +1,226 @@
+---
+import Layout from '../../../layouts/Base.astro';
+import { getLangFromUrl, useTranslations } from '../../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const title = 'Electrical Services Varna | Professional Service | RotoRem';
+const description = 'Electrical services in Varna ✓ Installation and repair ✓ Certified engineers ✓ Same day service ✓ All types of work ✓ Electrician Varna ☎ 089 834 0982';
+---
+
+<Layout title={title} description={description}>
+  <article class="py-16">
+    <div class="container max-w-4xl">
+      <!-- Schema for Service Page -->
+      <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Electrical Services Varna",
+        "description": "Professional electrical services in Varna - installation and repair of electrical systems, switches, outlets and lighting.",
+        "url": "https://rotorem.bg/en/services/electrical-services",
+        "provider": {
+          "@type": "LocalBusiness",
+          "name": "RotoRem Varna",
+          "telephone": "+359898340982",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Varna",
+            "addressCountry": "BG"
+          }
+        },
+        "areaServed": [
+          {"@type": "City", "name": "Varna"},
+          {"@type": "Place", "name": "Chayka"},
+          {"@type": "Place", "name": "Mladost"},
+          {"@type": "Place", "name": "Asparuhovo"}
+        ],
+        "serviceType": "Electrical Service",
+        "offers": {
+          "@type": "Offer",
+          "price": "30",
+          "priceCurrency": "BGN",
+          "description": "Inspection fee"
+        }
+      }
+      </script>
+
+      <header class="text-center mb-12">
+        <h1 class="text-4xl font-bold text-gray-900 mb-4">
+          Electrical Services Varna
+        </h1>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Professional electrical services in Varna by certified engineers. Installation, repair and maintenance of electrical systems.
+        </p>
+      </header>
+
+      <div class="prose prose-lg max-w-none">
+        <section class="mb-12">
+          <h2>Why choose our electrical services in Varna?</h2>
+          
+          <div class="grid md:grid-cols-2 gap-8">
+            <div>
+              <h3>⚡ Certified engineers</h3>
+              <p>All electrical services are performed by certified electrical engineers with years of experience in Varna.</p>
+              
+              <h3>🔧 Fast service</h3>
+              <p>In most cases we perform electrical services the same day in Varna. Fast and quality execution.</p>
+              
+              <h3>🛡️ Safety and warranty</h3>
+              <p>All electrical services in Varna are performed according to safety standards with quality guarantee.</p>
+            </div>
+            
+            <div>
+              <h3>🏠 Service throughout Varna</h3>
+              <p>We provide electrical services in neighborhoods: Chayka, Mladost, Asparuhovo, Levski, Vladislav Varnenchik and center.</p>
+              
+              <h3>🔌 All types of work</h3>
+              <p>We perform all types of electrical services - from switch replacement to complete installations.</p>
+              
+              <h3>💰 Fair prices</h3>
+              <p>Inspection only 30 BGN. Clear prices with no hidden fees for electrical services in Varna.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="mb-12">
+          <h2>Electrical services we offer in Varna</h2>
+          
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-yellow-50 p-6 rounded-lg border border-yellow-200">
+              <h3>🔌 Switches and outlets</h3>
+              <ul class="list-disc list-inside text-sm mt-2 space-y-1">
+                <li>Installation of new switches</li>
+                <li>Replacement of old switches</li>
+                <li>Installing outlets</li>
+                <li>Repair of switches and outlets</li>
+              </ul>
+            </div>
+            
+            <div class="bg-yellow-50 p-6 rounded-lg border border-yellow-200">
+              <h3>💡 Lighting</h3>
+              <ul class="list-disc list-inside text-sm mt-2 space-y-1">
+                <li>Installation of chandeliers</li>
+                <li>LED lighting</li>
+                <li>Outdoor lighting</li>
+                <li>Emergency lighting</li>
+              </ul>
+            </div>
+            
+            <div class="bg-yellow-50 p-6 rounded-lg border border-yellow-200">
+              <h3>🏠 Home installations</h3>
+              <ul class="list-disc list-inside text-sm mt-2 space-y-1">
+                <li>New electrical installations</li>
+                <li>Installation repairs</li>
+                <li>Cable replacement</li>
+                <li>Electrical panels</li>
+              </ul>
+            </div>
+            
+            <div class="bg-yellow-50 p-6 rounded-lg border border-yellow-200">
+              <h3>🔋 Small appliances</h3>
+              <ul class="list-disc list-inside text-sm mt-2 space-y-1">
+                <li>Small appliance repair</li>
+                <li>Cable replacement</li>
+                <li>Plug repair</li>
+                <li>Device diagnostics</li>
+              </ul>
+            </div>
+            
+            <div class="bg-yellow-50 p-6 rounded-lg border border-yellow-200">
+              <h3>⚡ Emergency repair</h3>
+              <ul class="list-disc list-inside text-sm mt-2 space-y-1">
+                <li>Emergency electrical repair</li>
+                <li>Short circuit elimination</li>
+                <li>Power restoration</li>
+                <li>Emergency panel repair</li>
+              </ul>
+            </div>
+            
+            <div class="bg-yellow-50 p-6 rounded-lg border border-yellow-200">
+              <h3>🔍 Diagnostics</h3>
+              <ul class="list-disc list-inside text-sm mt-2 space-y-1">
+                <li>Fault finding</li>
+                <li>Installation inspection</li>
+                <li>Voltage measurement</li>
+                <li>Electrical testing</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="mb-12">
+          <h2>Most common electrical problems in Varna</h2>
+          
+          <div class="bg-red-50 p-6 rounded-lg">
+            <h3>⚡ No power in the room</h3>
+            <p>Blown fuses, tripped breakers or installation faults. Quick diagnosis and resolution.</p>
+            
+            <h3>🔌 Switches not working</h3>
+            <p>Damaged switches, outlets or wiring. Replacement and repair with quality materials.</p>
+            
+            <h3>💡 Lights flickering or not working</h3>
+            <p>Problems with electrical network, poor contacts or damaged bulbs. Professional repair.</p>
+            
+            <h3>🔥 Short circuit</h3>
+            <p>Dangerous situation requiring immediate intervention. Emergency repair and safety restoration.</p>
+            
+            <h3>🏠 Old electrical installation</h3>
+            <p>Outdated installations that need updating. Modernization according to current standards.</p>
+          </div>
+        </section>
+
+        <section class="mb-12">
+          <h2>Work process for electrical services</h2>
+          
+          <div class="grid md:grid-cols-4 gap-4">
+            <div class="text-center p-4 bg-white rounded-lg shadow-md">
+              <div class="text-3xl mb-2">📞</div>
+              <h4>1. Call</h4>
+              <p class="text-sm">Call for electrical services in Varna</p>
+            </div>
+            
+            <div class="text-center p-4 bg-white rounded-lg shadow-md">
+              <div class="text-3xl mb-2">🔍</div>
+              <h4>2. Inspection</h4>
+              <p class="text-sm">Free inspection and problem diagnosis</p>
+            </div>
+            
+            <div class="text-center p-4 bg-white rounded-lg shadow-md">
+              <div class="text-3xl mb-2">📋</div>
+              <h4>3. Quote</h4>
+              <p class="text-sm">Detailed quote with clear prices</p>
+            </div>
+            
+            <div class="text-center p-4 bg-white rounded-lg shadow-md">
+              <div class="text-3xl mb-2">⚡</div>
+              <h4>4. Execution</h4>
+              <p class="text-sm">Quality execution with warranty</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="text-center bg-primary text-white p-8 rounded-lg">
+          <h2 class="text-white mb-4">Need electrical services in Varna?</h2>
+          <p class="text-xl mb-6">Call now for professional electrical service!</p>
+          
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="tel:+359898340982" class="bg-white text-primary px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+              📞 089 834 0982
+            </a>
+            <a href="/book" class="bg-accent text-white px-6 py-3 rounded-lg font-semibold hover:bg-amber-600 transition-colors">
+              📅 Book Online
+            </a>
+          </div>
+          
+          <div class="mt-6 text-center">
+            <p class="text-sm opacity-90">
+              Inspection: 30 BGN | Certified engineers | Service throughout Varna
+            </p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </article>
+</Layout>
