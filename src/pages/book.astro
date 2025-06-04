@@ -318,8 +318,18 @@ const timeSlots = [
     const btnText = document.getElementById('btn-text');
     const loadingIndicator = document.getElementById('availability-loading');
     
-    // Your Google Apps Script URL
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyEuA51niEYvOG3erkABkleEKnPySeYI_4dLwRYg79KmmK2inI32t5iVAhvCeGA8oxV1Q/exec';
+    // Get Google Apps Script URL from environment variable
+    const GOOGLE_SCRIPT_URL = import.meta.env.PUBLIC_GOOGLE_SCRIPT_URL;
+    
+    // Check if the environment variable is set
+    if (!GOOGLE_SCRIPT_URL) {
+      console.error('PUBLIC_GOOGLE_SCRIPT_URL environment variable is not set');
+      alert(isEN ? 
+        'Booking form is not configured. Please contact us directly at +359898340982.' :
+        'Формулярът за запазване не е конфигуриран. Моля свържете се директно на +359898340982.'
+      );
+      return;
+    }
     
     let bookedSlots = [];
     let availabilityLoaded = false;

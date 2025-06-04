@@ -22,7 +22,7 @@ export const handler = async (event, context) => {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          from: "bookings@rotoremvarna.com", // Your verified sender email
+          from: "bookings@rotorem.bg", // Your verified sender email
           to: "n.ivanov.ivanov@abv.bg",
           subject: `Нова заявка - ${data.name} - ${data.date} ${data.time}`,
           parameters: {
