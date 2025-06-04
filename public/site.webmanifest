@@ -1,0 +1,17 @@
+{
+  "name": "RotoRem Varna - Appliance Repair",
+  "short_name": "RotoRem",
+  "description": "Professional appliance repair services in Varna",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "theme_color": "#2563eb",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/"
+}

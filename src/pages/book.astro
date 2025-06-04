@@ -6,6 +6,9 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const isEN = lang === 'en';
 
+// Get environment variable on server-side to pass to client-side
+const GOOGLE_SCRIPT_URL = import.meta.env.PUBLIC_GOOGLE_SCRIPT_URL;
+
 // Form styling with explicit colors
 const inputClass = "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-gray-800 bg-white shadow-sm";
 const textareaClass = "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-gray-800 bg-white shadow-sm";
@@ -309,7 +312,7 @@ const timeSlots = [
   </section>
 </Layout>
 
-<script define:vars={{ timeSlots, isEN }}>
+<script define:vars={{ timeSlots, isEN, GOOGLE_SCRIPT_URL }}>
   document.addEventListener('DOMContentLoaded', function() {
     const dateInput = document.getElementById('date-input');
     const timeSelect = document.getElementById('time-select');
@@ -318,12 +321,9 @@ const timeSlots = [
     const btnText = document.getElementById('btn-text');
     const loadingIndicator = document.getElementById('availability-loading');
     
-    // Get Google Apps Script URL from environment variable
-    const GOOGLE_SCRIPT_URL = import.meta.env.PUBLIC_GOOGLE_SCRIPT_URL;
-    
     // Check if the environment variable is set
     if (!GOOGLE_SCRIPT_URL) {
-      console.error('PUBLIC_GOOGLE_SCRIPT_URL environment variable is not set');
+      console.error('❌ PUBLIC_GOOGLE_SCRIPT_URL environment variable is not set');
       alert(isEN ? 
         'Booking form is not configured. Please contact us directly at +359898340982.' :
         'Формулярът за запазване не е конфигуриран. Моля свържете се директно на +359898340982.'
