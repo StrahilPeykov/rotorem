@@ -7,7 +7,7 @@ export default defineConfig({
   site: 'https://rotorem.bg',
   integrations: [
     tailwind({
-      // Using a simple config without requiring daisyui directly
+      // Using a simple config without requiring daisyui directly 
       // (it will be loaded via the tailwind.config.cjs file)
     }),
     sitemap({
