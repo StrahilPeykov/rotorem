@@ -8,8 +8,8 @@ export const defaultLang = 'bg';
 export const ui = {
   bg: {
     // SEO Meta Tags
-    'meta.homepage.title': 'Ремонт Пералня Варна | РотоРем - Професионален сервиз 24/7',
-    'meta.homepage.description': 'Ремонт на пералня във Варна ✓ Бърз сервиз на място ✓ Гаранция ✓ Същия ден ремонт ✓ Всички марки ☎ 089 834 0982',
+    'meta.homepage.title': 'Ремонт Уреди Варна | РотоРем - Професионален сервиз',
+    'meta.homepage.description': 'Ремонт на уреди във Варна ✓ Бърз сервиз на място ✓ Гаранция ✓ Същия ден ремонт ✓ Всички марки ☎ 089 834 0982',
     
     // Navigation
     'nav.services': 'Услуги',
@@ -113,8 +113,8 @@ export const ui = {
   },
   en: {
     // SEO Meta Tags
-    'meta.homepage.title': 'Washing Machine Repair Varna | RotoRem - Professional Service 24/7',
-    'meta.homepage.description': 'Washing machine repair in Varna ✓ Fast on-site service ✓ Warranty ✓ Same day repair ✓ All brands ☎ 089 834 0982',
+    'meta.homepage.title': 'Appliance Repair Varna | RotoRem - Professional Service',
+    'meta.homepage.description': 'Appliance repair in Varna ✓ Fast on-site service ✓ Warranty ✓ Same day repair ✓ All brands ☎ 089 834 0982',
     
     // Navigation
     'nav.services': 'Services',
