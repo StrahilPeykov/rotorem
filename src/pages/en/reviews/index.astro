@@ -1,0 +1,324 @@
+---
+import Layout from '../../../layouts/Base.astro';
+import { getLangFromUrl, useTranslations } from '../../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const title = 'Customer Reviews for Appliance Repair | RotoRem Varna';
+const description = 'Real reviews from satisfied customers of RotoRem Varna ✓ 5 stars ✓ 100+ successful repairs ✓ Professional service ✓ Read our customers opinions ☎ 089 834 0982';
+
+// Google Reviews URL
+const googleReviewsUrl = "https://g.page/r/CdqG6cGsgqQzEBM/review";
+
+// Extended reviews data for the dedicated page (English versions)
+const reviews = [
+  {
+    name: 'Ivan Petrov',
+    date: 'March 15, 2025',
+    rating: 5,
+    text: 'Very fast and professional service! My washing machine was repaired the same day I called. The technician was very competent and explained what the problem was. I highly recommend!',
+    appliance: 'Washing Machine',
+    location: 'Chayka'
+  },
+  {
+    name: 'Maria Dimitrova',
+    date: 'February 28, 2025',
+    rating: 5,
+    text: 'Excellent service! The technician was very competent and fixed my dishwasher quickly. The prices are also reasonable for the quality you get. I will definitely use them again if needed.',
+    appliance: 'Dishwasher',
+    location: 'Mladost'
+  },
+  {
+    name: 'Georgi Ivanov',
+    date: 'January 10, 2025',
+    rating: 5,
+    text: 'Had an issue with my oven, called RotoRem and they came the next day. Very professional and thorough service! The technician did everything possible to solve the problem quickly.',
+    appliance: 'Oven',
+    location: 'Asparuhovo'
+  },
+  {
+    name: 'Elena Stoyanova',
+    date: 'January 5, 2025',
+    rating: 5,
+    text: 'Perfect service! They came at the agreed time, diagnosed the problem quickly and fixed it on the spot. The washing machine works like new. I am very satisfied with the service.',
+    appliance: 'Washing Machine',
+    location: 'Levski'
+  },
+  {
+    name: 'Peter Nikolov',
+    date: 'December 22, 2024',
+    rating: 5,
+    text: 'Great service! My dishwasher hadnt worked for over a week, but they fixed it in less than an hour. The technician was very kind and professional.',
+    appliance: 'Dishwasher',
+    location: 'Center'
+  },
+  {
+    name: 'Anna Hristova',
+    date: 'December 18, 2024',
+    rating: 5,
+    text: 'I am very grateful for the fast and quality service! My oven stopped heating, and they came the same day and fixed it. I recommend them to everyone!',
+    appliance: 'Oven',
+    location: 'V. Varnenchik'
+  },
+  {
+    name: 'Stefan Georgiev',
+    date: 'December 12, 2024',
+    rating: 5,
+    text: 'Excellent price-quality ratio! They fixed the electrical problem in my kitchen quickly and professionally. The technician explained everything in detail.',
+    appliance: 'Electrical',
+    location: 'Chayka'
+  },
+  {
+    name: 'Nadezhda Ivanova',
+    date: 'December 8, 2024',
+    rating: 5,
+    text: 'Very satisfied with the service! My washing machine was leaking water, but they found and fixed the problem quickly. They work with quality and warranty.',
+    appliance: 'Washing Machine',
+    location: 'Mladost'
+  },
+  {
+    name: 'Dimitar Petrov',
+    date: 'December 3, 2024',
+    rating: 5,
+    text: 'Perfect work! My dishwasher wasnt washing well, but after their intervention it works excellently. I recommend this service to everyone in Varna.',
+    appliance: 'Dishwasher',
+    location: 'Asparuhovo'
+  }
+];
+
+const averageRating = 5.0;
+const totalReviews = reviews.length;
+---
+
+<Layout title={title} description={description}>
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-r from-green-600 to-emerald-700 text-white py-16">
+    <div class="container max-w-4xl text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-6">
+        Customer Reviews
+      </h1>
+      <p class="text-xl md:text-2xl text-green-100 max-w-3xl mx-auto mb-8">
+        Read what our satisfied customers say about the quality of our appliance repair services in Varna.
+      </p>
+      
+      <!-- Rating Display -->
+      <div class="flex items-center justify-center mb-8">
+        <div class="flex">
+          {Array.from({ length: 5 }).map(() => (
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-yellow-400" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+            </svg>
+          ))}
+        </div>
+        <span class="ml-4 text-2xl font-bold">{averageRating}</span>
+        <span class="ml-2 text-green-200">from {totalReviews}+ reviews</span>
+      </div>
+      
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="tel:+359898340982" class="bg-white text-green-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg">
+          📞 089 834 0982
+        </a>
+        <a href="/book" class="bg-amber-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-amber-600 transition-colors shadow-lg">
+          Book Service Online
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews Grid -->
+  <section class="py-16">
+    <div class="container max-w-6xl">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">What Our Customers Say</h2>
+        <div class="w-20 h-1 bg-green-500 mx-auto"></div>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {reviews.map((review, index) => (
+          <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100">
+            <div class="flex justify-between items-start mb-4">
+              <div>
+                <h3 class="font-semibold text-lg text-gray-900">{review.name}</h3>
+                <p class="text-sm text-gray-500">{review.date}</p>
+                <p class="text-xs text-green-600 mt-1">{review.location}</p>
+              </div>
+              <div class="flex">
+                {Array.from({ length: review.rating }).map(() => (
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-yellow-500" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                  </svg>
+                ))}
+              </div>
+            </div>
+            
+            <p class="text-gray-700 mb-4 leading-relaxed">{review.text}</p>
+            
+            <div class="flex justify-between items-center pt-4 border-t border-gray-100">
+              <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
+                {review.appliance}
+              </span>
+              
+              <span class="inline-flex items-center text-xs text-green-700">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                Verified customer
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Google Reviews CTA -->
+  <section class="py-16 bg-gradient-to-r from-blue-50 to-blue-100">
+    <div class="container max-w-4xl">
+      <div class="bg-white p-8 rounded-2xl shadow-xl border border-blue-200">
+        <div class="text-center">
+          <div class="w-20 h-20 bg-blue-500 text-white rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+            </svg>
+          </div>
+          
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Share Your Experience</h2>
+          <p class="text-xl text-gray-700 mb-6">
+            If you're satisfied with our service, please share your opinion on Google
+          </p>
+          
+          <div class="flex items-center justify-center mb-6">
+            <div class="flex">
+              {Array.from({ length: 5 }).map(() => (
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-yellow-500" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                </svg>
+              ))}
+            </div>
+            <span class="ml-3 text-yellow-600 font-semibold text-lg">5.0</span>
+            <span class="ml-2 text-gray-600">(100+ reviews)</span>
+          </div>
+          
+          <a 
+            href={googleReviewsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow-lg text-lg"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-3" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+            </svg>
+            Write Google Review
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Indicators -->
+  <section class="py-16 bg-white">
+    <div class="container">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">Why Customers Choose Us</h2>
+        <div class="w-20 h-1 bg-green-500 mx-auto"></div>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-green-500 text-white rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="text-2xl font-bold">100+</span>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">Satisfied Customers</h3>
+          <p class="text-gray-600">Over 100 successfully repaired appliances in Varna</p>
+        </div>
+        
+        <div class="text-center">
+          <div class="w-16 h-16 bg-green-500 text-white rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="text-2xl font-bold">5★</span>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">Excellent Rating</h3>
+          <p class="text-gray-600">Average rating of 5 stars from all customers</p>
+        </div>
+        
+        <div class="text-center">
+          <div class="w-16 h-16 bg-green-500 text-white rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="text-2xl font-bold">15+</span>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">Years Experience</h3>
+          <p class="text-gray-600">Over 15 years of experience in appliance repair</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 bg-gradient-to-r from-green-600 to-emerald-700 text-white">
+    <div class="container text-center">
+      <h2 class="text-3xl font-bold mb-4">Join Our Satisfied Customers</h2>
+      <p class="text-xl mb-8 text-green-100">Need appliance repair? Contact us now!</p>
+      
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="tel:+359898340982" class="bg-white text-green-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg">
+          📞 089 834 0982
+        </a>
+        <a href="/book" class="bg-amber-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-amber-600 transition-colors shadow-lg">
+          Book Service Online
+        </a>
+      </div>
+      
+      <p class="mt-6 text-green-200">
+        Diagnostic: 30 BGN • Quality Guarantee • Service in all Varna
+      </p>
+    </div>
+  </section>
+
+  <!-- Schema Markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Customer Reviews - RotoRem Varna",
+    "description": "Real reviews from satisfied customers of RotoRem Varna for professional appliance repair. 5 stars, 100+ successful repairs.",
+    "url": "https://www.rotorem.bg/en/reviews",
+    "mainEntity": {
+      "@type": "LocalBusiness",
+      "name": "RotoRem Varna",
+      "telephone": "+359898340982",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Varna",
+        "addressCountry": "BG"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "100",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "review": ${JSON.stringify(reviews.slice(0, 5).map(review => ({
+        "@type": "Review",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": review.rating,
+          "bestRating": "5"
+        },
+        "author": {
+          "@type": "Person",
+          "name": review.name
+        },
+        "reviewBody": review.text,
+        "datePublished": "2025-03-15"
+      })))}
+    }
+  }
+  </script>
+</Layout>
