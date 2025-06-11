@@ -1,0 +1,228 @@
+---
+import Layout from '../../../layouts/Base.astro';
+import Services from '../../../components/Services.astro';
+import StatsBar from '../../../components/StatsBar.astro';
+import { getLangFromUrl, useTranslations } from '../../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const title = 'Our Appliance Repair Services | RotoRem Varna';
+const description = 'Professional appliance repair services in Varna ✓ Washing Machines ✓ Dishwashers ✓ Ovens ✓ Electrical Services ✓ Fast on-site service ✓ Warranty ☎ 089 834 0982';
+---
+
+<Layout title={title} description={description}>
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-r from-primary to-primary-dark text-white py-16">
+    <div class="container max-w-4xl text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-6">
+        Our Appliance Repair Services
+      </h1>
+      <p class="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto mb-8">
+        Professional home appliance repairs in Varna and surrounding areas. Fast on-site service with quality guarantee.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="tel:+359898340982" class="bg-white text-primary px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg">
+          📞 089 834 0982
+        </a>
+        <a href="/book" class="bg-accent text-white px-8 py-4 rounded-lg font-semibold hover:bg-accent-dark transition-colors shadow-lg">
+          Book Service Online
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Bar -->
+  <StatsBar />
+
+  <!-- Main Services Section -->
+  <Services />
+
+  <!-- Why Choose Our Services -->
+  <section class="py-16 bg-gradient-to-b from-white to-gray-50">
+    <div class="container">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">Why Choose Our Services?</h2>
+        <div class="w-20 h-1 bg-accent mx-auto my-4"></div>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100">
+          <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-3">On-Site Service</h3>
+          <p class="text-gray-600">We come directly to your home in Varna. No need to transport heavy appliances to a repair shop.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100">
+          <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-3">Fast Response</h3>
+          <p class="text-gray-600">In most cases we repair appliances the same day. Quick diagnosis and efficient solution.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100">
+          <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-3">Warranty</h3>
+          <p class="text-gray-600">All repairs come with warranty for workmanship quality and used parts.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100">
+          <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-3">Serving All Varna</h3>
+          <p class="text-gray-600">We provide services in neighborhoods: Chayka, Mladost, Asparuhovo, Levski, V. Varnenchik and center.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100">
+          <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect width="18" height="18" x="3" y="3" rx="2"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-3">All Brands</h3>
+          <p class="text-gray-600">We repair appliances from all major brands: Bosch, Samsung, LG, Whirlpool, Indesit and others.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100">
+          <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="1" x2="12" y2="23"></line>
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-3">Fair Pricing</h3>
+          <p class="text-gray-600">Diagnostic fee only 30 BGN. Clear prices with no hidden fees. You know the cost before we start.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Process -->
+  <section class="py-16 bg-white">
+    <div class="container">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">How Our Service Works</h2>
+        <div class="w-20 h-1 bg-accent mx-auto my-4"></div>
+      </div>
+      
+      <div class="grid md:grid-cols-4 gap-8">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">1</div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">Call Us</h3>
+          <p class="text-gray-600">Contact us by phone or book online</p>
+        </div>
+        
+        <div class="text-center">
+          <div class="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">2</div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">Visit</h3>
+          <p class="text-gray-600">Our technician arrives at the scheduled time</p>
+        </div>
+        
+        <div class="text-center">
+          <div class="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">3</div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">Diagnosis</h3>
+          <p class="text-gray-600">Free diagnosis and repair quote</p>
+        </div>
+        
+        <div class="text-center">
+          <div class="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">4</div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">Repair</h3>
+          <p class="text-gray-600">Quality repair with work warranty</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 bg-gradient-to-r from-primary to-primary-dark text-white">
+    <div class="container text-center">
+      <h2 class="text-3xl font-bold mb-4">Ready to Fix Your Appliance?</h2>
+      <p class="text-xl mb-8 text-blue-100">Contact us now for professional service in Varna!</p>
+      
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="tel:+359898340982" class="bg-white text-primary px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg">
+          📞 089 834 0982
+        </a>
+        <a href="/book" class="bg-accent text-white px-8 py-4 rounded-lg font-semibold hover:bg-accent-dark transition-colors shadow-lg">
+          Book Service Online
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Schema Markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Appliance Repair Services - RotoRem Varna",
+    "description": "Professional appliance repair services in Varna - washing machines, dishwashers, ovens, electrical services. Fast on-site service with warranty.",
+    "url": "https://www.rotorem.bg/en/services",
+    "mainEntity": {
+      "@type": "LocalBusiness",
+      "name": "RotoRem Varna",
+      "telephone": "+359898340982",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Varna",
+        "addressCountry": "BG"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Appliance Repair Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Washing Machine Repair",
+              "url": "https://www.rotorem.bg/en/services/washing-machine-repair"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Dishwasher Repair",
+              "url": "https://www.rotorem.bg/en/services/dishwasher-repair"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Oven Repair",
+              "url": "https://www.rotorem.bg/en/services/oven-repair"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Electrical Services",
+              "url": "https://www.rotorem.bg/en/services/electrical-services"
+            }
+          }
+        ]
+      }
+    }
+  }
+  </script>
+</Layout>
