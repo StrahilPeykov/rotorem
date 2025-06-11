@@ -1,0 +1,312 @@
+---
+import Layout from '../../../layouts/Base.astro';
+import Contact from '../../../components/Contact.astro';
+import Map from '../../../components/Map.astro';
+import { getLangFromUrl, useTranslations } from '../../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const title = 'Contact for Appliance Repair | RotoRem Varna';
+const description = 'Contact RotoRem Varna for professional appliance repair ✓ Serving all Varna ✓ Working hours ✓ Address ✓ Phone 089 834 0982 ✓ Fast response';
+---
+
+<Layout title={title} description={description}>
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-r from-indigo-600 to-purple-700 text-white py-16">
+    <div class="container max-w-4xl text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-6">
+        Contact Us
+      </h1>
+      <p class="text-xl md:text-2xl text-indigo-100 max-w-3xl mx-auto mb-8">
+        Have a broken appliance? Contact us for professional home appliance repair in Varna and surrounding areas.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="tel:+359898340982" class="bg-white text-indigo-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg">
+          📞 089 834 0982
+        </a>
+        <a href="/book" class="bg-amber-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-amber-600 transition-colors shadow-lg">
+          Book Service Online
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Contact Cards -->
+  <section class="py-16 bg-gradient-to-b from-white to-gray-50">
+    <div class="container">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">How You Can Contact Us</h2>
+        <div class="w-20 h-1 bg-indigo-500 mx-auto"></div>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <!-- Phone -->
+        <a href="tel:+359898340982" class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all border border-gray-100 text-center group hover:-translate-y-2">
+          <div class="w-16 h-16 bg-green-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">Call Us</h3>
+          <p class="text-gray-600 mb-2">089 834 0982</p>
+          <p class="text-sm text-green-600 font-medium">Fastest way to contact</p>
+        </a>
+
+        <!-- Email -->
+        <a href="mailto:n.ivanov.ivanov@abv.bg" class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all border border-gray-100 text-center group hover:-translate-y-2">
+          <div class="w-16 h-16 bg-blue-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">Email</h3>
+          <p class="text-gray-600 mb-2 text-sm">n.ivanov.ivanov@abv.bg</p>
+          <p class="text-sm text-blue-600 font-medium">For written inquiries</p>
+        </a>
+
+        <!-- Online Booking -->
+        <a href="/book" class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all border border-gray-100 text-center group hover:-translate-y-2">
+          <div class="w-16 h-16 bg-amber-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">Online Booking</h3>
+          <p class="text-gray-600 mb-2">24/7 available</p>
+          <p class="text-sm text-amber-600 font-medium">Convenient and fast</p>
+        </a>
+
+        <!-- Emergency -->
+        <div class="bg-white p-6 rounded-xl shadow-lg border border-red-200 text-center">
+          <div class="w-16 h-16 bg-red-500 text-white rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+              <line x1="12" y1="9" x2="12" y2="13"/>
+              <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">Emergency</h3>
+          <p class="text-gray-600 mb-2">089 834 0982</p>
+          <p class="text-sm text-red-600 font-medium">For urgent situations</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Contact Component -->
+  <Contact />
+
+  <!-- Working Hours & Service Info -->
+  <section class="py-16 bg-white">
+    <div class="container">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">Working Hours & Services</h2>
+        <div class="w-20 h-1 bg-indigo-500 mx-auto"></div>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Working Hours -->
+        <div class="bg-gradient-to-br from-indigo-50 to-indigo-100 p-8 rounded-2xl shadow-lg border border-indigo-200">
+          <h3 class="text-2xl font-semibold text-indigo-900 mb-6 flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 mr-3 text-indigo-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+            Working Hours
+          </h3>
+          
+          <div class="space-y-4">
+            <div class="flex justify-between items-center bg-white/70 p-4 rounded-lg">
+              <span class="font-medium text-indigo-900">Monday - Friday</span>
+              <span class="font-bold text-indigo-700 bg-white px-3 py-1 rounded-full">8:00 - 19:00</span>
+            </div>
+            <div class="flex justify-between items-center bg-white/70 p-4 rounded-lg">
+              <span class="font-medium text-indigo-900">Saturday</span>
+              <span class="font-bold text-indigo-700 bg-white px-3 py-1 rounded-full">9:00 - 15:00</span>
+            </div>
+            <div class="flex justify-between items-center bg-white/70 p-4 rounded-lg">
+              <span class="font-medium text-indigo-900">Sunday</span>
+              <span class="font-bold text-red-600 bg-white px-3 py-1 rounded-full">Closed</span>
+            </div>
+          </div>
+          
+          <div class="mt-6 p-4 bg-white/50 rounded-lg">
+            <p class="text-sm text-indigo-800">
+              💡 <strong>Tip:</strong> For fastest response, call during working hours or book online.
+            </p>
+          </div>
+        </div>
+
+        <!-- Service Information -->
+        <div class="bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-2xl shadow-lg border border-green-200">
+          <h3 class="text-2xl font-semibold text-green-900 mb-6 flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 mr-3 text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            Service Information
+          </h3>
+          
+          <div class="space-y-4">
+            <div class="bg-white/70 p-4 rounded-lg">
+              <h4 class="font-semibold text-green-900 mb-2">💰 Diagnosis</h4>
+              <p class="text-sm text-green-800">Only 30 BGN including on-site visit</p>
+            </div>
+            
+            <div class="bg-white/70 p-4 rounded-lg">
+              <h4 class="font-semibold text-green-900 mb-2">⚡ Response Time</h4>
+              <p class="text-sm text-green-800">In most cases - same day</p>
+            </div>
+            
+            <div class="bg-white/70 p-4 rounded-lg">
+              <h4 class="font-semibold text-green-900 mb-2">🛡️ Warranty</h4>
+              <p class="text-sm text-green-800">Warranty on all repairs</p>
+            </div>
+            
+            <div class="bg-white/70 p-4 rounded-lg">
+              <h4 class="font-semibold text-green-900 mb-2">📍 Service Area</h4>
+              <p class="text-sm text-green-800">All Varna and surrounding areas (up to 20km)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map Component -->
+  <Map />
+
+  <!-- FAQ Section -->
+  <section class="py-16 bg-gradient-to-b from-gray-50 to-white">
+    <div class="container">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+        <div class="w-20 h-1 bg-indigo-500 mx-auto"></div>
+      </div>
+      
+      <div class="max-w-3xl mx-auto">
+        <div class="space-y-4">
+          <details class="group bg-white p-6 rounded-lg shadow-md border border-gray-200">
+            <summary class="flex justify-between items-center cursor-pointer">
+              <h3 class="text-lg font-semibold text-gray-900">How can I book a repair appointment?</h3>
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </summary>
+            <div class="mt-4 text-gray-700">
+              <p>You can contact us in several ways:</p>
+              <ul class="mt-2 list-disc list-inside space-y-1">
+                <li>Call us at 089 834 0982</li>
+                <li>Book online through our website</li>
+                <li>Send an email to n.ivanov.ivanov@abv.bg</li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="group bg-white p-6 rounded-lg shadow-md border border-gray-200">
+            <summary class="flex justify-between items-center cursor-pointer">
+              <h3 class="text-lg font-semibold text-gray-900">How long does it take for you to arrive?</h3>
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </summary>
+            <div class="mt-4 text-gray-700">
+              <p>In most cases we can come the same day you call. For emergencies we try to respond within 2-4 hours.</p>
+            </div>
+          </details>
+
+          <details class="group bg-white p-6 rounded-lg shadow-md border border-gray-200">
+            <summary class="flex justify-between items-center cursor-pointer">
+              <h3 class="text-lg font-semibold text-gray-900">Do you provide service on weekends?</h3>
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </summary>
+            <div class="mt-4 text-gray-700">
+              <p>We work on Saturday from 9:00 to 15:00. We're closed on Sunday, but you can leave a message and we'll contact you on Monday.</p>
+            </div>
+          </details>
+
+          <details class="group bg-white p-6 rounded-lg shadow-md border border-gray-200">
+            <summary class="flex justify-between items-center cursor-pointer">
+              <h3 class="text-lg font-semibold text-gray-900">What are your prices?</h3>
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </summary>
+            <div class="mt-4 text-gray-700">
+              <p>Diagnosis costs 30 BGN and includes on-site visit, inspection and problem diagnosis. Repair cost is discussed after diagnosis.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="py-16 bg-gradient-to-r from-indigo-600 to-purple-700 text-white">
+    <div class="container text-center">
+      <h2 class="text-3xl font-bold mb-4">Ready to Contact Us?</h2>
+      <p class="text-xl mb-8 text-indigo-100">Need repair? Don't wait - contact us now!</p>
+      
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="tel:+359898340982" class="bg-white text-indigo-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg">
+          📞 089 834 0982
+        </a>
+        <a href="/book" class="bg-amber-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-amber-600 transition-colors shadow-lg">
+          Book Service Online
+        </a>
+      </div>
+      
+      <p class="mt-6 text-indigo-200">
+        Professional Service • Quality Guarantee • Serving All Varna
+      </p>
+    </div>
+  </section>
+
+  <!-- Schema Markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact - RotoRem Varna",
+    "description": "Contact RotoRem Varna for professional appliance repair. Phone 089 834 0982, online booking, serving all Varna.",
+    "url": "https://www.rotorem.bg/en/contact",
+    "mainEntity": {
+      "@type": "LocalBusiness",
+      "name": "RotoRem Varna",
+      "telephone": "+359898340982",
+      "email": "n.ivanov.ivanov@abv.bg",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Varna",
+        "addressCountry": "BG"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "08:00",
+          "closes": "19:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "09:00",
+          "closes": "15:00"
+        }
+      ],
+      "areaServed": {
+        "@type": "GeoCircle",
+        "geoMidpoint": {
+          "@type": "GeoCoordinates",
+          "latitude": 43.2141,
+          "longitude": 27.9147
+        },
+        "geoRadius": "20000"
+      }
+    }
+  }
+  </script>
+</Layout>
