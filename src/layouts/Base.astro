@@ -16,6 +16,14 @@ const t = useTranslations(lang);
 
 const isEN = lang === 'en';
 
+// Navigation paths based on language
+const navPaths = {
+  services: isEN ? '/en/services' : '/services',
+  reviews: isEN ? '/en/reviews' : '/reviews',
+  contact: isEN ? '/en/contact' : '/contact',
+  home: isEN ? '/en' : '/'
+};
+
 const {
   title = isEN ? 'RotoRem Varna | Appliance Repair Services' : 'РотоРем Варна | Ремонт на битова техника',
   description = isEN 
@@ -343,7 +351,7 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
     <header class="py-4 bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
       <div class="container flex justify-between items-center">
         <!-- Logo using favicon directly with perfect baseline alignment -->
-        <a href={isEN ? '/en' : '/'} class="flex items-end gap-3 group">
+        <a href={navPaths.home} class="flex items-end gap-3 group">
           <!-- SVG Logo from favicon - made bigger -->
           <div class="w-12 h-12 flex-shrink-0">
             <img 
@@ -361,9 +369,9 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
         </a>
 
         <div class="flex gap-4 md:gap-8 items-center">
-          <!-- Desktop navigation -->
+          <!-- Desktop navigation - Mix of dedicated pages and modal -->
           <nav class="hidden md:flex gap-6">
-            <a href="#services" class="text-gray-700 hover:text-primary font-medium font-heading">
+            <a href={navPaths.services} class="text-gray-700 hover:text-primary font-medium font-heading">
               {t('nav.services')}
             </a>
             <button 
@@ -372,7 +380,7 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
             >
               {t('nav.reviews')}
             </button>
-            <a href="#contact" class="text-gray-700 hover:text-primary font-medium font-heading">
+            <a href={navPaths.contact} class="text-gray-700 hover:text-primary font-medium font-heading">
               {t('nav.contact')}
             </a>
           </nav>
@@ -406,9 +414,9 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
             </button>
           </div>
           
-          <!-- Mobile menu links -->
+          <!-- Mobile menu links - Mix of pages and modal -->
           <nav class="flex flex-col py-4">
-            <a href="#services" class="py-3 px-4 text-gray-700 hover:bg-gray-100 active:bg-gray-200 font-heading">
+            <a href={navPaths.services} class="py-3 px-4 text-gray-700 hover:bg-gray-100 active:bg-gray-200 font-heading">
               {t('nav.services')}
             </a>
             <button 
@@ -417,7 +425,7 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
             >
               {t('nav.reviews')}
             </button>
-            <a href="#contact" class="py-3 px-4 text-gray-700 hover:bg-gray-100 active:bg-gray-200 font-heading">
+            <a href={navPaths.contact} class="py-3 px-4 text-gray-700 hover:bg-gray-100 active:bg-gray-200 font-heading">
               {t('nav.contact')}
             </a>
             <a href="#faq" class="py-3 px-4 text-gray-700 hover:bg-gray-100 active:bg-gray-200 font-heading">
@@ -535,20 +543,30 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
             </ul>
           </div>
           
-          <!-- Quick links -->
+          <!-- Quick links - Mix of modal and dedicated pages -->
           <div>
             <h3 class="font-semibold text-lg mb-4 font-heading">
               {isEN ? 'Quick Links' : 'Бързи връзки'}
             </h3>
             <ul class="space-y-2 text-gray-300">
               <li>
-                <a href="#services" class="hover:text-white font-heading">{t('nav.services')}</a>
+                <a href={navPaths.services} class="hover:text-white font-heading">{t('nav.services')}</a>
               </li>
               <li>
-                <a href="#reviews" class="hover:text-white font-heading">{t('nav.reviews')}</a>
+                <button 
+                  id="reviews-modal-trigger-footer"
+                  class="hover:text-white font-heading text-left"
+                >
+                  {t('nav.reviews')}
+                </button>
               </li>
               <li>
-                <a href="#contact" class="hover:text-white font-heading">{t('nav.contact')}</a>
+                <a href={navPaths.reviews} class="hover:text-white font-heading text-sm text-gray-400">
+                  → {isEN ? 'All Reviews Page' : 'Всички отзиви'}
+                </a>
+              </li>
+              <li>
+                <a href={navPaths.contact} class="hover:text-white font-heading">{t('nav.contact')}</a>
               </li>
               <li>
                 <a href="#faq" class="hover:text-white font-heading">{t('nav.faq')}</a>
@@ -637,6 +655,7 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
       // Reviews modal functionality
       const modalTrigger = document.getElementById('reviews-modal-trigger');
       const modalTriggerMobile = document.getElementById('reviews-modal-trigger-mobile');
+      const modalTriggerFooter = document.getElementById('reviews-modal-trigger-footer');
       const modal = document.getElementById('reviews-modal');
       const closeModal = document.getElementById('close-reviews-modal');
       
@@ -665,6 +684,9 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
       
       // Open modal from mobile trigger
       modalTriggerMobile?.addEventListener('click', openReviewsModal);
+      
+      // Open modal from footer trigger
+      modalTriggerFooter?.addEventListener('click', openReviewsModal);
       
       // Close modal
       closeModal?.addEventListener('click', closeReviewsModal);
