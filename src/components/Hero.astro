@@ -73,15 +73,20 @@ const reviews = [
 <section class="relative overflow-hidden pb-8">
   <!-- Background image with gradient overlay for both mobile and desktop -->
   <div class="absolute inset-0 z-0">
-    <img 
-      src="/img/hero.webp" 
-      alt="" 
-      class="w-full h-full object-cover object-center"
-      width="1920"
-      height="1080"
-      fetchpriority="high"
-      decoding="async"
-    />
+    <!-- Multiple format sources for better performance -->
+    <picture>
+      <source srcset="/img/hero.avif" type="image/avif">
+      <source srcset="/img/hero.webp" type="image/webp">
+      <img 
+        src="/img/hero.webp" 
+        alt="" 
+        class="w-full h-full object-cover object-center"
+        width="1920"
+        height="1080"
+        fetchpriority="high"
+        decoding="async"
+      />
+    </picture>
     <!-- Darkened overlay for good text contrast on ALL screen sizes -->
     <div class="absolute inset-0 bg-gradient-to-r from-blue-900/70 to-blue-600/50"></div>
   </div>

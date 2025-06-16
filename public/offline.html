@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Няма интернет връзка | РотоРем Варна</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 600px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 30px;
+            opacity: 0.8;
+        }
+        
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        
+        .contact-info {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .phone {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #fbbf24;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px 0;
+        }
+        
+        .retry-btn {
+            background: #f59e0b;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+        
+        .retry-btn:hover {
+            background: #d97706;
+            transform: translateY(-2px);
+        }
+        
+        .service-info {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </div>
+        
+        <h1>Няма интернет връзка</h1>
+        <p>Изглежда сте офлайн. Моля проверете интернет връзката си и опитайте отново.</p>
+        
+        <div class="contact-info">
+            <h3>Нуждаете се от спешен ремонт?</h3>
+            <p>Обадете се директно:</p>
+            <a href="tel:+359898340982" class="phone">📞 089 834 0982</a>
+            <div class="service-info">
+                <p><strong>РотоРем Варна</strong></p>
+                <p>Професионален ремонт на битова техника</p>
+                <p>Диагностика: 30 лв. • Обслужване в цяла Варна</p>
+            </div>
+        </div>
+        
+        <button class="retry-btn" onclick="window.location.reload()">
+            🔄 Опитайте отново
+        </button>
+        
+        <div class="service-info">
+            <p>Когато се върне интернет връзката, ще можете да:</p>
+            <p>• Запазите час онлайн<br>
+            • Прегледате нашите услуги<br>
+            • Видите отзиви от клиенти</p>
+        </div>
+    </div>
+
+    <script>
+        // Auto-retry when back online
+        window.addEventListener('online', function() {
+            window.location.reload();
+        });
+        
+        // Check connection periodically
+        setInterval(function() {
+            if (navigator.onLine) {
+                fetch('/', { method: 'HEAD', cache: 'no-store' })
+                    .then(function() {
+                        window.location.reload();
+                    })
+                    .catch(function() {
+                        // Still offline
+                    });
+            }
+        }, 30000); // Check every 30 seconds
+    </script>
+</body>
+</html>

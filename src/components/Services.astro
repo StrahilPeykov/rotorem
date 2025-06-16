@@ -135,21 +135,27 @@ const icons: Record<IconKey, string> = {
     
     <!-- Mobile Service Cards -->
     <div class="grid gap-6 md:gap-8 md:grid-cols-2 lg:grid-cols-2">
-      {services.map(service => {
+      {services.map((service, index) => {
         const gradientClass = serviceColors[service.icon as keyof typeof serviceColors] || 'from-gray-700/70 to-gray-600/70';
         
         return (
           <div class="relative rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow group">
             <!-- Background image with enhanced gradient overlay -->
             <div class="absolute inset-0">
-              <img 
-                src={`/img/${service.icon}.webp`}
-                alt=""
-                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                width="600"
-                height="400"
-                loading="lazy"
-              />
+              <!-- Optimized images with multiple formats and lazy loading -->
+              <picture>
+                <source srcset={`/img/${service.icon}.avif`} type="image/avif">
+                <source srcset={`/img/${service.icon}.webp`} type="image/webp">
+                <img 
+                  src={`/img/${service.icon}.webp`}
+                  alt=""
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  width="600"
+                  height="400"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <!-- Gradient overlay with improved contrast for mobile -->
               <div class={`absolute inset-0 bg-gradient-to-br ${gradientClass} group-hover:opacity-75 transition-opacity duration-300`}></div>
               

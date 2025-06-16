@@ -48,9 +48,14 @@ export default defineConfig({
         output: {
           manualChunks: {
             vendor: ['astro'],
+            utils: ['./src/i18n/utils.ts'],
+            components: ['./src/components/Hero.astro', './src/components/Services.astro']
           },
         },
       },
     },
+    ssr: {
+      noExternal: ['three', 'astro-seo']
+    }
   },
 });
