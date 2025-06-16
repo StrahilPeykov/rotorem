@@ -20,6 +20,37 @@ export default defineConfig({
       },
       changefreq: 'weekly',
       priority: 0.7,
+      serialize(item) {
+        // Set higher priority for main pages
+        if (item.url.endsWith('/') || 
+            item.url.endsWith('/en') || 
+            item.url.includes('/services') ||
+            item.url.includes('/contact')) {
+          item.priority = 0.9;
+        }
+        
+        // Set lower priority for thank you pages
+        if (item.url.includes('/thankyou')) {
+          item.priority = 0.1;
+        }
+        
+        return item;
+      },
     }),
   ],
+  build: {
+    inlineStylesheets: 'auto',
+  },
+  compressHTML: true,
+  vite: {
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            vendor: ['astro'],
+          },
+        },
+      },
+    },
+  },
 });

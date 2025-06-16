@@ -1,0 +1,296 @@
+---
+import Layout from '../../../layouts/Base.astro';
+import { getLangFromUrl, useTranslations } from '../../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const title = 'Frequently Asked Questions about Appliance Repair | RotoRem Varna';
+const description = 'Answers to the most common questions about appliance repair in Varna ✓ Prices ✓ Warranty ✓ Repair time ✓ Service areas ☎ 089 834 0982';
+
+// Extended FAQ questions in English
+const faqs = [
+  {
+    category: 'General Questions',
+    questions: [
+      {
+        question: 'How much does the diagnostic service cost?',
+        answer: 'Our diagnostic fee is 30 BGN, which covers the home visit, inspection, and diagnosis of your appliance issue. This fee is applied regardless of whether you proceed with the repair.'
+      },
+      {
+        question: 'Do you provide same-day repairs?',
+        answer: 'Yes, in most cases we can complete the repair on the same day as our visit. This depends on the complexity of the issue and whether we have the necessary parts on hand. Our technician will give you a clear timeline after diagnosis.'
+      },
+      {
+        question: 'What areas do you service?',
+        answer: 'We service Varna city and surrounding areas within a 20km radius, including all neighborhoods like Chayka, Mladost, Asparuhovo, Levski, Vladislav Varnenchik, and the city center, as well as nearby villages and towns.'
+      },
+      {
+        question: 'Do you provide warranty on repairs?',
+        answer: 'Yes, we provide warranty on our repairs. The specific warranty period depends on the type of repair and will be discussed during your service.'
+      }
+    ]
+  },
+  {
+    category: 'Washing Machines',
+    questions: [
+      {
+        question: 'What washing machine problems do you repair most often?',
+        answer: 'The most common issues include: water leaks, non-working spin cycle, water drainage problems, malfunctioning programs, noise during operation, and water heating issues.'
+      },
+      {
+        question: 'Do you repair all washing machine brands?',
+        answer: 'Yes, we repair washing machines from all major brands including Bosch, Samsung, LG, Whirlpool, Indesit, Hotpoint, Candy, Beko, and many others.'
+      },
+      {
+        question: 'How long does a washing machine repair take?',
+        answer: 'In most cases, the repair is completed within 1-2 hours on the same day. More complex repairs may take longer or require a follow-up visit if we need to order specific parts.'
+      }
+    ]
+  },
+  {
+    category: 'Dishwashers',
+    questions: [
+      {
+        question: 'What should I do if my dishwasher is not cleaning well?',
+        answer: 'The most common causes are clogged filters, worn spray arms, or water pressure issues. Our technician will diagnose the exact cause and fix it.'
+      },
+      {
+        question: 'Why is my dishwasher leaking water?',
+        answer: 'Leaks can be caused by worn door seals, damaged hoses, or pump problems. We recommend immediate inspection to avoid further damage.'
+      },
+      {
+        question: 'Can you repair built-in dishwashers?',
+        answer: 'Yes, we repair all types of dishwashers including built-in models. Our technician has experience with dismounting and mounting built-in appliances when necessary.'
+      }
+    ]
+  },
+  {
+    category: 'Ovens and Cooktops',
+    questions: [
+      {
+        question: 'Do you repair built-in ovens?',
+        answer: 'Yes, we repair both built-in and freestanding electric ovens. We work with all types including convection ovens and combination units.'
+      },
+      {
+        question: 'What should I do if my oven is not heating?',
+        answer: 'The most common causes are faulty heating elements, thermostat problems, or electronic control issues. Do not attempt self-repair - contact us for safe diagnosis.'
+      },
+      {
+        question: 'Can you replace heating elements?',
+        answer: 'Yes, we stock original and compatible heating elements for most oven brands. Replacement is performed professionally with warranty on the work.'
+      }
+    ]
+  },
+  {
+    category: 'Electrical Services',
+    questions: [
+      {
+        question: 'What electrical services do you offer?',
+        answer: 'We offer installation and repair of switches, outlets, lighting, repair of small electrical appliances, and diagnosis of electrical problems in the home.'
+      },
+      {
+        question: 'Do you have certifications for electrical work?',
+        answer: 'Yes, all electrical services are performed by certified electrical engineers in accordance with current safety standards.'
+      },
+      {
+        question: 'Do you provide emergency electrical repairs?',
+        answer: 'Yes, we provide emergency electrical services for situations like short circuits or power outages. Call 089 834 0982 for immediate assistance.'
+      }
+    ]
+  },
+  {
+    category: 'Pricing and Payment',
+    questions: [
+      {
+        question: 'How are repair prices determined?',
+        answer: 'Prices are based on the diagnostic fee (30 BGN) plus the cost of labor and necessary parts. You always receive a clear quote before we begin the repair.'
+      },
+      {
+        question: 'What payment methods do you accept?',
+        answer: 'We accept cash payment upon completion of the repair. For larger repairs, we can arrange bank transfer.'
+      },
+      {
+        question: 'Are there any hidden fees?',
+        answer: 'No, we have no hidden fees. All costs are discussed in advance and you receive a clear quote before work begins.'
+      }
+    ]
+  },
+  {
+    category: 'Working Hours and Scheduling',
+    questions: [
+      {
+        question: 'What are your working hours?',
+        answer: 'We work Monday through Friday from 8:00 AM to 5:00 PM. We do not work weekends, but you can leave a message and we will contact you on Monday.'
+      },
+      {
+        question: 'How can I schedule an appointment?',
+        answer: 'You can call 089 834 0982 or book online through our website. Usually we can come the same day.'
+      },
+      {
+        question: 'How far in advance should I schedule?',
+        answer: 'For regular repairs, we recommend calling at least a few hours in advance. For emergencies, we try to respond as quickly as possible.'
+      }
+    ]
+  }
+];
+---
+
+<Layout title={title} description={description}>
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-r from-primary to-primary-dark text-white py-16">
+    <div class="container max-w-4xl text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-6">
+        Frequently Asked Questions
+      </h1>
+      <p class="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto mb-8">
+        Find answers to the most common questions about our appliance repair services in Varna.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="tel:+359898340982" class="bg-white text-primary px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg">
+          📞 089 834 0982
+        </a>
+        <a href="/en/contact" class="bg-accent text-white px-8 py-4 rounded-lg font-semibold hover:bg-accent-dark transition-colors shadow-lg">
+          Contact Us
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Content -->
+  <section class="py-16">
+    <div class="container max-w-4xl">
+      <!-- Quick Navigation -->
+      <div class="mb-12">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Question Categories</h2>
+        <div class="flex flex-wrap justify-center gap-3">
+          {faqs.map((category, index) => (
+            <a 
+              href={`#category-${index}`}
+              class="px-4 py-2 bg-blue-100 text-blue-800 rounded-full hover:bg-blue-200 transition-colors text-sm font-medium"
+            >
+              {category.category}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- FAQ Categories -->
+      {faqs.map((category, categoryIndex) => (
+        <div id={`category-${categoryIndex}`} class="mb-12">
+          <h2 class="text-2xl font-bold text-gray-900 mb-6 border-b-2 border-primary pb-2">
+            {category.category}
+          </h2>
+          
+          <div class="space-y-4">
+            {category.questions.map((faq, faqIndex) => (
+              <details class="group bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden">
+                <summary class="flex justify-between items-center p-6 cursor-pointer hover:bg-gray-50">
+                  <h3 class="text-lg font-semibold text-gray-900 pr-4">{faq.question}</h3>
+                  <div class="flex-shrink-0 text-gray-500 transition-transform duration-300 group-open:rotate-180">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                  </div>
+                </summary>
+                <div class="px-6 pb-6 text-gray-700 border-t border-gray-100">
+                  <p class="pt-4">{faq.answer}</p>
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+      ))}
+
+      <!-- Contact CTA -->
+      <div class="mt-16 bg-gradient-to-r from-primary to-primary-dark text-white p-8 rounded-2xl shadow-xl text-center">
+        <h2 class="text-2xl font-bold mb-4">Didn't find the answer to your question?</h2>
+        <p class="text-xl mb-6 text-blue-100">
+          Contact us directly for personalized assistance
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="tel:+359898340982" class="bg-white text-primary px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg">
+            📞 089 834 0982
+          </a>
+          <a href="/en/contact" class="bg-accent text-white px-8 py-4 rounded-lg font-semibold hover:bg-accent-dark transition-colors shadow-lg">
+            Contact Us
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Schema Markup for FAQ Page -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "name": "Frequently Asked Questions - RotoRem Varna",
+    "description": "Answers to the most common questions about appliance repair in Varna",
+    "url": "https://www.rotorem.bg/en/faq",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How much does the diagnostic service cost?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Our diagnostic fee is 30 BGN, which covers the home visit, inspection, and diagnosis of your appliance issue."
+        }
+      },
+      {
+        "@type": "Question", 
+        "name": "Do you provide same-day repairs?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, in most cases we can complete the repair on the same day as our visit."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What areas do you service?", 
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We service Varna city and surrounding areas within a 20km radius, including all neighborhoods and nearby villages and towns."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you provide warranty on repairs?",
+        "acceptedAnswer": {
+          "@type": "Answer", 
+          "text": "Yes, we provide warranty on our repairs. The specific warranty period depends on the type of repair."
+        }
+      }
+    ]
+  }
+  </script>
+</Layout>
+
+<style>
+  /* Smooth scrolling for anchor links */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Custom styling for details elements */
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+  
+  /* Animation for opening details */
+  details[open] > div {
+    animation: slideDown 0.3s ease-out;
+  }
+  
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

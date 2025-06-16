@@ -13,7 +13,6 @@ interface Props {
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-
 const isEN = lang === 'en';
 
 // Navigation paths based on language
@@ -35,7 +34,10 @@ const {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const route = getRouteFromUrl(Astro.url);
-const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'), Astro.site);
+
+// Generate hreflang URLs
+const bgURL = new URL(getLocalizedPath(route, 'bg'), Astro.site);
+const enURL = new URL(getLocalizedPath(route, 'en'), Astro.site);
 ---
 
 <!DOCTYPE html>
@@ -55,47 +57,50 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
     
     {noindex && <meta name="robots" content="noindex" />}
     
+    <!-- Canonical and hreflang -->
+    <link rel="canonical" href={canonicalURL.toString()} />
+    <link rel="alternate" hreflang="bg" href={bgURL.toString()} />
+    <link rel="alternate" hreflang="en" href={enURL.toString()} />
+    <link rel="alternate" hreflang="x-default" href={bgURL.toString()} />
+    
     <SEO
       title={title}
       description={description}
-      canonical={canonicalURL.toString()}
       openGraph={{
         basic: {
           title,
           type: 'website',
           image,
+          url: canonicalURL.toString(),
         },
         optional: {
           description,
-          locale: lang,
+          locale: lang === 'bg' ? 'bg_BG' : 'en_US',
           siteName: isEN ? 'RotoRem Varna' : 'РотоРем Варна',
         },
       }}
       extend={{
-        link: [
-          {
-            rel: 'alternate',
-            hreflang: lang === 'bg' ? 'en' : 'bg',
-            href: alternateURL.toString(),
-          },
-        ],
         meta: [
           { name: 'twitter:card', content: 'summary_large_image' },
           { name: 'twitter:title', content: title },
           { name: 'twitter:description', content: description },
+          { name: 'twitter:image', content: new URL(image, Astro.site).toString() },
           { name: 'theme-color', content: '#2563eb' },
+          { name: 'format-detection', content: 'telephone=yes' },
         ],
       }}
     />
     
-    <!-- LocalBusiness Schema with Services -->
+    <!-- Enhanced LocalBusiness Schema with Services and FAQs -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
-        "name": "РотоРем Варна",
-        "alternateName": "RotoRem Varna",
-        "description": "Професионален ремонт на битова техника във Варна - перални, съдомиялни, фурни, бойлери",
+        "name": isEN ? "RotoRem Varna" : "РотоРем Варна",
+        "alternateName": "RotoRem",
+        "description": isEN 
+          ? "Professional appliance repair services in Varna - washing machines, dishwashers, ovens, electrical systems"
+          : "Професионален ремонт на битова техника във Варна - перални, съдомиялни, фурни, електрически системи",
         "url": "https://www.rotorem.bg",
         "telephone": "+359898340982",
         "email": "n.ivanov.ivanov@abv.bg",
@@ -143,42 +148,54 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
         "logo": "https://www.rotorem.bg/favicon.svg",
         "hasOfferCatalog": {
           "@type": "OfferCatalog",
-          "name": "Услуги за ремонт на битова техника",
+          "name": isEN ? "Appliance Repair Services" : "Услуги за ремонт на битова техника",
           "itemListElement": [
             {
               "@type": "Offer",
               "itemOffered": {
                 "@type": "Service",
-                "name": "Ремонт на перални машини",
-                "description": "Професионален ремонт на перални машини всички марки във Варна",
-                "serviceType": "Appliance Repair"
+                "name": isEN ? "Washing Machine Repair" : "Ремонт на перални машини",
+                "description": isEN 
+                  ? "Professional washing machine repair for all brands in Varna"
+                  : "Професионален ремонт на перални машини всички марки във Варна",
+                "serviceType": "Appliance Repair",
+                "url": isEN ? "https://www.rotorem.bg/en/services/washing-machine-repair" : "https://www.rotorem.bg/services/washing-machine-repair"
               }
             },
             {
               "@type": "Offer", 
               "itemOffered": {
                 "@type": "Service",
-                "name": "Ремонт на съдомиялни машини",
-                "description": "Ремонт на съдомиялни машини на място във Варна",
-                "serviceType": "Appliance Repair"
+                "name": isEN ? "Dishwasher Repair" : "Ремонт на съдомиялни машини",
+                "description": isEN 
+                  ? "On-site dishwasher repair in Varna"
+                  : "Ремонт на съдомиялни машини на място във Варна",
+                "serviceType": "Appliance Repair",
+                "url": isEN ? "https://www.rotorem.bg/en/services/dishwasher-repair" : "https://www.rotorem.bg/services/dishwasher-repair"
               }
             },
             {
               "@type": "Offer",
               "itemOffered": {
                 "@type": "Service", 
-                "name": "Ремонт на фурни и котлони",
-                "description": "Ремонт на електрически фурни и котлони във Варна",
-                "serviceType": "Appliance Repair"
+                "name": isEN ? "Oven and Cooktop Repair" : "Ремонт на фурни и котлони",
+                "description": isEN 
+                  ? "Electric oven and cooktop repair in Varna"
+                  : "Ремонт на електрически фурни и котлони във Варна",
+                "serviceType": "Appliance Repair",
+                "url": isEN ? "https://www.rotorem.bg/en/services/oven-repair" : "https://www.rotorem.bg/services/oven-repair"
               }
             },
             {
               "@type": "Offer",
               "itemOffered": {
                 "@type": "Service", 
-                "name": "Електрически услуги",
-                "description": "Монтаж и ремонт на електрически инсталации във Варна",
-                "serviceType": "Electrical Service"
+                "name": isEN ? "Electrical Services" : "Електрически услуги",
+                "description": isEN 
+                  ? "Installation and repair of electrical systems in Varna"
+                  : "Монтаж и ремонт на електрически инсталации във Варна",
+                "serviceType": "Electrical Service",
+                "url": isEN ? "https://www.rotorem.bg/en/services/electrical-services" : "https://www.rotorem.bg/services/electrical-services"
               }
             }
           ]
@@ -197,11 +214,50 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
       }
     </script>
     
-    <!-- Google Fonts - Added Montserrat -->
+    <!-- Google Fonts with font-display optimization -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
+    <!-- Web Vitals and Analytics -->
+    <script type="module">
+      // Web Vitals monitoring
+      import {getCLS, getFID, getFCP, getLCP, getTTFB} from 'https://unpkg.com/web-vitals@3/dist/web-vitals.js';
+
+      function sendToAnalytics(metric) {
+        // Send to Google Analytics 4
+        if (typeof gtag !== 'undefined') {
+          gtag('event', metric.name, {
+            event_category: 'Web Vitals',
+            event_label: metric.id,
+            value: Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value),
+            non_interaction: true,
+          });
+        }
+        
+        // Log to console in development
+        if (location.hostname === 'localhost') {
+          console.log('Web Vital:', metric.name, metric.value);
+        }
+      }
+
+      getCLS(sendToAnalytics);
+      getFID(sendToAnalytics);
+      getFCP(sendToAnalytics);
+      getLCP(sendToAnalytics);
+      getTTFB(sendToAnalytics);
+
+      // 404 monitoring
+      if (document.title.includes('404') || document.title.includes('Not Found')) {
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'page_not_found', {
+            event_category: 'Errors',
+            event_label: window.location.pathname,
+          });
+        }
+      }
+    </script>
+
     <style is:global>
       @tailwind base;
       @tailwind components;
@@ -422,7 +478,7 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
             <a href={navPaths.contact} class="py-3 px-4 text-gray-700 hover:bg-gray-100 active:bg-gray-200 font-heading">
               {t('nav.contact')}
             </a>
-            <a href="#faq" class="py-3 px-4 text-gray-700 hover:bg-gray-100 active:bg-gray-200 font-heading">
+            <a href={isEN ? '/en/faq' : '/faq'} class="py-3 px-4 text-gray-700 hover:bg-gray-100 active:bg-gray-200 font-heading">
               {t('nav.faq')}
             </a>
           </nav>
@@ -435,7 +491,7 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
             </div>
           </div>
           
-          <!-- Mobile call-to-action - REMOVED BOOKING BUTTON -->
+          <!-- Mobile call-to-action -->
           <div class="mt-auto p-4 border-t border-gray-200">
             <a href="tel:+359898340982" class="btn-primary w-full flex items-center justify-center shadow-sm mb-3">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -443,14 +499,6 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
               </svg>
               {isEN ? 'Call Now' : 'Обадете се сега'}
             </a>
-            <!--
-            <a href="/book" class="btn-cta w-full flex items-center justify-center shadow-sm">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path>
-              </svg>
-              {isEN ? 'Book Service' : 'Запазете час'}
-            </a>
-          -->
           </div>
         </div>
       </div>
@@ -463,7 +511,7 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
       <slot />
     </main>
     
-    <!-- Floating call button - CHANGED FROM BOOKING TO CALL -->
+    <!-- Floating call button -->
     <a href="tel:+359898340982" class="floating-button" id="floating-call-btn">
       <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
@@ -550,7 +598,7 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
             </div>
           </div>
           
-          <!-- Quick links - Mix of modal and dedicated pages - REMOVED BOOKING -->
+          <!-- Quick links -->
           <div>
             <h3 class="font-semibold text-lg mb-4 font-heading">
               {isEN ? 'Quick Links' : 'Бързи връзки'}
@@ -576,15 +624,8 @@ const alternateURL = new URL(getLocalizedPath(route, lang === 'bg' ? 'en' : 'bg'
                 <a href={navPaths.contact} class="hover:text-white font-heading">{t('nav.contact')}</a>
               </li>
               <li>
-                <a href="#faq" class="hover:text-white font-heading">{t('nav.faq')}</a>
+                <a href={isEN ? '/en/faq' : '/faq'} class="hover:text-white font-heading">{t('nav.faq')}</a>
               </li>
-              <!--
-              <li>
-                <a href="/book" class="hover:text-white font-heading">
-                  {isEN ? 'Book a Service' : 'Запазете час'}
-                </a>
-              </li>
-              -->
             </ul>
           </div>
         </div>

@@ -1,6 +1,17 @@
 ---
 import { getLangFromUrl, useTranslations, getRouteFromUrl, getLocalizedPath } from '../i18n/utils';
 
+// Define a type for valid icon keys
+type IconKey = 'phone' | 'mail' | 'map' | 'clock';
+
+// Define interface for contact info items
+interface ContactInfo {
+  icon: IconKey;
+  title: string;
+  info: string;
+  link: string;
+}
+
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const isEN = lang === 'en';
@@ -68,6 +79,8 @@ const reviews = [
       class="w-full h-full object-cover object-center"
       width="1920"
       height="1080"
+      fetchpriority="high"
+      decoding="async"
     />
     <!-- Darkened overlay for good text contrast on ALL screen sizes -->
     <div class="absolute inset-0 bg-gradient-to-r from-blue-900/70 to-blue-600/50"></div>
@@ -95,15 +108,6 @@ const reviews = [
           : 'Бързи ремонти още същия ден във вашия дом.'}
       </p>
       
-      <!-- Mobile-optimized CTA buttons - stacked with larger tap targets -->
-       <!--
-      <div class="flex flex-col gap-3 mb-6">
-        <a href="/book" class="btn-cta inline-flex items-center justify-center shadow-lg py-3">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path></svg>
-          {isEN ? 'Book Service' : 'Запазете час'}
-        </a>
-        -->
-        
       <!-- Mobile-optimized CTA buttons - ONLY CALL BUTTON -->
       <div class="flex flex-col gap-3 mb-6">        
         <a href="tel:+359898340982" class="btn-primary inline-flex items-center justify-center shadow-lg py-3">
@@ -151,14 +155,6 @@ const reviews = [
         {isEN ? 'Same-day repairs!' : 'Ремонт още същия ден!'}
       </p>
       
-      <!--
-      <div class="flex flex-row justify-center gap-3">
-        <a href="/book" class="btn-cta inline-flex items-center justify-center shadow-lg">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path></svg>
-          {t('hero.cta')}
-        </a>
-        -->
-        
       <!-- ONLY CALL BUTTON for desktop too -->
       <div class="flex justify-center">        
         <a href="tel:+359898340982" class="btn-primary inline-flex items-center justify-center shadow-lg">
