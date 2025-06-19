@@ -2,7 +2,7 @@
 
 A modern, responsive website for RotoRem Varna, a professional appliance repair service based in Varna, Bulgaria. Built with Astro, TypeScript, and Tailwind CSS.
 
-## 🔧 About RotoRem
+## About RotoRem
 
 RotoRem provides professional in-home appliance repair services throughout Varna and surrounding areas (up to 20km radius). We specialize in:
 
@@ -18,7 +18,7 @@ RotoRem provides professional in-home appliance repair services throughout Varna
 - Professional warranty on all repairs
 - Serving all Varna neighborhoods
 
-## 🚀 Tech Stack
+## Tech Stack
 
 - **Framework:** [Astro 5.7.13](https://astro.build/)
 - **Styling:** [Tailwind CSS 3.4.17](https://tailwindcss.com/) + [DaisyUI 5.0.35](https://daisyui.com/)
@@ -28,7 +28,7 @@ RotoRem provides professional in-home appliance repair services throughout Varna
 - **Analytics:** Google Analytics 4
 - **Package Manager:** pnpm
 
-## 🌐 Features
+## Features
 
 ### Multi-language Support
 - **Bulgarian** (default) - Primary market
@@ -56,7 +56,7 @@ RotoRem provides professional in-home appliance repair services throughout Varna
 - Google Analytics 4 integration
 - Search engine friendly URLs
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 src/
@@ -123,7 +123,7 @@ NETLIFY_AUTH_TOKEN=your_netlify_token
 NETLIFY_SITE_ID=your_site_id
 ```
 
-## 🚀 Deployment
+## Deployment
 
 The site is configured for automatic deployment on Netlify:
 
@@ -138,7 +138,7 @@ The booking system integrates with Google Sheets via Google Apps Script:
 - Real-time availability checking
 - Email notifications for new bookings
 
-## 📱 Service Areas
+## Service Areas
 
 RotoRem serves the following areas in Varna, Bulgaria:
 - **City Center** (Център)
@@ -149,18 +149,18 @@ RotoRem serves the following areas in Varna, Bulgaria:
 - **Vladislav Varnenchik** (Владислав Варненчик)
 - **Galata** (Галата)
 
-## 📞 Contact Information
+## Contact Information
 
 - **Phone:** +359 89 834 0982
 - **Email:** n.ivanov.ivanov@abv.bg
 - **Service Area:** Varna + 20km radius
 - **Working Hours:** Monday-Friday 8:00-17:00
 
-## 🤝 Contributing
+## Contributing
 
 This is a commercial website for RotoRem Varna. For any issues or suggestions, please contact the development team.
 
-## 📄 License
+## License
 
 © 2025 RotoRem Varna. All rights reserved.
 
