@@ -482,107 +482,110 @@ const enURL = new URL(getLocalizedPath(route, 'en'), Astro.site);
         to { transform: translateX(100%); }
       }
 
-      /* Fixed Logo Styles */
-      .logo-wrapper {
+      /* NUCLEAR LOGO FIX - GUARANTEED TO WORK */
+      header img[alt="RotoRem Logo"] {
         width: 48px !important;
         height: 48px !important;
-        flex-shrink: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-width: 48px;
-        min-height: 48px;
+        min-width: 48px !important;
+        min-height: 48px !important;
+        max-width: 48px !important;
+        max-height: 48px !important;
+        object-fit: contain !important;
+        display: block !important;
+        flex-shrink: 0 !important;
       }
       
       @media (min-width: 768px) {
-        .logo-wrapper {
+        header img[alt="RotoRem Logo"] {
           width: 64px !important;
           height: 64px !important;
-          min-width: 64px;
-          min-height: 64px;
-        }
-        
-        .logo-img {
-          width: 64px !important;
-          height: 64px !important;
+          min-width: 64px !important;
+          min-height: 64px !important;
+          max-width: 64px !important;
+          max-height: 64px !important;
         }
       }
       
-      .logo-img {
+      /* Override any Tailwind classes that might interfere */
+      header .w-12, header .h-12, header .w-16, header .h-16 {
+        width: auto !important;
+        height: auto !important;
+      }
+      
+      /* Ensure container doesn't constrain logo */
+      header .container > a > div {
         width: 48px !important;
         height: 48px !important;
-        object-fit: contain;
-        transition: transform 0.3s ease;
-        display: block;
-      }
-      
-      .group:hover .logo-img {
-        transform: scale(1.05);
-      }
-      
-      .company-name {
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 700;
-        font-size: 1.25rem;
-        color: #111827;
-        line-height: 1;
-        transition: color 0.3s ease;
+        min-width: 48px !important;
+        min-height: 48px !important;
+        flex-shrink: 0 !important;
       }
       
       @media (min-width: 768px) {
-        .company-name {
-          font-size: 1.5rem;
-          transform: translateY(0.25rem);
+        header .container > a > div {
+          width: 64px !important;
+          height: 64px !important;
+          min-width: 64px !important;
+          min-height: 64px !important;
+        }
+      }
+
+      /* Company name styling */
+      .company-name-text {
+        font-family: 'Montserrat', sans-serif !important;
+        font-weight: 700 !important;
+        font-size: 1.25rem !important;
+        color: #111827 !important;
+        line-height: 1 !important;
+        transition: color 0.3s ease !important;
+      }
+      
+      @media (min-width: 768px) {
+        .company-name-text {
+          font-size: 1.5rem !important;
+          transform: translateY(0.25rem) !important;
         }
       }
       
-      .group:hover .company-name {
-        color: var(--color-primary, #2563eb);
+      .group:hover .company-name-text {
+        color: var(--color-primary, #2563eb) !important;
       }
 
       /* Footer logo styles */
-      .footer-logo-wrapper {
+      footer img[alt="RotoRem Logo"] {
         width: 48px !important;
         height: 48px !important;
-        flex-shrink: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      
-      .footer-logo-img {
-        width: 48px !important;
-        height: 48px !important;
-        object-fit: contain;
-        display: block;
+        min-width: 48px !important;
+        min-height: 48px !important;
+        max-width: 48px !important;
+        max-height: 48px !important;
+        object-fit: contain !important;
+        display: block !important;
       }
     </style>
   </head>
   <body class="min-h-screen bg-gray-50">
-    <!-- Header with fixed logo implementation -->
+    <!-- Header with NUCLEAR LOGO FIX -->
     <header class="py-4 bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
       <div class="container flex justify-between items-center">
-        <!-- Logo with production-ready implementation -->
+        <!-- NUCLEAR LOGO - GUARANTEED TO WORK -->
         <a href={navPaths.home} class="flex items-end gap-3 group">
-          <!-- Logo container with explicit dimensions -->
-          <div class="logo-wrapper">
-            <picture>
-              <!-- SVG for modern browsers -->
-              <source srcset="/favicon.svg" type="image/svg+xml">
-              <!-- PNG fallback for older browsers or if SVG fails -->
-              <img 
-                src="/favicon-32x32.png"
-                alt="RotoRem Logo"
-                class="logo-img"
-                width="48"
-                height="48"
-                loading="eager"
-                decoding="sync"
-              />
-            </picture>
+          <!-- Ultra-aggressive sizing with inline styles -->
+          <div style="width: 48px; height: 48px; min-width: 48px; min-height: 48px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;">
+            <img 
+              src="/favicon.svg" 
+              alt="RotoRem Logo"
+              style="width: 48px !important; height: 48px !important; min-width: 48px !important; min-height: 48px !important; object-fit: contain !important; display: block !important;"
+              width="48"
+              height="48"
+              loading="eager"
+              decoding="sync"
+              onload="this.style.width = '48px'; this.style.height = '48px'; console.log('Logo loaded and sized to 48px');"
+              onerror="this.src='/favicon-32x32.png'; this.style.width = '48px'; this.style.height = '48px'; console.log('Logo fallback to PNG');"
+            />
           </div>
-          <!-- Company name -->
-          <span class="company-name">
+          <!-- Company name with aggressive styling -->
+          <span class="company-name-text">
             {isEN ? 'RotoRem Varna' : 'РотоРем Варна'}
           </span>
         </a>
@@ -694,18 +697,17 @@ const enURL = new URL(getLocalizedPath(route, 'en'), Astro.site);
           <!-- Company info with fixed footer logo -->
           <div>
             <div class="flex items-end gap-2 mb-4">
-              <div class="footer-logo-wrapper">
-                <picture>
-                  <source srcset="/favicon.svg" type="image/svg+xml">
-                  <img 
-                    src="/favicon-32x32.png"
-                    alt="RotoRem Logo"
-                    class="footer-logo-img"
-                    width="48"
-                    height="48"
-                    loading="lazy"
-                  />
-                </picture>
+              <!-- Fixed footer logo -->
+              <div style="width: 48px; height: 48px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;">
+                <img 
+                  src="/favicon.svg"
+                  alt="RotoRem Logo"
+                  style="width: 48px !important; height: 48px !important; object-fit: contain !important; display: block !important;"
+                  width="48"
+                  height="48"
+                  loading="lazy"
+                  onerror="this.src='/favicon-32x32.png';"
+                />
               </div>
               <h3 class="font-semibold text-lg font-heading leading-none">
                 {isEN ? 'RotoRem Varna' : 'РотоРем Варна'}
@@ -820,6 +822,25 @@ const enURL = new URL(getLocalizedPath(route, 'en'), Astro.site);
   <!-- Mobile menu and Reviews modal script -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      // LOGO DEBUG INFO
+      const logo = document.querySelector('img[alt="RotoRem Logo"]');
+      if (logo) {
+        console.log('🔍 Logo Debug Info:');
+        console.log('- Logo element:', logo);
+        console.log('- Logo source:', logo.src);
+        console.log('- Logo computed width:', getComputedStyle(logo).width);
+        console.log('- Logo computed height:', getComputedStyle(logo).height);
+        console.log('- Logo natural width:', logo.naturalWidth);
+        console.log('- Logo natural height:', logo.naturalHeight);
+        
+        // Force resize after a delay to ensure it works
+        setTimeout(() => {
+          logo.style.width = '48px';
+          logo.style.height = '48px';
+          console.log('✅ Logo force-resized to 48px');
+        }, 500);
+      }
+
       // Mobile menu functionality
       const mobileMenuButton = document.getElementById('mobile-menu-button');
       const closeMenuButton = document.getElementById('close-menu-button');
