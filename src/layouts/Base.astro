@@ -484,19 +484,19 @@ const enURL = new URL(getLocalizedPath(route, 'en'), Astro.site);
     </style>
   </head>
   <body class="min-h-screen bg-gray-50">
-    <!-- Header with favicon logo -->
+    <!-- Header with bigger responsive logo -->
     <header class="py-4 bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
       <div class="container flex justify-between items-center">
-        <!-- Logo using favicon directly with perfect baseline alignment -->
+        <!-- Logo using favicon directly with responsive sizing - now bigger -->
         <a href={navPaths.home} class="flex items-end gap-3 group">
-          <!-- SVG Logo from favicon - made bigger -->
-          <div class="w-12 h-12 flex-shrink-0">
+          <!-- SVG Logo from favicon - responsive sizing: 48px mobile, 64px desktop -->
+          <div class="w-12 h-12 md:w-16 md:h-16 flex-shrink-0">
             <img 
               src="/favicon.svg" 
               alt="RotoRem Logo"
               class="w-full h-full transition-transform group-hover:scale-105"
-              width="48"
-              height="48"
+              width="64"
+              height="64"
             />
           </div>
           <!-- Company name aligned to baseline with responsive adjustment -->
@@ -609,15 +609,15 @@ const enURL = new URL(getLocalizedPath(route, 'en'), Astro.site);
     <footer class="bg-gray-800 text-white py-10 mt-16">
       <div class="container">
         <div class="grid md:grid-cols-3 gap-8">
-          <!-- Company info -->
+          <!-- Company info with bigger footer logo too -->
           <div>
             <div class="flex items-end gap-2 mb-4">
               <img 
                 src="/favicon.svg" 
                 alt="RotoRem Logo"
-                class="w-10 h-10"
-                width="40"
-                height="40"
+                class="w-12 h-12"
+                width="48"
+                height="48"
               />
               <h3 class="font-semibold text-lg font-heading leading-none">
                 {isEN ? 'RotoRem Varna' : 'РотоРем Варна'}
