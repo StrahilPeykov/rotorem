@@ -73,18 +73,20 @@ const reviews = [
 <section class="relative overflow-hidden pb-8">
   <!-- Background image with gradient overlay for both mobile and desktop -->
   <div class="absolute inset-0 z-0">
-    <!-- Multiple format sources for better performance -->
+    <!-- Simplified image loading - only WebP with JPG fallback -->
     <picture>
-      <source srcset="/img/hero.avif" type="image/avif">
+      <!-- Only use WebP if the file exists, otherwise fall back to JPG -->
       <source srcset="/img/hero.webp" type="image/webp">
       <img 
-        src="/img/hero.webp" 
-        alt="" 
+        src="/img/hero.jpg" 
+        alt="RotoRem appliance repair service - professional technician repairing washing machine in modern home" 
         class="w-full h-full object-cover object-center"
         width="1920"
         height="1080"
         fetchpriority="high"
         decoding="async"
+        onload="console.log('Hero image loaded successfully')"
+        onerror="console.error('Hero image failed to load:', this.src); this.src='/img/hero-fallback.jpg'"
       />
     </picture>
     <!-- Darkened overlay for good text contrast on ALL screen sizes -->
