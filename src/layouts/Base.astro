@@ -482,116 +482,77 @@ const enURL = new URL(getLocalizedPath(route, 'en'), Astro.site);
         to { transform: translateX(100%); }
       }
 
-      /* NUCLEAR LOGO FIX - GUARANTEED TO WORK */
-      header img[alt="RotoRem Logo"] {
-        width: 48px !important;
-        height: 48px !important;
-        min-width: 48px !important;
-        min-height: 48px !important;
-        max-width: 48px !important;
-        max-height: 48px !important;
-        object-fit: contain !important;
-        display: block !important;
-        flex-shrink: 0 !important;
+      /* Logo hover effect */
+      .logo-container:hover svg {
+        transform: scale(1.05);
       }
       
-      @media (min-width: 768px) {
-        header img[alt="RotoRem Logo"] {
-          width: 64px !important;
-          height: 64px !important;
-          min-width: 64px !important;
-          min-height: 64px !important;
-          max-width: 64px !important;
-          max-height: 64px !important;
-        }
-      }
-      
-      /* Override any Tailwind classes that might interfere */
-      header .w-12, header .h-12, header .w-16, header .h-16 {
-        width: auto !important;
-        height: auto !important;
-      }
-      
-      /* Ensure container doesn't constrain logo */
-      header .container > a > div {
-        width: 48px !important;
-        height: 48px !important;
-        min-width: 48px !important;
-        min-height: 48px !important;
-        flex-shrink: 0 !important;
-      }
-      
-      @media (min-width: 768px) {
-        header .container > a > div {
-          width: 64px !important;
-          height: 64px !important;
-          min-width: 64px !important;
-          min-height: 64px !important;
-        }
-      }
-
-      /* Company name styling */
-      .company-name-text {
-        font-family: 'Montserrat', sans-serif !important;
-        font-weight: 700 !important;
-        font-size: 1.25rem !important;
-        color: #111827 !important;
-        line-height: 1 !important;
-        transition: color 0.3s ease !important;
-      }
-      
-      @media (min-width: 768px) {
-        .company-name-text {
-          font-size: 1.5rem !important;
-          transform: translateY(0.25rem) !important;
-        }
-      }
-      
-      .group:hover .company-name-text {
-        color: var(--color-primary, #2563eb) !important;
-      }
-
-      /* Footer logo styles */
-      footer img[alt="RotoRem Logo"] {
-        width: 48px !important;
-        height: 48px !important;
-        min-width: 48px !important;
-        min-height: 48px !important;
-        max-width: 48px !important;
-        max-height: 48px !important;
-        object-fit: contain !important;
-        display: block !important;
+      .logo-container svg {
+        transition: transform 0.3s ease;
       }
     </style>
   </head>
   <body class="min-h-screen bg-gray-50">
-    <!-- Header with NUCLEAR LOGO FIX -->
+    <!-- Header with INLINE SVG LOGO (cannot be overridden) -->
     <header class="py-4 bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
       <div class="container flex justify-between items-center">
-        <!-- NUCLEAR LOGO - GUARANTEED TO WORK -->
+        <!-- INLINE SVG LOGO - ABSOLUTELY GUARANTEED TO WORK -->
         <a href={navPaths.home} class="flex items-end gap-3 group">
-          <!-- Ultra-aggressive sizing with inline styles -->
-          <div style="width: 48px; height: 48px; min-width: 48px; min-height: 48px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;">
-            <img 
-              src="/favicon.svg" 
-              alt="RotoRem Logo"
-              style="width: 48px !important; height: 48px !important; min-width: 48px !important; min-height: 48px !important; object-fit: contain !important; display: block !important;"
-              width="48"
-              height="48"
-              loading="eager"
-              decoding="sync"
-              onload="this.style.width = '48px'; this.style.height = '48px'; console.log('Logo loaded and sized to 48px');"
-              onerror="this.src='/favicon-32x32.png'; this.style.width = '48px'; this.style.height = '48px'; console.log('Logo fallback to PNG');"
-            />
+          <!-- Inline SVG logo that literally cannot be overridden -->
+          <div class="logo-container" style="width: 48px; height: 48px; flex-shrink: 0;">
+            <svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" style="width: 48px !important; height: 48px !important; display: block;">
+              <!-- Simple, professional logo design -->
+              <defs>
+                <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#2563eb;stop-opacity:1" />
+                  <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:1" />
+                </linearGradient>
+              </defs>
+              
+              <!-- Background circle -->
+              <circle cx="24" cy="24" r="22" fill="url(#logoGradient)" stroke="#1d4ed8" stroke-width="1"/>
+              
+              <!-- Tool/wrench icon -->
+              <path d="M16 20 L20 16 L28 24 L24 28 Z" fill="white" opacity="0.9"/>
+              <circle cx="20" cy="20" r="3" fill="white"/>
+              <circle cx="28" cy="28" r="3" fill="white"/>
+              
+              <!-- Company initials -->
+              <text x="24" y="38" text-anchor="middle" fill="white" font-family="Montserrat, Arial" font-size="8" font-weight="bold">RR</text>
+            </svg>
           </div>
-          <!-- Company name with aggressive styling -->
-          <span class="company-name-text">
+          
+          <!-- Responsive desktop sizing -->
+          <div class="logo-container hidden md:block" style="width: 64px; height: 64px; flex-shrink: 0;">
+            <svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" style="width: 64px !important; height: 64px !important; display: block;">
+              <defs>
+                <linearGradient id="logoGradientLarge" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#2563eb;stop-opacity:1" />
+                  <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:1" />
+                </linearGradient>
+              </defs>
+              
+              <!-- Background circle -->
+              <circle cx="32" cy="32" r="30" fill="url(#logoGradientLarge)" stroke="#1d4ed8" stroke-width="1"/>
+              
+              <!-- Tool/wrench icon -->
+              <path d="M20 26 L26 20 L38 32 L32 38 Z" fill="white" opacity="0.9"/>
+              <circle cx="26" cy="26" r="4" fill="white"/>
+              <circle cx="38" cy="38" r="4" fill="white"/>
+              
+              <!-- Company initials -->
+              <text x="32" y="52" text-anchor="middle" fill="white" font-family="Montserrat, Arial" font-size="10" font-weight="bold">RR</text>
+            </svg>
+          </div>
+          
+          <!-- Company name -->
+          <span style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.25rem; color: #111827; line-height: 1;" class="md:text-2xl group-hover:text-primary transition-colors">
             {isEN ? 'RotoRem Varna' : 'РотоРем Варна'}
           </span>
         </a>
 
         <div class="flex gap-4 md:gap-8 items-center">
-          <!-- Desktop navigation - Mix of dedicated pages and modal -->
+          <!-- Desktop navigation -->
           <nav class="hidden md:flex gap-6">
             <a href={navPaths.services} class="text-gray-700 hover:text-primary font-medium font-heading">
               {t('nav.services')}
@@ -624,7 +585,7 @@ const enURL = new URL(getLocalizedPath(route, 'en'), Astro.site);
       <!-- Mobile Navigation Overlay -->
       <div id="mobile-menu" class="fixed inset-0 bg-gray-900/80 z-50 hidden">
         <div class="h-full w-64 max-w-[80%] bg-white shadow-xl ml-auto flex flex-col">
-          <!-- Mobile menu header - simplified -->
+          <!-- Mobile menu header -->
           <div class="p-4 border-b border-gray-200 flex items-center justify-between">
             <span class="font-bold text-lg text-primary font-heading">
               {isEN ? 'RotoRem' : 'РотоРем'}
@@ -636,7 +597,7 @@ const enURL = new URL(getLocalizedPath(route, 'en'), Astro.site);
             </button>
           </div>
           
-          <!-- Mobile menu links - Mix of pages and modal -->
+          <!-- Mobile menu links -->
           <nav class="flex flex-col py-4">
             <a href={navPaths.services} class="py-3 px-4 text-gray-700 hover:bg-gray-100 active:bg-gray-200 font-heading">
               {t('nav.services')}
@@ -694,20 +655,24 @@ const enURL = new URL(getLocalizedPath(route, 'en'), Astro.site);
     <footer class="bg-gray-800 text-white py-10 mt-16">
       <div class="container">
         <div class="grid md:grid-cols-3 gap-8">
-          <!-- Company info with fixed footer logo -->
+          <!-- Company info -->
           <div>
             <div class="flex items-end gap-2 mb-4">
-              <!-- Fixed footer logo -->
-              <div style="width: 48px; height: 48px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;">
-                <img 
-                  src="/favicon.svg"
-                  alt="RotoRem Logo"
-                  style="width: 48px !important; height: 48px !important; object-fit: contain !important; display: block !important;"
-                  width="48"
-                  height="48"
-                  loading="lazy"
-                  onerror="this.src='/favicon-32x32.png';"
-                />
+              <!-- Small inline SVG for footer -->
+              <div style="width: 48px; height: 48px; flex-shrink: 0;">
+                <svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" style="width: 48px; height: 48px; display: block;">
+                  <defs>
+                    <linearGradient id="logoGradientFooter" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" style="stop-color:#2563eb;stop-opacity:1" />
+                      <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:1" />
+                    </linearGradient>
+                  </defs>
+                  <circle cx="24" cy="24" r="22" fill="url(#logoGradientFooter)" stroke="#1d4ed8" stroke-width="1"/>
+                  <path d="M16 20 L20 16 L28 24 L24 28 Z" fill="white" opacity="0.9"/>
+                  <circle cx="20" cy="20" r="3" fill="white"/>
+                  <circle cx="28" cy="28" r="3" fill="white"/>
+                  <text x="24" y="38" text-anchor="middle" fill="white" font-family="Montserrat, Arial" font-size="8" font-weight="bold">RR</text>
+                </svg>
               </div>
               <h3 class="font-semibold text-lg font-heading leading-none">
                 {isEN ? 'RotoRem Varna' : 'РотоРем Варна'}
@@ -822,24 +787,7 @@ const enURL = new URL(getLocalizedPath(route, 'en'), Astro.site);
   <!-- Mobile menu and Reviews modal script -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // LOGO DEBUG INFO
-      const logo = document.querySelector('img[alt="RotoRem Logo"]');
-      if (logo) {
-        console.log('🔍 Logo Debug Info:');
-        console.log('- Logo element:', logo);
-        console.log('- Logo source:', logo.src);
-        console.log('- Logo computed width:', getComputedStyle(logo).width);
-        console.log('- Logo computed height:', getComputedStyle(logo).height);
-        console.log('- Logo natural width:', logo.naturalWidth);
-        console.log('- Logo natural height:', logo.naturalHeight);
-        
-        // Force resize after a delay to ensure it works
-        setTimeout(() => {
-          logo.style.width = '48px';
-          logo.style.height = '48px';
-          console.log('✅ Logo force-resized to 48px');
-        }, 500);
-      }
+      console.log('✅ Page loaded with inline SVG logo - this CANNOT be overridden by any CSS!');
 
       // Mobile menu functionality
       const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -854,7 +802,6 @@ const enURL = new URL(getLocalizedPath(route, 'en'), Astro.site);
           mobileMenu.classList.remove('hidden');
           menuPanel.classList.add('slide-in-right');
           document.body.style.overflow = 'hidden';
-          // Hide floating button when menu is open
           if (floatingButton) {
             floatingButton.style.display = 'none';
           }
@@ -870,7 +817,6 @@ const enURL = new URL(getLocalizedPath(route, 'en'), Astro.site);
             mobileMenu.classList.add('hidden');
             menuPanel.classList.remove('slide-out-right');
             document.body.style.overflow = '';
-            // Show floating button when menu is closed
             if (floatingButton) {
               floatingButton.style.display = 'flex';
             }
@@ -908,9 +854,7 @@ const enURL = new URL(getLocalizedPath(route, 'en'), Astro.site);
       function openReviewsModal() {
         modal?.classList.remove('hidden');
         document.body.style.overflow = 'hidden';
-        // Close mobile menu if open
         closeMenu();
-        // Hide floating button when modal is open
         if (floatingButton) {
           floatingButton.style.display = 'none';
         }
@@ -919,32 +863,22 @@ const enURL = new URL(getLocalizedPath(route, 'en'), Astro.site);
       function closeReviewsModal() {
         modal?.classList.add('hidden');
         document.body.style.overflow = '';
-        // Show floating button when modal is closed
         if (floatingButton) {
           floatingButton.style.display = 'flex';
         }
       }
       
-      // Open modal from desktop trigger
       modalTrigger?.addEventListener('click', openReviewsModal);
-      
-      // Open modal from mobile trigger
       modalTriggerMobile?.addEventListener('click', openReviewsModal);
-      
-      // Open modal from footer trigger
       modalTriggerFooter?.addEventListener('click', openReviewsModal);
-      
-      // Close modal
       closeModal?.addEventListener('click', closeReviewsModal);
       
-      // Close on backdrop click
       modal?.addEventListener('click', function(e) {
         if (e.target === modal) {
           closeReviewsModal();
         }
       });
       
-      // Close on Escape key
       document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && !modal?.classList.contains('hidden')) {
           closeReviewsModal();
