@@ -104,11 +104,13 @@ const contactText = isEN
           <div class="space-y-3">
             <div class="flex justify-between items-center bg-white/50 p-2 rounded-lg">
               <span class="text-gray-700 font-medium">{isEN ? 'Monday - Friday' : 'Понеделник - Петък'}</span>
-              <span class="font-semibold text-gray-900 bg-white py-1 px-3 rounded-full shadow-sm border border-gray-100">8:00 - 19:00</span>
+              <span class="font-semibold text-gray-900 bg-white py-1 px-3 rounded-full shadow-sm border border-gray-100">9:00 - 17:00</span>
             </div>
             <div class="flex justify-between items-center bg-white/50 p-2 rounded-lg">
               <span class="text-gray-700 font-medium">{isEN ? 'Saturday' : 'Събота'}</span>
-              <span class="font-semibold text-gray-900 bg-white py-1 px-3 rounded-full shadow-sm border border-gray-100">9:00 - 15:00</span>
+              <span class="font-semibold text-gray-900 bg-white py-1 px-3 rounded-full shadow-sm border border-gray-100">
+                {isEN ? 'Closed' : 'Затворено'}
+              </span>
             </div>
             <div class="flex justify-between items-center bg-white/50 p-2 rounded-lg">
               <span class="text-gray-700 font-medium">{isEN ? 'Sunday' : 'Неделя'}</span>

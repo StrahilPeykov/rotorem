@@ -32,7 +32,7 @@ const address = isEN
 const workingHours = {
   title: isEN ? 'Working Hours' : 'Работно време',
   weekdays: isEN ? 'Monday - Friday' : 'Понеделник - Петък',
-  weekdayHours: '8:00 - 17:00',
+  weekdayHours: '9:00 - 17:00',
   saturday: isEN ? 'Saturday' : 'Събота',
   saturdayStatus: isEN ? 'Closed' : 'Затворено',
   sunday: isEN ? 'Sunday' : 'Неделя',
@@ -111,8 +111,7 @@ const ownerDescription = isEN
               {/* Display extra working hours info if this is the working hours card */}
               {item.icon === 'clock' && (
                 <div class="mt-2 text-sm text-gray-600">
-                  <p>{isEN ? 'Saturday' : 'Събота'}: {isEN ? 'Closed' : 'Затворено'}</p>
-                  <p>{isEN ? 'Sunday' : 'Неделя'}: {isEN ? 'Closed' : 'Затворено'}</p>
+                  <p>{isEN ? 'Weekends' : 'Уикенди'}: {isEN ? 'Closed' : 'Затворено'}</p>
                 </div>
               )}
             </a>
