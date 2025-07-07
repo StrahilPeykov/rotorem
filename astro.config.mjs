@@ -39,7 +39,8 @@ export default defineConfig({
     }),
   ],
   build: {
-    inlineStylesheets: 'auto',
+    // Force inlining of stylesheets to prevent loading issues
+    inlineStylesheets: 'always',
   },
   compressHTML: true,
   vite: {
@@ -51,8 +52,12 @@ export default defineConfig({
             utils: ['./src/i18n/utils.ts'],
             components: ['./src/components/Hero.astro', './src/components/Services.astro']
           },
+          // Ensure assets are properly named
+          assetFileNames: 'assets/[name].[hash][extname]'
         },
       },
+      // Increase asset inline limit to ensure critical CSS is inlined
+      assetsInlineLimit: 8192,
     },
     ssr: {
       noExternal: ['three', 'astro-seo']

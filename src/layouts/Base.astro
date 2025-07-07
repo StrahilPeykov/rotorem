@@ -63,6 +63,21 @@ const enURL = new URL(getLocalizedPath(route, 'en'), Astro.site);
     <link rel="alternate" hreflang="en" href={enURL.toString()} />
     <link rel="alternate" hreflang="x-default" href={bgURL.toString()} />
     
+    <!-- Preconnect to external domains FIRST -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/img/hero.webp" as="image" type="image/webp">
+    
+    <!-- Preload Critical Fonts -->
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Uw-.woff2" as="font" type="font/woff2" crossorigin>
+    
+    <!-- Enhanced Google Fonts Loading -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <SEO
       title={title}
       description={description}
@@ -213,11 +228,6 @@ const enURL = new URL(getLocalizedPath(route, 'en'), Astro.site);
       }
     </script>
     
-    <!-- Google Fonts with font-display optimization -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
     <!-- Web Vitals and Analytics -->
     <script type="module">
       // Enhanced Web Vitals monitoring
@@ -336,18 +346,24 @@ const enURL = new URL(getLocalizedPath(route, 'en'), Astro.site);
       }
     </script>
 
-    <!-- Preload critical resources -->
-    <link rel="preload" href="/img/hero.webp" as="image" type="image/webp">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap" as="style">
-    
-    <!-- Preconnect to external domains -->
-    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <style is:global>
       @tailwind base;
       @tailwind components;
       @tailwind utilities;
+
+      /* Enhanced Font Loading with Fallbacks */
+      @font-face {
+        font-family: 'Inter Fallback';
+        src: local('system-ui'), local('-apple-system'), local('BlinkMacSystemFont'), local('Segoe UI');
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'Montserrat Fallback';
+        src: local('system-ui'), local('-apple-system'), local('BlinkMacSystemFont'), local('Segoe UI');
+        font-display: swap;
+        font-weight: 700;
+      }
 
       :root {
         --color-primary: #2563eb;
@@ -356,8 +372,8 @@ const enURL = new URL(getLocalizedPath(route, 'en'), Astro.site);
         --color-bg: #f9fafb;
         --color-text: #111827;
         --color-text-light: #4b5563;
-        --font-heading: 'Montserrat', sans-serif;
-        --font-body: 'Inter', sans-serif;
+        --font-heading: 'Montserrat', 'Montserrat Fallback', 'Arial Black', sans-serif;
+        --font-body: 'Inter', 'Inter Fallback', 'system-ui', sans-serif;
       }
 
       html {
@@ -370,16 +386,17 @@ const enURL = new URL(getLocalizedPath(route, 'en'), Astro.site);
       /* Apply Montserrat to all headings */
       h1, h2, h3, h4, h5, h6 {
         font-family: var(--font-heading);
+        font-weight: 700;
       }
       
       /* Make all hero and main content text use Montserrat */
-      .use-montserrat, .hero-text, .service-title, .main-content p, .feature-text {
-        font-family: var(--font-heading);
+      .use-montserrat, .hero-text, .service-title, .main-content p, .feature-text, .font-heading {
+        font-family: var(--font-heading) !important;
       }
       
       /* Use Inter for supporting content */
-      .use-inter {
-        font-family: var(--font-body);
+      .use-inter, .font-body {
+        font-family: var(--font-body) !important;
       }
 
       @layer components {
@@ -481,69 +498,125 @@ const enURL = new URL(getLocalizedPath(route, 'en'), Astro.site);
         to { transform: translateX(100%); }
       }
 
-      /* CLEAN LOGO STYLES - No more conflicts */
+      /* PRODUCTION-SAFE LOGO STYLES */
+      header .logo-container,
       .logo-container {
-        width: 48px;
-        height: 48px;
-        min-width: 48px;
-        min-height: 48px;
-        flex-shrink: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: transparent !important; /* Ensure no white background */
+        width: 48px !important;
+        height: 48px !important;
+        min-width: 48px !important;
+        min-height: 48px !important;
+        max-width: 48px !important;
+        max-height: 48px !important;
+        flex-shrink: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background: transparent !important;
+        background-color: transparent !important;
+        overflow: hidden !important;
       }
 
+      header .logo-image,
       .logo-image {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        display: block;
-        background: transparent !important; /* Ensure no white background */
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: contain !important;
+        display: block !important;
+        background: transparent !important;
+        background-color: transparent !important;
+        border: none !important;
       }
 
-      /* Desktop sizing - make it bigger */
-      @media (min-width: 768px) {
+      /* Mobile-First Responsive Logo Sizing */
+      @media screen and (min-width: 640px) {
+        header .logo-container,
         .logo-container {
-          width: 72px !important;  /* Increased from 64px to 72px */
-          height: 72px !important;
-          min-width: 72px !important;
-          min-height: 72px !important;
+          width: 56px !important;
+          height: 56px !important;
+          min-width: 56px !important;
+          min-height: 56px !important;
+          max-width: 56px !important;
+          max-height: 56px !important;
         }
       }
 
-      /* Extra large screens - even bigger */
-      @media (min-width: 1024px) {
+      @media screen and (min-width: 768px) {
+        header .logo-container,
+        .logo-container {
+          width: 72px !important;
+          height: 72px !important;
+          min-width: 72px !important;
+          min-height: 72px !important;
+          max-width: 72px !important;
+          max-height: 72px !important;
+        }
+      }
+
+      @media screen and (min-width: 1024px) {
+        header .logo-container,
         .logo-container {
           width: 80px !important;
           height: 80px !important;
           min-width: 80px !important;
           min-height: 80px !important;
+          max-width: 80px !important;
+          max-height: 80px !important;
+        }
+      }
+
+      @media screen and (min-width: 1280px) {
+        header .logo-container,
+        .logo-container {
+          width: 88px !important;
+          height: 88px !important;
+          min-width: 88px !important;
+          min-height: 88px !important;
+          max-width: 88px !important;
+          max-height: 88px !important;
         }
       }
 
       /* Company name responsive sizing */
+      header .company-name-text,
       .company-name-text {
-        font-family: 'Montserrat', sans-serif !important;
+        font-family: var(--font-heading) !important;
         font-weight: 700 !important;
-        font-size: 1.125rem !important; /* Slightly smaller on mobile */
+        font-size: 1.125rem !important;
         color: #111827 !important;
-        line-height: 1 !important;
+        line-height: 1.2 !important;
         transition: color 0.3s ease !important;
+        white-space: nowrap !important;
       }
 
-      @media (min-width: 768px) {
+      @media screen and (min-width: 640px) {
+        header .company-name-text,
         .company-name-text {
-          font-size: 1.5rem !important;  /* Bigger on desktop */
+          font-size: 1.25rem !important;
         }
       }
 
-      @media (min-width: 1024px) {
+      @media screen and (min-width: 768px) {
+        header .company-name-text,
         .company-name-text {
-          font-size: 1.75rem !important; /* Even bigger on large screens */
+          font-size: 1.5rem !important;
         }
       }
 
+      @media screen and (min-width: 1024px) {
+        header .company-name-text,
+        .company-name-text {
+          font-size: 1.75rem !important;
+        }
+      }
+
+      @media screen and (min-width: 1280px) {
+        header .company-name-text,
+        .company-name-text {
+          font-size: 2rem !important;
+        }
+      }
+
+      header .group:hover .company-name-text,
       .group:hover .company-name-text {
         color: var(--color-primary, #2563eb) !important;
       }
@@ -554,14 +627,35 @@ const enURL = new URL(getLocalizedPath(route, 'en'), Astro.site);
         height: 48px !important;
         min-width: 48px !important;
         min-height: 48px !important;
+        max-width: 48px !important;
+        max-height: 48px !important;
       }
 
       /* Remove any potential white backgrounds from SVG */
       header svg, 
       footer svg,
-      .logo-image svg {
+      .logo-image svg,
+      svg {
         background: none !important;
         background-color: transparent !important;
+      }
+
+      /* Remove any potential conflicting styles */
+      img[src*="favicon"],
+      img[alt*="Logo"],
+      .logo-image {
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        filter: none !important;
+      }
+
+      /* Production Build Compatibility */
+      @supports (font-display: swap) {
+        @font-face {
+          font-family: 'Production Safe';
+          src: local('system-ui');
+          font-display: swap;
+        }
       }
     </style>
   </head>
