@@ -558,7 +558,7 @@ const timeSlots = [
       const selectedDate = dateInput.value;
       const selectedTime = timeSelect.value;
       
-      // Validate that it's not a weekend day (additional safety check)
+      // Validate that it's not a weekend day
       const date = new Date(selectedDate + 'T00:00:00');
       const dayOfWeek = date.getDay();
       if (dayOfWeek === 0 || dayOfWeek === 6) {
@@ -573,7 +573,6 @@ const timeSlots = [
       
       if (isSlotBooked(selectedDate, selectedTime)) {
         alert(isEN ? 'This time slot has just been booked by someone else. Please select another time.' : 'Този час току-що беше зает от друг клиент. Моля изберете друг час.');
-        // Refresh the availability
         availabilityLoaded = false;
         fetchBookedSlots();
         return false;
@@ -590,55 +589,104 @@ const timeSlots = [
 
         console.log('Submitting booking data:', data);
 
-        // Create a hidden iframe for form submission
-        const iframe = document.createElement('iframe');
-        iframe.style.display = 'none';
-        iframe.name = 'booking_submit_frame';
-        document.body.appendChild(iframe);
+        // Create callback function for JSONP response
+        const callbackName = 'handleBookingResponse_' + Date.now();
+        let responseReceived = false;
         
-        // Create form for submission
-        const submitForm = document.createElement('form');
-        submitForm.method = 'POST';
-        submitForm.action = GOOGLE_SCRIPT_URL;
-        submitForm.target = 'booking_submit_frame';
-        
-        // Add all data as hidden inputs
-        Object.keys(data).forEach(key => {
-          if (data[key]) { // Only add non-empty values
-            const input = document.createElement('input');
-            input.type = 'hidden';
-            input.name = key;
-            input.value = data[key];
-            submitForm.appendChild(input);
+        window[callbackName] = function(response) {
+          responseReceived = true;
+          console.log('Booking response:', response);
+          
+          // Clean up callback
+          delete window[callbackName];
+          
+          if (response && (response.success === true || response.success === 'true')) {
+            // Success - redirect to thank you page
+            console.log('✅ Booking submitted successfully!');
+            setTimeout(() => {
+              window.location.href = isEN ? '/en/thankyou' : '/thankyou';
+            }, 500);
+          } else {
+            // Error from server
+            console.error('❌ Booking failed:', response);
+            
+            // Reset button
+            submitBtn.disabled = false;
+            btnText.textContent = isEN ? 'Book Service' : 'Запази час';
+            submitBtn.classList.remove('opacity-75');
+            
+            alert(isEN 
+              ? 'There was an error submitting your booking. Please try again or call us directly at 089 834 0982.' 
+              : 'Възникна грешка при изпращането на заявката. Моля опитайте отново или се обадете директно на 089 834 0982.'
+            );
           }
-        });
+        };
+
+        // Create JSONP URL with all form data
+        const params = new URLSearchParams(data);
+        params.append('callback', callbackName);
+        const jsonpUrl = `${GOOGLE_SCRIPT_URL}?${params.toString()}`;
         
-        document.body.appendChild(submitForm);
+        console.log('Submitting via JSONP:', jsonpUrl);
         
-        console.log('Submitting booking to Google Sheets...');
-        submitForm.submit();
+        // Create script tag for JSONP request
+        const script = document.createElement('script');
+        script.src = jsonpUrl;
+        script.onerror = function() {
+          console.error('❌ JSONP request failed');
+          
+          // Clean up callback
+          if (window[callbackName]) {
+            delete window[callbackName];
+          }
+          
+          // Reset button
+          submitBtn.disabled = false;
+          btnText.textContent = isEN ? 'Book Service' : 'Запази час';
+          submitBtn.classList.remove('opacity-75');
+          
+          alert(isEN 
+            ? 'Network error. Please check your connection and try again, or call us directly at 089 834 0982.' 
+            : 'Мрежова грешка. Моля проверете връзката си и опитайте отново, или се обадете директно на 089 834 0982.'
+          );
+        };
         
-        // Clean up after a short delay
+        // Add script to trigger the request
+        document.head.appendChild(script);
+        
+        // Clean up script after 10 seconds
         setTimeout(() => {
           try {
-            document.body.removeChild(submitForm);
-            document.body.removeChild(iframe);
-            console.log('✅ Booking submission completed');
+            if (script.parentNode) {
+              document.head.removeChild(script);
+            }
           } catch (e) {
-            console.log('Cleanup completed');
+            console.log('Script cleanup completed');
           }
-        }, 2000);
-
-        // Success - redirect to thank you page
-        console.log('Booking submitted successfully!');
-        
-        // Small delay to ensure processing
-        setTimeout(() => {
-          window.location.href = '/thankyou';
-        }, 1500);
+          
+          // If no response received, show error
+          if (!responseReceived) {
+            console.error('❌ Booking request timed out');
+            
+            // Clean up callback
+            if (window[callbackName]) {
+              delete window[callbackName];
+            }
+            
+            // Reset button
+            submitBtn.disabled = false;
+            btnText.textContent = isEN ? 'Book Service' : 'Запази час';
+            submitBtn.classList.remove('opacity-75');
+            
+            alert(isEN 
+              ? 'Request timed out. Please try again or call us directly at 089 834 0982.' 
+              : 'Заявката не премина. Моля опитайте отново или се обадете директно на 089 834 0982.'
+            );
+          }
+        }, 10000);
 
       } catch (error) {
-        console.error('Booking submission error:', error);
+        console.error('❌ Booking submission error:', error);
         
         // Reset button
         submitBtn.disabled = false;
@@ -646,8 +694,8 @@ const timeSlots = [
         submitBtn.classList.remove('opacity-75');
         
         alert(isEN 
-          ? 'There was an error submitting your booking. Please try again or call us directly.' 
-          : 'Възникна грешка при изпращането на заявката. Моля опитайте отново или се обадете директно.'
+          ? 'There was an error submitting your booking. Please try again or call us directly at 089 834 0982.' 
+          : 'Възникна грешка при изпращането на заявката. Моля опитайте отново или се обадете директно на 089 834 0982.'
         );
       }
     });
