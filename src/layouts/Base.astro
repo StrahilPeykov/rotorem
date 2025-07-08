@@ -418,7 +418,7 @@ const enURL = new URL(getLocalizedPath(route, 'en'), Astro.site);
         }
         
         .floating-button {
-          @apply fixed bottom-6 right-6 w-14 h-14 bg-primary hover:bg-primary-dark text-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all z-50 hover:scale-105 active:scale-95;
+          @apply fixed bottom-6 right-6 w-14 h-14 bg-accent hover:bg-amber-600 text-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all z-50 hover:scale-105 active:scale-95;
         }
       }
 
@@ -786,10 +786,10 @@ const enURL = new URL(getLocalizedPath(route, 'en'), Astro.site);
       <slot />
     </main>
     
-    <!-- Floating call button -->
-    <a href="tel:+359898340982" class="floating-button" id="floating-call-btn">
+    <!-- Floating booking button -->
+    <a href={navPaths.book} class="floating-button" id="floating-book-btn">
       <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+        <path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path>
       </svg>
     </a>
     
@@ -958,7 +958,7 @@ const enURL = new URL(getLocalizedPath(route, 'en'), Astro.site);
       const mobileMenu = document.getElementById('mobile-menu');
       const mobileMenuLinks = document.querySelectorAll('#mobile-menu nav a');
       const menuPanel = mobileMenu?.querySelector('div');
-      const floatingButton = document.getElementById('floating-call-btn');
+      const floatingButton = document.getElementById('floating-book-btn');
       
       function openMenu() {
         if (mobileMenu && menuPanel) {
