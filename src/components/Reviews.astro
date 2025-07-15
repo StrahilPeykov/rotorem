@@ -10,34 +10,34 @@ const subtitle = isEN
   ? 'See what our customers say about our repair services' 
   : 'Вижте какво казват нашите клиенти за ремонтните ни услуги';
 
-// This would typically come from a JSON file in src/data/reviews.json
+// Real Google reviews from June 2025
 const reviews = [
   {
-    name: isEN ? 'Ivan Petrov' : 'Иван Петров',
-    date: isEN ? 'March 15, 2025' : '15 март, 2025',
+    name: isEN ? 'Velizar Dimov' : 'Велизар Димов',
+    date: isEN ? 'June 20, 2025' : '20 юни, 2025',
     rating: 5,
     text: isEN 
-      ? 'Very fast and professional service! My washing machine was repaired the same day I called. I highly recommend!'
-      : 'Много бърза и професионална услуга! Пералнята ми беше поправена същия ден, в който се обадих. Горещо препоръчвам!',
+      ? 'Very very satisfied! They responded instantly, super competent, the problem with the dishwasher was solved. Wife happy, me calm :) huge THANKS TO THE TEAM!'
+      : 'Много много доволен ! Реагираха мигновенно,супер компетентни,проблема беше решен със съдомиялната машина.Жената доволна аз спокоен :) огромно БЛАГОДАРЯ НА ЕКИПА !',
+    appliance: isEN ? 'Dishwasher' : 'Съдомиялна',
+  },
+  {
+    name: isEN ? 'Martin Ivanov' : 'Мартин Иванов',
+    date: isEN ? 'June 15, 2025' : '15 юни, 2025',
+    rating: 5,
+    text: isEN 
+      ? 'I had a problem with the water heater. After I called, the next day Mr. N. Ivanov responded and quickly fixed the damage. I recommend!'
+      : 'Имах проблем с бойлера.След като се обадих на другия ден г-н Н.Иванов се отзова и бързо отстрани повредата.Препоръчвам!',
+    appliance: isEN ? 'Water Heater' : 'Бойлер',
+  },
+  {
+    name: isEN ? 'Desislava Zlateva' : 'Десислава Златева',
+    date: isEN ? 'June 10, 2025' : '10 юни, 2025',
+    rating: 5,
+    text: isEN 
+      ? 'Quality and fast service! I recommend!'
+      : 'Качествено и бързо обслужване! Препоръчвам!',
     appliance: isEN ? 'Washing Machine' : 'Пералня',
-  },
-  {
-    name: isEN ? 'Maria Dimitrova' : 'Мария Петрова',
-    date: isEN ? 'February 28, 2025' : '28 февруари, 2025',
-    rating: 5,
-    text: isEN 
-      ? 'Excellent service! The technician was very knowledgeable and fixed my refrigerator quickly. Fair prices too!'
-      : 'Отлична услуга! Техникът беше много компетентен и поправи хладилника ми бързо. Цените също са разумни!',
-    appliance: isEN ? 'Refrigerator' : 'Хладилник',
-  },
-  {
-    name: isEN ? 'Georgi Ivanov' : 'Георги Иванов',
-    date: isEN ? 'January 10, 2025' : '10 януари, 2025',
-    rating: 5,
-    text: isEN 
-      ? 'Had an issue with my air conditioner, called RotoRem and they came the next day. Very professional and thorough service!'
-      : 'Имах проблем с климатика, обадих се на РотоРем и дойдоха на следващия ден. Много професионална и обстойна услуга!',
-    appliance: isEN ? 'Air Conditioner' : 'Климатик',
   },
 ];
 ---
@@ -48,9 +48,9 @@ const reviews = [
   
   <div class="container relative z-10">
     <div class="text-center max-w-3xl mx-auto">
-      <h2 class="text-3xl font-bold text-gray-900">{t('reviews.title')}</h2>
+      <h2 class="text-3xl font-bold text-gray-900">{title}</h2>
       <div class="w-20 h-1 bg-accent mx-auto my-4"></div>
-      <p class="mt-4 text-lg md:text-xl text-gray-600">{t('reviews.subtitle')}</p>
+      <p class="mt-4 text-lg md:text-xl text-gray-600">{subtitle}</p>
     </div>
     
     <!-- Desktop layout - grid of cards -->
@@ -146,7 +146,7 @@ const reviews = [
       <!-- Simple call to action below reviews -->
       <div class="mt-8 text-center">
         <a 
-          href="/book" 
+          href={isEN ? "/en/book" : "/book"}
           class="inline-flex items-center justify-center px-5 py-2.5 bg-primary text-white rounded-lg font-medium shadow-sm hover:bg-primary-dark transition-colors"
         >
           {isEN ? 'Join our satisfied customers' : 'Присъединете се към доволните ни клиенти'}
@@ -161,27 +161,27 @@ const reviews = [
 </section>
 
 <script>
-  // Mobile review carousel with transitions
+  // Mobile review carousel with transitions - using real reviews
   document.addEventListener('DOMContentLoaded', () => {
-    // Set up our review carousel data
+    // Real review data for mobile carousel
     const reviewData = [
       {
-        name: 'Иван Петров',
-        date: '15 март, 2025',
-        text: 'Много бърза и професионална услуга! Пералнята ми беше поправена същия ден, в който се обадих. Горещо препоръчвам!',
+        name: 'Велизар Димов',
+        date: '20 юни, 2025',
+        text: 'Много много доволен ! Реагираха мигновенно,супер компетентни,проблема беше решен със съдомиялната машина.Жената доволна аз спокоен :) огромно БЛАГОДАРЯ НА ЕКИПА !',
+        appliance: 'Съдомиялна'
+      },
+      {
+        name: 'Мартин Иванов',
+        date: '15 юни, 2025',
+        text: 'Имах проблем с бойлера.След като се обадих на другия ден г-н Н.Иванов се отзова и бързо отстрани повредата.Препоръчвам!',
+        appliance: 'Бойлер'
+      },
+      {
+        name: 'Десислава Златева',
+        date: '10 юни, 2025',
+        text: 'Качествено и бързо обслужване! Препоръчвам!',
         appliance: 'Пералня'
-      },
-      {
-        name: 'Мария Петрова',
-        date: '28 февруари, 2025',
-        text: 'Отлична услуга! Техникът беше много компетентен и поправи хладилника ми бързо. Цените също са разумни!',
-        appliance: 'Хладилник'
-      },
-      {
-        name: 'Георги Иванов',
-        date: '10 януари, 2025',
-        text: 'Имах проблем с климатика, обадих се на РотоРем и дойдоха на следващия ден. Много професионална и обстойна услуга!',
-        appliance: 'Климатик'
       }
     ];
     

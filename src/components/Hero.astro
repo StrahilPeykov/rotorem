@@ -47,25 +47,25 @@ const allServices = [
   }
 ];
 
-// Reviews data - ensure they're preserved as in the original
+// Real Google reviews from June 2025
 const reviews = [
   {
-    name: isEN ? 'Ivan Petrov' : 'Иван Петров',
-    date: isEN ? 'March 15, 2025' : '15 март, 2025',
-    text: isEN ? 'Very fast and professional service! My washing machine was repaired the same day I called.' : 'Много бърза и професионална услуга! Пералнята ми беше поправена същия ден, в който се обадих.',
-    appliance: isEN ? 'Washing Machine' : 'Пералня'
-  },
-  {
-    name: isEN ? 'Maria Dimitrova' : 'Мария Димитрова',
-    date: isEN ? 'February 28, 2025' : '28 февруари, 2025',
-    text: isEN ? 'Excellent service! The technician was very knowledgeable and fixed my dishwasher quickly.' : 'Отлична услуга! Техникът беше много компетентен и поправи съдомиялната ми бързо.',
+    name: isEN ? 'Velizar Dimov' : 'Велизар Димов',
+    date: isEN ? 'June 20, 2025' : '20 юни, 2025',
+    text: isEN ? 'Very very satisfied! They responded instantly, super competent, the problem with the dishwasher was solved. Wife happy, me calm :) huge THANKS TO THE TEAM!' : 'Много много доволен ! Реагираха мигновенно,супер компетентни,проблема беше решен със съдомиялната машина.Жената доволна аз спокоен :) огромно БЛАГОДАРЯ НА ЕКИПА !',
     appliance: isEN ? 'Dishwasher' : 'Съдомиялна'
   },
   {
-    name: isEN ? 'Georgi Ivanov' : 'Георги Иванов',
-    date: isEN ? 'January 10, 2025' : '10 януари, 2025',
-    text: isEN ? 'Had an issue with my oven, called RotoRem and they came the next day. Very thorough service!' : 'Имах проблем с фурната, обадих се на РотоРем и дойдоха на следващия ден. Много обстойна услуга!',
-    appliance: isEN ? 'Oven' : 'Фурна'
+    name: isEN ? 'Martin Ivanov' : 'Мартин Иванов',
+    date: isEN ? 'June 15, 2025' : '15 юни, 2025',
+    text: isEN ? 'I had a problem with the water heater. After I called, the next day Mr. N. Ivanov responded and quickly fixed the damage. I recommend!' : 'Имах проблем с бойлера.След като се обадих на другия ден г-н Н.Иванов се отзова и бързо отстрани повредата.Препоръчвам!',
+    appliance: isEN ? 'Water Heater' : 'Бойлер'
+  },
+  {
+    name: isEN ? 'Desislava Zlateva' : 'Десислава Златева',
+    date: isEN ? 'June 10, 2025' : '10 юни, 2025',
+    text: isEN ? 'Quality and fast service! I recommend!' : 'Качествено и бързо обслужване! Препоръчвам!',
+    appliance: isEN ? 'Washing Machine' : 'Пералня'
   }
 ];
 ---
@@ -303,7 +303,7 @@ const reviews = [
                 </div>
                 <span class="ml-2 text-yellow-600 font-semibold text-sm">5.0</span>
                 <span class="ml-2 text-gray-600 text-sm">
-                  ({isEN ? '100+ reviews' : '100+ отзива'})
+                  ({isEN ? '15+ reviews' : '15+ отзива'})
                 </span>
               </div>
               
@@ -425,7 +425,7 @@ const reviews = [
                 </div>
                 <span class="ml-2 text-yellow-600 font-semibold text-sm">5.0</span>
                 <span class="ml-2 text-gray-600 text-sm">
-                  (100+ {isEN ? 'reviews' : 'отзива'})
+                  (15+ {isEN ? 'reviews' : 'отзива'})
                 </span>
               </div>
               
@@ -483,29 +483,29 @@ const reviews = [
 </style>
 
 <script>
-  // Client-side JavaScript for mobile carousels - preserved from original
+  // Client-side JavaScript for mobile carousels - with real reviews
   document.addEventListener('DOMContentLoaded', () => {
     // Reviews carousel functionality
     const reviewCarousel = {
       currentIndex: 0,
       reviews: [
         {
-          name: 'Иван Петров',
-          date: '15 март, 2025',
-          text: 'Много бърза и професионална услуга! Пералнята ми беше поправена същия ден, в който се обадих.',
-          appliance: 'Пералня'
-        },
-        {
-          name: 'Мария Димитрова',
-          date: '28 февруари, 2025',
-          text: 'Отлична услуга! Техникът беше много компетентен и поправи съдомиялната ми бързо.',
+          name: 'Велизар Димов',
+          date: '20 юни, 2025',
+          text: 'Много много доволен ! Реагираха мигновенно,супер компетентни,проблема беше решен със съдомиялната машина.Жената доволна аз спокоен :) огромно БЛАГОДАРЯ НА ЕКИПА !',
           appliance: 'Съдомиялна'
         },
         {
-          name: 'Георги Иванов',
-          date: '10 януари, 2025',
-          text: 'Имах проблем с фурната, обадих се на РотоРем и дойдоха на следващия ден. Много обстойна услуга!',
-          appliance: 'Фурна'
+          name: 'Мартин Иванов',
+          date: '15 юни, 2025',
+          text: 'Имах проблем с бойлера.След като се обадих на другия ден г-н Н.Иванов се отзова и бързо отстрани повредата.Препоръчвам!',
+          appliance: 'Бойлер'
+        },
+        {
+          name: 'Десислава Златева',
+          date: '10 юни, 2025',
+          text: 'Качествено и бързо обслужване! Препоръчвам!',
+          appliance: 'Пералня'
         }
       ],
       
