@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.1.0",
   "private": true,
-  "packageManager": "pnpm@8.15.5",
+  "packageManager": "pnpm@10.11.0",
   "engines": {
     "node": ">=18",
     "pnpm": ">=8"
@@ -19,6 +19,7 @@
     "lint:fix": "biome check --apply .",
     "type-check": "astro check",
     "optimize-images": "node scripts/optimize-images.js",
+    "validate-sitemap": "node scripts/validate-sitemap.js",
     "generate-sitemap": "astro build && node scripts/validate-sitemap.js",
     "test:lighthouse": "lhci autorun",
     "test:seo": "node scripts/seo-check.js",
@@ -27,23 +28,23 @@
     "deploy": "npm run build && echo 'Build completed successfully'"
   },
   "dependencies": {
-    "astro": "^5.7.13",
     "@astrojs/sitemap": "^3.4.0",
     "@astrojs/tailwind": "^6.0.2",
+    "astro": "^5.7.13",
     "astro-seo": "^0.8.4",
     "tailwindcss": "^3.4.17",
     "web-vitals": "^3.5.0"
   },
   "devDependencies": {
+    "@lhci/cli": "^0.13.0",
     "@tailwindcss/typography": "^0.5.16",
     "biome": "^0.3.3",
-    "daisyui": "^5.0.35",
-    "typescript": "^5.3.2",
-    "sharp": "^0.33.0",
-    "@lhci/cli": "^0.13.0",
-    "lighthouse": "^11.4.0",
     "cheerio": "^1.0.0-rc.12",
-    "node-fetch": "^3.3.2"
+    "daisyui": "^5.0.35",
+    "lighthouse": "^11.4.0",
+    "node-fetch": "^3.3.2",
+    "sharp": "^0.33.5",
+    "typescript": "^5.3.2"
   },
   "resolutions": {
     "@rollup/pluginutils": "^4.2.1"
