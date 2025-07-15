@@ -190,7 +190,7 @@ const icons: Record<IconKey, string> = {
       })}
     </div>
     
-    <!-- CTA at the bottom of services section - BOTH CALL AND BOOKING -->
+    <!-- CTA at the bottom of services section - PHONE ONLY NOW -->
     <div class="mt-12 text-center">
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
         <a href="tel:+359898340982" class="btn-primary inline-flex items-center justify-center shadow-lg">
@@ -200,12 +200,31 @@ const icons: Record<IconKey, string> = {
           {isEN ? 'Call Now' : 'Обадете се сега'}
         </a>
         
+        <!-- COMMENTED OUT - BOOKING DISABLED
         <a href={isEN ? '/en/book' : '/book'} class="btn-cta inline-flex items-center justify-center shadow-lg">
           <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path>
           </svg>
           {isEN ? 'Book Service' : 'Запази час'}
         </a>
+        -->
+        
+        <!-- Alternative contact method - Email -->
+        <a href="mailto:n.ivanov.ivanov@abv.bg" class="btn-cta inline-flex items-center justify-center shadow-lg">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+          {isEN ? 'Send Email' : 'Изпратете имейл'}
+        </a>
+        
+        <!-- Additional info text for phone booking -->
+        <div class="flex items-center text-gray-600 text-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/>
+          </svg>
+          <span>{isEN ? 'Call to schedule' : 'Обадете се за час'}</span>
+        </div>
       </div>
     </div>
   </div>

@@ -127,7 +127,7 @@ const reviews = [
         ))}
       </div>
 
-      <!-- Call to Action -->
+      <!-- Call to Action - PHONE AND EMAIL ONLY NOW -->
       <div class="mt-8 text-center bg-gradient-to-r from-amber-50 to-amber-100 p-6 rounded-xl border border-amber-200">
         <h3 class="text-xl font-semibold text-amber-900 mb-2">
           {isEN ? 'Need Our Services?' : 'Нуждаете се от нашите услуги?'}
@@ -144,12 +144,28 @@ const reviews = [
             </svg>
             089 834 0982
           </a>
+          
+          <!-- COMMENTED OUT - BOOKING DISABLED
           <a href={isEN ? '/en/book' : '/book'} class="btn-cta inline-flex items-center justify-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path>
             </svg>
             {isEN ? 'Book Service' : 'Запазете час'}
           </a>
+          -->
+          
+          <a href="mailto:n.ivanov.ivanov@abv.bg" class="btn-cta inline-flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            {isEN ? 'Send Email' : 'Изпратете имейл'}
+          </a>
+        </div>
+        
+        <!-- Additional info text for phone booking -->
+        <div class="mt-4 text-center text-amber-700 text-sm">
+          <p>{isEN ? 'Call to schedule your repair appointment' : 'Обадете се за запазване на час за ремонт'}</p>
         </div>
       </div>
     </div>

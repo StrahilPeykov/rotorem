@@ -76,10 +76,10 @@ const contactText = isEN
         ))}
       </div>
       
-      <!-- Contact section with improved mobile layout -->
+      <!-- Contact section with improved mobile layout - PHONE ONLY NOW -->
       <div class="mt-12 text-center">
         <p class="text-gray-700 mb-6">{contactText}</p>
-        <!-- Mobile-first responsive button layout - BOTH CALL AND BOOKING -->
+        <!-- Mobile-first responsive button layout - PHONE AND EMAIL ONLY -->
         <div class="flex flex-col sm:flex-row justify-center gap-4">
           <a href="tel:+359898340982" class="btn-primary inline-flex items-center justify-center shadow-md">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -88,12 +88,14 @@ const contactText = isEN
             +359 89 834 0982
           </a>
           
+          <!-- COMMENTED OUT - BOOKING DISABLED
           <a href={isEN ? '/en/book' : '/book'} class="btn-cta inline-flex items-center justify-center shadow-md">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path>
             </svg>
             {isEN ? 'Book Service' : 'Запази час'}
           </a>
+          -->
           
           <a href="mailto:n.ivanov.ivanov@abv.bg" class="btn-primary inline-flex items-center justify-center shadow-md">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -102,6 +104,11 @@ const contactText = isEN
             </svg>
             n.ivanov.ivanov@abv.bg
           </a>
+        </div>
+        
+        <!-- Additional info text for phone booking -->
+        <div class="mt-4 text-center text-gray-600 text-sm">
+          <p>{isEN ? 'Call to schedule your repair appointment' : 'Обадете се за запазване на час за ремонт'}</p>
         </div>
       </div>
     </div>
