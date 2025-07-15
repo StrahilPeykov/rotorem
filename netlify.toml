@@ -177,9 +177,6 @@
 [context.branch-deploy]
   command = "pnpm run build"
 
-# Edge functions (if needed)
-[edge_functions]
-  
 # Analytics and monitoring
 [dev]
   framework = "astro"
