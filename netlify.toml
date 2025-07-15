@@ -1,11 +1,190 @@
 [build]
-  command = "pnpm install --no-frozen-lockfile && pnpm build"
+  command = "pnpm install --no-frozen-lockfile && pnpm run build"
   publish = "dist"
+  
+  # Build environment variables
+  environment = { NODE_VERSION = "18", PNPM_VERSION = "8.15.5" }
 
-# This will only redirect if the file doesn't exist
-# So /sitemap.xml will work if it exists in the dist folder
+[build.processing]
+  # Let Netlify handle some optimizations
+  skip_processing = false
+
+[build.processing.css]
+  bundle = true
+  minify = true
+
+[build.processing.js]
+  bundle = true
+  minify = true
+
+[build.processing.html]
+  pretty_urls = true
+
+[build.processing.images]
+  compress = true
+
+# Headers for security, caching, and performance
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Security Headers
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://www.google-analytics.com; frame-src 'self' https://www.google.com"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    
+    # Performance headers
+    X-DNS-Prefetch-Control = "on"
+    
+# Static assets - aggressive caching
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Access-Control-Allow-Origin = "*"
+
+[[headers]]
+  for = "/_astro/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Access-Control-Allow-Origin = "*"
+
+# Images - long term caching
+[[headers]]
+  for = "/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+    Vary = "Accept"
+
+# Fonts - long term caching
+[[headers]]
+  for = "*.woff2"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Access-Control-Allow-Origin = "*"
+
+# Favicon and manifest
+[[headers]]
+  for = "/favicon.*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+[[headers]]
+  for = "/site.webmanifest"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+    Content-Type = "application/manifest+json"
+
+# HTML pages - short term caching with revalidation
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=3600, must-revalidate"
+    Vary = "Accept-Encoding"
+
+# SEO files
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+    Content-Type = "application/xml; charset=utf-8"
+
+[[headers]]
+  for = "/robots.txt"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+    Content-Type = "text/plain; charset=utf-8"
+
+# API routes (if any)
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+
+# Redirects for SEO and user experience
+[[redirects]]
+  from = "/услуги"
+  to = "/services"
+  status = 301
+
+[[redirects]]
+  from = "/контакти"
+  to = "/contact"
+  status = 301
+
+[[redirects]]
+  from = "/отзиви"
+  to = "/reviews"
+  status = 301
+
+[[redirects]]
+  from = "/запази-час"
+  to = "/book"
+  status = 301
+
+# English redirects
+[[redirects]]
+  from = "/en/услуги"
+  to = "/en/services"
+  status = 301
+
+# Service-specific redirects
+[[redirects]]
+  from = "/ремонт-перални"
+  to = "/services/washing-machine-repair"
+  status = 301
+
+[[redirects]]
+  from = "/ремонт-съдомиялни"
+  to = "/services/dishwasher-repair"
+  status = 301
+
+# Catch-all redirect for SPA routing (must be last)
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
   force = false
+
+# Plugin configuration
+[[plugins]]
+  package = "@netlify/plugin-lighthouse"
+  
+  [plugins.inputs.thresholds]
+    performance = 0.9
+    accessibility = 0.9
+    best-practices = 0.9
+    seo = 0.9
+
+# Forms (if needed for contact forms)
+[forms]
+  # Enable Netlify Forms for contact submissions
+  
+# Environment-specific settings
+[context.production]
+  command = "pnpm run build"
+  
+  [context.production.environment]
+    NODE_ENV = "production"
+    HUGO_ENV = "production"
+
+[context.deploy-preview]
+  command = "pnpm run build"
+  
+[context.branch-deploy]
+  command = "pnpm run build"
+
+# Edge functions (if needed)
+[edge_functions]
+  
+# Analytics and monitoring
+[dev]
+  framework = "astro"
+  command = "pnpm run dev"
+  targetPort = 4321
+  port = 8888
+  publish = "dist"
+  autoLaunch = true

@@ -16,23 +16,42 @@
     "astro": "astro",
     "format": "biome format --write .",
     "lint": "biome check .",
-    "report": "astro check && npx lighthouse http://localhost:4321/ --output-path=./lighthouse-report.html"
+    "lint:fix": "biome check --apply .",
+    "type-check": "astro check",
+    "optimize-images": "node scripts/optimize-images.js",
+    "generate-sitemap": "astro build && node scripts/validate-sitemap.js",
+    "test:lighthouse": "lhci autorun",
+    "test:seo": "node scripts/seo-check.js",
+    "prebuild": "npm run type-check && npm run optimize-images",
+    "postbuild": "npm run generate-sitemap",
+    "deploy": "npm run build && echo 'Build completed successfully'"
   },
   "dependencies": {
     "astro": "^5.7.13",
     "@astrojs/sitemap": "^3.4.0",
     "@astrojs/tailwind": "^6.0.2",
-    "astro-i18n": "^2.2.4",
     "astro-seo": "^0.8.4",
-    "tailwindcss": "^3.4.17"
+    "tailwindcss": "^3.4.17",
+    "web-vitals": "^3.5.0"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.16",
     "biome": "^0.3.3",
     "daisyui": "^5.0.35",
-    "typescript": "^5.3.2"
+    "typescript": "^5.3.2",
+    "sharp": "^0.33.0",
+    "@lhci/cli": "^0.13.0",
+    "lighthouse": "^11.4.0",
+    "cheerio": "^1.0.0-rc.12",
+    "node-fetch": "^3.3.2"
   },
   "resolutions": {
     "@rollup/pluginutils": "^4.2.1"
-  }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ]
 }

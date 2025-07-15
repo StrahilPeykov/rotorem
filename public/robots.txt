@@ -1,23 +1,19 @@
 User-agent: *
 Allow: /
+Disallow: /netlify/
+Disallow: /_astro/
+Disallow: /admin/
+Disallow: /api/
 
-Host: https://www.rotorem.bg
+# Specific pages
+Allow: /sitemap.xml
+Allow: /favicon.ico
 
-Sitemap: https://www.rotorem.bg/sitemap-index.xml
+# Sitemap
 Sitemap: https://www.rotorem.bg/sitemap.xml
 
-# Allow all pages including booking
-Allow: /book
-Allow: /запази
-Allow: /thankyou
-Allow: /благодарим
+# Host
+Host: https://www.rotorem.bg
 
-# Block admin areas (if any)
-Disallow: /admin/
-Disallow: /.netlify/
-
-# Allow common assets
-Allow: /img/
-Allow: /css/
-Allow: /js/
-Allow: /_astro/
+# Crawl delay (optional)
+Crawl-delay: 1
