@@ -85,31 +85,33 @@ const reviews = [
         height="1080"
         fetchpriority="high"
         decoding="async"
-        onload="console.log('Hero image loaded successfully')"
-        onerror="console.error('Hero image failed to load:', this.src); this.src='/img/hero-fallback.jpg'"
+        loading="eager"
+        style="content-visibility: auto; contain-intrinsic-size: 1920px 1080px;"
+        onload="this.style.opacity = '1'; console.log('Hero image loaded successfully')"
+        onerror="console.error('Hero image failed to load:', this.src); this.src='/img/hero.jpg'"
       />
     </picture>
     <!-- Darkened overlay for good text contrast on ALL screen sizes -->
-    <div class="absolute inset-0 bg-gradient-to-r from-blue-900/70 to-blue-600/50"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-blue-900/70 to-blue-600/50" style="will-change: auto;"></div>
   </div>
   
   <div class="container relative z-10 py-12 md:py-20">
     <!-- Mobile hero content - maximum simplicity -->
     <div class="md:hidden text-center mb-4">
       <!-- Diagnostic fee badge -->
-      <div class="inline-block px-4 py-1 bg-amber-500 text-white text-sm font-semibold rounded-full shadow-sm mb-6 font-heading">
+      <div class="inline-block px-4 py-1 bg-amber-500 text-white text-sm font-semibold rounded-full shadow-sm mb-6 font-heading min-h-[2rem]">
         {isEN ? 'Diagnostic fee: 30 BGN' : 'Диагностика: 30 лв.'}
       </div>
       
       <!-- Larger, more impactful title for mobile - now with consistent capitalization -->
-      <h1 class="text-4xl font-bold text-white mb-4 tracking-wide font-heading">
+      <h1 class="text-4xl font-bold text-white mb-4 tracking-wide font-heading text-shadow-md">
         {isEN ? 'Professional Repair' : 'Професионален ремонт'}
         <br />
         {isEN ? 'Varna' : 'Варна'}
       </h1>
       
       <!-- Super simplified subtitle -->
-      <p class="text-lg text-white mb-6 font-heading">
+      <p class="text-lg text-white mb-6 font-heading text-shadow">
         {isEN 
           ? 'Fast repairs at your home, same-day service.' 
           : 'Бързи ремонти още същия ден във вашия дом.'}
@@ -117,7 +119,11 @@ const reviews = [
       
       <!-- Mobile-optimized CTA buttons - PHONE ONLY NOW -->
       <div class="flex flex-col gap-3 mb-6">        
-        <a href="tel:+359898340982" class="btn-primary inline-flex items-center justify-center shadow-lg py-3">
+        <a 
+          href="tel:+359898340982" 
+          class="btn-primary inline-flex items-center justify-center shadow-lg py-3 min-h-[3rem] touch-manipulation"
+          aria-label={isEN ? 'Call RotoRem Varna now' : 'Обадете се на РотоРем Варна'}
+        >
           <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
           {isEN ? 'Call Now' : 'Обадете се'}
         </a>
@@ -132,7 +138,11 @@ const reviews = [
         -->
         
         <!-- Alternative contact method - Email -->
-        <a href="mailto:n.ivanov.ivanov@abv.bg" class="btn-cta inline-flex items-center justify-center shadow-lg py-3">
+        <a 
+          href="mailto:n.ivanov.ivanov@abv.bg" 
+          class="btn-cta inline-flex items-center justify-center shadow-lg py-3 min-h-[3rem] touch-manipulation"
+          aria-label={isEN ? 'Send email to RotoRem Varna' : 'Изпратете имейл до РотоРем Варна'}
+        >
           <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
             <polyline points="22,6 12,13 2,6"></polyline>
@@ -143,7 +153,7 @@ const reviews = [
       
       <!-- Same-day service badge moved below buttons on mobile -->
       <div class="text-center">
-        <p class="inline-flex items-center text-white text-sm px-3 py-2 bg-primary/30 rounded-full mb-4 font-heading">
+        <p class="inline-flex items-center text-white text-sm px-3 py-2 bg-primary/30 rounded-full mb-4 font-heading backdrop-blur-sm">
           <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
           </svg>
@@ -163,17 +173,17 @@ const reviews = [
         </div>
       </div>
       
-      <h1 class="text-5xl font-bold text-white mb-6 drop-shadow-sm font-heading">
+      <h1 class="text-5xl font-bold text-white mb-6 drop-shadow-sm font-heading text-shadow-md">
         {isEN ? 'Professional Appliance Repair' : 'Професионален ремонт на уреди'}
       </h1>
       
-      <p class="text-xl text-white mb-4 drop-shadow-sm font-heading">
+      <p class="text-xl text-white mb-4 drop-shadow-sm font-heading text-shadow">
         {isEN 
           ? 'Fast and reliable repairs for washing machines, dishwashers, ovens, and electrical systems. We come to you.' 
           : 'Бързи и надеждни ремонти на перални, съдомиялни, фурни и електрически системи. Идваме на място.'}
       </p>
       
-      <p class="text-lg text-white font-medium mb-8 flex items-center justify-center drop-shadow-sm font-heading">
+      <p class="text-lg text-white font-medium mb-8 flex items-center justify-center drop-shadow-sm font-heading text-shadow">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/>
         </svg>
@@ -182,7 +192,11 @@ const reviews = [
       
       <!-- PHONE ONLY BUTTONS for desktop -->
       <div class="flex flex-col sm:flex-row gap-4 justify-center">        
-        <a href="tel:+359898340982" class="btn-primary inline-flex items-center justify-center shadow-lg">
+        <a 
+          href="tel:+359898340982" 
+          class="btn-primary inline-flex items-center justify-center shadow-lg touch-manipulation"
+          aria-label={isEN ? 'Call RotoRem Varna now' : 'Обадете се на РотоРем Варна'}
+        >
           <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
           {t('hero.phone')}
         </a>
@@ -197,7 +211,11 @@ const reviews = [
         -->
         
         <!-- Alternative contact method - Email -->
-        <a href="mailto:n.ivanov.ivanov@abv.bg" class="btn-cta inline-flex items-center justify-center shadow-lg">
+        <a 
+          href="mailto:n.ivanov.ivanov@abv.bg" 
+          class="btn-cta inline-flex items-center justify-center shadow-lg touch-manipulation"
+          aria-label={isEN ? 'Send email to RotoRem Varna' : 'Изпратете имейл до РотоРем Варна'}
+        >
           <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
             <polyline points="22,6 12,13 2,6"></polyline>
@@ -220,7 +238,11 @@ const reviews = [
       <!-- Desktop view - show 4 services with white cards -->
       <div class="hidden md:grid md:grid-cols-4 gap-3">
         {allServices.map((service) => (
-          <a href="#services" class="block p-3 rounded-lg text-center bg-white/90 backdrop-blur shadow-sm border border-gray-100 transition-all hover:shadow-md hover:-translate-y-1">
+          <a 
+            href="#services" 
+            class="block p-3 rounded-lg text-center bg-white/90 backdrop-blur shadow-sm border border-gray-100 transition-all hover:shadow-md hover:-translate-y-1 touch-manipulation"
+            style="min-height: 120px;"
+          >
             <div class={`${service.color} w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2`}>
               <Fragment set:html={service.icon} />
             </div>
@@ -231,12 +253,13 @@ const reviews = [
       
       <!-- Mobile view - simplified colorful service cards -->
       <div class="md:hidden">
-        <div class="flex overflow-x-auto pb-3 scrollbar-hide">
+        <div class="flex overflow-x-auto pb-3 scrollbar-hide" style="scroll-snap-type: x mandatory;">
           <div class="flex gap-3 px-2">
             {allServices.map((service) => (
               <a 
                 href="#services" 
-                class={`flex flex-col items-center p-4 rounded-lg shadow-md flex-shrink-0 w-28 bg-gradient-to-br ${service.gradientColor} text-white`}
+                class={`flex flex-col items-center p-4 rounded-lg shadow-md flex-shrink-0 w-28 bg-gradient-to-br ${service.gradientColor} text-white touch-manipulation`}
+                style="scroll-snap-align: start; min-height: 120px;"
               >
                 <div class="bg-white/20 w-12 h-12 rounded-full flex items-center justify-center mb-2">
                   <Fragment set:html={service.icon} />
@@ -249,7 +272,10 @@ const reviews = [
         
         <!-- See all services link with improved padding and visibility -->
         <div class="text-center mt-3 mb-2 px-4">
-          <a href="#services" class="inline-flex items-center text-white text-sm font-medium bg-white/10 backdrop-blur px-4 py-2 rounded-full font-heading">
+          <a 
+            href="#services" 
+            class="inline-flex items-center text-white text-sm font-medium bg-white/10 backdrop-blur px-4 py-2 rounded-full font-heading hover:bg-white/20 transition-colors touch-manipulation"
+          >
             {isEN ? 'See all services' : 'Вижте всички услуги'}
             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="9 18 15 12 9 6"></polyline>
