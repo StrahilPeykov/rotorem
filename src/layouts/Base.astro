@@ -21,6 +21,7 @@ const navPaths = {
   reviews: isEN ? '/en/reviews' : '/reviews',
   contact: isEN ? '/en/contact' : '/contact',
   // book: isEN ? '/en/book' : '/book', // COMMENTED OUT - Booking disabled
+  faq: isEN ? '/en/faq' : '/faq',
   home: isEN ? '/en' : '/'
 };
 
@@ -276,127 +277,8 @@ const getPageSpecificSchema = () => {
       }}
     />
     
-    <!-- Enhanced LocalBusiness Schema with Services and FAQs - UPDATED WORKING HOURS -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": isEN ? "RotoRem Varna" : "РотоРем Варна",
-        "alternateName": "RotoRem",
-        "description": isEN 
-          ? "Professional appliance repair services in Varna - washing machines, dishwashers, ovens, electrical systems"
-          : "Професионален ремонт на битова техника във Варна - перални, съдомиялни, фурни, електрически системи",
-        "url": "https://www.rotorem.bg",
-        "telephone": "+359898340982",
-        "email": "n.ivanov.ivanov@abv.bg",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Varna",
-          "addressRegion": "Varna",
-          "postalCode": "9000",
-          "addressCountry": "BG",
-          "streetAddress": "Варна"
-        },
-        "geo": {
-          "@type": "GeoCoordinates",
-          "latitude": 43.2141,
-          "longitude": 27.9147
-        },
-        "areaServed": {
-          "@type": "GeoCircle",
-          "geoMidpoint": {
-            "@type": "GeoCoordinates",
-            "latitude": 43.2141,
-            "longitude": 27.9147
-          },
-          "geoRadius": "20000"
-        },
-        "serviceArea": {
-          "@type": "GeoCircle",
-          "geoMidpoint": {
-            "@type": "GeoCoordinates", 
-            "latitude": 43.2141,
-            "longitude": 27.9147
-          },
-          "geoRadius": "20000"
-        },
-        "openingHoursSpecification": [
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-            "opens": "09:00",
-            "closes": "17:00"
-          }
-        ],
-        "priceRange": "$$",
-        "image": "https://www.rotorem.bg/img/hero.webp",
-        "logo": "https://www.rotorem.bg/favicon.svg",
-        "hasOfferCatalog": {
-          "@type": "OfferCatalog",
-          "name": isEN ? "Appliance Repair Services" : "Услуги за ремонт на битова техника",
-          "itemListElement": [
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": isEN ? "Washing Machine Repair" : "Ремонт на перални машини",
-                "description": isEN 
-                  ? "Professional washing machine repair for all brands in Varna"
-                  : "Професионален ремонт на перални машини всички марки във Варна",
-                "serviceType": "Appliance Repair",
-                "url": isEN ? "https://www.rotorem.bg/en/services/washing-machine-repair" : "https://www.rotorem.bg/services/washing-machine-repair"
-              }
-            },
-            {
-              "@type": "Offer", 
-              "itemOffered": {
-                "@type": "Service",
-                "name": isEN ? "Dishwasher Repair" : "Ремонт на съдомиялни машини",
-                "description": isEN 
-                  ? "On-site dishwasher repair in Varna"
-                  : "Ремонт на съдомиялни машини на място във Варна",
-                "serviceType": "Appliance Repair",
-                "url": isEN ? "https://www.rotorem.bg/en/services/dishwasher-repair" : "https://www.rotorem.bg/services/dishwasher-repair"
-              }
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service", 
-                "name": isEN ? "Oven and Cooktop Repair" : "Ремонт на фурни и котлони",
-                "description": isEN 
-                  ? "Electric oven and cooktop repair in Varna"
-                  : "Ремонт на електрически фурни и котлони във Варна",
-                "serviceType": "Appliance Repair",
-                "url": isEN ? "https://www.rotorem.bg/en/services/oven-repair" : "https://www.rotorem.bg/services/oven-repair"
-              }
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service", 
-                "name": isEN ? "Electrical Services" : "Електрически услуги",
-                "description": isEN 
-                  ? "Installation and repair of electrical systems in Varna"
-                  : "Монтаж и ремонт на електрически инсталации във Варна",
-                "serviceType": "Electrical Service",
-                "url": isEN ? "https://www.rotorem.bg/en/services/electrical-services" : "https://www.rotorem.bg/services/electrical-services"
-              }
-            }
-          ]
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "5.0",
-          "reviewCount": "100",
-          "bestRating": "5",
-          "worstRating": "1"
-        },
-        "sameAs": [
-          "https://www.facebook.com/rotorem"
-        ]
-      }
-    </script>
+    <!-- Enhanced LocalBusiness Schema -->
+    <script type="application/ld+json" set:html={JSON.stringify(getPageSpecificSchema())}></script>
     
     <!-- Web Vitals and Analytics -->
     <script type="module">
@@ -529,6 +411,10 @@ const getPageSpecificSchema = () => {
         font-family: 'Inter Fallback';
         src: local('system-ui'), local('-apple-system'), local('BlinkMacSystemFont'), local('Segoe UI');
         font-display: swap;
+        size-adjust: 107%;
+        ascent-override: 90%;
+        descent-override: 22%;
+        line-gap-override: 0%;
       }
 
       @font-face {
@@ -536,6 +422,10 @@ const getPageSpecificSchema = () => {
         src: local('system-ui'), local('-apple-system'), local('BlinkMacSystemFont'), local('Segoe UI');
         font-display: swap;
         font-weight: 700;
+        size-adjust: 96%;
+        ascent-override: 88%;
+        descent-override: 22%;
+        line-gap-override: 0%;
       }
 
       :root {
@@ -616,6 +506,7 @@ const getPageSpecificSchema = () => {
       
       /* Animation and hover effects */
       .hover-scale {
+        will-change: transform;
         transition: transform 0.3s ease;
       }
       
