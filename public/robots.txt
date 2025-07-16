@@ -1,19 +1,22 @@
 User-agent: *
 Allow: /
+
+# Disallow admin and technical directories
 Disallow: /netlify/
 Disallow: /_astro/
 Disallow: /admin/
 Disallow: /api/
+Disallow: /.well-known/
 
-# Specific pages
+# Allow important files
 Allow: /sitemap.xml
 Allow: /favicon.ico
 
-# Sitemap
+# Sitemap location
 Sitemap: https://www.rotorem.bg/sitemap.xml
 
-# Host
+# Host directive for CDN clarity
 Host: https://www.rotorem.bg
 
-# Crawl delay (optional)
+# Crawl delay (optional - 1 second between requests)
 Crawl-delay: 1
