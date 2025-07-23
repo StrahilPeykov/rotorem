@@ -98,9 +98,9 @@ const reviews = [
   <div class="container relative z-10 py-12 md:py-20">
     <!-- Mobile hero content - maximum simplicity -->
     <div class="md:hidden text-center mb-4">
-      <!-- Diagnostic fee badge -->
+      <!-- Diagnostic fee badge with dual currency -->
       <div class="inline-block px-4 py-1 bg-amber-500 text-white text-sm font-semibold rounded-full shadow-sm mb-6 font-heading min-h-[2rem]">
-        {isEN ? 'Diagnostic fee: 30 BGN' : 'Диагностика: 30 лв.'}
+        {isEN ? 'Diagnostic fee: 30 BGN (15 €)' : 'Диагностика: 30 лв. (15 €)'}
       </div>
       
       <!-- Larger, more impactful title for mobile - now with consistent capitalization -->
@@ -127,15 +127,6 @@ const reviews = [
           <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
           {isEN ? 'Call Now' : 'Обадете се'}
         </a>
-        
-        <!-- COMMENTED OUT - BOOKING DISABLED
-        <a href={isEN ? '/en/book' : '/book'} class="btn-cta inline-flex items-center justify-center shadow-lg py-3">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path>
-          </svg>
-          {isEN ? 'Book Service' : 'Запази час'}
-        </a>
-        -->
         
         <!-- Alternative contact method - Email -->
         <a 
@@ -169,7 +160,7 @@ const reviews = [
           {isEN ? 'In-home repairs in Varna area' : 'Ремонт на уреди във вашия дом'}
         </div>
         <div class="inline-block px-4 py-1 bg-amber-500 text-white text-sm font-semibold rounded-full shadow-sm font-heading">
-          {isEN ? 'Diagnostic fee: 30 BGN' : 'Диагностика: 30 лв.'}
+          {isEN ? 'Diagnostic fee: 30 BGN (15 €)' : 'Диагностика: 30 лв. (15 €)'}
         </div>
       </div>
       
@@ -200,15 +191,6 @@ const reviews = [
           <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
           {t('hero.phone')}
         </a>
-        
-        <!-- COMMENTED OUT - BOOKING DISABLED
-        <a href={isEN ? '/en/book' : '/book'} class="btn-cta inline-flex items-center justify-center shadow-lg">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path>
-          </svg>
-          {t('hero.cta')}
-        </a>
-        -->
         
         <!-- Alternative contact method - Email -->
         <a 

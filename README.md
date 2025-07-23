@@ -14,7 +14,7 @@ RotoRem provides professional in-home appliance repair services throughout Varna
 **Key Features:**
 - Same-day repair service
 - In-home service (no need to transport heavy appliances)
-- 30 BGN diagnostic fee
+- 30 BGN (15 €) diagnostic fee
 - Professional warranty on all repairs
 - Serving all Varna neighborhoods
 
