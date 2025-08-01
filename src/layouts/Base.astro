@@ -20,7 +20,7 @@ const navPaths = {
   services: isEN ? '/en/services' : '/services',
   reviews: isEN ? '/en/reviews' : '/reviews',
   contact: isEN ? '/en/contact' : '/contact',
-  // book: isEN ? '/en/book' : '/book', // COMMENTED OUT - Booking disabled
+  blog: isEN ? '/en/blog' : '/blog',
   faq: isEN ? '/en/faq' : '/faq',
   home: isEN ? '/en' : '/'
 };
@@ -724,12 +724,10 @@ const getPageSpecificSchema = () => {
     </style>
   </head>
   <body class="min-h-screen bg-gray-50">
-    <!-- Header with FIXED LOGO -->
+    <!-- Header with UPDATED NAVIGATION -->
     <header class="py-4 bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
       <div class="container flex justify-between items-center">
-        <!-- Fixed Logo - Remove conflicting inline styles -->
         <a href={navPaths.home} class="flex items-end gap-3 group">
-          <!-- Responsive container - no more inline styles -->
           <div class="logo-container">
             <img 
               src="/favicon.svg" 
@@ -739,18 +737,15 @@ const getPageSpecificSchema = () => {
               height="48"
               loading="eager"
               decoding="sync"
-              onload="console.log('Logo loaded successfully');"
-              onerror="this.src='/favicon-32x32.png'; console.log('Logo fallback to PNG');"
             />
           </div>
-          <!-- Company name -->
           <span class="company-name-text">
             {isEN ? 'RotoRem Varna' : 'РотоРем Варна'}
           </span>
         </a>
 
         <div class="flex gap-4 md:gap-8 items-center">
-          <!-- Desktop navigation - Mix of dedicated pages and modal -->
+          <!-- Desktop navigation - UPDATED WITH BLOG -->
           <nav class="hidden md:flex gap-6">
             <a href={navPaths.services} class="text-gray-700 hover:text-primary font-medium font-heading">
               {t('nav.services')}
@@ -761,6 +756,9 @@ const getPageSpecificSchema = () => {
             >
               {t('nav.reviews')}
             </button>
+            <a href={navPaths.blog} class="text-gray-700 hover:text-primary font-medium font-heading">
+              {t('nav.blog')}
+            </a>
             <a href={navPaths.contact} class="text-gray-700 hover:text-primary font-medium font-heading">
               {t('nav.contact')}
             </a>
@@ -780,10 +778,9 @@ const getPageSpecificSchema = () => {
         </div>
       </div>
       
-      <!-- Mobile Navigation Overlay -->
+      <!-- Mobile Navigation Overlay - UPDATED WITH BLOG -->
       <div id="mobile-menu" class="fixed inset-0 bg-gray-900/80 z-50 hidden">
         <div class="h-full w-64 max-w-[80%] bg-white shadow-xl ml-auto flex flex-col">
-          <!-- Mobile menu header - simplified -->
           <div class="p-4 border-b border-gray-200 flex items-center justify-between">
             <span class="font-bold text-lg text-primary font-heading">
               {isEN ? 'RotoRem' : 'РотоРем'}
@@ -795,7 +792,7 @@ const getPageSpecificSchema = () => {
             </button>
           </div>
           
-          <!-- Mobile menu links - Mix of pages and modal -->
+          <!-- Mobile menu links - UPDATED WITH BLOG -->
           <nav class="flex flex-col py-4">
             <a href={navPaths.services} class="py-3 px-4 text-gray-700 hover:bg-gray-100 active:bg-gray-200 font-heading">
               {t('nav.services')}
@@ -806,6 +803,9 @@ const getPageSpecificSchema = () => {
             >
               {t('nav.reviews')}
             </button>
+            <a href={navPaths.blog} class="py-3 px-4 text-gray-700 hover:bg-gray-100 active:bg-gray-200 font-heading">
+              {t('nav.blog')}
+            </a>
             <a href={navPaths.contact} class="py-3 px-4 text-gray-700 hover:bg-gray-100 active:bg-gray-200 font-heading">
               {t('nav.contact')}
             </a>
@@ -814,7 +814,7 @@ const getPageSpecificSchema = () => {
             </a>
           </nav>
           
-          <!-- Language toggle in mobile menu -->
+          <!-- Language toggle and CTA sections remain the same -->
           <div class="px-4 py-3 border-t border-gray-200">
             <div class="flex items-center">
               <span class="text-gray-600 mr-2 font-heading">{isEN ? 'Language:' : 'Език:'}</span>
@@ -822,7 +822,6 @@ const getPageSpecificSchema = () => {
             </div>
           </div>
           
-          <!-- Mobile call-to-action - PHONE ONLY NOW -->
           <div class="mt-auto p-4 border-t border-gray-200">
             <a href="tel:+359898340982" class="btn-primary w-full flex items-center justify-center shadow-sm mb-3">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -831,16 +830,6 @@ const getPageSpecificSchema = () => {
               {isEN ? 'Call Now' : 'Обадете се сега'}
             </a>
             
-            <!-- COMMENTED OUT - BOOKING DISABLED
-            <a href={navPaths.book} class="btn-cta w-full flex items-center justify-center shadow-sm">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path>
-              </svg>
-              {isEN ? 'Book Service' : 'Запази час'}
-            </a>
-            -->
-            
-            <!-- Additional contact info for phone-only booking -->
             <div class="text-center text-gray-600 text-sm mt-2">
               <p class="font-heading">
                 {isEN ? 'Call to schedule your repair' : 'Обадете се за запазване на час'}
@@ -858,21 +847,20 @@ const getPageSpecificSchema = () => {
       <slot />
     </main>
     
-    <!-- Floating phone button (was booking button) -->
+    <!-- Floating phone button -->
     <a href="tel:+359898340982" class="floating-button" id="floating-phone-btn">
       <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
       </svg>
     </a>
     
-    <!-- Footer with Facebook Only -->
+    <!-- Footer - UPDATED WITH BLOG LINK -->
     <footer class="bg-gray-800 text-white py-10 mt-16">
       <div class="container">
         <div class="grid md:grid-cols-3 gap-8">
-          <!-- Company info with Facebook only -->
+          <!-- Company info section remains the same -->
           <div>
             <div class="flex items-end gap-2 mb-4">
-              <!-- Fixed footer logo -->
               <div class="logo-container">
                 <img 
                   src="/favicon.svg"
@@ -881,7 +869,6 @@ const getPageSpecificSchema = () => {
                   width="48"
                   height="48"
                   loading="lazy"
-                  onerror="this.src='/favicon-32x32.png';"
                 />
               </div>
               <h3 class="font-semibold text-lg font-heading leading-none">
@@ -891,21 +878,6 @@ const getPageSpecificSchema = () => {
             <p class="text-gray-300 mb-4 font-heading">
               {isEN ? 'Professional home appliance repair services' : 'Професионален ремонт на домашни уреди'}
             </p>
-            
-            <!-- Facebook link only - update this URL once you create your page -->
-            <div class="flex space-x-4 mb-6">
-              <a 
-                href="#" 
-                class="text-gray-400 hover:text-white transition-colors duration-300 hover:scale-110 transform"
-                target="_blank" 
-                rel="noopener noreferrer"
-                title={isEN ? 'Follow us on Facebook' : 'Последвайте ни във Facebook'}
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/>
-                </svg>
-              </a>
-            </div>
             
             <!-- Contact preview in footer -->
             <div class="space-y-2">
@@ -925,11 +897,12 @@ const getPageSpecificSchema = () => {
             </div>
           </div>
           
-          <!-- Contact info -->
+          <!-- Contact info section remains the same -->
           <div>
             <h3 class="font-semibold text-lg mb-4 font-heading">
               {isEN ? 'Contact Us' : 'Контакти'}
             </h3>
+            <!-- Contact details remain the same -->
             <ul class="space-y-2 text-gray-300">
               <li class="flex items-start">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2 text-gray-400 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -953,7 +926,7 @@ const getPageSpecificSchema = () => {
               </li>
             </ul>
             
-            <!-- Working hours in footer - UPDATED TO 9-17 MON-FRI ONLY -->
+            <!-- Working hours remain the same -->
             <div class="mt-4">
               <h4 class="font-medium text-gray-300 mb-2 font-heading">
                 {isEN ? 'Working Hours' : 'Работно време'}
@@ -965,7 +938,7 @@ const getPageSpecificSchema = () => {
             </div>
           </div>
           
-          <!-- Quick links -->
+          <!-- Quick links - UPDATED WITH BLOG -->
           <div>
             <h3 class="font-semibold text-lg mb-4 font-heading">
               {isEN ? 'Quick Links' : 'Бързи връзки'}
@@ -988,16 +961,14 @@ const getPageSpecificSchema = () => {
                 </a>
               </li>
               <li>
+                <a href={navPaths.blog} class="hover:text-white font-heading">{t('nav.blog')}</a>
+              </li>
+              <li>
                 <a href={navPaths.contact} class="hover:text-white font-heading">{t('nav.contact')}</a>
               </li>
               <li>
                 <a href={isEN ? '/en/faq' : '/faq'} class="hover:text-white font-heading">{t('nav.faq')}</a>
               </li>
-              <!-- COMMENTED OUT - BOOKING DISABLED
-              <li>
-                <a href={navPaths.book} class="hover:text-white font-heading">{isEN ? 'Book Service' : 'Запази час'}</a>
-              </li>
-              -->
               <li>
                 <span class="text-gray-500 font-heading">{isEN ? 'Call to schedule service' : 'Обадете се за час'}</span>
               </li>
@@ -1017,35 +988,23 @@ const getPageSpecificSchema = () => {
     </footer>
   </body>
   
-  <!-- Mobile menu and Reviews modal script -->
+  <!-- Updated script for mobile menu and Reviews modal -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // LOGO DEBUG INFO
-      const logo = document.querySelector('img[alt="RotoRem Logo"]');
-      if (logo) {
-        console.log('🔍 Logo Debug Info:');
-        console.log('- Logo element:', logo);
-        console.log('- Logo computed width:', getComputedStyle(logo).width);
-        console.log('- Logo computed height:', getComputedStyle(logo).height);
-      }
-
-      // Mobile menu functionality
+      // Mobile menu functionality remains the same
       const mobileMenuButton = document.getElementById('mobile-menu-button');
       const closeMenuButton = document.getElementById('close-menu-button');
       const mobileMenu = document.getElementById('mobile-menu');
       const mobileMenuLinks = document.querySelectorAll('#mobile-menu nav a');
       const menuPanel = mobileMenu?.querySelector('div');
-      const floatingButton = document.getElementById('floating-phone-btn'); // Updated ID
+      const floatingButton = document.getElementById('floating-phone-btn');
       
       function openMenu() {
         if (mobileMenu && menuPanel) {
           mobileMenu.classList.remove('hidden');
           menuPanel.classList.add('slide-in-right');
           document.body.style.overflow = 'hidden';
-          // Hide floating button when menu is open
-          if (floatingButton) {
-            floatingButton.style.display = 'none';
-          }
+          if (floatingButton) floatingButton.style.display = 'none';
         }
       }
       
@@ -1058,27 +1017,17 @@ const getPageSpecificSchema = () => {
             mobileMenu.classList.add('hidden');
             menuPanel.classList.remove('slide-out-right');
             document.body.style.overflow = '';
-            // Show floating button when menu is closed
-            if (floatingButton) {
-              floatingButton.style.display = 'flex';
-            }
+            if (floatingButton) floatingButton.style.display = 'flex';
           }, 300);
         }
       }
       
-      if (mobileMenuButton) {
-        mobileMenuButton.addEventListener('click', openMenu);
-      }
-      
-      if (closeMenuButton) {
-        closeMenuButton.addEventListener('click', closeMenu);
-      }
+      if (mobileMenuButton) mobileMenuButton.addEventListener('click', openMenu);
+      if (closeMenuButton) closeMenuButton.addEventListener('click', closeMenu);
       
       if (mobileMenu) {
         mobileMenu.addEventListener('click', function(event) {
-          if (event.target === mobileMenu) {
-            closeMenu();
-          }
+          if (event.target === mobileMenu) closeMenu();
         });
       }
       
@@ -1086,7 +1035,7 @@ const getPageSpecificSchema = () => {
         link.addEventListener('click', closeMenu);
       });
 
-      // Reviews modal functionality
+      // Reviews modal functionality remains the same
       const modalTrigger = document.getElementById('reviews-modal-trigger');
       const modalTriggerMobile = document.getElementById('reviews-modal-trigger-mobile');
       const modalTriggerFooter = document.getElementById('reviews-modal-trigger-footer');
@@ -1096,43 +1045,25 @@ const getPageSpecificSchema = () => {
       function openReviewsModal() {
         modal?.classList.remove('hidden');
         document.body.style.overflow = 'hidden';
-        // Close mobile menu if open
         closeMenu();
-        // Hide floating button when modal is open
-        if (floatingButton) {
-          floatingButton.style.display = 'none';
-        }
+        if (floatingButton) floatingButton.style.display = 'none';
       }
       
       function closeReviewsModal() {
         modal?.classList.add('hidden');
         document.body.style.overflow = '';
-        // Show floating button when modal is closed
-        if (floatingButton) {
-          floatingButton.style.display = 'flex';
-        }
+        if (floatingButton) floatingButton.style.display = 'flex';
       }
       
-      // Open modal from desktop trigger
       modalTrigger?.addEventListener('click', openReviewsModal);
-      
-      // Open modal from mobile trigger
       modalTriggerMobile?.addEventListener('click', openReviewsModal);
-      
-      // Open modal from footer trigger
       modalTriggerFooter?.addEventListener('click', openReviewsModal);
-      
-      // Close modal
       closeModal?.addEventListener('click', closeReviewsModal);
       
-      // Close on backdrop click
       modal?.addEventListener('click', function(e) {
-        if (e.target === modal) {
-          closeReviewsModal();
-        }
+        if (e.target === modal) closeReviewsModal();
       });
       
-      // Close on Escape key
       document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && !modal?.classList.contains('hidden')) {
           closeReviewsModal();

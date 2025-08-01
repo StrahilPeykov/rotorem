@@ -14,68 +14,72 @@ const description = isEN
   ? 'Helpful tips and guides for appliance maintenance and repair from RotoRem Varna experts. Learn how to keep your appliances running smoothly.'
   : 'Полезни съвети и ръководства за поддръжка и ремонт на битова техника от експертите на РотоРем Варна. Научете как да поддържате уредите си.';
 
-// Blog posts data - these would typically come from a CMS or markdown files
+// UPDATED Blog posts data with real posts from documents
 const blogPosts = [
   {
-    title: isEN 
-      ? '7 Tips to Extend Your Washing Machine Life'
-      : '7 съвета за удължаване живота на пералнята',
-    excerpt: isEN 
-      ? 'Learn essential maintenance tips that will keep your washing machine running efficiently for years to come...'
-      : 'Научете основни съвети за поддръжка, които ще поддържат пералнята ви в добро състояние за години напред...',
-    date: isEN ? 'March 15, 2025' : '15 март, 2025',
-    readTime: isEN ? '5 min read' : '5 мин четене',
-    slug: 'washing-machine-maintenance-tips',
-    category: isEN ? 'Maintenance' : 'Поддръжка',
-    image: '/img/blog/washing-machine-tips.webp'
+    title: 'Ремонт на котлони Варна – решение за стъклокерамичен плот и индукционни котлони',
+    excerpt: 'Ремонт на котлони Варна без излишни нерви и главоболия? Сервиз на котлони Варна от РотоРем Варна знае точно какво ви трябва...',
+    date: '15 януари, 2025',
+    readTime: '6 мин четене',
+    slug: 'remont-na-kotloni-varna-stuklokeramichen-plot',
+    category: 'Ремонт на уреди',
+    image: '/img/blog/cooktop-repair.webp'
   },
   {
-    title: isEN 
-      ? 'When to Repair vs Replace Your Appliances'
-      : 'Кога да ремонтирате, а кога да подмените уредите си',
-    excerpt: isEN 
-      ? 'A comprehensive guide to help you decide whether to repair or replace your broken appliances...'
-      : 'Пълно ръководство, което ще ви помогне да решите дали да ремонтирате или да подмените повредените уреди...',
-    date: isEN ? 'March 10, 2025' : '10 март, 2025',
-    readTime: isEN ? '7 min read' : '7 мин четене',
-    slug: 'repair-vs-replace-appliances',
-    category: isEN ? 'Buying Guide' : 'Ръководство за покупка',
-    image: '/img/blog/repair-vs-replace.webp'
+    title: 'Когато пералнята спре: ремонт на перални Варна, който идва на място',
+    excerpt: 'Ремонт на перални Варна -- когато пералнята спре неочаквано, денят ви бързо може да се превърне в хаос. Сервиз перални Варна РотоРем идва директно на място...',
+    date: '14 януари, 2025',
+    readTime: '8 мин четене',
+    slug: 'kogato-peralnqta-spre-remont-na-peralni-varna',
+    category: 'Ремонт на перални',
+    image: '/img/blog/washing-machine-repair.webp'
   },
   {
-    title: isEN 
-      ? 'Most Common Dishwasher Problems in Varna'
-      : 'Най-честите проблеми със съдомиялни във Варна',
-    excerpt: isEN 
-      ? 'Discover the most frequent dishwasher issues we encounter in Varna and how to prevent them...'
-      : 'Открийте най-честите проблеми със съдомиялни, които срещаме във Варна и как да ги предотвратите...',
-    date: isEN ? 'March 5, 2025' : '5 март, 2025',
-    readTime: isEN ? '6 min read' : '6 мин четене',
-    slug: 'common-dishwasher-problems-varna',
-    category: isEN ? 'Troubleshooting' : 'Отстраняване на неизправности',
-    image: '/img/blog/dishwasher-problems.webp'
+    title: 'Бойлерът не загрява? Ремонт на бойлери Варна решава проблема на момента на място',
+    excerpt: 'Ремонт на бойлери Варна -- това е първото нещо, за което си мислите, щом усетите студена вода вместо приятната топлина...',
+    date: '13 януари, 2025',
+    readTime: '7 мин четене',
+    slug: 'boyler-ne-zagrqva-remont-na-boyleri-varna',
+    category: 'Ремонт на бойлери',
+    image: '/img/blog/boiler-repair.webp'
   },
   {
-    title: isEN 
-      ? 'How Varna\'s Water Quality Affects Your Appliances'
-      : 'Как качеството на водата във Варна влияе на уредите ви',
-    excerpt: isEN 
-      ? 'Learn about Varna\'s water characteristics and how they impact your washing machines and dishwashers...'
-      : 'Научете за характеристиките на водата във Варна и как те влияят на пералните и съдомиялните ви...',
-    date: isEN ? 'February 28, 2025' : '28 февруари, 2025',
-    readTime: isEN ? '8 min read' : '8 мин четене',
-    slug: 'varna-water-quality-appliances',
-    category: isEN ? 'Local Insights' : 'Местни съвети',
-    image: '/img/blog/water-quality.webp'
+    title: 'Електротехник Варна е човекът, от когото се нуждаеш, когато токът изгасне ненадейно',
+    excerpt: 'Електроуслуги Варна вече не са лукс, а реална необходимост, когато аварията се случи изневиделица. РотоРем Варна е тук, за да направи живота ти по-лесен...',
+    date: '12 януари, 2025',
+    readTime: '9 мин четене',
+    slug: 'elektrotehnik-varna-avarii-montaji',
+    category: 'Електроуслуги',
+    image: '/img/blog/electrical-services.webp'
+  },
+  {
+    title: 'Ремонт на пералня и сушилна Варна: сервиз на място',
+    excerpt: 'Пералнята не центрофугира? Точно заради такива моменти съществува и услугата ремонт на перални и сушилни Варна...',
+    date: '11 януари, 2025',
+    readTime: '8 мин четене',
+    slug: 'remont-na-perealnq-i-sushilna-varna-serviz',
+    category: 'Ремонт на перални и сушилни',
+    image: '/img/blog/washer-dryer-repair.webp'
+  },
+  {
+    title: 'Ел техник Варна – надежден демонтаж и монтаж на ключове и контакти във вашия дом',
+    excerpt: 'Ел техник Варна е точният специалист, който търсите, когато контактът ви не работи или ключът за лампата отказва...',
+    date: '10 януари, 2025',
+    readTime: '6 мин четене',
+    slug: 'el-tehnik-varna-montaj-demontaj-klyuchove-kontakti',
+    category: 'Електрически ключове и контакти',
+    image: '/img/blog/electrical-switches.webp'
   }
 ];
 
+// UPDATED categories to match the actual blog posts
 const categories = [
-  { name: isEN ? 'All' : 'Всички', slug: 'all' },
-  { name: isEN ? 'Maintenance' : 'Поддръжка', slug: 'maintenance' },
-  { name: isEN ? 'Troubleshooting' : 'Отстраняване на неизправности', slug: 'troubleshooting' },
-  { name: isEN ? 'Buying Guide' : 'Ръководство за покупка', slug: 'buying-guide' },
-  { name: isEN ? 'Local Insights' : 'Местни съвети', slug: 'local-insights' }
+  { name: 'Всички', slug: 'all' },
+  { name: 'Ремонт на уреди', slug: 'remont-na-uredi' },
+  { name: 'Ремонт на перални', slug: 'remont-na-peralni' },
+  { name: 'Ремонт на бойлери', slug: 'remont-na-boyleri' },
+  { name: 'Електроуслуги', slug: 'elektrouslvgi' },
+  { name: 'Електрически ключове и контакти', slug: 'elektricheski-klyuchove-kontakti' }
 ];
 ---
 
@@ -85,13 +89,11 @@ const categories = [
       <!-- Header -->
       <header class="text-center max-w-3xl mx-auto mb-12">
         <h1 class="text-4xl font-bold text-gray-900 mb-4">
-          {isEN ? 'Appliance Repair Blog' : 'Блог за ремонт на битова техника'}
+          Блог за ремонт на битова техника
         </h1>
         <div class="w-20 h-1 bg-accent mx-auto my-4"></div>
         <p class="text-xl text-gray-600">
-          {isEN 
-            ? 'Expert tips and guides from RotoRem Varna to help you maintain and repair your appliances'
-            : 'Експертни съвети и ръководства от РотоРем Варна за поддръжка и ремонт на вашите уреди'}
+          Експертни съвети и ръководства от РотоРем Варна за поддръжка и ремонт на вашите уреди
         </p>
       </header>
 
@@ -112,7 +114,7 @@ const categories = [
       <!-- Featured Post -->
       <div class="mb-16">
         <h2 class="text-2xl font-semibold mb-6 text-gray-900">
-          {isEN ? 'Featured Article' : 'Препоръчана статия'}
+          Препоръчана статия
         </h2>
         <article class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
           <div class="md:flex">
@@ -145,7 +147,7 @@ const categories = [
                   href={`/blog/${blogPosts[0].slug}`}
                   class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-dark transition-colors font-medium"
                 >
-                  {isEN ? 'Read More' : 'Прочетете повече'}
+                  Прочетете повече
                 </a>
                 <span class="text-gray-500 text-sm">{blogPosts[0].readTime}</span>
               </div>
@@ -157,12 +159,12 @@ const categories = [
       <!-- Blog Posts Grid -->
       <div class="mb-12">
         <h2 class="text-2xl font-semibold mb-6 text-gray-900">
-          {isEN ? 'Latest Articles' : 'Последни статии'}
+          Последни статии
         </h2>
         
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="blog-posts-grid">
           {blogPosts.slice(1).map(post => (
-            <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 blog-post" data-category={post.category.toLowerCase().replace(' ', '-')}>
+            <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 blog-post" data-category={post.category.toLowerCase().replace(/\s+/g, '-')}>
               <img 
                 src={post.image} 
                 alt={post.title}
@@ -193,7 +195,7 @@ const categories = [
                     href={`/blog/${post.slug}`}
                     class="text-primary font-medium hover:text-primary-dark transition-colors"
                   >
-                    {isEN ? 'Read More →' : 'Прочетете повече →'}
+                    Прочетете повече →
                   </a>
                   <span class="text-gray-500 text-sm">{post.readTime}</span>
                 </div>
@@ -206,18 +208,16 @@ const categories = [
       <!-- Newsletter Signup -->
       <div class="bg-gradient-to-r from-primary to-primary-dark rounded-xl p-8 text-white text-center">
         <h2 class="text-2xl font-bold mb-4">
-          {isEN ? 'Get Expert Tips Delivered' : 'Получавайте експертни съвети'}
+          Получавайте експертни съвети
         </h2>
         <p class="text-xl mb-6 opacity-90">
-          {isEN 
-            ? 'Subscribe to our newsletter for the latest appliance maintenance tips and repair guides'
-            : 'Абонирайте се за нашия бюлетин за най-новите съвети за поддръжка и ръководства за ремонт'}
+          Абонирайте се за нашия бюлетин за най-новите съвети за поддръжка и ръководства за ремонт
         </p>
         
         <form class="max-w-md mx-auto flex gap-3">
           <input 
             type="email" 
-            placeholder={isEN ? 'Enter your email' : 'Въведете вашия имейл'}
+            placeholder="Въведете вашия имейл"
             class="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-white"
             required
           />
@@ -225,26 +225,22 @@ const categories = [
             type="submit" 
             class="bg-accent hover:bg-amber-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
           >
-            {isEN ? 'Subscribe' : 'Абонирай се'}
+            Абонирай се
           </button>
         </form>
         
         <p class="text-sm mt-4 opacity-75">
-          {isEN 
-            ? 'No spam, unsubscribe at any time. We respect your privacy.'
-            : 'Без спам, отписване по всяко време. Уважаваме вашата поверителност.'}
+          Без спам, отписване по всяко време. Уважаваме вашата поверителност.
         </p>
       </div>
 
-      <!-- Contact CTA - PHONE AND EMAIL ONLY NOW -->
+      <!-- Contact CTA - PHONE AND EMAIL ONLY -->
       <div class="mt-16 text-center">
         <h2 class="text-2xl font-semibold text-gray-900 mb-4">
-          {isEN ? 'Need Professional Help?' : 'Нуждаете се от професионална помощ?'}
+          Нуждаете се от професионална помощ?
         </h2>
         <p class="text-gray-600 mb-6">
-          {isEN 
-            ? 'Can\'t find the answer you\'re looking for? Our expert technicians are here to help.'
-            : 'Не можете да намерите отговора, който търсите? Нашите експертни техници са тук, за да помогнат.'}
+          Не можете да намерите отговора, който търсите? Нашите експертни техници са тук, за да помогнат.
         </p>
         
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
@@ -255,33 +251,24 @@ const categories = [
             089 834 0982
           </a>
           
-          <!-- COMMENTED OUT - BOOKING DISABLED
-          <a href="/book" class="btn-cta inline-flex items-center justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path>
-            </svg>
-            {isEN ? 'Book Service' : 'Запазете час'}
-          </a>
-          -->
-          
           <a href="mailto:n.ivanov.ivanov@abv.bg" class="btn-cta inline-flex items-center justify-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
               <polyline points="22,6 12,13 2,6"></polyline>
             </svg>
-            {isEN ? 'Send Email' : 'Изпратете имейл'}
+            Изпратете имейл
           </a>
         </div>
         
         <!-- Additional info text for phone booking -->
         <div class="mt-4 text-center text-gray-600 text-sm">
-          <p>{isEN ? 'Call to schedule your repair appointment' : 'Обадете се за запазване на час за ремонт'}</p>
+          <p>Обадете се за запазване на час за ремонт</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SEO Content Section -->
+  <!-- SEO Content Section - UPDATED FOR REAL BLOG CONTENT -->
   <div class="rotorem-seo-text">
     <style>
       .rotorem-seo-text {
@@ -316,26 +303,38 @@ const categories = [
     </style>
     
     <div class="container max-w-4xl">
-      <h2>Блог за ремонт на битова техника – полезни съвети и ръководства</h2>
-      <p>В нашия блог за ремонт на битова техника ще намерите експертни съвети и ръководства от професионалните техници на РотоРем Варна. Научете как да поддържате правилно вашите домакински уреди, как да разпознаете ранните признаци на повреди и кога е най-подходящо да се обърнете към професионален сервиз.</p>
+      <h2>Блог за ремонт на битова техника – професионални съвети от експертите на РотоРем Варна</h2>
+      <p>В нашия блог за ремонт на битова техника ще намерите реални, практични съвети от професионалните техници на РотоРем Варна. Всяка статия е написана въз основа на реален опит и хиляди ремонти, извършени в домовете на клиентите ни във Варна и региона.</p>
 
-      <h2>Съвети за поддръжка на перални машини</h2>
-      <p>Пералните машини са едни от най-използваните уреди в дома и правилната им поддръжка може значително да удължи живота им. Редовното почистване на филтрите, използването на подходящи препарати и правилното дозиране на прах за пране са ключови за дълготрайната работа на вашата пералня.</p>
+      <h2>Практически ръководства за ремонт на перални машини</h2>
+      <p>Научете как да разпознаете кога пералнята ви се нуждае от професионална помощ. Нашите статии покриват най-честите проблеми като липса на центрофугиране, течове, странни шумове и електрически неизправности. Всеки съвет е проверен в практиката и ви помага да спестите време и пари.</p>
 
-      <h2>Как да разпознаете проблеми със съдомиялните машини</h2>
-      <p>Съдомиялните машини могат да показват различни симптоми преди да се повредят окончателно. Странни звуци, лошо измиване на съдовете, течове на вода или проблеми с източването са сигнали, че е време да се свържете с професионален сервиз за диагностика и ремонт.</p>
+      <h2>Експертни съвети за ремонт на бойлери и електроуслуги</h2>
+      <p>Когато бойлерът не загрява или имате електрическа авария, времето е от съществено значение. Нашите статии ви обясняват какво да правите в такива ситуации, как да предотвратите бъдещи проблеми и кога точно да повикате професионален електротехник.</p>
 
-      <h2>Електрическа безопасност в дома</h2>
-      <p>Правилното използване на електрическите уреди и редовната проверка на инсталациите са от съществено значение за безопасността в дома. Нашите сертифицирани електротехници споделят важни съвети за предотвратяване на електрически аварии и поддържане на безопасна домашна среда.</p>
+      <h2>Съвети за ремонт на съдомиялни машини и котлони</h2>
+      <p>Научете как да поддържате правилно вашите съдомиялни машини и котлони, за да избегнете скъпи ремонти. Статиите ни включват практически съвети за почистване, профилактика и разпознаване на ранните признаци на повреди.</p>
 
-      <h2>Кога да ремонтираме, а кога да подменяме уредите</h2>
-      <p>Един от най-честите въпроси, които получаваме, е дали си струва да ремонтираме стар уред или е по-изгодно да го подменим с нов. В нашите статии ще намерите подробни анализи и практични съвети, които ще ви помогнат да вземете правилното решение въз основа на възрастта на уреда, цената на ремонта и енергийната ефективност.</p>
+      <h2>Защо да четете нашия блог за ремонт на битова техника?</h2>
+      <ul>
+        <li>Всички съвети са от реални професионални техници с над 15 години опит</li>
+        <li>Статиите са базирани на хиляди реални ремонти във Варна</li>
+        <li>Получавате практически решения, които можете да приложите веднага</li>
+        <li>Научавате как да предотвратите скъпи ремонти в бъдеще</li>
+        <li>Всяка статия включва съвети за безопасност и професионални препоръки</li>
+      </ul>
+
+      <h2>Актуални статии за електроуслуги и монтажи</h2>
+      <p>Електрическата безопасност в дома е от първостепенна важност. Нашите статии за електроуслуги ви дават професионални съвети за монтаж на ключове и контакти, смяна на ел табла и справяне с електрически аварии. Всички препоръки следват актуалните стандарти за безопасност.</p>
+
+      <h2>Свържете се с нас за професионален ремонт</h2>
+      <p>Ако статиите в блога ни не отговарят на вашия въпрос, винаги можете да се свържете директно с нашите техници. Предлагаме професионален ремонт на битова техника във Варна с гаранция за качество и бърза реакция.</p>
     </div>
   </div>
 </Layout>
 
 <script>
-  // Category filtering functionality
+  // UPDATED Category filtering functionality for real categories
   document.addEventListener('DOMContentLoaded', function() {
     const categoryButtons = document.querySelectorAll<HTMLButtonElement>('.category-filter');
     const blogPosts = document.querySelectorAll<HTMLElement>('.blog-post');
@@ -360,7 +359,12 @@ const categories = [
             post.style.display = 'block';
           } else {
             const postCategory = post.getAttribute('data-category');
-            if (postCategory === selectedCategory) {
+            // Match category by converting both to lowercase and removing spaces/dashes
+            const normalizedPostCategory = postCategory?.toLowerCase().replace(/[\s-]+/g, '-');
+            const normalizedSelectedCategory = selectedCategory?.toLowerCase().replace(/[\s-]+/g, '-');
+            
+            if (normalizedPostCategory?.includes(normalizedSelectedCategory!) || 
+                normalizedSelectedCategory?.includes(normalizedPostCategory!)) {
               post.style.display = 'block';
             } else {
               post.style.display = 'none';
