@@ -1,7 +1,7 @@
 ---
 import { SEO } from 'astro-seo';
 import { getLangFromUrl, useTranslations, getRouteFromUrl, getLocalizedPath } from '../i18n/utils';
-import LanguageToggle from '../components/LanguageToggle.astro';
+// import LanguageToggle from '../components/LanguageToggle.astro'; // TEMPORARILY COMMENTED OUT
 import ReviewsModal from '../components/ReviewsModal.astro';
 
 interface Props {
@@ -24,6 +24,30 @@ const navPaths = {
   faq: isEN ? '/en/faq' : '/faq',
   home: isEN ? '/en' : '/'
 };
+
+// Service submenu items
+const serviceMenuItems = [
+  {
+    title: isEN ? 'Washing Machines & Dryers' : 'Перални и сушилни',
+    url: isEN ? '/en/services/washing-machine-repair' : '/services/washing-machine-repair',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="20" x="3" y="2" rx="2"/><circle cx="12" cy="14" r="4"/></svg>`
+  },
+  {
+    title: isEN ? 'Dishwashers' : 'Съдомиялни',
+    url: isEN ? '/en/services/dishwasher-repair' : '/services/dishwasher-repair',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M8 16v-4"/><path d="M16 16v-4"/></svg>`
+  },
+  {
+    title: isEN ? 'Ovens & Water Heaters' : 'Фурни и бойлери',
+    url: isEN ? '/en/services/oven-repair' : '/services/oven-repair',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="16" height="20" x="4" y="2" rx="2"/><path d="M7 16h10"/><path d="M7 8h10"/></svg>`
+  },
+  {
+    title: isEN ? 'Electrical Services' : 'Електрически услуги',
+    url: isEN ? '/en/services/electrical-services' : '/services/electrical-services',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 4h-5L7 12h4l-1 8 6-11h-4l2-5z"/></svg>`
+  }
+];
 
 const {
   title = isEN ? 'RotoRem Varna | Appliance Repair Services' : 'РотоРем Варна | Ремонт на битова техника',
@@ -482,6 +506,23 @@ const getPageSpecificSchema = () => {
         .floating-button {
           @apply fixed bottom-6 right-6 w-14 h-14 bg-primary hover:bg-primary-dark text-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all z-50 hover:scale-105 active:scale-95;
         }
+
+        /* Dropdown menu styles */
+        .dropdown {
+          @apply relative;
+        }
+        
+        .dropdown-menu {
+          @apply absolute top-full left-0 mt-1 w-64 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50 opacity-0 invisible transition-all duration-200 transform scale-95;
+        }
+        
+        .dropdown:hover .dropdown-menu {
+          @apply opacity-100 visible scale-100;
+        }
+        
+        .dropdown-item {
+          @apply flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-primary transition-colors;
+        }
       }
 
       /* Emergency fixes for form elements */
@@ -724,7 +765,7 @@ const getPageSpecificSchema = () => {
     </style>
   </head>
   <body class="min-h-screen bg-gray-50">
-    <!-- Header with UPDATED NAVIGATION -->
+    <!-- Header with UPDATED NAVIGATION INCLUDING DROPDOWN -->
     <header class="py-4 bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
       <div class="container flex justify-between items-center">
         <a href={navPaths.home} class="flex items-end gap-3 group">
@@ -745,29 +786,52 @@ const getPageSpecificSchema = () => {
         </a>
 
         <div class="flex gap-4 md:gap-8 items-center">
-          <!-- Desktop navigation - UPDATED WITH BLOG -->
-          <nav class="hidden md:flex gap-6">
-            <a href={navPaths.services} class="text-gray-700 hover:text-primary font-medium font-heading">
-              {t('nav.services')}
-            </a>
+          <!-- Desktop navigation with Services dropdown -->
+          <nav class="hidden md:flex gap-6 items-center">
+            <!-- Services Dropdown -->
+            <div class="dropdown">
+              <button class="text-gray-700 hover:text-primary font-medium font-heading flex items-center transition-colors">
+                {t('nav.services')}
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              
+              <div class="dropdown-menu">
+                {serviceMenuItems.map((item) => (
+                  <a href={item.url} class="dropdown-item">
+                    <span class="text-primary mr-3" set:html={item.icon}></span>
+                    <span>{item.title}</span>
+                  </a>
+                ))}
+                <div class="border-t border-gray-200 mt-2 mb-2"></div>
+                <a href={navPaths.services} class="dropdown-item font-medium text-primary">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 6l6 6-6 6"/>
+                  </svg>
+                  {isEN ? 'View all services' : 'Всички услуги'}
+                </a>
+              </div>
+            </div>
+            
             <button 
               id="reviews-modal-trigger"
-              class="text-gray-700 hover:text-primary font-medium font-heading"
+              class="text-gray-700 hover:text-primary font-medium font-heading transition-colors"
             >
               {t('nav.reviews')}
             </button>
-            <a href={navPaths.blog} class="text-gray-700 hover:text-primary font-medium font-heading">
+            <a href={navPaths.blog} class="text-gray-700 hover:text-primary font-medium font-heading transition-colors">
               {t('nav.blog')}
             </a>
-            <a href={navPaths.contact} class="text-gray-700 hover:text-primary font-medium font-heading">
+            <a href={navPaths.contact} class="text-gray-700 hover:text-primary font-medium font-heading transition-colors">
               {t('nav.contact')}
             </a>
           </nav>
           
-          <!-- Desktop language toggle -->
-          <div class="hidden md:block">
+          <!-- Desktop language toggle - TEMPORARILY COMMENTED OUT -->
+          <!-- <div class="hidden md:block">
             <LanguageToggle />
-          </div>
+          </div> -->
           
           <!-- Mobile menu button -->
           <button id="mobile-menu-button" class="md:hidden text-gray-700 hover:text-primary">
@@ -778,7 +842,7 @@ const getPageSpecificSchema = () => {
         </div>
       </div>
       
-      <!-- Mobile Navigation Overlay - UPDATED WITH BLOG -->
+      <!-- Mobile Navigation Overlay - WITH SERVICES SUBMENU -->
       <div id="mobile-menu" class="fixed inset-0 bg-gray-900/80 z-50 hidden">
         <div class="h-full w-64 max-w-[80%] bg-white shadow-xl ml-auto flex flex-col">
           <div class="p-4 border-b border-gray-200 flex items-center justify-between">
@@ -792,11 +856,32 @@ const getPageSpecificSchema = () => {
             </button>
           </div>
           
-          <!-- Mobile menu links - UPDATED WITH BLOG -->
+          <!-- Mobile menu links with Services expandable -->
           <nav class="flex flex-col py-4">
-            <a href={navPaths.services} class="py-3 px-4 text-gray-700 hover:bg-gray-100 active:bg-gray-200 font-heading">
-              {t('nav.services')}
-            </a>
+            <!-- Services Toggle -->
+            <button 
+              id="mobile-services-toggle"
+              class="py-3 px-4 text-gray-700 hover:bg-gray-100 active:bg-gray-200 font-heading text-left flex items-center justify-between"
+            >
+              <span>{t('nav.services')}</span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 transition-transform" id="mobile-services-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+            
+            <!-- Services Submenu -->
+            <div id="mobile-services-submenu" class="hidden bg-gray-50 border-t border-b border-gray-200">
+              {serviceMenuItems.map((item) => (
+                <a href={item.url} class="py-2 px-8 text-gray-600 hover:bg-gray-100 active:bg-gray-200 text-sm font-heading flex items-center">
+                  <span class="text-primary mr-3" set:html={item.icon}></span>
+                  <span>{item.title}</span>
+                </a>
+              ))}
+              <a href={navPaths.services} class="py-2 px-8 text-primary hover:bg-gray-100 active:bg-gray-200 text-sm font-heading font-medium">
+                {isEN ? 'View all services' : 'Всички услуги'}
+              </a>
+            </div>
+            
             <button 
               id="reviews-modal-trigger-mobile"
               class="py-3 px-4 text-gray-700 hover:bg-gray-100 active:bg-gray-200 font-heading text-left"
@@ -814,13 +899,13 @@ const getPageSpecificSchema = () => {
             </a>
           </nav>
           
-          <!-- Language toggle and CTA sections remain the same -->
-          <div class="px-4 py-3 border-t border-gray-200">
+          <!-- Language toggle and CTA sections - LANGUAGE TOGGLE TEMPORARILY COMMENTED OUT -->
+          <!-- <div class="px-4 py-3 border-t border-gray-200">
             <div class="flex items-center">
               <span class="text-gray-600 mr-2 font-heading">{isEN ? 'Language:' : 'Език:'}</span>
               <LanguageToggle />
             </div>
-          </div>
+          </div> -->
           
           <div class="mt-auto p-4 border-t border-gray-200">
             <a href="tel:+359898340982" class="btn-primary w-full flex items-center justify-center shadow-sm mb-3">
@@ -854,7 +939,7 @@ const getPageSpecificSchema = () => {
       </svg>
     </a>
     
-    <!-- Footer - UPDATED WITH BLOG LINK -->
+    <!-- Footer - SAME AS BEFORE BUT WITH SERVICES SUBMENU -->
     <footer class="bg-gray-800 text-white py-10 mt-16">
       <div class="container">
         <div class="grid md:grid-cols-3 gap-8">
@@ -902,7 +987,6 @@ const getPageSpecificSchema = () => {
             <h3 class="font-semibold text-lg mb-4 font-heading">
               {isEN ? 'Contact Us' : 'Контакти'}
             </h3>
-            <!-- Contact details remain the same -->
             <ul class="space-y-2 text-gray-300">
               <li class="flex items-start">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2 text-gray-400 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -938,14 +1022,24 @@ const getPageSpecificSchema = () => {
             </div>
           </div>
           
-          <!-- Quick links - UPDATED WITH BLOG -->
+          <!-- Quick links - WITH SERVICES BREAKDOWN -->
           <div>
             <h3 class="font-semibold text-lg mb-4 font-heading">
-              {isEN ? 'Quick Links' : 'Бързи връзки'}
+              {isEN ? 'Our Services' : 'Нашите услуги'}
             </h3>
             <ul class="space-y-2 text-gray-300">
-              <li>
-                <a href={navPaths.services} class="hover:text-white font-heading">{t('nav.services')}</a>
+              {serviceMenuItems.map((item) => (
+                <li>
+                  <a href={item.url} class="hover:text-white font-heading text-sm flex items-center">
+                    <span class="text-primary mr-2" set:html={item.icon}></span>
+                    <span>{item.title}</span>
+                  </a>
+                </li>
+              ))}
+              <li class="border-t border-gray-700 pt-2 mt-3">
+                <a href={navPaths.services} class="hover:text-white font-heading text-primary">
+                  {isEN ? 'View all services' : 'Всички услуги'}
+                </a>
               </li>
               <li>
                 <button 
@@ -956,11 +1050,6 @@ const getPageSpecificSchema = () => {
                 </button>
               </li>
               <li>
-                <a href={navPaths.reviews} class="hover:text-white font-heading text-sm text-gray-400">
-                  → {isEN ? 'All Reviews Page' : 'Всички отзиви'}
-                </a>
-              </li>
-              <li>
                 <a href={navPaths.blog} class="hover:text-white font-heading">{t('nav.blog')}</a>
               </li>
               <li>
@@ -968,9 +1057,6 @@ const getPageSpecificSchema = () => {
               </li>
               <li>
                 <a href={isEN ? '/en/faq' : '/faq'} class="hover:text-white font-heading">{t('nav.faq')}</a>
-              </li>
-              <li>
-                <span class="text-gray-500 font-heading">{isEN ? 'Call to schedule service' : 'Обадете се за час'}</span>
               </li>
             </ul>
           </div>
@@ -988,16 +1074,21 @@ const getPageSpecificSchema = () => {
     </footer>
   </body>
   
-  <!-- Updated script for mobile menu and Reviews modal -->
+  <!-- Updated script for mobile menu and Reviews modal WITH SERVICES TOGGLE -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Mobile menu functionality remains the same
+      // Mobile menu functionality
       const mobileMenuButton = document.getElementById('mobile-menu-button');
       const closeMenuButton = document.getElementById('close-menu-button');
       const mobileMenu = document.getElementById('mobile-menu');
       const mobileMenuLinks = document.querySelectorAll('#mobile-menu nav a');
       const menuPanel = mobileMenu?.querySelector('div');
       const floatingButton = document.getElementById('floating-phone-btn');
+      
+      // Mobile services submenu functionality
+      const servicesToggle = document.getElementById('mobile-services-toggle');
+      const servicesSubmenu = document.getElementById('mobile-services-submenu');
+      const servicesArrow = document.getElementById('mobile-services-arrow');
       
       function openMenu() {
         if (mobileMenu && menuPanel) {
@@ -1018,8 +1109,29 @@ const getPageSpecificSchema = () => {
             menuPanel.classList.remove('slide-out-right');
             document.body.style.overflow = '';
             if (floatingButton) floatingButton.style.display = 'flex';
+            
+            // Reset services submenu
+            if (servicesSubmenu && servicesArrow) {
+              servicesSubmenu.classList.add('hidden');
+              servicesArrow.style.transform = 'rotate(0deg)';
+            }
           }, 300);
         }
+      }
+      
+      // Toggle services submenu
+      if (servicesToggle && servicesSubmenu && servicesArrow) {
+        servicesToggle.addEventListener('click', function() {
+          const isHidden = servicesSubmenu.classList.contains('hidden');
+          
+          if (isHidden) {
+            servicesSubmenu.classList.remove('hidden');
+            servicesArrow.style.transform = 'rotate(90deg)';
+          } else {
+            servicesSubmenu.classList.add('hidden');
+            servicesArrow.style.transform = 'rotate(0deg)';
+          }
+        });
       }
       
       if (mobileMenuButton) mobileMenuButton.addEventListener('click', openMenu);
@@ -1035,7 +1147,7 @@ const getPageSpecificSchema = () => {
         link.addEventListener('click', closeMenu);
       });
 
-      // Reviews modal functionality remains the same
+      // Reviews modal functionality
       const modalTrigger = document.getElementById('reviews-modal-trigger');
       const modalTriggerMobile = document.getElementById('reviews-modal-trigger-mobile');
       const modalTriggerFooter = document.getElementById('reviews-modal-trigger-footer');
