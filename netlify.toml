@@ -238,7 +238,3 @@
   port = 8888
   publish = "dist"
   autoLaunch = true
-
-# FIXED: Better edge functions configuration
-[edge_functions]
-  # If you add edge functions later
