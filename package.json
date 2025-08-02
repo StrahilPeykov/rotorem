@@ -20,11 +20,10 @@
     "type-check": "astro check",
     "optimize-images": "node scripts/optimize-images.js",
     "validate-sitemap": "node scripts/validate-sitemap.js",
-    "generate-sitemap": "astro build && node scripts/validate-sitemap.js",
+    "generate-sitemap": "astro build",
     "test:lighthouse": "lhci autorun",
     "test:seo": "node scripts/seo-check.js",
     "prebuild": "npm run type-check && npm run optimize-images",
-    "postbuild": "npm run generate-sitemap",
     "deploy": "npm run build && echo 'Build completed successfully'"
   },
   "dependencies": {
