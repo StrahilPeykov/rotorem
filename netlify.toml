@@ -198,19 +198,9 @@
   status = 200
   force = false
 
-# FIXED: Enhanced plugin configuration
-[[plugins]]
-  package = "@netlify/plugin-lighthouse"
-  
-  [plugins.inputs.thresholds]
-    performance = 0.9
-    accessibility = 0.9
-    best-practices = 0.9
-    seo = 0.9
-
-# FIXED: Compression settings
-[[plugins]]
-  package = "netlify-plugin-brotli"
+# Plugin configurations removed for simpler deployment
+# You can add these optimization plugins later by installing them in package.json:
+# "@netlify/plugin-lighthouse" and "netlify-plugin-brotli"
 
 # Forms (if needed for contact forms)
 [forms]
@@ -222,7 +212,6 @@
   
   [context.production.environment]
     NODE_ENV = "production"
-    NETLIFY_USE_BROTLI = "true"
 
 [context.deploy-preview]
   command = "pnpm run build"
