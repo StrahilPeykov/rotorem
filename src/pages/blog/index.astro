@@ -14,61 +14,55 @@ const description = isEN
   ? 'Helpful tips and guides for appliance maintenance and repair from RotoRem Varna experts. Learn how to keep your appliances running smoothly.'
   : 'Полезни съвети и ръководства за поддръжка и ремонт на битова техника от експертите на РотоРем Варна. Научете как да поддържате уредите си.';
 
-// UPDATED Blog posts data with real posts from documents
+// UPDATED Blog posts data with real posts from documents (removed image and date display)
 const blogPosts = [
   {
     title: 'Ремонт на котлони Варна – решение за стъклокерамичен плот и индукционни котлони',
     excerpt: 'Ремонт на котлони Варна без излишни нерви и главоболия? Сервиз на котлони Варна от РотоРем Варна знае точно какво ви трябва...',
-    date: '15 януари, 2025',
+    date: '15 януари, 2025', // Keep for SEO but don't display
     readTime: '6 мин четене',
     slug: 'remont-na-kotloni-varna-stuklokeramichen-plot',
-    category: 'Ремонт на уреди',
-    image: '/img/blog/cooktop-repair.webp'
+    category: 'Ремонт на уреди'
   },
   {
     title: 'Когато пералнята спре: ремонт на перални Варна, който идва на място',
     excerpt: 'Ремонт на перални Варна -- когато пералнята спре неочаквано, денят ви бързо може да се превърне в хаос. Сервиз перални Варна РотоРем идва директно на място...',
-    date: '14 януари, 2025',
+    date: '14 януари, 2025', // Keep for SEO but don't display
     readTime: '8 мин четене',
     slug: 'kogato-peralnqta-spre-remont-na-peralni-varna',
-    category: 'Ремонт на перални',
-    image: '/img/blog/washing-machine-repair.webp'
+    category: 'Ремонт на перални'
   },
   {
     title: 'Бойлерът не загрява? Ремонт на бойлери Варна решава проблема на момента на място',
     excerpt: 'Ремонт на бойлери Варна -- това е първото нещо, за което си мислите, щом усетите студена вода вместо приятната топлина...',
-    date: '13 януари, 2025',
+    date: '13 януари, 2025', // Keep for SEO but don't display
     readTime: '7 мин четене',
     slug: 'boyler-ne-zagrqva-remont-na-boyleri-varna',
-    category: 'Ремонт на бойлери',
-    image: '/img/blog/boiler-repair.webp'
+    category: 'Ремонт на бойлери'
   },
   {
     title: 'Електротехник Варна е човекът, от когото се нуждаеш, когато токът изгасне ненадейно',
     excerpt: 'Електроуслуги Варна вече не са лукс, а реална необходимост, когато аварията се случи изневиделица. РотоРем Варна е тук, за да направи живота ти по-лесен...',
-    date: '12 януари, 2025',
+    date: '12 януари, 2025', // Keep for SEO but don't display
     readTime: '9 мин четене',
     slug: 'elektrotehnik-varna-avarii-montaji',
-    category: 'Електроуслуги',
-    image: '/img/blog/electrical-services.webp'
+    category: 'Електроуслуги'
   },
   {
     title: 'Ремонт на пералня и сушилна Варна: сервиз на място',
     excerpt: 'Пералнята не центрофугира? Точно заради такива моменти съществува и услугата ремонт на перални и сушилни Варна...',
-    date: '11 януари, 2025',
+    date: '11 януари, 2025', // Keep for SEO but don't display
     readTime: '8 мин четене',
     slug: 'remont-na-perealnq-i-sushilna-varna-serviz',
-    category: 'Ремонт на перални и сушилни',
-    image: '/img/blog/washer-dryer-repair.webp'
+    category: 'Ремонт на перални и сушилни'
   },
   {
     title: 'Ел техник Варна – надежден демонтаж и монтаж на ключове и контакти във вашия дом',
     excerpt: 'Ел техник Варна е точният специалист, който търсите, когато контактът ви не работи или ключът за лампата отказва...',
-    date: '10 януари, 2025',
+    date: '10 януари, 2025', // Keep for SEO but don't display
     readTime: '6 мин четене',
     slug: 'el-tehnik-varna-montaj-demontaj-klyuchove-kontakti',
-    category: 'Електрически ключове и контакти',
-    image: '/img/blog/electrical-switches.webp'
+    category: 'Електрически ключове и контакти'
   }
 ];
 
@@ -111,52 +105,40 @@ const categories = [
         </div>
       </div>
 
-      <!-- Featured Post -->
+      <!-- Featured Post (No Image, No Date) -->
       <div class="mb-16">
         <h2 class="text-2xl font-semibold mb-6 text-gray-900">
           Препоръчана статия
         </h2>
         <article class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-          <div class="md:flex">
-            <div class="md:w-1/2">
-              <img 
-                src={blogPosts[0].image} 
-                alt={blogPosts[0].title}
-                class="w-full h-64 md:h-full object-cover"
-                width="600"
-                height="400"
-              />
+          <div class="p-8">
+            <div class="flex items-center mb-4">
+              <span class="bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">
+                {blogPosts[0].category}
+              </span>
             </div>
-            <div class="md:w-1/2 p-8">
-              <div class="flex items-center mb-4">
-                <span class="bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">
-                  {blogPosts[0].category}
-                </span>
-                <span class="ml-3 text-gray-500 text-sm">{blogPosts[0].date}</span>
-              </div>
-              <h3 class="text-2xl font-bold text-gray-900 mb-4">
-                <a href={`/blog/${blogPosts[0].slug}`} class="hover:text-primary transition-colors">
-                  {blogPosts[0].title}
-                </a>
-              </h3>
-              <p class="text-gray-600 mb-6">
-                {blogPosts[0].excerpt}
-              </p>
-              <div class="flex items-center justify-between">
-                <a 
-                  href={`/blog/${blogPosts[0].slug}`}
-                  class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-dark transition-colors font-medium"
-                >
-                  Прочетете повече
-                </a>
-                <span class="text-gray-500 text-sm">{blogPosts[0].readTime}</span>
-              </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">
+              <a href={`/blog/${blogPosts[0].slug}`} class="hover:text-primary transition-colors">
+                {blogPosts[0].title}
+              </a>
+            </h3>
+            <p class="text-gray-600 mb-6">
+              {blogPosts[0].excerpt}
+            </p>
+            <div class="flex items-center justify-between">
+              <a 
+                href={`/blog/${blogPosts[0].slug}`}
+                class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-dark transition-colors font-medium"
+              >
+                Прочетете повече
+              </a>
+              <span class="text-gray-500 text-sm">{blogPosts[0].readTime}</span>
             </div>
           </div>
         </article>
       </div>
 
-      <!-- Blog Posts Grid -->
+      <!-- Blog Posts Grid (No Images, No Dates) -->
       <div class="mb-12">
         <h2 class="text-2xl font-semibold mb-6 text-gray-900">
           Последни статии
@@ -165,19 +147,11 @@ const categories = [
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="blog-posts-grid">
           {blogPosts.slice(1).map(post => (
             <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 blog-post" data-category={post.category.toLowerCase().replace(/\s+/g, '-')}>
-              <img 
-                src={post.image} 
-                alt={post.title}
-                class="w-full h-48 object-cover"
-                width="400"
-                height="200"
-              />
               <div class="p-6">
                 <div class="flex items-center mb-3">
                   <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">
                     {post.category}
                   </span>
-                  <span class="ml-3 text-gray-500 text-sm">{post.date}</span>
                 </div>
                 
                 <h3 class="text-xl font-semibold text-gray-900 mb-3">
