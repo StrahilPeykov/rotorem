@@ -38,12 +38,11 @@ jobs:
       - name: 🔧 Enable pnpm
         run: corepack enable
 
-      # 3. Setup Node.js with pnpm cache
+      # 3. Setup Node.js (without pnpm cache since lock file is gitignored)
       - name: 🟢 Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-          cache: 'pnpm'
 
       # 4. Install dependencies with pnpm
       - name: 📦 Install dependencies
