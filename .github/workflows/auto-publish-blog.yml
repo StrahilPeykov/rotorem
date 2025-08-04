@@ -34,24 +34,24 @@ jobs:
           fetch-depth: 0  # Full history for better git operations
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      # 2. Setup Node.js
+      # 2. Setup Node.js with pnpm
       - name: 🟢 Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-          cache: 'npm'
+          cache: 'pnpm'
 
-      # 3. Install dependencies
+      # 3. Install dependencies with pnpm
       - name: 📦 Install dependencies
         run: |
           corepack enable
-          npm install --no-frozen-lockfile
+          pnpm install --no-frozen-lockfile
 
       # 4. Check current blog schedule
       - name: 📅 Check blog schedule
         run: |
           echo "📅 Current blog schedule:"
-          npm run blog:status
+          pnpm run blog:status
           
           echo ""
           echo "📊 Repository status:"
@@ -66,7 +66,7 @@ jobs:
           echo "🚀 Running blog publishing..."
           
           # Capture output to check if posts were published
-          output=$(npm run blog:publish 2>&1)
+          output=$(pnpm run blog:publish 2>&1)
           echo "$output"
           
           # Check if any posts were actually published
@@ -112,7 +112,7 @@ jobs:
         if: steps.publish.outputs.posts_published == 'true'
         run: |
           echo "🏗️ Building site after publishing posts..."
-          npm run build
+          pnpm run build
 
       # 9. Deploy to Netlify (if posts were published)
       - name: 🌐 Deploy to Netlify
@@ -141,16 +141,16 @@ jobs:
             echo "✅ New blog posts were published and site was deployed!"
             echo ""
             echo "📅 Next scheduled posts:"
-            npm run blog:status | grep -A 10 "Upcoming schedule" || echo "No upcoming posts scheduled"
+            pnpm run blog:status | grep -A 10 "Upcoming schedule" || echo "No upcoming posts scheduled"
           else
             echo "📅 No posts were scheduled for today"
             echo ""
             echo "📋 Current schedule:"
-            npm run blog:status
+            pnpm run blog:status
           fi
           
           echo ""
           echo "💡 To add more posts:"
           echo "   1. Add HTML files to blog-input/ folder"
-          echo "   2. Run: npm run blog:schedule"
+          echo "   2. Run: pnpm run blog:schedule"
           echo "   3. Commit and push changes"
