@@ -1,4 +1,76 @@
----
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const BLOG_OUTPUT_DIR = path.join(__dirname, '../src/pages/blog');
+const BLOG_INDEX_FILE = path.join(BLOG_OUTPUT_DIR, 'index.astro');
+
+// Function to extract metadata from Astro files
+function extractMetadata(astroContent, filename) {
+  // Extract title from the title variable
+  const titleMatch = astroContent.match(/const title = '([^']+)';/);
+  // Extract description  
+  const descMatch = astroContent.match(/const description = '([^']+)';/);
+  // Extract category
+  const categoryMatch = astroContent.match(/const category = '([^']+)';/);
+  // Extract readTime
+  const readTimeMatch = astroContent.match(/const readTime = '([^']+)';/);
+  
+  // Generate slug from filename
+  const slug = filename.replace('.astro', '');
+  
+  // Extract excerpt from first paragraph in content
+  const contentMatch = astroContent.match(/<div class="prose[^>]*">\s*(.*?)\s*<\/div>/s);
+  let excerpt = 'Професионални съвети от експертите на РотоРем Варна...';
+  
+  if (contentMatch) {
+    const firstPMatch = contentMatch[1].match(/<p[^>]*class="lead[^>]*"[^>]*>(.*?)<\/p>/s);
+    if (firstPMatch) {
+      excerpt = firstPMatch[1]
+        .replace(/<[^>]*>/g, '') // Remove HTML tags
+        .replace(/\s+/g, ' ') // Normalize whitespace
+        .trim()
+        .substring(0, 150) + '...';
+    }
+  }
+  
+  return {
+    title: titleMatch ? titleMatch[1] : 'Untitled Post',
+    excerpt,
+    date: new Date().toLocaleDateString('bg-BG', { 
+      day: 'numeric', 
+      month: 'long', 
+      year: 'numeric' 
+    }),
+    readTime: readTimeMatch ? readTimeMatch[1] : '5 мин четене',
+    slug,
+    category: categoryMatch ? categoryMatch[1] : 'Съвети и ръководства'
+  };
+}
+
+// Generate blog index content
+function generateBlogIndex(blogPosts) {
+  // Sort posts by date (newest first)
+  const sortedPosts = [...blogPosts].reverse();
+  
+  // Generate categories
+  const categories = ['Всички', ...new Set(blogPosts.map(post => post.category))];
+  
+  const blogPostsArray = sortedPosts.map(post => `  {
+    title: '${post.title}',
+    excerpt: '${post.excerpt}',
+    date: '${post.date}',
+    readTime: '${post.readTime}',
+    slug: '${post.slug}',
+    category: '${post.category}'
+  }`).join(',\n');
+
+  const categoriesArray = categories.map(cat => `  { name: '${cat}', slug: '${cat.toLowerCase().replace(/\s+/g, '-')}' }`).join(',\n');
+
+  return `---
 import Layout from '../../layouts/Base.astro';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
@@ -16,60 +88,12 @@ const description = isEN
 
 // Auto-generated blog posts data
 const blogPosts = [
-  {
-    title: 'Когато пералнята спре: ремонт на перални Варна, който идва на място',
-    excerpt: 'Професионални съвети от експертите на РотоРем Варна...',
-    date: '4 август 2025 г.',
-    readTime: '10 мин четене',
-    slug: 'remont-peralni-i-sushilni',
-    category: 'Ремонт на перални'
-  },
-  {
-    title: 'Ремонт на котлони Варна – решение за стъклокерамичен плот и индукционни котлони',
-    excerpt: 'Професионални съвети от експертите на РотоРем Варна...',
-    date: '4 август 2025 г.',
-    readTime: '11 мин четене',
-    slug: 'remont-na-kotloni-staklokeramichen-plot-i-indukcionni',
-    category: 'Ремонт на перални'
-  },
-  {
-    title: 'Когато пералнята спре: ремонт на перални Варна, който идва на място',
-    excerpt: 'Професионални съвети от експертите на РотоРем Варна...',
-    date: '4 август 2025 г.',
-    readTime: '10 мин четене',
-    slug: 'remont-na-boileri-reshava-problema-na-momenta-na-myasto',
-    category: 'Ремонт на перални'
-  },
-  {
-    title: 'Когато пералнята спре: ремонт на перални Варна, който идва на място',
-    excerpt: 'Професионални съвети от експертите на РотоРем Варна...',
-    date: '4 август 2025 г.',
-    readTime: '10 мин четене',
-    slug: 'kogato-peralnyata-spre-remont-na-peralni-kojto-idva-na-myasto',
-    category: 'Ремонт на перални'
-  },
-  {
-    title: 'Когато пералнята спре: ремонт на перални Варна, който идва на място',
-    excerpt: 'Професионални съвети от експертите на РотоРем Варна...',
-    date: '4 август 2025 г.',
-    readTime: '10 мин четене',
-    slug: 'elektrotehnik-el-tehnik-za-avarii-i-montazhi',
-    category: 'Ремонт на перални'
-  },
-  {
-    title: 'Когато пералнята спре: ремонт на перални Варна, който идва на място',
-    excerpt: 'Професионални съвети от експертите на РотоРем Варна...',
-    date: '4 август 2025 г.',
-    readTime: '10 мин четене',
-    slug: 'el-tehnik-montaj-demontaj-na-kluchove-i-kontakti',
-    category: 'Ремонт на перални'
-  }
+${blogPostsArray}
 ];
 
 // Auto-generated categories
 const categories = [
-  { name: 'Всички', slug: 'всички' },
-  { name: 'Ремонт на перални', slug: 'ремонт-на-перални' }
+${categoriesArray}
 ];
 ---
 
@@ -115,7 +139,7 @@ const categories = [
                 </span>
               </div>
               <h3 class="text-2xl font-bold text-gray-900 mb-4">
-                <a href={`/blog/${blogPosts[0].slug}`} class="hover:text-primary transition-colors">
+                <a href={\`/blog/\${blogPosts[0].slug}\`} class="hover:text-primary transition-colors">
                   {blogPosts[0].title}
                 </a>
               </h3>
@@ -124,7 +148,7 @@ const categories = [
               </p>
               <div class="flex items-center justify-between">
                 <a 
-                  href={`/blog/${blogPosts[0].slug}`}
+                  href={\`/blog/\${blogPosts[0].slug}\`}
                   class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-dark transition-colors font-medium"
                 >
                   Прочетете повече
@@ -144,7 +168,7 @@ const categories = [
         
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="blog-posts-grid">
           {blogPosts.slice(1).map(post => (
-            <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 blog-post" data-category={post.category.toLowerCase().replace(/\s+/g, '-')}>
+            <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 blog-post" data-category={post.category.toLowerCase().replace(/\\s+/g, '-')}>
               <div class="p-6">
                 <div class="flex items-center mb-3">
                   <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">
@@ -153,7 +177,7 @@ const categories = [
                 </div>
                 
                 <h3 class="text-xl font-semibold text-gray-900 mb-3">
-                  <a href={`/blog/${post.slug}`} class="hover:text-primary transition-colors">
+                  <a href={\`/blog/\${post.slug}\`} class="hover:text-primary transition-colors">
                     {post.title}
                   </a>
                 </h3>
@@ -164,7 +188,7 @@ const categories = [
                 
                 <div class="flex items-center justify-between">
                   <a 
-                    href={`/blog/${post.slug}`}
+                    href={\`/blog/\${post.slug}\`}
                     class="text-primary font-medium hover:text-primary-dark transition-colors"
                   >
                     Прочетете повече →
@@ -308,8 +332,8 @@ const categories = [
             post.style.display = 'block';
           } else {
             const postCategory = post.getAttribute('data-category');
-            const normalizedPostCategory = postCategory?.toLowerCase().replace(/[\s-]+/g, '-');
-            const normalizedSelectedCategory = selectedCategory?.toLowerCase().replace(/[\s-]+/g, '-');
+            const normalizedPostCategory = postCategory?.toLowerCase().replace(/[\\s-]+/g, '-');
+            const normalizedSelectedCategory = selectedCategory?.toLowerCase().replace(/[\\s-]+/g, '-');
             
             if (normalizedPostCategory?.includes(normalizedSelectedCategory!) || 
                 normalizedSelectedCategory?.includes(normalizedPostCategory!)) {
@@ -328,4 +352,51 @@ const categories = [
       allButton.classList.add('bg-primary', 'text-white', 'border-primary');
     }
   });
-</script>
+</script>`;
+}
+
+async function updateBlogIndex() {
+  console.log('📝 Updating blog index...');
+  
+  try {
+    if (!fs.existsSync(BLOG_OUTPUT_DIR)) {
+      console.error('❌ Blog output directory does not exist');
+      return;
+    }
+    
+    // Get all blog post files (except index.astro)
+    const blogFiles = fs.readdirSync(BLOG_OUTPUT_DIR)
+      .filter(file => file.endsWith('.astro') && file !== 'index.astro');
+    
+    console.log(`📁 Found ${blogFiles.length} blog posts`);
+    
+    // Extract metadata from each post
+    const blogPosts = [];
+    
+    for (const filename of blogFiles) {
+      try {
+        const filePath = path.join(BLOG_OUTPUT_DIR, filename);
+        const content = fs.readFileSync(filePath, 'utf8');
+        const metadata = extractMetadata(content, filename);
+        blogPosts.push(metadata);
+        console.log(`📄 Processed: ${metadata.title}`);
+      } catch (error) {
+        console.warn(`⚠️  Warning: Could not process ${filename}:`, error.message);
+      }
+    }
+    
+    // Generate new blog index
+    const indexContent = generateBlogIndex(blogPosts);
+    
+    // Write updated index
+    fs.writeFileSync(BLOG_INDEX_FILE, indexContent);
+    
+    console.log('✅ Blog index updated successfully!');
+    console.log(`📊 Included ${blogPosts.length} blog posts`);
+    
+  } catch (error) {
+    console.error('❌ Error updating blog index:', error.message);
+  }
+}
+
+updateBlogIndex().catch(console.error);

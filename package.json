@@ -24,7 +24,12 @@
     "test:lighthouse": "lhci autorun",
     "test:seo": "node scripts/seo-check.js",
     "prebuild": "npm run type-check && npm run optimize-images",
-    "deploy": "npm run build && echo 'Build completed successfully'"
+    "deploy": "npm run build && echo 'Build completed successfully'",
+    "blog:generate": "node scripts/generate-blog-posts.js",
+    "blog:clean": "node scripts/clean-blog-posts.js",
+    "blog:update-index": "node scripts/update-blog-index.js",
+    "blog:workflow": "node scripts/blog-workflow.js",
+    "blog:fix-typescript": "node scripts/fix-blog-index-typescript.js"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.4.0",
