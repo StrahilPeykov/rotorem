@@ -1,0 +1,104 @@
+# .github/workflows/test-blog-system.yml
+name: 🧪 Test Blog System
+
+# Only run manually for testing
+on:
+  workflow_dispatch:
+    inputs:
+      test_type:
+        description: 'Type of test to run'
+        required: true
+        default: 'status'
+        type: choice
+        options:
+        - 'status'
+        - 'schedule'
+        - 'publish-dry-run'
+        - 'full-test'
+
+jobs:
+  test-blog:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 🛒 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: 📦 Install dependencies
+        run: |
+          corepack enable
+          npm install --no-frozen-lockfile
+
+      - name: 🧪 Run Blog System Test
+        run: |
+          echo "🧪 Testing Blog System - Type: ${{ github.event.inputs.test_type }}"
+          echo "================================================"
+          
+          case "${{ github.event.inputs.test_type }}" in
+            "status")
+              echo "📅 Checking blog status..."
+              npm run blog:status
+              ;;
+              
+            "schedule")
+              echo "📅 Testing blog scheduling..."
+              echo "Files in blog-input/:"
+              ls -la blog-input/ 2>/dev/null || echo "No blog-input directory"
+              echo ""
+              echo "Current tracking file:"
+              cat .blog-tracking.json 2>/dev/null || echo "No tracking file"
+              echo ""
+              echo "Running schedule command (dry run):"
+              npm run blog:schedule
+              ;;
+              
+            "publish-dry-run")
+              echo "🚀 Testing blog publishing (checking what would be published)..."
+              echo "Current date: $(date)"
+              echo ""
+              echo "Posts ready for publication:"
+              npm run blog:status | grep -A 20 "Ready to publish" || echo "No posts ready"
+              echo ""
+              echo "Note: This is a dry run - no files will be actually generated"
+              ;;
+              
+            "full-test")
+              echo "🔍 Full system test..."
+              echo ""
+              echo "1. Repository structure:"
+              echo "   Blog input files:"
+              ls -la blog-input/ 2>/dev/null || echo "   No blog-input directory"
+              echo ""
+              echo "   Generated blog files:"
+              ls -la src/pages/blog/ 2>/dev/null || echo "   No blog directory"
+              echo ""
+              echo "2. Tracking data:"
+              cat .blog-tracking.json 2>/dev/null || echo "   No tracking file"
+              echo ""
+              echo "3. Current schedule:"
+              npm run blog:status
+              echo ""
+              echo "4. Package.json scripts:"
+              npm run --silent 2>/dev/null | grep blog: || echo "   No blog scripts found"
+              ;;
+          esac
+
+      - name: 📊 Test Summary
+        run: |
+          echo ""
+          echo "📊 Test Summary"
+          echo "==============="
+          echo "✅ Dependencies installed successfully"
+          echo "✅ Blog scripts are accessible"
+          echo "✅ Test completed: ${{ github.event.inputs.test_type }}"
+          echo ""
+          echo "💡 Next steps:"
+          echo "   - If this test passed, your blog system is ready!"
+          echo "   - Run the auto-publish workflow manually to test publishing"
+          echo "   - Check the main workflow runs on schedule"
