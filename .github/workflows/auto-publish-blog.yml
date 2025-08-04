@@ -34,20 +34,22 @@ jobs:
           fetch-depth: 0  # Full history for better git operations
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      # 2. Setup Node.js with pnpm
+      # 2. Enable pnpm
+      - name: 🔧 Enable pnpm
+        run: corepack enable
+
+      # 3. Setup Node.js with pnpm cache
       - name: 🟢 Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
           cache: 'pnpm'
 
-      # 3. Install dependencies with pnpm
+      # 4. Install dependencies with pnpm
       - name: 📦 Install dependencies
-        run: |
-          corepack enable
-          pnpm install --no-frozen-lockfile
+        run: pnpm install --no-frozen-lockfile
 
-      # 4. Check current blog schedule
+      # 5. Check current blog schedule
       - name: 📅 Check blog schedule
         run: |
           echo "📅 Current blog schedule:"
@@ -59,7 +61,8 @@ jobs:
           echo "Files in blog-input/: $(ls -la blog-input/ 2>/dev/null || echo 'No blog-input directory')"
           echo "Tracking file exists: $(test -f .blog-tracking.json && echo 'Yes' || echo 'No')"
 
-      # 5. Publish scheduled blog posts
+      # 6. Publish scheduled blog posts
+      # 6. Publish scheduled blog posts
       - name: 🚀 Publish scheduled posts
         id: publish
         run: |
@@ -78,14 +81,14 @@ jobs:
             echo "📅 No posts were scheduled for today"
           fi
 
-      # 6. Configure git for committing changes
+      # 7. Configure git for committing changes
       - name: ⚙️ Configure Git
         if: steps.publish.outputs.posts_published == 'true'
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action (Blog Publisher)"
 
-      # 7. Commit and push changes if posts were published
+      # 8. Commit and push changes if posts were published
       - name: 📝 Commit published posts
         if: steps.publish.outputs.posts_published == 'true'
         run: |
@@ -107,14 +110,14 @@ jobs:
             echo "✅ Changes pushed to repository"
           fi
 
-      # 8. Build the site (for deployment)
+      # 9. Build the site (for deployment)
       - name: 🏗️ Build site
         if: steps.publish.outputs.posts_published == 'true'
         run: |
           echo "🏗️ Building site after publishing posts..."
           pnpm run build
 
-      # 9. Deploy to Netlify (if posts were published)
+      # 10. Deploy to Netlify (if posts were published)
       - name: 🌐 Deploy to Netlify
         if: steps.publish.outputs.posts_published == 'true'
         uses: nwtgck/actions-netlify@v2
@@ -129,7 +132,7 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
 
-      # 10. Summary of what happened
+      # 11. Summary of what happened
       - name: 📊 Summary
         run: |
           echo "📊 Blog Publishing Summary"
