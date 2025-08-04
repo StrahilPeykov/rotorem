@@ -13,12 +13,29 @@ const TRACKING_FILE = path.join(__dirname, '../.blog-tracking.json');
 function loadTrackingData() {
   try {
     if (fs.existsSync(TRACKING_FILE)) {
-      return JSON.parse(fs.readFileSync(TRACKING_FILE, 'utf8'));
+      const data = JSON.parse(fs.readFileSync(TRACKING_FILE, 'utf8'));
+      
+      // Handle both old and new tracking formats
+      if (data.scheduled && data.published) {
+        return data;
+      }
+      
+      // Migrate old format
+      if (data.processed) {
+        return {
+          scheduled: data.processed.map(filename => ({
+            filename,
+            publishDate: new Date().toISOString().split('T')[0],
+            status: 'published'
+          })),
+          published: data.processed
+        };
+      }
     }
   } catch (error) {
     console.warn('Could not load tracking data:', error.message);
   }
-  return { processed: [] };
+  return { scheduled: [], published: [] };
 }
 
 // Save tracking data
@@ -29,8 +46,8 @@ function saveTrackingData(data) {
 // Parse blog input file
 function parseBlogInput(content, filename) {
   // Extract meta title and description from the bottom
-  const metaTitleMatch = content.match(/Мета заглавие:\s*(.+?)(?:\n|$)/i);
-  const metaDescMatch = content.match(/Мета описание:\s*(.+?)(?:\n|$)/i);
+  const metaTitleMatch = content.match(/Мета заглавие:\s*(.+?)(?:\n|$)/i) || content.match(/Meta title:\s*(.+?)(?:\n|$)/i);
+  const metaDescMatch = content.match(/Мета описание:\s*(.+?)(?:\n|$)/i) || content.match(/Meta description:\s*(.+?)(?:\n|$)/i);
   
   // Remove meta information from content
   const cleanContent = content
@@ -294,23 +311,86 @@ async function generateBlogPosts() {
 
   // Load tracking data
   const trackingData = loadTrackingData();
-  let newPostsCount = 0;
+  const today = new Date().toISOString().split('T')[0];
+  let generatedCount = 0;
+  let publishedCount = 0;
 
-  // Process all HTML files in blog-input
+  // Process scheduled posts that are ready for today
+  if (trackingData.scheduled && Array.isArray(trackingData.scheduled)) {
+    const postsToPublish = trackingData.scheduled.filter(item => 
+      item.status === 'scheduled' && item.publishDate <= today
+    );
+
+    console.log(`📅 Found ${postsToPublish.length} posts scheduled for today or earlier`);
+
+    for (const scheduledPost of postsToPublish) {
+      const inputPath = path.join(BLOG_INPUT_DIR, scheduledPost.filename);
+      
+      if (!fs.existsSync(inputPath)) {
+        console.warn(`⚠️  Scheduled file not found: ${scheduledPost.filename}`);
+        continue;
+      }
+
+      try {
+        console.log(`📝 Generating ${scheduledPost.filename}...`);
+        
+        // Read and parse input file
+        const content = fs.readFileSync(inputPath, 'utf8');
+        const postData = parseBlogInput(content, scheduledPost.filename);
+        
+        // Generate Astro post
+        const astroContent = generateAstroPost(postData);
+        
+        // Write output file
+        const outputPath = path.join(BLOG_OUTPUT_DIR, `${postData.slug}.astro`);
+        fs.writeFileSync(outputPath, astroContent);
+        
+        // Update tracking - mark as published
+        scheduledPost.status = 'published';
+        
+        // Add to published list if not already there
+        if (!trackingData.published) {
+          trackingData.published = [];
+        }
+        if (!trackingData.published.includes(scheduledPost.filename)) {
+          trackingData.published.push(scheduledPost.filename);
+        }
+        
+        generatedCount++;
+        publishedCount++;
+        
+        console.log(`✅ Generated: ${postData.slug}.astro`);
+        console.log(`   Title: ${postData.title}`);
+        console.log(`   Category: ${postData.category}`);
+        console.log(`   Scheduled for: ${scheduledPost.publishDate}`);
+        
+      } catch (error) {
+        console.error(`❌ Error processing ${scheduledPost.filename}:`, error.message);
+      }
+    }
+  }
+
+  // Also check for any untracked files (backwards compatibility)
   const inputFiles = fs.readdirSync(BLOG_INPUT_DIR)
     .filter(file => file.endsWith('.html'));
 
-  console.log(`📁 Found ${inputFiles.length} input files`);
-
   for (const filename of inputFiles) {
-    // Skip if already processed
-    if (trackingData.processed.includes(filename)) {
-      console.log(`⏭️  Skipping ${filename} (already processed)`);
+    // Skip if already published
+    if (trackingData.published && trackingData.published.includes(filename)) {
+      continue;
+    }
+    
+    // Skip if scheduled for future
+    const scheduledItem = trackingData.scheduled?.find(item => 
+      item.filename === filename && item.publishDate > today
+    );
+    if (scheduledItem) {
+      console.log(`⏭️  Skipping ${filename} (scheduled for ${scheduledItem.publishDate})`);
       continue;
     }
 
     try {
-      console.log(`📝 Processing ${filename}...`);
+      console.log(`📝 Processing unscheduled file: ${filename}...`);
       
       // Read and parse input file
       const inputPath = path.join(BLOG_INPUT_DIR, filename);
@@ -324,31 +404,58 @@ async function generateBlogPosts() {
       const outputPath = path.join(BLOG_OUTPUT_DIR, `${postData.slug}.astro`);
       fs.writeFileSync(outputPath, astroContent);
       
-      // Mark as processed
-      trackingData.processed.push(filename);
-      newPostsCount++;
+      // Add to tracking data
+      if (!trackingData.published) {
+        trackingData.published = [];
+      }
+      trackingData.published.push(filename);
+      
+      // Also add to scheduled as published
+      if (!trackingData.scheduled) {
+        trackingData.scheduled = [];
+      }
+      trackingData.scheduled.push({
+        filename,
+        publishDate: today,
+        status: 'published'
+      });
+      
+      generatedCount++;
       
       console.log(`✅ Generated: ${postData.slug}.astro`);
-      console.log(`   Title: ${postData.title}`);
-      console.log(`   Category: ${postData.category}`);
       
     } catch (error) {
       console.error(`❌ Error processing ${filename}:`, error.message);
     }
   }
 
-  // Save tracking data
+  // Save updated tracking data
   saveTrackingData(trackingData);
   
   console.log(`\n🎉 Blog post generation complete!`);
-  console.log(`📊 Generated ${newPostsCount} new posts`);
-  console.log(`📈 Total processed: ${trackingData.processed.length} files`);
+  console.log(`📊 Generated ${generatedCount} posts`);
+  console.log(`✅ Published ${publishedCount} scheduled posts today`);
   
-  if (newPostsCount > 0) {
+  if (generatedCount > 0) {
     console.log(`\n💡 Next steps:`);
-    console.log(`   1. Review the generated posts in src/pages/blog/`);
-    console.log(`   2. Update the blog index if needed`);
-    console.log(`   3. Run "npm run dev" to test locally`);
+    console.log(`   1. Run "npm run blog:update-index" to update the blog index`);
+    console.log(`   2. Run "npm run dev" to preview locally`);
+    console.log(`   3. Commit and push to deploy`);
+  }
+  
+  // Show upcoming posts
+  const upcomingPosts = trackingData.scheduled?.filter(item => 
+    item.status === 'scheduled' && item.publishDate > today
+  );
+  
+  if (upcomingPosts && upcomingPosts.length > 0) {
+    console.log(`\n📅 Upcoming scheduled posts:`);
+    upcomingPosts
+      .sort((a, b) => a.publishDate.localeCompare(b.publishDate))
+      .slice(0, 5)
+      .forEach(post => {
+        console.log(`   • ${post.filename} → ${post.publishDate}`);
+      });
   }
 }
 

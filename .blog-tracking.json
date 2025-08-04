@@ -3,7 +3,7 @@
     {
       "filename": "el-tehnik-montaj-demontaj-na-kluchove-i-kontakti.html",
       "publishDate": "2025-08-04",
-      "status": "scheduled"
+      "status": "published"
     },
     {
       "filename": "elektrotehnik-el-tehnik-za-avarii-i-montazhi.html",
@@ -31,5 +31,7 @@
       "status": "scheduled"
     }
   ],
-  "published": []
+  "published": [
+    "el-tehnik-montaj-demontaj-na-kluchove-i-kontakti.html"
+  ]
 }
