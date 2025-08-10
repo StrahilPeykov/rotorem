@@ -8,7 +8,7 @@
     {
       "filename": "elektrotehnik-el-tehnik-za-avarii-i-montazhi.html",
       "publishDate": "2025-08-07",
-      "status": "scheduled"
+      "status": "published"
     },
     {
       "filename": "kogato-peralnyata-spre-remont-na-peralni-kojto-idva-na-myasto.html",
@@ -32,6 +32,7 @@
     }
   ],
   "published": [
-    "el-tehnik-montaj-demontaj-na-kluchove-i-kontakti.html"
+    "el-tehnik-montaj-demontaj-na-kluchove-i-kontakti.html",
+    "elektrotehnik-el-tehnik-za-avarii-i-montazhi.html"
   ]
 }
