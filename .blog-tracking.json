@@ -13,7 +13,7 @@
     {
       "filename": "kogato-peralnyata-spre-remont-na-peralni-kojto-idva-na-myasto.html",
       "publishDate": "2025-08-11",
-      "status": "scheduled"
+      "status": "published"
     },
     {
       "filename": "remont-na-boileri-reshava-problema-na-momenta-na-myasto.html",
@@ -33,6 +33,7 @@
   ],
   "published": [
     "el-tehnik-montaj-demontaj-na-kluchove-i-kontakti.html",
-    "elektrotehnik-el-tehnik-za-avarii-i-montazhi.html"
+    "elektrotehnik-el-tehnik-za-avarii-i-montazhi.html",
+    "kogato-peralnyata-spre-remont-na-peralni-kojto-idva-na-myasto.html"
   ]
 }
