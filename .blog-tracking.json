@@ -3,47 +3,47 @@
     {
       "filename": "el-tehnik-montaj-demontaj-na-kluchove-i-kontakti.html",
       "publishDate": "2025-08-11",
-      "status": "scheduled"
+      "status": "published"
     },
     {
       "filename": "elektrotehnik-el-tehnik-za-avarii-i-montazhi.html",
       "publishDate": "2025-08-11",
-      "status": "scheduled"
+      "status": "published"
     },
     {
       "filename": "kogato-peralnyata-spre-remont-na-peralni-kojto-idva-na-myasto.html",
       "publishDate": "2025-08-11",
-      "status": "scheduled"
+      "status": "published"
     },
     {
       "filename": "remont-na-boileri-reshava-problema-na-momenta-na-myasto.html",
       "publishDate": "2025-08-11",
-      "status": "scheduled"
+      "status": "published"
     },
     {
       "filename": "remont-na-kotloni-staklokeramichen-plot-i-indukcionni.html",
       "publishDate": "2025-08-11",
-      "status": "scheduled"
+      "status": "published"
     },
     {
       "filename": "remont-peralni-i-sushilni.html",
       "publishDate": "2025-08-11",
-      "status": "scheduled"
+      "status": "published"
     },
     {
       "filename": "remont-na-furni-varna-serviz-furna-remont-gotvarski-pechki-kotloni-i-furni-orientirovachni-ceni.html",
       "publishDate": "2025-08-11",
-      "status": "scheduled"
+      "status": "published"
     },
     {
       "filename": "elektrouslugi-varna-el-tehnik-el-montazh-smyana-el-tablo-i-elektroinstalacii-tarifi-i-ceni.html",
       "publishDate": "2025-08-11",
-      "status": "scheduled"
+      "status": "published"
     },
     {
       "filename": "remont-na-sudomyalni-varna-serviz-sudomyalna-montazh-sudomyalni-remont-sudomyalna-aktualni-ceni.html",
       "publishDate": "2025-08-11",
-      "status": "scheduled"
+      "status": "published"
     },
     {
       "filename": "avariini-elektro-remonti-varna-speshen-elektrotehnik-elektro-remont-el-tehnik-cena-pri-avariya.html",
@@ -71,5 +71,15 @@
       "status": "scheduled"
     }
   ],
-  "published": []
+  "published": [
+    "el-tehnik-montaj-demontaj-na-kluchove-i-kontakti.html",
+    "elektrotehnik-el-tehnik-za-avarii-i-montazhi.html",
+    "kogato-peralnyata-spre-remont-na-peralni-kojto-idva-na-myasto.html",
+    "remont-na-boileri-reshava-problema-na-momenta-na-myasto.html",
+    "remont-na-kotloni-staklokeramichen-plot-i-indukcionni.html",
+    "remont-peralni-i-sushilni.html",
+    "remont-na-furni-varna-serviz-furna-remont-gotvarski-pechki-kotloni-i-furni-orientirovachni-ceni.html",
+    "elektrouslugi-varna-el-tehnik-el-montazh-smyana-el-tablo-i-elektroinstalacii-tarifi-i-ceni.html",
+    "remont-na-sudomyalni-varna-serviz-sudomyalna-montazh-sudomyalni-remont-sudomyalna-aktualni-ceni.html"
+  ]
 }
