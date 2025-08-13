@@ -18,6 +18,8 @@ function extractMetadata(astroContent, filename) {
   const categoryMatch = astroContent.match(/const category = '([^']+)';/);
   // Extract readTime
   const readTimeMatch = astroContent.match(/const readTime = '([^']+)';/);
+  // Extract blogImage
+  const imageMatch = astroContent.match(/const blogImage = '([^']+)';/);
   
   // Generate slug from filename
   const slug = filename.replace('.astro', '');
@@ -27,13 +29,14 @@ function extractMetadata(astroContent, filename) {
   let excerpt = 'Професионални съвети от експертите на РотоРем Варна...';
   
   if (contentMatch) {
-    const firstPMatch = contentMatch[1].match(/<p[^>]*class="lead[^>]*"[^>]*>(.*?)<\/p>/s);
+    // Look for first paragraph
+    const firstPMatch = contentMatch[1].match(/<p[^>]*>(.*?)<\/p>/s);
     if (firstPMatch) {
       excerpt = firstPMatch[1]
         .replace(/<[^>]*>/g, '') // Remove HTML tags
         .replace(/\s+/g, ' ') // Normalize whitespace
         .trim()
-        .substring(0, 150) + '...';
+        .substring(0, 120) + '...';
     }
   }
   
@@ -47,7 +50,8 @@ function extractMetadata(astroContent, filename) {
     }),
     readTime: readTimeMatch ? readTimeMatch[1] : '5 мин четене',
     slug,
-    category: categoryMatch ? categoryMatch[1] : 'Съвети и ръководства'
+    category: categoryMatch ? categoryMatch[1] : 'Съвети и ръководства',
+    image: imageMatch ? imageMatch[1] : '/img/blog/default.webp'
   };
 }
 
@@ -55,20 +59,16 @@ function extractMetadata(astroContent, filename) {
 function generateBlogIndex(blogPosts) {
   // Sort posts by date (newest first)
   const sortedPosts = [...blogPosts].reverse();
-  
-  // Generate categories
-  const categories = ['Всички', ...new Set(blogPosts.map(post => post.category))];
-  
+
   const blogPostsArray = sortedPosts.map(post => `  {
-    title: '${post.title}',
-    excerpt: '${post.excerpt}',
+    title: '${post.title.replace(/'/g, "\\'")}',
+    excerpt: '${post.excerpt.replace(/'/g, "\\'")}',
     date: '${post.date}',
     readTime: '${post.readTime}',
     slug: '${post.slug}',
-    category: '${post.category}'
+    category: '${post.category}',
+    image: '${post.image}'
   }`).join(',\n');
-
-  const categoriesArray = categories.map(cat => `  { name: '${cat}', slug: '${cat.toLowerCase().replace(/\s+/g, '-')}' }`).join(',\n');
 
   return `---
 import Layout from '../../layouts/Base.astro';
@@ -90,18 +90,13 @@ const description = isEN
 const blogPosts = [
 ${blogPostsArray}
 ];
-
-// Auto-generated categories
-const categories = [
-${categoriesArray}
-];
 ---
 
 <Layout title={title} description={description}>
   <section class="py-16">
     <div class="container max-w-6xl">
       <!-- Header -->
-      <header class="text-center max-w-3xl mx-auto mb-12">
+      <header class="text-center max-w-3xl mx-auto mb-16">
         <h1 class="text-4xl font-bold text-gray-900 mb-4">
           Блог за ремонт на битова техника
         </h1>
@@ -111,20 +106,6 @@ ${categoriesArray}
         </p>
       </header>
 
-      <!-- Category Filter -->
-      <div class="mb-12">
-        <div class="flex flex-wrap justify-center gap-3">
-          {categories.map(category => (
-            <button 
-              class="px-4 py-2 rounded-full border border-gray-300 text-gray-700 hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 category-filter"
-              data-category={category.slug}
-            >
-              {category.name}
-            </button>
-          ))}
-        </div>
-      </div>
-
       <!-- Featured Post -->
       {blogPosts.length > 0 && (
         <div class="mb-16">
@@ -132,28 +113,38 @@ ${categoriesArray}
             Препоръчана статия
           </h2>
           <article class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-            <div class="p-8">
-              <div class="flex items-center mb-4">
-                <span class="bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">
-                  {blogPosts[0].category}
-                </span>
+            <div class="md:flex">
+              <div class="md:w-1/3">
+                <img 
+                  src={blogPosts[0].image} 
+                  alt={blogPosts[0].title}
+                  class="w-full h-48 md:h-full object-cover"
+                  loading="lazy"
+                />
               </div>
-              <h3 class="text-2xl font-bold text-gray-900 mb-4">
-                <a href={\`/blog/\${blogPosts[0].slug}\`} class="hover:text-primary transition-colors">
-                  {blogPosts[0].title}
-                </a>
-              </h3>
-              <p class="text-gray-600 mb-6">
-                {blogPosts[0].excerpt}
-              </p>
-              <div class="flex items-center justify-between">
-                <a 
-                  href={\`/blog/\${blogPosts[0].slug}\`}
-                  class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-dark transition-colors font-medium"
-                >
-                  Прочетете повече
-                </a>
-                <span class="text-gray-500 text-sm">{blogPosts[0].readTime}</span>
+              <div class="md:w-2/3 p-8">
+                <div class="flex items-center mb-4">
+                  <span class="bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">
+                    {blogPosts[0].category}
+                  </span>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">
+                  <a href={\`/blog/\${blogPosts[0].slug}\`} class="hover:text-primary transition-colors">
+                    {blogPosts[0].title}
+                  </a>
+                </h3>
+                <p class="text-gray-600 mb-6">
+                  {blogPosts[0].excerpt}
+                </p>
+                <div class="flex items-center justify-between">
+                  <a 
+                    href={\`/blog/\${blogPosts[0].slug}\`}
+                    class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-dark transition-colors font-medium"
+                  >
+                    Прочетете повече
+                  </a>
+                  <span class="text-gray-500 text-sm">{blogPosts[0].readTime}</span>
+                </div>
               </div>
             </div>
           </article>
@@ -161,14 +152,22 @@ ${categoriesArray}
       )}
 
       <!-- Blog Posts Grid -->
-      <div class="mb-12">
-        <h2 class="text-2xl font-semibold mb-6 text-gray-900">
+      <div class="mb-16">
+        <h2 class="text-2xl font-semibold mb-8 text-gray-900">
           Последни статии
         </h2>
         
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="blog-posts-grid">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {blogPosts.slice(1).map(post => (
-            <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 blog-post" data-category={post.category.toLowerCase().replace(/\\s+/g, '-')}>
+            <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+              <div class="aspect-video overflow-hidden">
+                <img 
+                  src={post.image} 
+                  alt={post.title}
+                  class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                  loading="lazy"
+                />
+              </div>
               <div class="p-6">
                 <div class="flex items-center mb-3">
                   <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">
@@ -176,13 +175,13 @@ ${categoriesArray}
                   </span>
                 </div>
                 
-                <h3 class="text-xl font-semibold text-gray-900 mb-3">
+                <h3 class="text-xl font-semibold text-gray-900 mb-3 line-clamp-2">
                   <a href={\`/blog/\${post.slug}\`} class="hover:text-primary transition-colors">
                     {post.title}
                   </a>
                 </h3>
                 
-                <p class="text-gray-600 mb-4">
+                <p class="text-gray-600 mb-4 line-clamp-3">
                   {post.excerpt}
                 </p>
                 
@@ -202,7 +201,7 @@ ${categoriesArray}
       </div>
 
       <!-- Newsletter Signup -->
-      <div class="bg-gradient-to-r from-primary to-primary-dark rounded-xl p-8 text-white text-center">
+      <div class="bg-gradient-to-r from-primary to-primary-dark rounded-xl p-8 text-white text-center mb-16">
         <h2 class="text-2xl font-bold mb-4">
           Получавайте експертни съвети
         </h2>
@@ -231,7 +230,7 @@ ${categoriesArray}
       </div>
 
       <!-- Contact CTA -->
-      <div class="mt-16 text-center">
+      <div class="text-center">
         <h2 class="text-2xl font-semibold text-gray-900 mb-4">
           Нуждаете се от професионална помощ?
         </h2>
@@ -295,64 +294,32 @@ ${categoriesArray}
       .rotorem-seo-text li {
         margin: 0.3em 0;
       }
+      
+      /* Line clamp utilities for better text truncation */
+      .line-clamp-2 {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+      }
+      
+      .line-clamp-3 {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+      }
     </style>
     
     <div class="container max-w-4xl">
       <h2>Блог за ремонт на битова техника – професионални съвети от експертите на РотоРем Варна</h2>
       <p>В нашия блог за ремонт на битова техника ще намерите реални, практични съвети от професионалните техници на РотоРем Варна. Всяка статия е написана въз основа на реален опит и хиляди ремонти, извършени в домовете на клиентите ни във Варна и региона.</p>
       
-      <!-- More SEO content would go here -->
+      <h3>Какво ще намерите в нашия блог</h3>
+      <p>Нашите статии покриват широк спектър от теми, свързани с ремонта и поддръжката на битова техника. От практични съвети за ежедневната употреба до сложни технически обяснения - всичко е написано на разбираем език от наши експерти.</p>
     </div>
   </div>
-</Layout>
-
-<script>
-  // Category filtering functionality with TypeScript support
-  document.addEventListener('DOMContentLoaded', function() {
-    const categoryButtons = document.querySelectorAll<HTMLButtonElement>('.category-filter');
-    const blogPosts = document.querySelectorAll<HTMLElement>('.blog-post');
-    
-    categoryButtons.forEach(button => {
-      button.addEventListener('click', function(event) {
-        const target = event.target as HTMLButtonElement;
-        const selectedCategory = target.getAttribute('data-category');
-        
-        // Update button states
-        categoryButtons.forEach(btn => {
-          btn.classList.remove('bg-primary', 'text-white', 'border-primary');
-          btn.classList.add('border-gray-300', 'text-gray-700');
-        });
-        
-        target.classList.add('bg-primary', 'text-white', 'border-primary');
-        target.classList.remove('border-gray-300', 'text-gray-700');
-        
-        // Filter posts
-        blogPosts.forEach(post => {
-          if (selectedCategory === 'всички') {
-            post.style.display = 'block';
-          } else {
-            const postCategory = post.getAttribute('data-category');
-            const normalizedPostCategory = postCategory?.toLowerCase().replace(/[\\s-]+/g, '-');
-            const normalizedSelectedCategory = selectedCategory?.toLowerCase().replace(/[\\s-]+/g, '-');
-            
-            if (normalizedPostCategory?.includes(normalizedSelectedCategory!) || 
-                normalizedSelectedCategory?.includes(normalizedPostCategory!)) {
-              post.style.display = 'block';
-            } else {
-              post.style.display = 'none';
-            }
-          }
-        });
-      });
-    });
-    
-    // Set "All" as active by default
-    const allButton = document.querySelector<HTMLButtonElement>('[data-category="всички"]');
-    if (allButton) {
-      allButton.classList.add('bg-primary', 'text-white', 'border-primary');
-    }
-  });
-</script>`;
+</Layout>`;
 }
 
 async function updateBlogIndex() {
@@ -380,6 +347,7 @@ async function updateBlogIndex() {
         const metadata = extractMetadata(content, filename);
         blogPosts.push(metadata);
         console.log(`📄 Processed: ${metadata.title}`);
+        console.log(`   Image: ${metadata.image}`);
       } catch (error) {
         console.warn(`⚠️  Warning: Could not process ${filename}:`, error.message);
       }
@@ -393,6 +361,8 @@ async function updateBlogIndex() {
     
     console.log('✅ Blog index updated successfully!');
     console.log(`📊 Included ${blogPosts.length} blog posts`);
+    console.log('🎨 Removed category filtering for cleaner interface');
+    console.log('📸 Added image support for blog posts');
     
   } catch (error) {
     console.error('❌ Error updating blog index:', error.message);

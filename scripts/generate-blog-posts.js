@@ -7,6 +7,7 @@ const __dirname = path.dirname(__filename);
 
 const BLOG_INPUT_DIR = path.join(__dirname, '../blog-input');
 const BLOG_OUTPUT_DIR = path.join(__dirname, '../src/pages/blog');
+const BLOG_IMAGES_DIR = path.join(__dirname, '../public/img/blog');
 const TRACKING_FILE = path.join(__dirname, '../.blog-tracking.json');
 
 // Load tracking data
@@ -45,13 +46,15 @@ function saveTrackingData(data) {
 
 // Parse blog input file
 function parseBlogInput(content, filename) {
-  // Extract meta title and description from the bottom
-  const metaTitleMatch = content.match(/Мета заглавие:\s*(.+?)(?:\n|$)/i) || content.match(/Meta title:\s*(.+?)(?:\n|$)/i);
-  const metaDescMatch = content.match(/Мета описание:\s*(.+?)(?:\n|$)/i) || content.match(/Meta description:\s*(.+?)(?:\n|$)/i);
+  // Extract meta title and description from the bottom - more robust regex
+  const metaTitleMatch = content.match(/(?:Мета заглавие|Meta title):\s*([^\r\n]+)/i);
+  const metaDescMatch = content.match(/(?:Мета описание|Meta description):\s*([^\r\n]+)/i);
   
-  // Remove meta information from content
+  // Remove meta information completely from content - improved regex
   const cleanContent = content
-    .replace(/Мета заглавие:[\s\S]*$/i, '')
+    .replace(/\*+\s*$/m, '') // Remove asterisks
+    .replace(/(?:Мета заглавие|Meta title):[\s\S]*$/i, '') // Remove everything from meta title onwards
+    .replace(/(?:Мета описание|Meta description):[\s\S]*$/i, '') // Remove everything from meta description onwards
     .trim();
   
   // Generate slug from filename
@@ -92,6 +95,25 @@ function parseBlogInput(content, filename) {
 
   const gradient = gradientColors[category] || gradientColors['Съвети и ръководства'];
   
+  // Check for blog image
+  const baseImageName = filename.replace('.html', '');
+  const possibleImageExtensions = ['.webp', '.jpg', '.jpeg', '.png'];
+  let blogImage = '/img/blog/default.webp'; // Default fallback
+  
+  // Ensure blog images directory exists
+  if (!fs.existsSync(BLOG_IMAGES_DIR)) {
+    fs.mkdirSync(BLOG_IMAGES_DIR, { recursive: true });
+  }
+  
+  for (const ext of possibleImageExtensions) {
+    const imagePath = path.join(BLOG_IMAGES_DIR, baseImageName + ext);
+    if (fs.existsSync(imagePath)) {
+      blogImage = `/img/blog/${baseImageName}${ext}`;
+      console.log(`📸 Found image: ${blogImage}`);
+      break;
+    }
+  }
+  
   return {
     title,
     description,
@@ -99,6 +121,7 @@ function parseBlogInput(content, filename) {
     slug,
     category,
     gradient,
+    blogImage,
     readTime: Math.max(3, Math.ceil(cleanContent.length / 1000)) + ' мин четене',
     publishDate: new Date().toLocaleDateString('bg-BG', { 
       day: 'numeric', 
@@ -125,12 +148,14 @@ const description = '${postData.description}';
 const publishDate = '${postData.publishDate}';
 const readTime = '${postData.readTime}';
 const category = '${postData.category}';
+const blogImage = '${postData.blogImage}';
 ---
 
 <Layout title={title} description={description}>
   <!-- Blog Post Header -->
-  <section class="py-16 bg-gradient-to-r ${postData.gradient} text-white">
-    <div class="container max-w-4xl">
+  <section class="py-16 bg-gradient-to-r ${postData.gradient} text-white relative overflow-hidden">
+    <div class="absolute inset-0 bg-black/20"></div>
+    <div class="container max-w-4xl relative z-10">
       <div class="text-center">
         <div class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-white/20 text-white mb-4">
           {category}
@@ -148,6 +173,16 @@ const category = '${postData.category}';
   <!-- Blog Post Content -->
   <article class="py-16">
     <div class="container max-w-4xl">
+      <!-- Blog Image -->
+      <div class="mb-8">
+        <img 
+          src={blogImage} 
+          alt="${postData.title}"
+          class="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg"
+          loading="lazy"
+        />
+      </div>
+      
       <div class="prose prose-lg max-w-none text-gray-900 prose-headings:text-gray-900 prose-p:text-gray-800 prose-li:text-gray-800 prose-strong:text-gray-900 prose-a:text-blue-600 hover:prose-a:text-blue-800">
         ${postData.content}
       </div>
@@ -196,7 +231,7 @@ const category = '${postData.category}';
     "@type": "BlogPosting",
     "headline": "${postData.title}",
     "description": "${postData.description}",
-    "image": "https://www.rotorem.bg/img/blog/default.webp",
+    "image": "https://www.rotorem.bg${postData.blogImage}",
     "author": {
       "@type": "Organization", 
       "name": "РотоРем Варна"
@@ -309,6 +344,11 @@ async function generateBlogPosts() {
     fs.mkdirSync(BLOG_OUTPUT_DIR, { recursive: true });
   }
 
+  if (!fs.existsSync(BLOG_IMAGES_DIR)) {
+    fs.mkdirSync(BLOG_IMAGES_DIR, { recursive: true });
+    console.log('📁 Created blog images directory:', BLOG_IMAGES_DIR);
+  }
+
   // Load tracking data
   const trackingData = loadTrackingData();
   const today = new Date().toISOString().split('T')[0];
@@ -362,6 +402,7 @@ async function generateBlogPosts() {
         console.log(`✅ Generated: ${postData.slug}.astro`);
         console.log(`   Title: ${postData.title}`);
         console.log(`   Category: ${postData.category}`);
+        console.log(`   Image: ${postData.blogImage}`);
         console.log(`   Scheduled for: ${scheduledPost.publishDate}`);
         
       } catch (error) {
@@ -423,6 +464,7 @@ async function generateBlogPosts() {
       generatedCount++;
       
       console.log(`✅ Generated: ${postData.slug}.astro`);
+      console.log(`   Image: ${postData.blogImage}`);
       
     } catch (error) {
       console.error(`❌ Error processing ${filename}:`, error.message);
