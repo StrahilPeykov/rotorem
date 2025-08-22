@@ -22,6 +22,7 @@ const navPaths = {
   contact: isEN ? '/en/contact' : '/contact',
   blog: isEN ? '/en/blog' : '/blog',
   faq: isEN ? '/en/faq' : '/faq',
+  careers: isEN ? '/en/careers' : '/careers', // Added careers path
   home: isEN ? '/en' : '/'
 };
 
@@ -842,7 +843,7 @@ const getPageSpecificSchema = () => {
         </div>
       </div>
       
-      <!-- Mobile Navigation Overlay - WITH SERVICES SUBMENU -->
+      <!-- Mobile Navigation Overlay - WITH SERVICES SUBMENU AND CAREERS -->
       <div id="mobile-menu" class="fixed inset-0 bg-gray-900/80 z-50 hidden">
         <div class="h-full w-64 max-w-[80%] bg-white shadow-xl ml-auto flex flex-col">
           <div class="p-4 border-b border-gray-200 flex items-center justify-between">
@@ -890,6 +891,9 @@ const getPageSpecificSchema = () => {
             </button>
             <a href={navPaths.blog} class="py-3 px-4 text-gray-700 hover:bg-gray-100 active:bg-gray-200 font-heading">
               {t('nav.blog')}
+            </a>
+            <a href={navPaths.careers} class="py-3 px-4 text-gray-700 hover:bg-gray-100 active:bg-gray-200 font-heading">
+              {isEN ? 'Careers' : 'Кариери'}
             </a>
             <a href={navPaths.contact} class="py-3 px-4 text-gray-700 hover:bg-gray-100 active:bg-gray-200 font-heading">
               {t('nav.contact')}
@@ -939,7 +943,7 @@ const getPageSpecificSchema = () => {
       </svg>
     </a>
     
-    <!-- Footer - SAME AS BEFORE BUT WITH SERVICES SUBMENU AND ADDED SEO CREDIT -->
+    <!-- Footer - UPDATED WITH CAREERS LINK -->
     <footer class="bg-gray-800 text-white py-10 mt-16">
       <div class="container">
         <div class="grid md:grid-cols-3 gap-8">
@@ -1022,13 +1026,17 @@ const getPageSpecificSchema = () => {
             </div>
           </div>
           
-          <!-- Quick links - WITH SERVICES BREAKDOWN -->
+          <!-- Quick links - UPDATED WITH CAREERS -->
           <div>
             <h3 class="font-semibold text-lg mb-4 font-heading">
-              {isEN ? 'Our Services' : 'Нашите услуги'}
+              {isEN ? 'Quick Links' : 'Бързи връзки'}
             </h3>
             <ul class="space-y-2 text-gray-300">
-              {serviceMenuItems.map((item) => (
+              <!-- Services Section -->
+              <li class="text-xs uppercase tracking-wide text-gray-400 font-heading pt-2">
+                {isEN ? 'Services' : 'Услуги'}
+              </li>
+              {serviceMenuItems.slice(0, 2).map((item) => (
                 <li>
                   <a href={item.url} class="hover:text-white font-heading text-sm flex items-center">
                     <span class="text-primary mr-2" set:html={item.icon}></span>
@@ -1036,27 +1044,37 @@ const getPageSpecificSchema = () => {
                   </a>
                 </li>
               ))}
-              <li class="border-t border-gray-700 pt-2 mt-3">
-                <a href={navPaths.services} class="hover:text-white font-heading text-primary">
-                  {isEN ? 'View all services' : 'Всички услуги'}
+              <li>
+                <a href={navPaths.services} class="hover:text-white font-heading text-primary text-sm">
+                  {isEN ? 'View all services →' : 'Всички услуги →'}
                 </a>
+              </li>
+              
+              <!-- Company Section -->
+              <li class="text-xs uppercase tracking-wide text-gray-400 font-heading pt-4">
+                {isEN ? 'Company' : 'Компания'}
               </li>
               <li>
                 <button 
                   id="reviews-modal-trigger-footer"
-                  class="hover:text-white font-heading text-left"
+                  class="hover:text-white font-heading text-left text-sm"
                 >
                   {t('nav.reviews')}
                 </button>
               </li>
               <li>
-                <a href={navPaths.blog} class="hover:text-white font-heading">{t('nav.blog')}</a>
+                <a href={navPaths.blog} class="hover:text-white font-heading text-sm">{t('nav.blog')}</a>
               </li>
               <li>
-                <a href={navPaths.contact} class="hover:text-white font-heading">{t('nav.contact')}</a>
+                <a href={navPaths.careers} class="hover:text-white font-heading text-sm">
+                  {isEN ? 'Careers' : 'Кариери'}
+                </a>
               </li>
               <li>
-                <a href={isEN ? '/en/faq' : '/faq'} class="hover:text-white font-heading">{t('nav.faq')}</a>
+                <a href={navPaths.contact} class="hover:text-white font-heading text-sm">{t('nav.contact')}</a>
+              </li>
+              <li>
+                <a href={isEN ? '/en/faq' : '/faq'} class="hover:text-white font-heading text-sm">{t('nav.faq')}</a>
               </li>
             </ul>
           </div>
