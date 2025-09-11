@@ -40,11 +40,20 @@ const inHomeServiceText = isEN
 const services = [
   {
     icon: 'washing-machine' as IconKey,
-    title: isEN ? 'Washing Machines & Dryers' : 'Перални и Сушилни',
+    title: isEN ? 'Washing Machines' : 'Перални',
     description: isEN 
-      ? 'Fast repairs for all washing machine and dryer brands. We fix leaks, motor problems, electronics, drum issues, and provide same-day emergency service.'
-      : 'Бързи ремонти на всички марки перални и сушилни. Отстраняваме течове, проблеми с мотора, барабана, електрониката и предлагаме спешна услуга в същия ден.',
+      ? 'Fast repairs for all washing machine brands. We fix leaks, motor and electronics issues with same-day service when possible.'
+      : 'Бърз ремонт на всички марки перални. Отстраняваме течове, проблеми с мотора, електрониката и др., често в същия ден.',
     url: isEN ? '/en/services/washing-machine-repair' : '/services/washing-machine-repair',
+  },
+  {
+    // Reuse washing-machine visuals to avoid missing dryer image asset
+    icon: 'washing-machine' as IconKey,
+    title: isEN ? 'Dryers' : 'Сушилни',
+    description: isEN 
+      ? 'Professional dryer repairs: no heat, drum not turning, sensor and control issues. In-home service in Varna.'
+      : 'Професионален ремонт на сушилни: не загрява, не върти барабана, проблеми със сензори/управление. Сервиз на място във Варна.',
+    url: isEN ? '/en/services/dryer-repair' : '/services/dryer-repair',
   },
   {
     icon: 'dishwasher' as IconKey,
@@ -56,11 +65,20 @@ const services = [
   },
   {
     icon: 'oven' as IconKey,
-    title: isEN ? 'Ovens & Water Heaters' : 'Фурни и Бойлери',
+    title: isEN ? 'Ovens' : 'Фурни',
     description: isEN 
-      ? 'Expert repairs for electric ovens, cooktops, and water heaters. Heating elements, thermostats, and control boards fixed with quality assurance.'
-      : 'Експертен ремонт на електрически фурни, котлони и бойлери. Нагревателни елементи, термостати и контролни платки се ремонтират с гаранция за качество.',
+      ? 'Expert repairs for electric ovens and cooktops. Heating elements, thermostats, and control boards fixed with quality assurance.'
+      : 'Експертен ремонт на електрически фурни и плотове. Ремонт на нагреватели, термостати и платки с гаранция.',
     url: isEN ? '/en/services/oven-repair' : '/services/oven-repair',
+  },
+  {
+    // Reuse oven visuals for boilers (no boiler image asset available)
+    icon: 'oven' as IconKey,
+    title: isEN ? 'Water Heaters' : 'Бойлери',
+    description: isEN 
+      ? 'Repair and maintenance of electric water heaters: heating elements, thermostats, leaks, descaling, and safety checks.'
+      : 'Ремонт и поддръжка на електрически бойлери: нагреватели, термостати, течове, почистване от котлен камък и проверка на безопасност.',
+    url: isEN ? '/en/services/boiler-repair' : '/services/boiler-repair',
   },
   {
     icon: 'electrical' as IconKey,
