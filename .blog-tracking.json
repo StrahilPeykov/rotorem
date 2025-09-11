@@ -69,6 +69,21 @@
       "filename": "remont-na-sushilni-varna-serviz-sushilni-remont-sushilnya-sushilnya-ne-sushi-proverete-ceni.html",
       "publishDate": "2025-08-28",
       "status": "published"
+    },
+    {
+      "filename": "remont-boileri-varna-ceni-chesti-povredi-i-barz-serviz.html",
+      "publishDate": "2025-09-11",
+      "status": "published"
+    },
+    {
+      "filename": "remont-peralnia-varna-barza-diagnostika-po-domovete-cena-i-garancia.html",
+      "publishDate": "2025-09-11",
+      "status": "published"
+    },
+    {
+      "filename": "tablo-bushoni-ili-avtomatichen-predpazitel-el-tehnici-varna.html",
+      "publishDate": "2025-09-15",
+      "status": "scheduled"
     }
   ],
   "published": [
@@ -85,6 +100,8 @@
     "gotvarski-pechki-varna-furni-plotove-keramichni-kotloni-funkcii-izbor-i-ceni.html",
     "remont-na-boileri-varna-serviz-boiler-smyana-nagrevatel-boileri-boiler-ne-zagryava-realna-cena.html",
     "remont-na-peralni-varna-serviz-peralni-remont-peralnya-po-domovete-yasni-ceni.html",
-    "remont-na-sushilni-varna-serviz-sushilni-remont-sushilnya-sushilnya-ne-sushi-proverete-ceni.html"
+    "remont-na-sushilni-varna-serviz-sushilni-remont-sushilnya-sushilnya-ne-sushi-proverete-ceni.html",
+    "remont-boileri-varna-ceni-chesti-povredi-i-barz-serviz.html",
+    "remont-peralnia-varna-barza-diagnostika-po-domovete-cena-i-garancia.html"
   ]
 }
