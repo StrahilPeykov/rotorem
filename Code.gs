@@ -611,7 +611,7 @@ function sendCustomerConfirmationEmail(data) {
                 При въпроси или промяна на часа, моля свържете се с нас:
               </p>
               <p style="margin: 0;">
-                <a href="tel:+359898340982" style="color: #2563eb; text-decoration: none; font-size: 18px; font-weight: bold;">
+                <a href="tel:+359 89 834 0982" style="color: #2563eb; text-decoration: none; font-size: 18px; font-weight: bold;">
                   &#128222; +359 89 834 0982
                 </a>
               </p>
