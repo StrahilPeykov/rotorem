@@ -49,13 +49,7 @@ const blogPosts = [
   }
 ];
 
-const categories = [
-  { name: 'All', slug: 'all' },
-  { name: 'Maintenance', slug: 'maintenance' },
-  { name: 'Troubleshooting', slug: 'troubleshooting' },
-  { name: 'Buying Guide', slug: 'buying-guide' },
-  { name: 'Local Insights', slug: 'local-insights' }
-];
+// Category filter removed
 ---
 
 <Layout title={title} description={description}>
@@ -72,19 +66,7 @@ const categories = [
         </p>
       </header>
 
-      <!-- Category Filter -->
-      <div class="mb-12">
-        <div class="flex flex-wrap justify-center gap-3">
-          {categories.map(category => (
-            <button 
-              class="px-4 py-2 rounded-full border border-gray-300 text-gray-700 hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 category-filter"
-              data-category={category.slug}
-            >
-              {category.name}
-            </button>
-          ))}
-        </div>
-      </div>
+      
 
       <!-- Featured Post -->
       <div class="mb-16">
@@ -103,11 +85,8 @@ const categories = [
               />
             </div>
             <div class="md:w-1/2 p-8">
-              <div class="flex items-center mb-4">
-                <span class="bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">
-                  {blogPosts[0].category}
-                </span>
-                <span class="ml-3 text-gray-500 text-sm">{blogPosts[0].date}</span>
+              <div class="mb-4">
+                <span class="text-gray-500 text-sm">{blogPosts[0].date}</span>
               </div>
               <h3 class="text-2xl font-bold text-gray-900 mb-4">
                 <a href={`/en/blog/${blogPosts[0].slug}`} class="hover:text-primary transition-colors">
