@@ -118,7 +118,7 @@ const blogPosts = [
         
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="blog-posts-grid">
           {blogPosts.slice(1).map(post => (
-            <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 blog-post" data-category={post.category.toLowerCase().replace(' ', '-')}>
+            <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 blog-post">
               <img 
                 src={post.image} 
                 alt={post.title}
@@ -127,11 +127,8 @@ const blogPosts = [
                 height="200"
               />
               <div class="p-6">
-                <div class="flex items-center mb-3">
-                  <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">
-                    {post.category}
-                  </span>
-                  <span class="ml-3 text-gray-500 text-sm">{post.date}</span>
+                <div class="mb-3">
+                  <span class="text-gray-500 text-sm">{post.date}</span>
                 </div>
                 
                 <h3 class="text-xl font-semibold text-gray-900 mb-3">
@@ -232,46 +229,5 @@ const blogPosts = [
   </section>
 </Layout>
 
-<script>
-  // Category filtering functionality
-  document.addEventListener('DOMContentLoaded', function() {
-    const categoryButtons = document.querySelectorAll<HTMLButtonElement>('.category-filter');
-    const blogPosts = document.querySelectorAll<HTMLElement>('.blog-post');
-    
-    categoryButtons.forEach(button => {
-      button.addEventListener('click', function(event) {
-        const target = event.target as HTMLButtonElement;
-        const selectedCategory = target.getAttribute('data-category');
-        
-        // Update button states
-        categoryButtons.forEach(btn => {
-          btn.classList.remove('bg-primary', 'text-white', 'border-primary');
-          btn.classList.add('border-gray-300', 'text-gray-700');
-        });
-        
-        target.classList.add('bg-primary', 'text-white', 'border-primary');
-        target.classList.remove('border-gray-300', 'text-gray-700');
-        
-        // Filter posts
-        blogPosts.forEach(post => {
-          if (selectedCategory === 'all') {
-            post.style.display = 'block';
-          } else {
-            const postCategory = post.getAttribute('data-category');
-            if (postCategory === selectedCategory) {
-              post.style.display = 'block';
-            } else {
-              post.style.display = 'none';
-            }
-          }
-        });
-      });
-    });
-    
-    // Set "All" as active by default
-    const allButton = document.querySelector<HTMLButtonElement>('[data-category="all"]');
-    if (allButton) {
-      allButton.classList.add('bg-primary', 'text-white', 'border-primary');
-    }
-  });
-</script>
+
+
