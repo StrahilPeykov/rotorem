@@ -33,7 +33,8 @@
     "blog:clean": "node scripts/clean-blog-posts.js",
     "blog:workflow": "npm run blog:schedule && npm run blog:generate && npm run blog:update-index",
     "blog:publish": "npm run blog:generate && npm run blog:update-index",
-    "blog:status": "npm run blog:schedule:show"
+    "blog:status": "npm run blog:schedule:show",
+    "blog:check-images": "node scripts/check-blog-images.js"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.4.0",
