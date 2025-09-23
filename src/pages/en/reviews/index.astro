@@ -281,8 +281,7 @@ const totalReviews = 15;
   </section>
 
   <!-- Schema Markup -->
-  <script type="application/ld+json">
-  {
+  <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "WebPage",
     "name": "Customer Reviews - RotoRem Varna",
@@ -304,7 +303,7 @@ const totalReviews = 15;
         "bestRating": "5",
         "worstRating": "1"
       },
-      "review": ${JSON.stringify(reviews.slice(0, 5).map(review => ({
+      "review": reviews.slice(0, 5).map(review => ({
         "@type": "Review",
         "reviewRating": {
           "@type": "Rating",
@@ -317,8 +316,8 @@ const totalReviews = 15;
         },
         "reviewBody": review.text,
         "datePublished": "2025-06-20"
-      })))}
+      }))
     }
-  }
+  })}>
   </script>
 </Layout>
