@@ -5,7 +5,6 @@ const DYNAMIC_CACHE = 'rotorem-dynamic-v1';
 // Assets to cache immediately
 const STATIC_ASSETS = [
   '/',
-  '/en/',
   '/img/hero.webp',
   '/img/hero.avif',
   '/favicon.svg',
