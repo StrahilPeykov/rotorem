@@ -5,7 +5,7 @@ import { getLangFromUrl } from '../i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 const isEN = lang === 'en';
 
-const title = isEN ? 'Call for Service | RotoRem Varna' : 'Обади се за сервиз | РотоРем Варна';
+const title = isEN ? 'Call for Service | RotoRem Varna & Sofia' : 'Обади се за сервиз | РотоРем Варна и София';
 const heading = isEN ? 'Please Call To Schedule Your Repair' : 'Моля, обади се, за да запазиш час';
 const phone = '+359 89 834 0982';
 const phoneHref = `tel:${phone.replace(/\s+/g, '')}`;
@@ -63,8 +63,8 @@ const email = 'n.ivanov.ivanov@abv.bg';
 
       <p class="mt-10 text-gray-500 text-sm">
         {isEN
-          ? 'Thank you for trusting RotoRem Varna. We strive to provide fast, reliable service that keeps your appliances running and your home comfortable.'
-          : 'Благодарим, че избра РотоРем Варна. Ще се погрижим уредът ти да работи отново и домът ти да остане комфортен.'}
+          ? 'Thank you for trusting RotoRem Varna & Sofia. We strive to provide fast, reliable service that keeps your appliances running and your home comfortable.'
+          : 'Благодарим, че избра РотоРем Варна и София. Ще се погрижим уредът ти да работи отново и домът ти да остане комфортен.'}
       </p>
     </div>
   </section>

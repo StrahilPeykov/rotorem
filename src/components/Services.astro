@@ -24,8 +24,8 @@ const serviceColors = {
 
 // Adding the service area information
 const serviceArea = isEN 
-  ? 'Serving Varna and surrounding areas (up to 20km)'
-  : 'Обслужваме Варна и околностите (до 20км)';
+  ? 'Serving Varna & Sofia plus nearby areas (up to ~20km)'
+  : 'Обслужваме Варна и София, както и околните населени места (до ~20 км)';
 
 // Service guarantee text
 const guaranteeText = isEN
@@ -51,8 +51,8 @@ const services = [
     icon: 'washing-machine' as IconKey,
     title: isEN ? 'Dryers' : 'Сушилни',
     description: isEN 
-      ? 'Professional dryer repairs: no heat, drum not turning, sensor and control issues. In-home service in Varna.'
-      : 'Професионален ремонт на сушилни: не загрява, не върти барабана, проблеми със сензори/управление. Сервиз на място във Варна.',
+      ? 'Professional dryer repairs: no heat, drum not turning, sensor and control issues. In-home service across Varna & Sofia.'
+      : 'Професионален ремонт на сушилни: не загрява, не върти барабана, проблеми със сензори/управление. Сервиз на място във Варна и София.',
     url: isEN ? '/en/services/dryer-repair' : '/services/dryer-repair',
   },
   {
@@ -133,7 +133,7 @@ const icons: Record<IconKey, string> = {
               <circle cx="12" cy="10" r="3"></circle>
             </svg>
             <p class="text-sm font-medium text-primary-dark">
-              {isEN ? 'Varna area (up to 20km)' : 'Варна и околности (до 20км)'}
+              {isEN ? 'Varna & Sofia coverage (up to ~20km)' : 'Варна и София (до ~20 км)'}
             </p>
           </div>
           

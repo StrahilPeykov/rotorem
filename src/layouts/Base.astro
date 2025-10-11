@@ -85,10 +85,10 @@ const varnaServices = serviceMenuSections.find((section) => section.key === 'var
 const quickLinkServices = varnaServices.slice(0, 2);
 
 const {
-  title = isEN ? 'RotoRem Varna | Appliance Repair Services' : 'РотоРем Варна | Ремонт на битова техника',
+  title = isEN ? 'RotoRem Varna & Sofia | Appliance Repair Services' : 'РотоРем Варна и София | Ремонт на битова техника',
   description = isEN 
-    ? 'Professional appliance repair services in Varna. Fast and reliable repairs for washing machines, dishwashers, ovens and more.'
-    : 'Професионален ремонт на битова техника във Варна. Бързи и надеждни ремонти на перални, съдомиялни, фурни и други.',
+    ? 'Professional appliance repair in Varna & Sofia. Fast in-home repairs for washing machines, dishwashers, ovens, boilers and more.'
+    : 'Професионален ремонт на битова техника във Варна и София. Бързи ремонти на място за перални, съдомиялни, фурни, бойлери и други.',
   image = '/img/hero.webp',
   noindex: noindexProp = false,
 } = Astro.props;
@@ -106,11 +106,11 @@ const getPageSpecificSchema = () => {
   const baseSchema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "name": isEN ? "RotoRem Varna" : "РотоРем Варна",
+    "name": isEN ? "RotoRem Varna & Sofia" : "РотоРем Варна и София",
     "alternateName": "RotoRem",
     "description": isEN 
-      ? "Professional appliance repair services in Varna - washing machines, dishwashers, ovens, electrical systems"
-      : "Професионален ремонт на битова техника във Варна - перални, съдомиялни, фурни, електрически системи",
+      ? "Professional appliance repair services in Varna & Sofia – washing machines, dishwashers, ovens, boilers, electrical systems"
+      : "Професионален ремонт на битова техника във Варна и София – перални, съдомиялни, фурни, бойлери и електрически системи",
     "url": "https://www.rotorem.bg",
     "telephone": "+359 89 834 0982",
     "email": "n.ivanov.ivanov@abv.bg",
@@ -130,24 +130,30 @@ const getPageSpecificSchema = () => {
       "latitude": 43.2141,
       "longitude": 27.9147
     },
-    "areaServed": {
-      "@type": "GeoCircle",
-      "geoMidpoint": {
-        "@type": "GeoCoordinates",
-        "latitude": 43.2141,
-        "longitude": 27.9147
+    "areaServed": [
+      { "@type": "City", "name": "Varna" },
+      { "@type": "City", "name": "Sofia" }
+    ],
+    "serviceArea": [
+      {
+        "@type": "GeoCircle",
+        "geoMidpoint": {
+          "@type": "GeoCoordinates",
+          "latitude": 43.2141,
+          "longitude": 27.9147
+        },
+        "geoRadius": "20000"
       },
-      "geoRadius": "20000"
-    },
-    "serviceArea": {
-      "@type": "GeoCircle",
-      "geoMidpoint": {
-        "@type": "GeoCoordinates", 
-        "latitude": 43.2141,
-        "longitude": 27.9147
-      },
-      "geoRadius": "20000"
-    },
+      {
+        "@type": "GeoCircle",
+        "geoMidpoint": {
+          "@type": "GeoCoordinates",
+          "latitude": 42.6975,
+          "longitude": 23.3221
+        },
+        "geoRadius": "20000"
+      }
+    ],
     "openingHoursSpecification": [
       {
         "@type": "OpeningHoursSpecification",
@@ -172,8 +178,8 @@ const getPageSpecificSchema = () => {
             "@type": "Service",
             "name": isEN ? "Washing Machine Repair" : "Ремонт на перални машини",
             "description": isEN 
-              ? "Professional washing machine repair for all brands in Varna"
-              : "Професионален ремонт на перални машини всички марки във Варна",
+              ? "Professional washing machine repair for all brands in Varna & Sofia"
+              : "Професионален ремонт на перални машини за всички марки във Варна и София",
             "serviceType": "Appliance Repair",
             "url": "https://www.rotorem.bg/services/washing-machine-repair"
           }
@@ -184,8 +190,8 @@ const getPageSpecificSchema = () => {
             "@type": "Service",
             "name": isEN ? "Dishwasher Repair" : "Ремонт на съдомиялни машини",
             "description": isEN 
-              ? "On-site dishwasher repair in Varna"
-              : "Ремонт на съдомиялни машини на място във Варна",
+              ? "On-site dishwasher repair in Varna & Sofia"
+              : "Ремонт на съдомиялни машини на място във Варна и София",
             "serviceType": "Appliance Repair",
             "url": "https://www.rotorem.bg/services/dishwasher-repair"
           }
@@ -196,8 +202,8 @@ const getPageSpecificSchema = () => {
             "@type": "Service", 
             "name": isEN ? "Oven and Cooktop Repair" : "Ремонт на фурни и котлони",
             "description": isEN 
-              ? "Electric oven and cooktop repair in Varna"
-              : "Ремонт на електрически фурни и котлони във Варна",
+              ? "Electric oven and cooktop repair in Varna & Sofia"
+              : "Ремонт на електрически фурни и котлони във Варна и София",
             "serviceType": "Appliance Repair",
             "url": "https://www.rotorem.bg/services/oven-repair"
           }
@@ -208,8 +214,8 @@ const getPageSpecificSchema = () => {
             "@type": "Service", 
             "name": isEN ? "Electrical Services" : "Електрически услуги",
             "description": isEN 
-              ? "Installation and repair of electrical systems in Varna"
-              : "Монтаж и ремонт на електрически инсталации във Варна",
+              ? "Installation and repair of electrical systems in Varna & Sofia"
+              : "Монтаж и ремонт на електрически инсталации във Варна и София",
             "serviceType": "Electrical Service",
             "url": "https://www.rotorem.bg/services/electrical-services"
           }
@@ -235,7 +241,7 @@ const getPageSpecificSchema = () => {
       {
         "@context": "https://schema.org",
         "@type": "WebSite",
-        "name": isEN ? "RotoRem Varna" : "РотоРем Варна",
+        "name": isEN ? "RotoRem Varna & Sofia" : "РотоРем Варна и София",
         "url": "https://www.rotorem.bg",
         "potentialAction": {
           "@type": "SearchAction",
@@ -244,7 +250,7 @@ const getPageSpecificSchema = () => {
         },
         "publisher": {
           "@type": "Organization",
-          "name": isEN ? "RotoRem Varna" : "РотоРем Варна",
+          "name": isEN ? "RotoRem Varna & Sofia" : "РотоРем Варна и София",
           "logo": "https://www.rotorem.bg/favicon.svg"
         }
       }
@@ -280,7 +286,7 @@ const getPageSpecificSchema = () => {
     
     <!-- Geo meta tags for local SEO -->
     <meta name="geo.region" content="BG-VAR" />
-    <meta name="geo.placename" content="Varna" />
+    <meta name="geo.placename" content="Varna & Sofia, Bulgaria" />
     <meta name="geo.position" content="43.2141;27.9147" />
     <meta name="ICBM" content="43.2141, 27.9147" />
     
@@ -313,7 +319,7 @@ const getPageSpecificSchema = () => {
         optional: {
           description,
           locale: shouldNoindex ? 'bg_BG' : lang === 'bg' ? 'bg_BG' : 'en_US',
-          siteName: isEN ? 'RotoRem Varna' : 'РотоРем Варна',
+          siteName: isEN ? 'RotoRem Varna & Sofia' : 'РотоРем Варна и София',
         },
         image: {
           url: new URL(image, Astro.site).toString(),
@@ -337,7 +343,7 @@ const getPageSpecificSchema = () => {
           { name: 'apple-mobile-web-app-capable', content: 'yes' },
           { name: 'apple-mobile-web-app-status-bar-style', content: 'default' },
           { name: 'msapplication-TileColor', content: '#2563eb' },
-          { name: 'application-name', content: isEN ? 'RotoRem Varna' : 'РотоРем Варна' },
+          { name: 'application-name', content: isEN ? 'RotoRem Varna & Sofia' : 'РотоРем Варна и София' },
         ],
       }}
     />
@@ -833,8 +839,11 @@ const getPageSpecificSchema = () => {
               decoding="sync"
             />
           </div>
-          <span class="company-name-text">
-            {isEN ? 'RotoRem Varna' : 'РотоРем Варна'}
+          <span class="company-name-text leading-tight">
+            {isEN ? 'RotoRem' : 'РотоРем'}
+            <span class="block text-xs md:text-sm font-medium text-gray-500 uppercase tracking-[0.18em]">
+              {isEN ? 'Varna & Sofia' : 'Варна и София'}
+            </span>
           </span>
         </a>
 
@@ -1025,11 +1034,11 @@ const getPageSpecificSchema = () => {
                 />
               </div>
               <h3 class="font-semibold text-lg font-heading leading-none">
-                {isEN ? 'RotoRem Varna' : 'РотоРем Варна'}
+                {isEN ? 'RotoRem Varna & Sofia' : 'РотоРем Варна и София'}
               </h3>
             </div>
             <p class="text-gray-300 mb-4 font-heading">
-              {isEN ? 'Professional home appliance repair services' : 'Професионален ремонт на домашни уреди'}
+              {isEN ? 'Professional home appliance repair services in Varna & Sofia' : 'Професионален ремонт на домашни уреди във Варна и София'}
             </p>
             
             <!-- Contact preview in footer -->
@@ -1045,7 +1054,7 @@ const getPageSpecificSchema = () => {
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                   <circle cx="12" cy="10" r="3"></circle>
                 </svg>
-                <span>{isEN ? 'Varna, Bulgaria' : 'Варна, България'}</span>
+                <span>{isEN ? 'Varna & Sofia, Bulgaria' : 'Варна и София, България'}</span>
               </div>
             </div>
           </div>
@@ -1074,7 +1083,7 @@ const getPageSpecificSchema = () => {
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                   <circle cx="12" cy="10" r="3"></circle>
                 </svg>
-                <span class="font-heading">{isEN ? 'Varna, Bulgaria' : 'Варна, България'}</span>
+                <span class="font-heading">{isEN ? 'Varna & Sofia, Bulgaria' : 'Варна и София, България'}</span>
               </li>
             </ul>
             
@@ -1147,7 +1156,7 @@ const getPageSpecificSchema = () => {
         
         <div class="border-t border-gray-700 mt-8 pt-6 flex flex-col md:flex-row justify-between items-center">
           <p class="text-gray-400 text-sm">
-            &copy; {new Date().getFullYear()} RotoRem Varna
+            &copy; {new Date().getFullYear()} RotoRem Varna & Sofia
           </p>
           <div class="text-gray-500 text-sm mt-2 md:mt-0 flex flex-col items-center md:items-end space-y-1">
             <span>MIT © 2025 Strahil Peykov</span>

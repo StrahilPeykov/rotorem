@@ -8,8 +8,8 @@ export const defaultLang = 'bg';
 export const ui = {
   bg: {
     // SEO Meta Tags
-    'meta.homepage.title': 'Ремонт Уреди Варна | РотоРем - Професионален сервиз',
-    'meta.homepage.description': 'Ремонт на уреди във Варна ✓ Бърз сервиз на място ✓ Гаранция ✓ Същия ден ремонт ✓ Всички марки ☎ 089 834 0982',
+    'meta.homepage.title': 'Ремонт на уреди Варна и София | РотоРем - Професионален сервиз',
+    'meta.homepage.description': 'Ремонт на уреди във Варна и София ✓ Бърз сервиз на място ✓ Гаранция ✓ Същия ден ремонт ✓ Всички марки ☎ 089 834 0982',
     
     // Navigation
     'nav.services': 'Услуги',
@@ -20,7 +20,7 @@ export const ui = {
     
     // Hero Section
     'hero.title': 'Професионален ремонт на домакински уреди',
-    'hero.subtitle': 'Бързи и надеждни ремонти на перални, съдомиялни, фурни и електрически инсталации във Варна и региона (до 20км)',
+    'hero.subtitle': 'Бързи и надеждни ремонти на перални, съдомиялни, фурни и електрически инсталации във Варна и София (до 20км около двата града)',
     'hero.inHome': 'Професионален ремонт на уреди на място - идваме при вас!', 
     'hero.cta': 'Запазете час',
     'hero.phone': 'Обадете се',
@@ -99,7 +99,7 @@ export const ui = {
     
     // Blog Section
     'blog.title': 'Блог за ремонт на битова техника',
-    'blog.subtitle': 'Полезни съвети и ръководства от експертите на РотоРем Варна',
+    'blog.subtitle': 'Полезни съвети и ръководства от експертите на РотоРем Варна и София',
     
     // Service-specific translations
     'service.washingMachine.title': 'Ремонт на Пералня Варна',
@@ -113,8 +113,8 @@ export const ui = {
   },
   en: {
     // SEO Meta Tags
-    'meta.homepage.title': 'Appliance Repair Varna | RotoRem - Professional Service',
-    'meta.homepage.description': 'Appliance repair in Varna ✓ Fast on-site service ✓ Warranty ✓ Same day repair ✓ All brands ☎ 089 834 0982',
+    'meta.homepage.title': 'Appliance Repair Varna & Sofia | RotoRem - Professional Service',
+    'meta.homepage.description': 'Appliance repair in Varna & Sofia ✓ Fast on-site service ✓ Warranty ✓ Same day repair ✓ All brands ☎ 089 834 0982',
     
     // Navigation
     'nav.services': 'Services',
@@ -125,7 +125,7 @@ export const ui = {
     
     // Hero Section
     'hero.title': 'Professional Appliance Repairs',
-    'hero.subtitle': 'Fast and reliable repairs for washing machines, dishwashers, ovens, and electrical installations in Varna and surrounding areas (up to 20km)',
+    'hero.subtitle': 'Fast and reliable repairs for washing machines, dishwashers, ovens, and electrical installations in Varna & Sofia (within ~20km of each city)',
     'hero.inHome': 'Professional in-home appliance repairs - we come to you!',
     'hero.cta': 'Book a Service',
     'hero.phone': 'Call us',
@@ -204,7 +204,7 @@ export const ui = {
     
     // Blog Section
     'blog.title': 'Appliance Repair Blog',
-    'blog.subtitle': 'Helpful tips and guides from RotoRem Varna experts',
+    'blog.subtitle': 'Helpful tips and guides from RotoRem experts in Varna & Sofia',
     
     // Service-specific translations
     'service.washingMachine.title': 'Washing Machine Repair Varna',
