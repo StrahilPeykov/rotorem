@@ -23,6 +23,7 @@ const subtitle = isEN
   : 'Имате повреден уред? Свържете се с нас за бърз ремонт!';
 
 const phone = '+359 89 834 0982';
+const phoneHref = `tel:${phone.replace(/\s+/g, '')}`;
 const email = 'n.ivanov.ivanov@abv.bg';
 const address = isEN 
   ? 'Varna, Bulgaria' 
@@ -44,7 +45,7 @@ const contactInfo = [
     icon: 'phone',
     title: isEN ? 'Phone' : 'Телефон',
     info: phone,
-    link: `tel:${phone}`,
+    link: phoneHref,
   },
   {
     icon: 'mail',
@@ -118,19 +119,17 @@ const ownerDescription = isEN
 
         <!-- CTA Buttons - PHONE AND EMAIL ONLY NOW -->
         <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
-          <a href="tel:+359 89 834 0982" class="btn-primary inline-flex items-center justify-center shadow-lg hover:scale-105 transition-transform duration-300">
+          <a href={phoneHref} class="btn-primary inline-flex items-center justify-center shadow-lg hover:scale-105 transition-transform duration-300">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-            {isEN ? 'Call Now' : 'Обадете се сега'}
+            {isEN ? 'Call 089 834 0982' : 'Обади се на 089 834 0982'}
           </a>
           
-          <!-- COMMENTED OUT - BOOKING DISABLED
-          <a href={isEN ? '/en/book' : '/book'} class="btn-cta inline-flex items-center justify-center shadow-lg hover:scale-105 transition-transform duration-300">
+          <a href={phoneHref} class="btn-cta inline-flex items-center justify-center shadow-lg hover:scale-105 transition-transform duration-300">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path>
             </svg>
-            {isEN ? 'Book Service' : 'Запази час'}
+            {isEN ? 'Schedule by Phone' : 'Резервирай с обаждане'}
           </a>
-          -->
           
           <a href="mailto:n.ivanov.ivanov@abv.bg" class="btn-cta inline-flex items-center justify-center shadow-lg hover:scale-105 transition-transform duration-300">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

@@ -1,413 +1,71 @@
 ---
 import Layout from '../layouts/Base.astro';
-import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { getLangFromUrl } from '../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
 const isEN = lang === 'en';
 
-// Title and heading
-const title = isEN ? 'Book a Service | RotoRem' : 'Запазете час | РотоРем';
-const heading = isEN ? 'Book a Service' : 'Запазете час';
-
-// Descriptive text about in-home service
-const inHomeDescription = isEN 
-  ? 'Our technician will come to your home to perform the repair - no need to transport your appliance.'
-  : 'Нашият техник ще дойде във вашия дом, за да извърши ремонта - не е нужно да транспортирате уреда си.';
-
-// Diagnostic fee notice
-const feeNotice = isEN
-  ? 'A diagnostic fee of 30 BGN (15,32 €) applies to all in-home visits. This fee covers the inspection and diagnosis of your appliance issue.'
-  : 'Такса за диагностика от 30 лв. (15,32 €) се прилага за всички посещения на място. Тази такса покрива инспекцията и диагностиката на проблема с вашия уред.';
-
-// Phone booking message
-const phoneBookingTitle = isEN ? 'Call to Schedule Your Repair' : 'Обадете се за запазване на час';
-const phoneBookingDescription = isEN 
-  ? 'For the fastest and most convenient service, please call us directly to schedule your appliance repair appointment.'
-  : 'За най-бърза и удобна услуга, моля обадете се директно, за да запазите час за ремонт на вашия уред.';
-
-// COMMENTED OUT - CALENDLY BOOKING DISABLED
-// const CALENDLY_URL = "https://calendly.com/n-ivanov-ivanov/rotorem?background_color=ffffff&text_color=111827&primary_color=2563eb";
+const title = isEN ? 'Call for Service | RotoRem Varna' : 'Обади се за сервиз | РотоРем Варна';
+const heading = isEN ? 'Please Call To Schedule Your Repair' : 'Моля, обади се, за да запазиш час';
+const phone = '+359 89 834 0982';
+const phoneHref = `tel:${phone.replace(/\s+/g, '')}`;
+const email = 'n.ivanov.ivanov@abv.bg';
 ---
 
 <Layout title={title}>
   <section class="py-16 md:py-24 bg-gradient-to-b from-white to-blue-50">
-    <div class="container max-w-5xl">
-      <div class="text-center mb-8">
-        <h1 class="text-3xl font-bold text-gray-900 mb-4">{heading}</h1>
-        
-        <!-- Description about in-home service -->
-        <p class="text-gray-600 max-w-xl mx-auto mb-4">
-          {inHomeDescription}
-        </p>
-        
-        <!-- Diagnostic fee notice -->
-        <div class="bg-amber-50 p-4 rounded-lg border border-amber-200 shadow-sm mb-8 mx-auto max-w-xl">
-          <div class="flex items-start">
-            <div class="flex-shrink-0 mt-0.5">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-amber-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="12" y1="8" x2="12" y2="12"></line>
-                <line x1="12" y1="16" x2="12.01" y2="16"></line>
-              </svg>
-            </div>
-            <p class="ml-3 text-amber-700">
-              {feeNotice}
-            </p>
-          </div>
-        </div>
-      </div>
+    <div class="container max-w-3xl mx-auto text-center">
+      <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">{heading}</h1>
+      <p class="text-lg md:text-xl text-gray-600 mb-8">
+        {isEN
+          ? 'Online bookings are currently disabled. To arrange a technician visit, please call us directly so we can confirm the time that works best for you.'
+          : 'Онлайн записванията са временно спрени. За да уговориш посещение на техник, моля обади се директно, за да потвърдим най-удобния за теб час.'}
+      </p>
 
-      <!-- Service Features -->
-      <div class="grid md:grid-cols-3 gap-6 mb-8">
-        <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100 text-center">
-          <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-              <polyline points="9 22 9 12 15 12 15 22"></polyline>
-            </svg>
-          </div>
-          <h3 class="text-lg font-semibold text-gray-900 mb-2">
-            {isEN ? 'In-Home Service' : 'Обслужване у дома'}
-          </h3>
-          <p class="text-gray-600">
-            {isEN ? 'We come to your home in Varna' : 'Идваме във вашия дом във Варна'}
-          </p>
-        </div>
-
-        <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100 text-center">
-          <div class="w-12 h-12 bg-green-500 text-white rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="10"/>
-              <polyline points="12 6 12 12 16 14"/>
-            </svg>
-          </div>
-          <h3 class="text-lg font-semibold text-gray-900 mb-2">
-            {isEN ? 'Same-Day Service' : 'Сервиз в същия ден'}
-          </h3>
-          <p class="text-gray-600">
-            {isEN ? 'Most repairs completed same day' : 'Повечето ремонти в същия ден'}
-          </p>
-        </div>
-
-        <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100 text-center">
-          <div class="w-12 h-12 bg-amber-500 text-white rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            </svg>
-          </div>
-          <h3 class="text-lg font-semibold text-gray-900 mb-2">
-            {isEN ? 'Quality Guarantee' : 'Гаранция за качество'}
-          </h3>
-          <p class="text-gray-600">
-            {isEN ? 'All repairs come with warranty' : 'Всички ремонти с гаранция'}
-          </p>
-        </div>
-      </div>
-
-      <!-- PHONE BOOKING SECTION INSTEAD OF CALENDLY -->
-      <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
-        <div class="bg-gradient-to-r from-primary to-primary-dark text-white p-8 text-center">
-          <div class="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-            </svg>
-          </div>
-          <h2 class="text-3xl font-bold mb-4">{phoneBookingTitle}</h2>
-          <p class="text-xl text-blue-100 mb-6">{phoneBookingDescription}</p>
-          
-          <!-- Large Call Button -->
-          <a href="tel:+359 89 834 0982" class="inline-flex items-center bg-white text-primary px-8 py-4 rounded-lg font-bold text-xl hover:bg-gray-100 transition-colors shadow-lg transform hover:scale-105 transition-transform duration-300">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-            </svg>
-            089 834 0982
+      <div class="bg-white shadow-lg rounded-2xl p-8 border border-blue-100 mb-8">
+        <h2 class="text-2xl font-semibold text-gray-900 mb-4">
+          {isEN ? 'Contact Options' : 'Начини за контакт'}
+        </h2>
+        <div class="space-y-4 text-lg text-gray-700">
+          <a href={phoneHref} class="flex items-center justify-center gap-3 bg-blue-600 text-white rounded-lg py-4 font-semibold hover:bg-blue-700 transition-colors">
+            <span>📞</span>
+            <span>{phone}</span>
           </a>
-        </div>
-        
-        <!-- Phone Booking Information -->
-        <div class="p-8">
-          <div class="grid md:grid-cols-2 gap-8">
-            <!-- Why Call -->
-            <div>
-              <h3 class="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-2 text-green-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                </svg>
-                {isEN ? 'Why Call?' : 'Защо да се обадите?'}
-              </h3>
-              <ul class="space-y-3 text-gray-600">
-                <li class="flex items-start">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2 text-primary mt-0.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  {isEN ? 'Immediate scheduling' : 'Незабавно записване'}
-                </li>
-                <li class="flex items-start">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2 text-primary mt-0.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  {isEN ? 'Direct communication with technician' : 'Директна комуникация с техника'}
-                </li>
-                <li class="flex items-start">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2 text-primary mt-0.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  {isEN ? 'Detailed problem discussion' : 'Подробно обсъждане на проблема'}
-                </li>
-                <li class="flex items-start">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2 text-primary mt-0.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  {isEN ? 'Same-day appointments available' : 'Възможни часове в същия ден'}
-                </li>
-              </ul>
-            </div>
-            
-            <!-- Working Hours -->
-            <div>
-              <h3 class="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-2 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="10"/>
-                  <polyline points="12 6 12 12 16 14"/>
-                </svg>
-                {isEN ? 'Working Hours' : 'Работно време'}
-              </h3>
-              <div class="space-y-3">
-                <div class="flex justify-between items-center bg-gray-50 p-3 rounded-lg">
-                  <span class="font-medium text-gray-900">{isEN ? 'Monday - Friday' : 'Понеделник - Петък'}</span>
-                  <span class="font-bold text-primary">9:00 - 17:00</span>
-                </div>
-                <div class="flex justify-between items-center bg-gray-50 p-3 rounded-lg">
-                  <span class="font-medium text-gray-900">{isEN ? 'Saturday' : 'Събота'}</span>
-                  <span class="font-bold text-gray-600">{isEN ? 'Closed' : 'Затворено'}</span>
-                </div>
-                <div class="flex justify-between items-center bg-gray-50 p-3 rounded-lg">
-                  <span class="font-medium text-gray-900">{isEN ? 'Sunday' : 'Неделя'}</span>
-                  <span class="font-bold text-gray-600">{isEN ? 'Closed' : 'Затворено'}</span>
-                </div>
-              </div>
-              
-              <div class="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
-                <p class="text-sm text-blue-800">
-                  <strong>{isEN ? 'Tip:' : 'Съвет:'}</strong> {isEN ? 'Call during working hours for immediate scheduling' : 'Обадете се в работните часове за незабавно записване'}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Alternative Contact Information -->
-      <div class="mt-8 text-center">
-        <p class="text-gray-600 mb-4">
-          {isEN 
-            ? 'Prefer to reach us another way? You can also:' 
-            : 'Предпочитате друг начин за връзка? Можете също така:'}
-        </p>
-        
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="mailto:n.ivanov.ivanov@abv.bg" class="btn-primary inline-flex items-center justify-center shadow-md">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-              <polyline points="22,6 12,13 2,6"></polyline>
-            </svg>
-            {isEN ? 'Send Email' : 'Изпратете имейл'}
-          </a>
-          
-          <a href={isEN ? '/en/contact' : '/contact'} class="btn-primary inline-flex items-center justify-center shadow-md">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-              <circle cx="12" cy="10" r="3"></circle>
-            </svg>
-            {isEN ? 'Visit Contact Page' : 'Посетете страницата за контакти'}
+          <a href={`mailto:${email}`} class="flex items-center justify-center gap-3 border border-blue-200 rounded-lg py-4 font-semibold text-blue-700 hover:bg-blue-50 transition-colors">
+            <span>✉️</span>
+            <span>{email}</span>
           </a>
         </div>
       </div>
 
-      <!-- Service guarantee below -->
-      <div class="mt-8 text-center text-gray-500 text-sm flex flex-col items-center">
-        <div class="flex items-center mb-1 text-primary">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-          </svg>
-          <span class="font-medium">
-            {isEN ? 'Quality Guarantee on All Repairs' : 'Гаранция за качество на всички ремонти'}
-          </span>
+      <div class="grid md:grid-cols-2 gap-6 text-left">
+        <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100">
+          <h3 class="text-xl font-semibold text-gray-900 mb-3">
+            {isEN ? 'What happens after the call?' : 'Какво следва след обаждането?'}
+          </h3>
+          <ul class="list-disc list-inside text-gray-700 space-y-2">
+            <li>{isEN ? 'We confirm the address and the preferred time slot.' : 'Потвърждаваме адреса и удобния за теб часови диапазон.'}</li>
+            <li>{isEN ? 'You receive a diagnostic price upfront (30 BGN).' : 'Получаваш предварителна цена за диагностика (30 лв.).'}</li>
+            <li>{isEN ? 'The technician arrives prepared with the most common spare parts.' : 'Техникът идва подготвен с най-често нужните резервни части.'}</li>
+          </ul>
         </div>
-        <p>
-          {isEN ? 'Professional service with warranty • Fast response time' : 'Професионална услуга с гаранция • Бързо време за реакция'}
-        </p>
+        <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100">
+          <h3 class="text-xl font-semibold text-gray-900 mb-3">
+            {isEN ? 'Need written confirmation?' : 'Нужен ли ти е писмен отговор?'}
+          </h3>
+          <p class="text-gray-700">
+            {isEN
+              ? 'Send us an email with the appliance issue and your contact details. We will call you back to confirm the visit.'
+              : 'Изпрати ни имейл с проблема на уреда и контакт за връзка. Ще се обадим, за да потвърдим посещението.'}
+          </p>
+        </div>
       </div>
+
+      <p class="mt-10 text-gray-500 text-sm">
+        {isEN
+          ? 'Thank you for trusting RotoRem Varna. We strive to provide fast, reliable service that keeps your appliances running and your home comfortable.'
+          : 'Благодарим, че избра РотоРем Варна. Ще се погрижим уредът ти да работи отново и домът ти да остане комфортен.'}
+      </p>
     </div>
   </section>
-
-  <!-- SEO Content Section -->
-  <div class="rotorem-seo-text">
-    <style>
-      .rotorem-seo-text {
-        font-size: 74%;
-        color: #777 !important;
-        background-color: #f9fafb;
-        padding: 2rem 0;
-      }
-      .rotorem-seo-text h2,
-      .rotorem-seo-text h3,
-      .rotorem-seo-text h4 {
-        font-size: 1em;
-        margin: 1em 0 0.5em;
-        color: #777;
-        font-weight: 400;
-      }
-      .rotorem-seo-text a {
-        color: #777;
-        text-decoration: underline;
-      }
-      .rotorem-seo-text p {
-        margin: 0.5em 0;
-        line-height: 1.5;
-      }
-      .rotorem-seo-text ul {
-        margin: 0.5em 0;
-        padding-left: 1.5em;
-      }
-      .rotorem-seo-text li {
-        margin: 0.3em 0;
-      }
-    </style>
-    
-    <div class="container max-w-4xl">
-      <h2>Експресни поправки на място – заяви ремонт на електроуред на адрес</h2>
-      <p>Бърз ремонт на електроуреди на адрес е решението, когато пералнята спре внезапно или печката отказва да загрява точно преди вечерята. С формата за записване в „Запази час" подаваш заявка за сервиз само с няколко клика и получаваш потвърждение. Така избягваш разговори и уточнения, а техникът идва с готовност да реши проблема веднага.</p>
-
-      <h2>Предимства на електронното записване</h2>
-      <ul>
-        <li>Денонощен достъп – можеш да подадеш заявка по всяко време на денонощието;</li>
-        <li>Точност – адресът и телефонът се съхраняват автоматично, без риск от неправилно записване;</li>
-        <li>Планиране – виждаш свободните часове сутрин, по обед и след работа;</li>
-        <li>Предварителна цена – системата изчислява ориентировъчна стойност според вида уред и повреда.</li>
-      </ul>
-
-      <h2>Как да заявиш сервиз за техника стъпка по стъпка</h2>
-      <ol>
-        <li>Избираш уред – пералня, съдомиялна, фурна или електрическа услуга;</li>
-        <li>Описваш кратко проблема и, при желание, прикачваш снимка;</li>
-        <li>Отбелязваш предпочитано време за посещение;</li>
-        <li>Получаваш потвърждение по телефон и електронна поща;</li>
-        <li>Нашият специалист пристига в уговорения диапазон и започва работа веднага.</li>
-      </ol>
-
-      <h3>Популярни причини за бърз ремонт на адрес</h3>
-      <ul>
-        <li>Пералнята тече и спира цикъла;</li>
-        <li>Съдомиялната не изпомпва вода;</li>
-        <li>Фурната не поддържа температура;</li>
-        <li>Прекъсвачът изключва при включване на уред;</li>
-        <li>Лампите премигват заради разхлабена връзка в таблото.</li>
-      </ul>
-
-      <h2>Как гарантираме експресни поправки на място</h2>
-      <p>Сервизният автомобил е зареден с най-често използваните резервни части – помпи, нагреватели, термостати и лагери. Предварителната информация от твоята заявка ни позволява да донесем точния комплект за ремонта. Така в над 90 % от случаите завършваме работата с едно посещение.</p>
-
-      <h2>Обслужвани райони във Варна и околностите</h2>
-      <p>Стигаме до всяка точка на града – Център, Левски, Чайка, Владиславово, Младост, Аспарухово – както и до околните места: Златни пясъци, Св. Константин и Елена, Кранево, Осеново, Генерал Кантарджиево, Орешак, Куманово, Яребична, Въглен, Каменар, Евксиноград, Аксаково, Игнатиево, Доброглед, Изворско, Калиманци, Слънчево, Тополи, Езерово, Страшимирово, Белослав, Бенковски, Здравец, Приселци, Китка, Близнаци, Звездица и Константиново. За всички тези локации се прилага еднакъв срок на реакция.</p>
-
-      <h2>Цени и плащане</h2>
-      <p>Таксата за диагностика е фиксирана – 30 лв. (15,32 €) Тя покрива посещението и установяването на повредата. Ако приемеш предложението за ремонт, сумата се приспада от крайния разход. Плащането може да стане в брой или по банков път, според предпочитанието ти.</p>
-
-      <h3>Какво включва гаранцията</h3>
-      <ul>
-        <li>Безплатна повторна намеса, ако същата повреда се появи в гаранционния срок;</li>
-        <li>Сменени части с доказан произход;</li>
-        <li>Писмен документ, издаден на място след приключване на ремонта.</li>
-      </ul>
-
-      <h2>Въпроси, които често ни задават</h2>
-      <h3>Мога ли да променя уговорения час?</h3>
-      <p>Да. Използвай връзката в потвърждението или се обади най-късно два часа преди посещението.</p>
-
-      <h3>Колко време продължава един стандартен ремонт?</h3>
-      <p>Повечето ремонти приключват в рамките на час. По-сложни случаи може да изискват повторно посещение с поръчана част.</p>
-
-      <h3>Извършвате ли посещения извън работно време?</h3>
-      <p>По спешност можем да реагираме вечер или в почивен ден, като се начислява надбавка от 20 % към цената на услугата.</p>
-
-      <h2>Готов ли си да върнеш спокойствието у дома?</h2>
-      <p>Не позволявай дребна повреда да се превърне в скъп проблем. Попълни формата „Запази час" и се възползвай от сервиз за техника с изпитана бързина и прозрачност. Само няколко данни те делят от това уредът ти отново да работи тихо и надеждно.</p>
-
-      <h2>Какво да очакваш след като запазиш час за ремонт на уредите си</h2>
-      <p>След като изпратиш заявката за посещение, ще получиш съобщение с точна информация кога да очакваш техника. В уречения ден и час нашият специалист ще дойде директно до дома ти, за да извърши диагностика и ремонт. При нужда от допълнителни части, можем веднага да предложим решение или да ги доставим в рамките на ден. Нашата цел е възможно най-бързо да върнем уредите ти в перфектна форма, без излишни притеснения и изчакване.</p>
-
-      <h2>Какви видове ремонти можеш да заявиш онлайн</h2>
-      <ul>
-        <li>Ремонт на перални машини – течове, неизправни помпи и мотори;</li>
-        <li>Ремонт на съдомиялни – проблеми с източване, затруднено пълнене или лошо миене;</li>
-        <li>Поправка на фурни – смяна на нагреватели, неработещ термостат, повреди в управлението;</li>
-        <li>Електроуслуги – инсталиране на контакти и прекъсвачи, спешно отстраняване на къси съединения.</li>
-      </ul>
-
-      <h2>Защо клиентите избират нашия сервиз за техника</h2>
-      <p>Когато имаш нужда от помощ за домакински уред, най-важното е сигурността, че ще получиш качествена услуга и че проблемът ще бъде решен своевременно. Нашите клиенти редовно посочват няколко основни причини да използват услугите ни:</p>
-      <ul>
-        <li>Точност при посещенията;</li>
-        <li>Ясни и предварително уточнени цени;</li>
-        <li>Гаранция за извършените ремонти;</li>
-        <li>Любезни и професионални техници;</li>
-        <li>Възможност за резервиране на час в удобно за теб време.</li>
-      </ul>
-
-      <h3>В какви случаи е най-добре да използваш онлайн формата за записване</h3>
-      <p>Онлайн записването е подходящо при всякакви повреди – от дребни неизправности до спешни случаи. С няколко клика можеш да избереш удобно за теб време, без да чакаш на телефона и да обясняваш подробно проблема. Ако повредата изисква спешна реакция, просто отбележи това в коментара, за да я направим приоритетна.</p>
-
-      <h2>Къде можеш да използваш услугата ни за ремонт на уреди</h2>
-      <p>Нашите техници покриват не само град Варна, но и близките населени места. Сред районите, които обслужваме, са Белослав, Бенковски, Здравец, Приселци, Китка, Близнаци, Звездица и Константиново. Независимо дали живееш в самия град или в околните села, можеш спокойно да заявиш посещение на техник, който ще пристигне навреме и подготвен.</p>
-
-      <h2>Често задавани въпроси след като резервираш час</h2>
-      <h3>Какво става, ако техникът закъснее?</h3>
-      <p>Ако по някаква причина се наложи промяна в часа на посещение, нашият екип своевременно ще те уведоми. В случай на закъснение ще направим всичко възможно да сведем чакането до минимум.</p>
-
-      <h3>Какво ще стане, ако не съм у дома в уречения час?</h3>
-      <p>Ако не си у дома в уреченото време, обади се предварително или използвай формата за промяна на час. Така ще избегнеш повторното плащане на такса за диагностика.</p>
-
-      <h3>Как да постъпя, ако имам нужда от повторно посещение?</h3>
-      <p>Ако се наложи допълнително посещение, например за доставката на специална част, техникът ще ти обясни подробно и ще насрочи удобно за теб време, без допълнителни такси за диагностика.</p>
-
-      <h2>Защо е важно да не отлагаш ремонта на домакинските си уреди</h2>
-      <p>Дори малките неизправности като необичаен шум от пералнята или теч от съдомиялната могат да доведат до по-сериозни повреди. Бързата реакция предотвратява повишаването на разходите и удължава живота на уредите ти. Именно затова предлагаме възможността да се запази час лесно и бързо, без сложни процедури.</p>
-
-      <h2>Направи първата крачка към спокойствието в дома си</h2>
-      <p>Запази час сега, без да губиш излишно време и нерви. Нашият сервиз за техника е винаги на твое разположение, за да възстанови комфорта в дома ти. Решението е лесно и на няколко клика разстояние. Не чакай проблемът да стане сериозен – изпрати заявка още днес и остави останалото на нас.</p>
-
-      <h2>Направете първата крачка към ремонтирана битова техника още сега!</h2>
-      <p>Не чакайте проблемите да станат по-сериозни. Доверете се на опита и професионализма на нашите техници от РотоРем Варна и се погрижете за своята битова техника днес. Свържете се с нас, за да запазите удобен час за посещение и да получите експертна помощ и качествен ремонт, който ще върне комфорта във вашето ежедневие.</p>
-    </div>
-  </div>
 </Layout>
-
-<!-- COMMENTED OUT - CALENDLY SCRIPT DISABLED
-<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
--->
-
-<style>
-  /* COMMENTED OUT - CALENDLY STYLING DISABLED
-  .calendly-inline-widget {
-    border-radius: 0;
-  }
-  
-  @media (max-width: 768px) {
-    .calendly-inline-widget {
-      height: 600px;
-    }
-  }
-  */
-  
-  /* Enhanced call button styling */
-  a[href^="tel:"] {
-    text-decoration: none;
-  }
-  
-  a[href^="tel:"]:hover {
-    transform: scale(1.05);
-  }
-</style>
