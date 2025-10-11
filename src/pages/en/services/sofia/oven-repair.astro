@@ -1,0 +1,193 @@
+---
+import Layout from '../../../../layouts/Base.astro';
+import { getLangFromUrl, useTranslations } from '../../../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const title = 'Oven & Water Heater Repair Sofia | On-Site Service | RotoRem';
+const description = 'Repair of ovens, cooktops, and electric water heaters in Sofia ✓ On-site diagnostics ✓ Heating element and thermostat replacement ✓ Warranty on labour';
+---
+
+<Layout title={title} description={description}>
+  <article class="py-16">
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16 mb-16">
+      <div class="container max-w-4xl text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6">
+          Oven, Cooktop & Water Heater Repair in Sofia
+        </h1>
+        <p class="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto mb-8">
+          Certified electrical technicians for domestic ovens, hobs, cooktops, and electric boilers anywhere in Sofia.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="tel:+359 89 834 0982" class="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg">
+            📞 089 834 0982
+          </a>
+          <a href="tel:+359 89 834 0982" class="bg-amber-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-amber-600 transition-colors shadow-lg">
+            Call 089 834 0982
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="container max-w-4xl">
+      <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Oven and Water Heater Repair Sofia",
+        "description": "On-site repair of ovens, cooktops, and electric boilers in Sofia. Diagnostics, spare parts, and warranty-backed service.",
+        "url": "https://www.rotorem.bg/en/services/sofia/oven-repair",
+        "provider": {
+          "@type": "LocalBusiness",
+          "name": "RotoRem Sofia",
+          "telephone": "+359 89 834 0982",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Sofia",
+            "addressCountry": "BG"
+          }
+        },
+        "areaServed": [
+          {"@type": "City", "name": "Sofia"},
+          {"@type": "Place", "name": "Krasno Selo"},
+          {"@type": "Place", "name": "Ovcha Kupel"},
+          {"@type": "Place", "name": "Darvenitsa"},
+          {"@type": "Place", "name": "Lozenets"},
+          {"@type": "Place", "name": "Mladost"}
+        ],
+        "serviceType": "Electrical Appliance Repair",
+        "offers": {
+          "@type": "Offer",
+          "price": "40",
+          "priceCurrency": "BGN",
+          "description": "Diagnostic visit for oven or water heater"
+        }
+      }
+      </script>
+
+      <!-- Service Highlights -->
+      <section class="mb-16">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Professional repair for ovens, cooktops, and boilers</h2>
+          <div class="w-20 h-1 bg-blue-500 mx-auto"></div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-blue-200">
+            <div class="w-12 h-12 bg-blue-500 text-white rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16v16H4z"></path>
+                <path d="M8 8h8v8H8z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-blue-900 mb-3">Licensed electrical engineers</h3>
+            <p class="text-blue-800">Our engineers service built-in ovens, free-standing ranges, glass ceramic hobs, induction cooktops, and storage water heaters.</p>
+          </div>
+          <div class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-green-200">
+            <div class="w-12 h-12 bg-green-500 text-white rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2v5"></path>
+                <path d="M5.5 10.5l4.5 4.5 6-6 4.5 4.5"></path>
+                <path d="M19 19H5"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-green-900 mb-3">Fast heating element replacement</h3>
+            <p class="text-green-800">We carry original heating elements, thermostats, selector switches, and control boards for Bosch, Gorenje, Whirlpool, Electrolux, and more.</p>
+          </div>
+          <div class="bg-gradient-to-br from-amber-50 to-amber-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-amber-200">
+            <div class="w-12 h-12 bg-amber-500 text-white rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-amber-900 mb-3">Warranty and safety tests</h3>
+            <p class="text-amber-800">Every job finishes with full functional testing and safety checks, followed by written warranty documentation.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Issues Section -->
+      <section class="mb-16">
+        <div class="bg-white rounded-2xl shadow-xl border border-gray-200 p-8">
+          <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">Typical faults we handle daily</h2>
+          <div class="grid md:grid-cols-2 gap-8">
+            <div class="space-y-4">
+              <div class="flex items-start gap-4">
+                <span class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-semibold">1</span>
+                <div>
+                  <h3 class="text-xl font-semibold text-gray-900">Oven not heating</h3>
+                  <p class="text-gray-600">We replace faulty bake, broil, or fan elements, relays, thermostats, and control boards to restore consistent heating.</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <span class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-semibold">2</span>
+                <div>
+                  <h3 class="text-xl font-semibold text-gray-900">Cooktop zones not responding</h3>
+                  <p class="text-gray-600">Selector switches, touch controls, and induction modules are tested and replaced with calibrated components.</p>
+                </div>
+              </div>
+            </div>
+            <div class="space-y-4">
+              <div class="flex items-start gap-4">
+                <span class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-semibold">3</span>
+                <div>
+                  <h3 class="text-xl font-semibold text-gray-900">Boiler not heating or leaking</h3>
+                  <p class="text-gray-600">We fit new heating elements, thermostats, magnesium anodes, gaskets, and perform descaling to prevent future leakage.</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <span class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-semibold">4</span>
+                <div>
+                  <h3 class="text-xl font-semibold text-gray-900">Frequent tripping or error codes</h3>
+                  <p class="text-gray-600">Comprehensive electrical diagnostics identify short circuits, overheating protection trips, or sensor failures that need correction.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Coverage Section -->
+      <section class="mb-16 bg-gray-50 border border-gray-200 rounded-2xl p-8">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">City-wide coverage in Sofia</h2>
+        <p class="text-gray-700 text-center max-w-3xl mx-auto mb-8">
+          We travel to every part of Sofia – central neighbourhoods, south districts near Vitosha, western zones such as Lyulin and Obelya, and fast-growing areas around Mladost and Studentski Grad.
+        </p>
+        <div class="grid md:grid-cols-3 gap-6 text-gray-700">
+          <ul class="space-y-2">
+            <li>City Center</li>
+            <li>Lozenets</li>
+            <li>Ivan Vazov</li>
+            <li>Krasno Selo</li>
+          </ul>
+          <ul class="space-y-2">
+            <li>Mladost</li>
+            <li>Darvenitsa</li>
+            <li>Dianabad</li>
+            <li>Strelbishte</li>
+          </ul>
+          <ul class="space-y-2">
+            <li>Lyulin</li>
+            <li>Obelya</li>
+            <li>Ovcha Kupel</li>
+            <li>Gotse Delchev</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="bg-blue-600 text-white rounded-2xl p-8 md:p-12 text-center shadow-xl">
+        <h2 class="text-3xl font-bold mb-4">Need oven or boiler repair in Sofia?</h2>
+        <p class="text-blue-100 text-lg max-w-2xl mx-auto mb-6">
+          Book a visit from our certified professionals today. We provide transparent pricing before any work begins and every repair is guaranteed.
+        </p>
+        <a href="tel:+359 89 834 0982" class="inline-flex items-center justify-center gap-2 bg-white text-blue-600 font-semibold px-8 py-3 rounded-lg shadow-lg hover:bg-blue-50 transition-colors">
+          <span>📞 089 834 0982</span>
+          <span class="text-sm text-blue-500">Book an appointment</span>
+        </a>
+      </section>
+    </div>
+  </article>
+</Layout>

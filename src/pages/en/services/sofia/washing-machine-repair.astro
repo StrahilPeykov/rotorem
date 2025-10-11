@@ -1,0 +1,194 @@
+---
+import Layout from '../../../../layouts/Base.astro';
+import { getLangFromUrl, useTranslations } from '../../../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const title = 'Washing Machine Repair Sofia | Professional Service | RotoRem';
+const description = 'Professional washing machine repair in Sofia ✓ Fast on-site service ✓ Warranty ✓ Same day repair ✓ All brands ✓ Washing machine technician Sofia ☎ 089 834 0982';
+---
+
+<Layout title={title} description={description}>
+  <article class="py-16">
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16 mb-16">
+      <div class="container max-w-4xl text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6">
+          Washing Machine Repair in Sofia
+        </h1>
+        <p class="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto mb-8">
+          Professional washing machine repair in Sofia and nearby districts. Fast on-site service with a full workmanship guarantee.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="tel:+359 89 834 0982" class="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg">
+            📞 089 834 0982
+          </a>
+          <a href="tel:+359 89 834 0982" class="bg-amber-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-amber-600 transition-colors shadow-lg">
+            Call 089 834 0982
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="container max-w-4xl">
+      <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Washing Machine Repair Sofia",
+        "description": "Professional washing machine repair in Sofia. Fast on-site service, warranty, and same day repairs.",
+        "url": "https://www.rotorem.bg/en/services/sofia/washing-machine-repair",
+        "provider": {
+          "@type": "LocalBusiness",
+          "name": "RotoRem Sofia",
+          "telephone": "+359 89 834 0982",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Sofia",
+            "addressCountry": "BG"
+          }
+        },
+        "areaServed": [
+          {"@type": "City", "name": "Sofia"},
+          {"@type": "Place", "name": "Lozenets"},
+          {"@type": "Place", "name": "Mladost"},
+          {"@type": "Place", "name": "Lyulin"},
+          {"@type": "Place", "name": "Studentski Grad"},
+          {"@type": "Place", "name": "City Center"}
+        ],
+        "serviceType": "Appliance Repair",
+        "offers": {
+          "@type": "Offer",
+          "price": "30",
+          "priceCurrency": "BGN",
+          "description": "Washing machine diagnostics"
+        }
+      }
+      </script>
+
+      <!-- Benefits Section -->
+      <section class="mb-16">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Why choose our washing machine repair service in Sofia?</h2>
+          <div class="w-20 h-1 bg-blue-500 mx-auto"></div>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-blue-200">
+            <div class="w-12 h-12 bg-blue-500 text-white rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-blue-900 mb-3">Same day visit</h3>
+            <p class="text-blue-800">A technician can arrive the same day in most Sofia districts to diagnose and repair your washing machine on-site.</p>
+          </div>
+
+          <div class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-green-200">
+            <div class="w-12 h-12 bg-green-500 text-white rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-green-900 mb-3">Repairs during the first visit</h3>
+            <p class="text-green-800">We successfully complete 80% of repairs on the first visit thanks to well-stocked vans and genuine spare parts.</p>
+          </div>
+
+          <div class="bg-gradient-to-br from-amber-50 to-amber-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-amber-200">
+            <div class="w-12 h-12 bg-amber-500 text-white rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-amber-900 mb-3">Warranty on workmanship</h3>
+            <p class="text-amber-800">Every repair comes with a written warranty and a detailed report outlining the parts and labour performed.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Common Issues Section -->
+      <section class="mb-16">
+        <div class="bg-white rounded-2xl shadow-xl border border-gray-200 p-8">
+          <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">Common washing machine faults we solve in Sofia</h2>
+          <div class="grid md:grid-cols-2 gap-8">
+            <div class="space-y-4">
+              <div class="flex items-start gap-4">
+                <span class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-semibold">1</span>
+                <div>
+                  <h3 class="text-xl font-semibold text-gray-900">Washer will not drain</h3>
+                  <p class="text-gray-600">Clogged filters, broken pumps, or blocked hoses are the usual suspects. We troubleshoot and fix each component on-site.</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <span class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-semibold">2</span>
+                <div>
+                  <h3 class="text-xl font-semibold text-gray-900">Machine will not power on</h3>
+                  <p class="text-gray-600">From faulty control boards to damaged door locks and power issues, we run full diagnostics with professional equipment.</p>
+                </div>
+              </div>
+            </div>
+            <div class="space-y-4">
+              <div class="flex items-start gap-4">
+                <span class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-semibold">3</span>
+                <div>
+                  <h3 class="text-xl font-semibold text-gray-900">Loud vibration and noise</h3>
+                  <p class="text-gray-600">Uneven levelling, worn bearings, or faulty dampers cause excessive shaking. We balance the unit and replace worn parts.</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <span class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-semibold">4</span>
+                <div>
+                  <h3 class="text-xl font-semibold text-gray-900">Washer will not heat water</h3>
+                  <p class="text-gray-600">Heating elements and temperature sensors fail over time. We replace faulty heaters and calibrate sensors for efficient cycles.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Service Areas Section -->
+      <section class="mb-16 bg-gray-50 border border-gray-200 rounded-2xl p-8">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">Service coverage across Sofia</h2>
+        <p class="text-gray-700 text-center max-w-3xl mx-auto mb-8">
+          We cover every district of Sofia – from the historic centre to modern residential areas such as Lozenets, Mladost, Vitosha, Lyulin, and Studentski Grad.
+        </p>
+        <div class="grid md:grid-cols-3 gap-6 text-gray-700">
+          <ul class="space-y-2">
+            <li>City Center</li>
+            <li>Lozenets</li>
+            <li>Studentski Grad</li>
+            <li>Iztok</li>
+          </ul>
+          <ul class="space-y-2">
+            <li>Mladost</li>
+            <li>Druzhba</li>
+            <li>Dianabad</li>
+            <li>Vitosha</li>
+          </ul>
+          <ul class="space-y-2">
+            <li>Lyulin</li>
+            <li>Nadezhda</li>
+            <li>Ovcha Kupel</li>
+            <li>Krasno Selo</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Call To Action -->
+      <section class="bg-blue-600 text-white rounded-2xl p-8 md:p-12 text-center shadow-xl">
+        <h2 class="text-3xl font-bold mb-4">Need washing machine repair in Sofia?</h2>
+        <p class="text-blue-100 text-lg max-w-2xl mx-auto mb-6">
+          Contact us for diagnostics and repair at a time that suits you. We work with all major brands and back every repair with a written warranty.
+        </p>
+        <a href="tel:+359 89 834 0982" class="inline-flex items-center justify-center gap-2 bg-white text-blue-600 font-semibold px-8 py-3 rounded-lg shadow-lg hover:bg-blue-50 transition-colors">
+          <span>📞 089 834 0982</span>
+          <span class="text-sm text-blue-500">Call now</span>
+        </a>
+      </section>
+    </div>
+  </article>
+</Layout>

@@ -1,0 +1,194 @@
+---
+import Layout from '../../../../layouts/Base.astro';
+import { getLangFromUrl, useTranslations } from '../../../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const title = 'Dishwasher Repair Sofia | Professional Service | RotoRem';
+const description = 'Dishwasher repair in Sofia ✓ On-site service ✓ Warranty on repairs ✓ Diagnostics and troubleshooting ✓ All major brands serviced';
+---
+
+<Layout title={title} description={description}>
+  <article class="py-16">
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16 mb-16">
+      <div class="container max-w-4xl text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6">
+          Dishwasher Repair in Sofia
+        </h1>
+        <p class="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto mb-8">
+          Expert dishwasher repair throughout Sofia – diagnostics, replacement parts, and full restoration carried out at your address.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="tel:+359 89 834 0982" class="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg">
+            📞 089 834 0982
+          </a>
+          <a href="tel:+359 89 834 0982" class="bg-amber-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-amber-600 transition-colors shadow-lg">
+            Call 089 834 0982
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="container max-w-4xl">
+      <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Dishwasher Repair Sofia",
+        "description": "Professional dishwasher repair in Sofia. On-site diagnostics, fast servicing, and warranty on parts and labour.",
+        "url": "https://www.rotorem.bg/en/services/sofia/dishwasher-repair",
+        "provider": {
+          "@type": "LocalBusiness",
+          "name": "RotoRem Sofia",
+          "telephone": "+359 89 834 0982",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Sofia",
+            "addressCountry": "BG"
+          }
+        },
+        "areaServed": [
+          {"@type": "City", "name": "Sofia"},
+          {"@type": "Place", "name": "Lozenets"},
+          {"@type": "Place", "name": "Manastirski Livadi"},
+          {"@type": "Place", "name": "Mladost"},
+          {"@type": "Place", "name": "Iztok"},
+          {"@type": "Place", "name": "Oborishte"}
+        ],
+        "serviceType": "Appliance Repair",
+        "offers": {
+          "@type": "Offer",
+          "price": "30",
+          "priceCurrency": "BGN",
+          "description": "Dishwasher diagnostics"
+        }
+      }
+      </script>
+
+      <!-- Benefits Section -->
+      <section class="mb-16">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">What you get with our dishwasher repair in Sofia</h2>
+          <div class="w-20 h-1 bg-blue-500 mx-auto"></div>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-blue-200">
+            <div class="w-12 h-12 bg-blue-500 text-white rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 4H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2z"></path>
+                <path d="M3 10h18"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-blue-900 mb-3">Convenient on-site service</h3>
+            <p class="text-blue-800">Avoid uninstalling your appliance. We troubleshoot, repair, and test your dishwasher directly at your home or office.</p>
+          </div>
+
+          <div class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-green-200">
+            <div class="w-12 h-12 bg-green-500 text-white rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 1v22"></path>
+                <path d="M5 5h14"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-green-900 mb-3">Genuine replacement parts</h3>
+            <p class="text-green-800">We fit genuine or OEM parts for Bosch, Siemens, Whirlpool, Electrolux, Beko, Samsung, and other leading brands.</p>
+          </div>
+
+          <div class="bg-gradient-to-br from-amber-50 to-amber-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-amber-200">
+            <div class="w-12 h-12 bg-amber-500 text-white rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-amber-900 mb-3">Full workmanship warranty</h3>
+            <p class="text-amber-800">Enjoy peace of mind with clear paperwork that covers both labour and the parts we install.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Common Issues Section -->
+      <section class="mb-16">
+        <div class="bg-white rounded-2xl shadow-xl border border-gray-200 p-8">
+          <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">Common dishwasher faults we fix</h2>
+          <div class="grid md:grid-cols-2 gap-8">
+            <div class="space-y-4">
+              <div class="flex items-start gap-4">
+                <span class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-semibold">1</span>
+                <div>
+                  <h3 class="text-xl font-semibold text-gray-900">Dishwasher will not start</h3>
+                  <p class="text-gray-600">We check the control module, start button, wiring, and door lock assembly before replacing faulty components.</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <span class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-semibold">2</span>
+                <div>
+                  <h3 class="text-xl font-semibold text-gray-900">Dishes come out dirty</h3>
+                  <p class="text-gray-600">Blocked spray arms, dirty filters, failing pumps, or incorrect dosing are quickly diagnosed and corrected.</p>
+                </div>
+              </div>
+            </div>
+            <div class="space-y-4">
+              <div class="flex items-start gap-4">
+                <span class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-semibold">3</span>
+                <div>
+                  <h3 class="text-xl font-semibold text-gray-900">Water remains in the tub</h3>
+                  <p class="text-gray-600">We clear clogs, replace drain pumps, and inspect hoses for kinks or blockages.</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <span class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-semibold">4</span>
+                <div>
+                  <h3 class="text-xl font-semibold text-gray-900">Error codes and beeping alarms</h3>
+                  <p class="text-gray-600">Error diagnostics pinpoint faulty sensors, heaters, circulation pumps, or control boards that require repair or replacement.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Service Areas Section -->
+      <section class="mb-16 bg-gray-50 border border-gray-200 rounded-2xl p-8">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">We cover the whole of Sofia</h2>
+        <p class="text-gray-700 text-center max-w-3xl mx-auto mb-8">
+          From central Sofia to suburban zones such as Manastirski Livadi, Boyana, Simeonovo, Druzhba, and Vitosha – our technicians visit you wherever you are.
+        </p>
+        <div class="grid md:grid-cols-3 gap-6 text-gray-700">
+          <ul class="space-y-2">
+            <li>Lozenets</li>
+            <li>Manastirski Livadi</li>
+            <li>Buxton</li>
+            <li>Pavlovo</li>
+          </ul>
+          <ul class="space-y-2">
+            <li>Mladost</li>
+            <li>Druzhba</li>
+            <li>Reduta</li>
+            <li>Slatina</li>
+          </ul>
+          <ul class="space-y-2">
+            <li>Boyana</li>
+            <li>Simeonovo</li>
+            <li>Suhata Reka</li>
+            <li>Poduyane</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Call To Action -->
+      <section class="bg-blue-600 text-white rounded-2xl p-8 md:p-12 text-center shadow-xl">
+        <h2 class="text-3xl font-bold mb-4">Book dishwasher repair in Sofia</h2>
+        <p class="text-blue-100 text-lg max-w-2xl mx-auto mb-6">
+          Schedule diagnostics and repair at a convenient time. We work seven days a week and offer transparent pricing before any work begins.
+        </p>
+        <a href="tel:+359 89 834 0982" class="inline-flex items-center justify-center gap-2 bg-white text-blue-600 font-semibold px-8 py-3 rounded-lg shadow-lg hover:bg-blue-50 transition-colors">
+          <span>📞 089 834 0982</span>
+          <span class="text-sm text-blue-500">Schedule a visit</span>
+        </a>
+      </section>
+    </div>
+  </article>
+</Layout>

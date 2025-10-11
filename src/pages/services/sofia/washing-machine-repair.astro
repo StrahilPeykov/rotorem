@@ -1,0 +1,194 @@
+---
+import Layout from '../../../layouts/Base.astro';
+import { getLangFromUrl, useTranslations } from '../../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const title = 'Ремонт на перални машини София | Професионален сервиз | RotoRem';
+const description = 'Професионален ремонт на перални машини в София ✓ Бърз сервиз на място ✓ Гаранция ✓ Ремонт в същия ден ✓ Всички марки ✓ Техник за перални София ☎ 089 834 0982';
+---
+
+<Layout title={title} description={description}>
+  <article class="py-16">
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16 mb-16">
+      <div class="container max-w-4xl text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6">
+          Ремонт на перални машини в София
+        </h1>
+        <p class="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto mb-8">
+          Професионален ремонт на перални машини в София и околните квартали. Бърз сервиз на място с гаранция за качеството.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="tel:+359 89 834 0982" class="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg">
+            📞 089 834 0982
+          </a>
+          <a href="tel:+359 89 834 0982" class="bg-amber-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-amber-600 transition-colors shadow-lg">
+            Обади се на 089 834 0982
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="container max-w-4xl">
+      <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Ремонт на перални машини София",
+        "description": "Професионален ремонт на перални машини в София. Бърз сервиз на място, гаранция и ремонт в същия ден.",
+        "url": "https://www.rotorem.bg/services/sofia/washing-machine-repair",
+        "provider": {
+          "@type": "LocalBusiness",
+          "name": "РотоРем София",
+          "telephone": "+359 89 834 0982",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "София",
+            "addressCountry": "BG"
+          }
+        },
+        "areaServed": [
+          {"@type": "City", "name": "София"},
+          {"@type": "Place", "name": "Лозенец"},
+          {"@type": "Place", "name": "Младост"},
+          {"@type": "Place", "name": "Люлин"},
+          {"@type": "Place", "name": "Студентски град"},
+          {"@type": "Place", "name": "Център"}
+        ],
+        "serviceType": "Appliance Repair",
+        "offers": {
+          "@type": "Offer",
+          "price": "30",
+          "priceCurrency": "BGN",
+          "description": "Диагностика на пералня"
+        }
+      }
+      </script>
+
+      <!-- Benefits Section -->
+      <section class="mb-16">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Защо да изберете нашия сервиз за перални машини в София?</h2>
+          <div class="w-20 h-1 bg-blue-500 mx-auto"></div>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-blue-200">
+            <div class="w-12 h-12 bg-blue-500 text-white rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-blue-900 mb-3">Посещение в рамките на деня</h3>
+            <p class="text-blue-800">Техник се изпраща в рамките на деня в кварталите на София, за да извърши диагностика и ремонт на място.</p>
+          </div>
+
+          <div class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-green-200">
+            <div class="w-12 h-12 bg-green-500 text-white rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-green-900 mb-3">Ремонт в същия ден</h3>
+            <p class="text-green-800">В 80% от случаите ремонтът се извършва още при първото посещение. Разполагаме с части за най-популярните марки перални.</p>
+          </div>
+
+          <div class="bg-gradient-to-br from-amber-50 to-amber-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-amber-200">
+            <div class="w-12 h-12 bg-amber-500 text-white rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-amber-900 mb-3">Гаранция за извършения ремонт</h3>
+            <p class="text-amber-800">Получи писмена гаранция и подробен протокол след приключване на ремонта на пералнята.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Common Issues Section -->
+      <section class="mb-16">
+        <div class="bg-white rounded-2xl shadow-xl border border-gray-200 p-8">
+          <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">Чести повреди на перални машини в София</h2>
+          <div class="grid md:grid-cols-2 gap-8">
+            <div class="space-y-4">
+              <div class="flex items-start gap-4">
+                <span class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-semibold">1</span>
+                <div>
+                  <h3 class="text-xl font-semibold text-gray-900">Пералнята не източва вода</h3>
+                  <p class="text-gray-600">Причините често са запушен филтър, повредена помпа или блокирани маркучи. Техникът проверява всички елементи на място.</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <span class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-semibold">2</span>
+                <div>
+                  <h3 class="text-xl font-semibold text-gray-900">Машината не се включва</h3>
+                  <p class="text-gray-600">Възможни са проблеми в ел. таблото, блокирал ключ на вратата или изгоряла платка. Извършваме диагностика с професионална апаратура.</p>
+                </div>
+              </div>
+            </div>
+            <div class="space-y-4">
+              <div class="flex items-start gap-4">
+                <span class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-semibold">3</span>
+                <div>
+                  <h3 class="text-xl font-semibold text-gray-900">Силни вибрации и шум</h3>
+                  <p class="text-gray-600">Неправилно нивелиране, износени лагери или повреден амортисьор могат да причинят силно тресене. Предлагаме подмяна на износените части.</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <span class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-semibold">4</span>
+                <div>
+                  <h3 class="text-xl font-semibold text-gray-900">Пералнята не загрява вода</h3>
+                  <p class="text-gray-600">Повреден нагревател или температурен датчик водят до студена вода. Извършваме смяна на нагревател и проверка на всички датчици.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Service Areas Section -->
+      <section class="mb-16 bg-gray-50 border border-gray-200 rounded-2xl p-8">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">Обслужваме всички райони на София</h2>
+        <p class="text-gray-700 text-center max-w-3xl mx-auto mb-8">
+          Независимо дали се намирате в центъра на София или в квартали като Лозенец, Манастирски ливади, Красно село, Овча купел, Надежда или Дружба – техник идва на място в удобен за вас час.
+        </p>
+        <div class="grid md:grid-cols-3 gap-6 text-gray-700">
+          <ul class="space-y-2">
+            <li>Център</li>
+            <li>Лозенец</li>
+            <li>Студентски град</li>
+            <li>Изток</li>
+          </ul>
+          <ul class="space-y-2">
+            <li>Младост</li>
+            <li>Дружба</li>
+            <li>Дианабад</li>
+            <li>Витоша</li>
+          </ul>
+          <ul class="space-y-2">
+            <li>Люлин</li>
+            <li>Надежда</li>
+            <li>Овча купел</li>
+            <li>Красно село</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Call To Action -->
+      <section class="bg-blue-600 text-white rounded-2xl p-8 md:p-12 text-center shadow-xl">
+        <h2 class="text-3xl font-bold mb-4">Нуждаете се от ремонт на пералня в София?</h2>
+        <p class="text-blue-100 text-lg max-w-2xl mx-auto mb-6">
+          Свържете се с нас за диагностика и ремонт в най-кратък срок. Работим с всички марки перални машини и предлагаме гаранция за извършената услуга.
+        </p>
+        <a href="tel:+359 89 834 0982" class="inline-flex items-center justify-center gap-2 bg-white text-blue-600 font-semibold px-8 py-3 rounded-lg shadow-lg hover:bg-blue-50 transition-colors">
+          <span>📞 089 834 0982</span>
+          <span class="text-sm text-blue-500">Обадете се сега</span>
+        </a>
+      </section>
+    </div>
+  </article>
+</Layout>

@@ -1,0 +1,194 @@
+---
+import Layout from '../../../layouts/Base.astro';
+import { getLangFromUrl, useTranslations } from '../../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const title = 'Ремонт на съдомиялни София | Професионален сервиз | RotoRem';
+const description = 'Ремонт на съдомиялни машини в София ✓ Сервиз на място ✓ Гаранция за ремонта ✓ Диагностика и отстраняване на повредата ✓ Всички марки';
+---
+
+<Layout title={title} description={description}>
+  <article class="py-16">
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16 mb-16">
+      <div class="container max-w-4xl text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6">
+          Ремонт на съдомиялни в София
+        </h1>
+        <p class="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto mb-8">
+          Професионален ремонт на съдомиялни машини в София – диагностика и обслужване на място, експресно отстраняване на повредата.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="tel:+359 89 834 0982" class="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg">
+            📞 089 834 0982
+          </a>
+          <a href="tel:+359 89 834 0982" class="bg-amber-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-amber-600 transition-colors shadow-lg">
+            Обади се на 089 834 0982
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="container max-w-4xl">
+      <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Ремонт на съдомиялни София",
+        "description": "Диагностика и ремонт на съдомиялни машини в София. Посещение на място, бързо обслужване и гаранция.",
+        "url": "https://www.rotorem.bg/services/sofia/dishwasher-repair",
+        "provider": {
+          "@type": "LocalBusiness",
+          "name": "РотоРем София",
+          "telephone": "+359 89 834 0982",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "София",
+            "addressCountry": "BG"
+          }
+        },
+        "areaServed": [
+          {"@type": "City", "name": "София"},
+          {"@type": "Place", "name": "Лозенец"},
+          {"@type": "Place", "name": "Бъкстон"},
+          {"@type": "Place", "name": "Младост"},
+          {"@type": "Place", "name": "Изток"},
+          {"@type": "Place", "name": "Оборище"}
+        ],
+        "serviceType": "Appliance Repair",
+        "offers": {
+          "@type": "Offer",
+          "price": "30",
+          "priceCurrency": "BGN",
+          "description": "Диагностика на съдомиялна машина"
+        }
+      }
+      </script>
+
+      <!-- Benefits Section -->
+      <section class="mb-16">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Какво получавате с ремонта на съдомиялни в София?</h2>
+          <div class="w-20 h-1 bg-blue-500 mx-auto"></div>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-blue-200">
+            <div class="w-12 h-12 bg-blue-500 text-white rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 4H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2z"></path>
+                <path d="M3 10h18"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-blue-900 mb-3">Сервиз на място</h3>
+            <p class="text-blue-800">Пестите време и усилия – техник идва на адрес и извършва ремонта без демонтаж и транспортиране на уреда.</p>
+          </div>
+
+          <div class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-green-200">
+            <div class="w-12 h-12 bg-green-500 text-white rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 1v22"></path>
+                <path d="M5 5h14"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-green-900 mb-3">Оригинални резервни части</h3>
+            <p class="text-green-800">Работим с оригинални и висококачествени компоненти за Bosch, Siemens, Whirlpool, Electrolux, Beko и други марки.</p>
+          </div>
+
+          <div class="bg-gradient-to-br from-amber-50 to-amber-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-amber-200">
+            <div class="w-12 h-12 bg-amber-500 text-white rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-amber-900 mb-3">Пълна гаранция</h3>
+            <p class="text-amber-800">Получавате писмена гаранция и отчет за извършения ремонт, за да сте спокойни за работата на уреда.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Common Issues Section -->
+      <section class="mb-16">
+        <div class="bg-white rounded-2xl shadow-xl border border-gray-200 p-8">
+          <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">Отстраняваме всички проблеми със съдомиялната</h2>
+          <div class="grid md:grid-cols-2 gap-8">
+            <div class="space-y-4">
+              <div class="flex items-start gap-4">
+                <span class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-semibold">1</span>
+                <div>
+                  <h3 class="text-xl font-semibold text-gray-900">Съдомиялната не стартира</h3>
+                  <p class="text-gray-600">Проверяваме електронния модул, бутона за старт и вратата. При нужда ремонтираме или подменяме дефектиралата част.</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <span class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-semibold">2</span>
+                <div>
+                  <h3 class="text-xl font-semibold text-gray-900">Не отмива добре</h3>
+                  <p class="text-gray-600">Почистваме и подменяме филтри, пръскачки и клапани. Настройваме правилното дозиране на препарата и соли.</p>
+                </div>
+              </div>
+            </div>
+            <div class="space-y-4">
+              <div class="flex items-start gap-4">
+                <span class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-semibold">3</span>
+                <div>
+                  <h3 class="text-xl font-semibold text-gray-900">Задържа вода в коритото</h3>
+                  <p class="text-gray-600">Отстраняваме запушвания, подменяме помпи и проверяваме отводнителните маркучи за дефекти или прегъвания.</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <span class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-semibold">4</span>
+                <div>
+                  <h3 class="text-xl font-semibold text-gray-900">Показва грешки и аларми</h3>
+                  <p class="text-gray-600">Изчитаме кодовете за грешки и локализираме причината – датчици, нагревател, циркулационна помпа или контролен модул.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Service Areas Section -->
+      <section class="mb-16 bg-gray-50 border border-gray-200 rounded-2xl p-8">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">Райони в София, които посещаваме</h2>
+        <p class="text-gray-700 text-center max-w-3xl mx-auto mb-8">
+          Обслужваме централните и периферни квартали в София – Лозенец, Манастирски ливади, Дружба, Сухата река, Витоша, Бояна, Подуяне и други.
+        </p>
+        <div class="grid md:grid-cols-3 gap-6 text-gray-700">
+          <ul class="space-y-2">
+            <li>Лозенец</li>
+            <li>Манастирски ливади</li>
+            <li>Бъкстон</li>
+            <li>Павлово</li>
+          </ul>
+          <ul class="space-y-2">
+            <li>Младост</li>
+            <li>Дружба</li>
+            <li>Редута</li>
+            <li>Слатина</li>
+          </ul>
+          <ul class="space-y-2">
+            <li>Бояна</li>
+            <li>Симеоново</li>
+            <li>Сухата река</li>
+            <li>Подуяне</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Call To Action -->
+      <section class="bg-blue-600 text-white rounded-2xl p-8 md:p-12 text-center shadow-xl">
+        <h2 class="text-3xl font-bold mb-4">Запази ремонт на съдомиялна в София</h2>
+        <p class="text-blue-100 text-lg max-w-2xl mx-auto mb-6">
+          Свържи се с нас за диагностика на място и бързо отстраняване на повредата. Работим всеки ден с удобни часове за посещение.
+        </p>
+        <a href="tel:+359 89 834 0982" class="inline-flex items-center justify-center gap-2 bg-white text-blue-600 font-semibold px-8 py-3 rounded-lg shadow-lg hover:bg-blue-50 transition-colors">
+          <span>📞 089 834 0982</span>
+          <span class="text-sm text-blue-500">Резервирай посещение</span>
+        </a>
+      </section>
+    </div>
+  </article>
+</Layout>
