@@ -154,7 +154,7 @@ RotoRem serves the following areas in Varna, Bulgaria:
 - **Phone:** +359 89 834 0982
 - **Email:** n.ivanov.ivanov@abv.bg
 - **Service Area:** Varna + 20km radius
-- **Working Hours:** Monday-Friday 8:00-17:00
+- **Working Hours:** Monday-Friday 08:00-18:00; Saturday 08:00-14:00; Sunday closed
 
 ## Contributing
 
