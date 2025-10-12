@@ -124,7 +124,7 @@ const description = 'Свържете се с РотоРем Варна и Со�
             </div>
             <div class="flex justify-between items-center bg-white/70 p-4 rounded-lg">
               <span class="font-medium text-indigo-900">Събота</span>
-              <span class="font-bold text-indigo-700 bg-white px-3 py-1 rounded-full shadow-sm border border-gray-100">08:00 - 14:00</span>
+              <span class="font-bold text-indigo-700 bg-white px-3 py-1 rounded-full shadow-sm border border-gray-100">Почивен ден</span>
             </div>
             <div class="flex justify-between items-center bg-white/70 p-4 rounded-lg">
               <span class="font-medium text-indigo-900">Неделя</span>
@@ -223,7 +223,7 @@ const description = 'Свържете се с РотоРем Варна и Со�
               </svg>
             </summary>
             <div class="mt-4 text-gray-700">
-              <p>Работим в събота от 08:00 до 14:00. В неделя почиваме, но можете да оставите съобщение и ще се свържем с вас в понеделник.</p>
+              <p>{t('contact.weekendClosedMessage')}</p>
             </div>
           </details>
 
@@ -384,12 +384,6 @@ const description = 'Свържете се с РотоРем Варна и Со�
           "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
           "opens": "08:00",
           "closes": "18:00"
-        },
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": "Saturday",
-          "opens": "08:00",
-          "closes": "14:00"
         }
       ],
       "areaServed": {
@@ -405,3 +399,4 @@ const description = 'Свържете се с РотоРем Варна и Со�
   }
   </script>
 </Layout>
+

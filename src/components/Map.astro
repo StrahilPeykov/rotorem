@@ -134,12 +134,14 @@ const serviceAreas = [
           </div>
           <div class="flex justify-between items-center bg-white/50 p-2 rounded-lg">
             <span class="text-gray-700 font-medium">{isEN ? 'Saturday' : 'Събота'}</span>
-            <span class="font-semibold text-gray-900 bg-white py-1 px-3 rounded-full shadow-sm border border-gray-100">08:00 - 14:00</span>
+            <span class="font-semibold text-gray-900 bg-white py-1 px-3 rounded-full shadow-sm border border-gray-100">
+              {t('contact.closed')}
+            </span>
           </div>
           <div class="flex justify-between items-center bg-white/50 p-2 rounded-lg">
             <span class="text-gray-700 font-medium">{isEN ? 'Sunday' : 'Неделя'}</span>
             <span class="font-semibold text-gray-900 bg-white py-1 px-3 rounded-full shadow-sm border border-gray-100">
-              {isEN ? 'Closed' : 'Почивен ден'}
+              {t('contact.closed')}
             </span>
           </div>
         </div>

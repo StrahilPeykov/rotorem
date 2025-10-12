@@ -160,12 +160,6 @@ const getPageSpecificSchema = () => {
         "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
         "opens": "08:00",
         "closes": "18:00"
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Saturday"],
-        "opens": "08:00",
-        "closes": "14:00"
       }
     ],
     "hasOfferCatalog": {
@@ -1094,8 +1088,8 @@ const getPageSpecificSchema = () => {
               </h4>
               <div class="text-sm text-gray-400 space-y-1">
                 <div>{isEN ? 'Mon-Fri' : 'Пон-Пет'}: 08:00-18:00</div>
-                <div>{isEN ? 'Saturday' : 'Събота'}: 08:00-14:00</div>
-                <div>{isEN ? 'Sunday' : 'Неделя'}: {isEN ? 'Closed' : 'Почивен ден'}</div>
+                <div>{isEN ? 'Saturday' : 'Събота'}: {t('contact.closed')}</div>
+                <div>{isEN ? 'Sunday' : 'Неделя'}: {t('contact.closed')}</div>
               </div>
             </div>
           </div>
@@ -1279,3 +1273,5 @@ const getPageSpecificSchema = () => {
     });
   </script>
 </html>
+
+

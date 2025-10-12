@@ -124,7 +124,7 @@ const description = 'Contact RotoRem Varna & Sofia for professional appliance re
             </div>
             <div class="flex justify-between items-center bg-white/70 p-4 rounded-lg">
               <span class="font-medium text-indigo-900">Saturday</span>
-              <span class="font-bold text-indigo-700 bg-white px-3 py-1 rounded-full">08:00 - 14:00</span>
+              <span class="font-bold text-indigo-700 bg-white px-3 py-1 rounded-full">Closed</span>
             </div>
             <div class="flex justify-between items-center bg-white/70 p-4 rounded-lg">
               <span class="font-medium text-indigo-900">Sunday</span>
@@ -224,7 +224,7 @@ const description = 'Contact RotoRem Varna & Sofia for professional appliance re
               </svg>
             </summary>
             <div class="mt-4 text-gray-700">
-              <p>We work on Saturday from 08:00 to 14:00. We're closed on Sunday, but you can leave a message and we'll contact you on Monday.</p>
+              <p>{t('contact.weekendClosedMessage')}</p>
             </div>
           </details>
 
@@ -289,12 +289,6 @@ const description = 'Contact RotoRem Varna & Sofia for professional appliance re
           "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
           "opens": "08:00",
           "closes": "18:00"
-        },
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": "Saturday",
-          "opens": "08:00",
-          "closes": "14:00"
         }
       ],
       "areaServed": {
