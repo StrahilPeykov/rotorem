@@ -1235,7 +1235,7 @@ const getPageSpecificSchema = () => {
         serviceSubmenus.forEach((submenu) => submenu.classList.add('hidden'));
         serviceToggleButtons.forEach((toggle) => {
           const arrow = toggle.querySelector('[data-mobile-services-arrow]');
-          if (arrow) arrow.style.transform = 'rotate(0deg)';
+          if (arrow) arrow.setAttribute('style', 'transform: rotate(0deg)');
         });
       };
 
@@ -1276,7 +1276,7 @@ const getPageSpecificSchema = () => {
 
           if (shouldOpen) {
             submenu.classList.remove('hidden');
-            if (arrow) arrow.style.transform = 'rotate(90deg)';
+            if (arrow) arrow.setAttribute('style', 'transform: rotate(90deg)');
           }
         });
       });
