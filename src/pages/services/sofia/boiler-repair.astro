@@ -1,0 +1,193 @@
+---
+import Layout from '../../../layouts/Base.astro';
+import { getLangFromUrl, useTranslations } from '../../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const title = 'Ремонт на бойлери София | Професионален сервиз | RotoRem';
+const description = 'Ремонт на бойлери в София ✓ Диагностика на място ✓ Смяна на нагреватели и термостати ✓ Почистване от котлен камък ✓ Гаранция за ремонта';
+---
+
+<Layout title={title} description={description}>
+  <article class="py-16">
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-teal-600 to-teal-800 text-white py-16 mb-16">
+      <div class="container max-w-4xl text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6">
+          Ремонт на бойлери в София
+        </h1>
+        <p class="text-xl md:text-2xl text-teal-100 max-w-3xl mx-auto mb-8">
+          Професионален ремонт и профилактика на електрически бойлери в София. Бърз сервиз на място с гаранция.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="tel:+359 89 834 0982" class="bg-white text-teal-700 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg">📞 089 834 0982</a>
+          <a href="tel:+359 89 834 0982" class="bg-amber-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-amber-600 transition-colors shadow-lg">Обади се на 089 834 0982</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="container max-w-4xl">
+      <!-- Schema for Service Page -->
+      <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Ремонт на бойлери София",
+        "description": "Ремонт и поддръжка на електрически бойлери в София – нагреватели, термостати, течове, профилактика и почистване от котлен камък.",
+        "url": "https://www.rotorem.bg/services/sofia/boiler-repair",
+        "provider": {
+          "@type": "LocalBusiness",
+          "name": "РотоРем София",
+          "telephone": "+359 89 834 0982",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "София",
+            "addressCountry": "BG"
+          }
+        },
+        "areaServed": [
+          {"@type": "City", "name": "София"},
+          {"@type": "Place", "name": "Лозенец"},
+          {"@type": "Place", "name": "Младост"},
+          {"@type": "Place", "name": "Люлин"},
+          {"@type": "Place", "name": "Студентски град"},
+          {"@type": "Place", "name": "Център"}
+        ],
+        "serviceType": "Appliance Repair",
+        "offers": {
+          "@type": "Offer",
+          "price": "30",
+          "priceCurrency": "BGN",
+          "description": "Диагностика"
+        }
+      }
+      </script>
+
+      <!-- Why Choose Us -->
+      <section class="mb-16">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Защо да изберете нашия сервиз за бойлери в София?</h2>
+          <div class="w-20 h-1 bg-teal-500 mx-auto"></div>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-gradient-to-br from-teal-50 to-teal-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-teal-200">
+            <div class="w-12 h-12 bg-teal-600 text-white rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <h3 class="text-xl font-semibold text-teal-900 mb-3">Сервиз на място</h3>
+            <p class="text-teal-800">Посещение в рамките на София в удобен за вас час. Без излишно чакане.</p>
+          </div>
+
+          <div class="bg-gradient-to-br from-emerald-50 to-emerald-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-emerald-200">
+            <div class="w-12 h-12 bg-emerald-500 text-white rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <h3 class="text-xl font-semibold text-emerald-900 mb-3">Бърза реакция</h3>
+            <p class="text-emerald-800">В повечето случаи ремонтът се извършва в същия ден.</p>
+          </div>
+
+          <div class="bg-gradient-to-br from-amber-50 to-amber-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-amber-200">
+            <div class="w-12 h-12 bg-amber-500 text-white rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3 class="text-xl font-semibold text-amber-900 mb-3">Гаранция</h3>
+            <p class="text-amber-800">Писмена гаранция за извършената услуга и вложените части.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Common Problems -->
+      <section class="mb-16">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Чести проблеми с бойлерите</h2>
+          <div class="w-20 h-1 bg-teal-500 mx-auto"></div>
+        </div>
+        <div class="bg-gradient-to-r from-teal-50 via-white to-teal-50 p-8 rounded-2xl shadow-xl border border-teal-100">
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-teal-500">
+              <h3 class="text-lg font-semibold text-teal-900 mb-3">Не загрява водата</h3>
+              <p class="text-teal-800">Повреден нагревател, термостат или платка. Подмяна на елементи след тест.</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-amber-500">
+              <h3 class="text-lg font-semibold text-amber-900 mb-3">Тече вода</h3>
+              <p class="text-amber-800">Проблеми с фланец, уплътнения или съд. Оценка на ремонтопригодност и безопасност.</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-red-500">
+              <h3 class="text-lg font-semibold text-red-900 mb-3">Избива предпазител</h3>
+              <p class="text-red-800">Късо съединение в нагревател или окабеляване. Безопасна диагностика и ремонт.</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-indigo-500">
+              <h3 class="text-lg font-semibold text-indigo-900 mb-3">Миризма/утаики</h3>
+              <p class="text-indigo-800">Почистване на котлен камък, подмяна на анод и профилактика за по-дълъг живот.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Process -->
+      <section class="mb-16">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Процес на ремонт</h2>
+          <div class="w-20 h-1 bg-teal-500 mx-auto"></div>
+        </div>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="text-center">
+            <div class="w-16 h-16 bg-teal-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">1</div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">Свързване</h3>
+            <p class="text-gray-600">Обаждате се и насрочваме посещение в София.</p>
+          </div>
+          <div class="text-center">
+            <div class="w-16 h-16 bg-emerald-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">2</div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">Диагностика</h3>
+            <p class="text-gray-600">Извършваме диагностика и представяме оферта с ясна цена.</p>
+          </div>
+          <div class="text-center">
+            <div class="w-16 h-16 bg-amber-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">3</div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">Ремонт</h3>
+            <p class="text-gray-600">Ремонтът се извършва веднага или при повторно посещение с част.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Coverage Section -->
+      <section class="mb-16 bg-gray-50 border border-gray-200 rounded-2xl p-8">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">Обслужване на всички квартали</h2>
+        <p class="text-gray-700 text-center max-w-3xl mx-auto mb-8">
+          Посещаваме адреси във всички райони на София – център, южни райони около Витоша и западни комплекси като Люлин и Обеля.
+        </p>
+        <div class="grid md:grid-cols-3 gap-6 text-gray-700">
+          <ul class="space-y-2">
+            <li>Център</li>
+            <li>Лозенец</li>
+            <li>Иван Вазов</li>
+            <li>Красно село</li>
+          </ul>
+          <ul class="space-y-2">
+            <li>Младост</li>
+            <li>Дървеница</li>
+            <li>Дианабад</li>
+            <li>Стрелбище</li>
+          </ul>
+          <ul class="space-y-2">
+            <li>Люлин</li>
+            <li>Обеля</li>
+            <li>Овча купел</li>
+            <li>Гоце Делчев</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="bg-teal-600 text-white rounded-2xl p-8 md:p-12 text-center shadow-xl">
+        <h2 class="text-3xl font-bold mb-4">Нуждаете се от ремонт на бойлер в София?</h2>
+        <p class="text-teal-100 text-lg max-w-2xl mx-auto mb-6">Свържете се с нас за посещение от опитен техник. Работим всеки ден и даваме ясни цени преди започване на ремонта.</p>
+        <a href="tel:+359 89 834 0982" class="inline-flex items-center justify-center gap-2 bg-white text-teal-700 font-semibold px-8 py-3 rounded-lg shadow-lg hover:bg-teal-50 transition-colors">
+          <span>📞 089 834 0982</span>
+          <span class="text-sm text-teal-600">Запази час</span>
+        </a>
+      </section>
+    </div>
+  </article>
+</Layout>

@@ -1,0 +1,126 @@
+---
+import Layout from '../../../layouts/Base.astro';
+import StatsBar from '../../../components/StatsBar.astro';
+
+const title = 'Услуги София | Ремонт на битова техника | РотоРем София';
+const description = 'Професионален ремонт на битова техника в София ✓ Перални ✓ Сушилни ✓ Съдомиялни ✓ Фурни ✓ Бойлери ✓ Сервиз на място с гаранция ☎ 089 834 0982';
+
+type IconKey = 'washing-machine' | 'dishwasher' | 'oven' | 'dryer';
+
+const serviceColors: Record<IconKey, string> = {
+  'washing-machine': 'from-blue-700/80 to-blue-600/80',
+  'dishwasher': 'from-emerald-700/80 to-emerald-600/80',
+  'oven': 'from-amber-700/80 to-amber-600/80',
+  'dryer': 'from-indigo-700/80 to-indigo-600/80',
+};
+
+const services = [
+  {
+    icon: 'washing-machine' as IconKey,
+    title: 'Перални',
+    description: 'Бърз ремонт на перални в София – течове, шум, електроника, помпа. Сервиз на място с гаранция.',
+    url: '/services/sofia/washing-machine-repair',
+  },
+  {
+    icon: 'washing-machine' as IconKey,
+    title: 'Сушилни',
+    description: 'Професионален ремонт на сушилни: не загрява, не върти барабана, грешки и сензори. София и околността.',
+    url: '/services/sofia/dryer-repair',
+  },
+  {
+    icon: 'dishwasher' as IconKey,
+    title: 'Съдомиялни',
+    description: 'Надежден ремонт на съдомиялни – не взима вода, не източва, грешки. Диагностика и ремонт на място.',
+    url: '/services/sofia/dishwasher-repair',
+  },
+  {
+    icon: 'oven' as IconKey,
+    title: 'Фурни',
+    description: 'Експертен ремонт на електрически фурни и плотове: нагреватели, термостати, платки. Гарантирана работа.',
+    url: '/services/sofia/oven-repair',
+  },
+  {
+    icon: 'oven' as IconKey,
+    title: 'Бойлери',
+    description: 'Ремонт и профилактика на бойлери: нагревател, термостат, течове и почистване от котлен камък.',
+    url: '/services/sofia/boiler-repair',
+  },
+];
+---
+
+<Layout title={title} description={description}>
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-r from-primary to-primary-dark text-white py-16">
+    <div class="container max-w-4xl text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-6">Услуги – ремонт на битова техника в София</h1>
+      <p class="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto mb-8">
+        Професионален ремонт на перални, сушилни, съдомиялни, фурни и бойлери. Сервиз на място в София – бързо и с гаранция.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="tel:+359 89 834 0982" class="bg-white text-primary px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg">📞 089 834 0982</a>
+        <a href="/contact" class="bg-accent text-white px-8 py-4 rounded-lg font-semibold hover:bg-accent-dark transition-colors shadow-lg">Свържете се с нас</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Bar -->
+  <StatsBar />
+
+  <!-- Services Grid (Sofia) -->
+  <section class="py-16 md:py-24 bg-gradient-to-b from-blue-50 to-white relative overflow-hidden">
+    <div class="container">
+      <div class="text-center max-w-3xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold text-primary mb-2">Нашите услуги в София</h2>
+        <p class="mt-4 text-xl text-gray-600">Всички ремонти се извършват във вашия дом – без нужда от транспортиране на уредите.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
+        {services.map((service) => {
+          const gradientClass = serviceColors[service.icon];
+          return (
+            <div class="relative rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow group">
+              <div class="absolute inset-0">
+                <picture>
+                  <source srcset={`/img/${service.icon}.avif`} type="image/avif" />
+                  <source srcset={`/img/${service.icon}.webp`} type="image/webp" />
+                  <img src={`/img/${service.icon}.webp`} alt="" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" width="600" height="400" loading="lazy" decoding="async" />
+                </picture>
+                <div class={`absolute inset-0 bg-gradient-to-br ${gradientClass} group-hover:opacity-75 transition-opacity duration-300`}></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+              </div>
+
+              <div class="relative z-10 p-6 md:p-8 h-full flex flex-col text-white">
+                <h3 class="text-xl font-semibold drop-shadow-sm">{service.title}</h3>
+                <p class="mt-2 text-white/90 flex-grow">{service.description}</p>
+                <div class="mt-6 pt-4 border-t border-white/20">
+                  <a href={service.url} class="bg-white/30 hover:bg-white/40 backdrop-blur-sm text-white font-medium py-2 px-4 rounded-lg inline-flex items-center transition-colors shadow-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path></svg>
+                    Научете повече
+                  </a>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <div class="mt-12 text-center">
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="tel:+359 89 834 0982" class="btn-primary inline-flex items-center justify-center shadow-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            Обадете се сега
+          </a>
+          <a href="mailto:n.ivanov.ivanov@abv.bg" class="btn-cta inline-flex items-center justify-center shadow-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            Изпратете имейл
+          </a>
+          <div class="flex items-center text-gray-600 text-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg>
+            <span>Обадете се за час</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
