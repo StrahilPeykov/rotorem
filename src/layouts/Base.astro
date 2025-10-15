@@ -399,7 +399,7 @@ const getPageSpecificSchema = () => {
     />
     
     <!-- Enhanced LocalBusiness Schema -->
-    <script type="application/ld+json" set:html={JSON.stringify(getPageSpecificSchema())}></script>
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(getPageSpecificSchema())}></script>
     
     <!-- Web Vitals and Analytics -->
     <script type="module">

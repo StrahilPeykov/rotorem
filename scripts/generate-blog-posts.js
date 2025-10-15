@@ -225,7 +225,7 @@ const blogImage = '${postData.blogImage}';
   </section>
 
   <!-- Schema Markup -->
-  <script type="application/ld+json">
+  <script is:inline type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
