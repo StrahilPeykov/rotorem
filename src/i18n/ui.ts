@@ -25,7 +25,7 @@ export const ui = {
     'hero.cta': 'Запазете час',
     'hero.phone': 'Обадете се',
     'hero.weComeToYou': 'Идваме при вас',
-    'hero.diagnosticFee': 'Диагностика: 30 лв. (15,32 €)',
+    'hero.diagnosticFee': 'Посещение и диагностика: Варна - 30лв (15,34 €) | София - 50лв (25,57 €)',
     'hero.sameDayService': 'Ремонт още същия ден!',
     
     // Services Section
