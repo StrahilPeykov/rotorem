@@ -15,9 +15,9 @@ function extractMetadata(astroContent, filename) {
   // Extract description  
   const descMatch = astroContent.match(/const description = '([^']+)';/);
   // Extract category
-  const categoryMatch = astroContent.match(/const category = '([^']+)';/);
+  // const categoryMatch = astroContent.match(/const category = '([^']+)';/);
   // Extract readTime
-  const readTimeMatch = astroContent.match(/const readTime = '([^']+)';/);
+  // const readTimeMatch = astroContent.match(/const readTime = '([^']+)';/);
   // Extract blogImage
   const imageMatch = astroContent.match(/const blogImage = '([^']+)';/);
   
@@ -48,9 +48,9 @@ function extractMetadata(astroContent, filename) {
       month: 'long', 
       year: 'numeric' 
     }),
-    readTime: readTimeMatch ? readTimeMatch[1] : '5 мин четене',
+    // readTime: readTimeMatch ? readTimeMatch[1] : '5 мин четене',
     slug,
-    category: categoryMatch ? categoryMatch[1] : 'Съвети и ръководства',
+    // category: categoryMatch ? categoryMatch[1] : 'Съвети и ръководства',
     image: imageMatch ? imageMatch[1] : '/img/blog/default.webp'
   };
 }
@@ -63,10 +63,7 @@ function generateBlogIndex(blogPosts) {
   const blogPostsArray = sortedPosts.map(post => `  {
     title: '${post.title.replace(/'/g, "\\'")}',
     excerpt: '${post.excerpt.replace(/'/g, "\\'")}',
-    date: '${post.date}',
-    readTime: '${post.readTime}',
     slug: '${post.slug}',
-    category: '${post.category}',
     image: '${post.image}'
   }`).join(',\n');
 
@@ -181,7 +178,7 @@ ${blogPostsArray}
                   >
                     Прочетете повече →
                   </a>
-                  <span class="text-gray-500 text-sm">{post.readTime}</span>
+                  
                 </div>
               </div>
             </article>
