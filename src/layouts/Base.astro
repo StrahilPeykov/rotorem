@@ -1154,22 +1154,29 @@ const getPageSpecificSchema = () => {
             </h3>
             <ul class="space-y-2 text-gray-300">
               <!-- Services Section -->
-              <li class="text-xs uppercase tracking-wide text-gray-400 font-heading pt-2">
+              <!-- <li class="text-xs uppercase tracking-wide text-gray-400 font-heading pt-2">
                 {isEN ? 'Services' : 'Услуги'}
-              </li>
-              {quickLinkServices.map((item) => (
+              </li> -->
+              <!-- {quickLinkServices.map((item) => (
                 <li>
                   <a href={item.url} class="hover:text-white font-heading text-sm flex items-center">
                     <span class="text-primary mr-2" set:html={item.icon}></span>
                     <span>{item.title}</span>
                   </a>
                 </li>
-              ))}
-              <li>
+              ))} -->
+              {serviceMenuSections.map((section) => (
+                <li>
+                  <a href={section.allServicesUrl} class="hover:text-white font-heading text-sm flex items-center">
+                    <span>{section.buttonLabel}</span>
+                  </a>
+                </li>
+            ))}
+              <!-- <li>
                 <a href={navPaths.services} class="hover:text-white font-heading text-primary text-sm">
                   {isEN ? 'View all services →' : 'Всички услуги →'}
                 </a>
-              </li>
+              </li> -->
               
               <!-- Company Section -->
               <li class="text-xs uppercase tracking-wide text-gray-400 font-heading pt-4">
