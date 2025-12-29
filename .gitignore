@@ -3,6 +3,9 @@ dist/
 # generated types
 .astro/
 
+# sitemap
+public/sitemap.xml
+
 # dependencies
 node_modules/
 
