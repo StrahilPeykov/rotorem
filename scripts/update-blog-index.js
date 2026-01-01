@@ -26,6 +26,8 @@ function extractMetadata(astroContent, filename) {
   
   // Extract excerpt from first paragraph in content
   const contentMatch = astroContent.match(/<div class="prose[^>]*">\s*(.*?)\s*<\/div>/s);
+
+
   let excerpt = 'Професионални съвети от експертите на РотоРем Варна...';
   
   if (contentMatch) {
@@ -43,11 +45,6 @@ function extractMetadata(astroContent, filename) {
   return {
     title: titleMatch ? titleMatch[1] : 'Untitled Post',
     excerpt,
-    date: new Date().toLocaleDateString('bg-BG', { 
-      day: 'numeric', 
-      month: 'long', 
-      year: 'numeric' 
-    }),
     // readTime: readTimeMatch ? readTimeMatch[1] : '5 мин четене',
     slug,
     // category: categoryMatch ? categoryMatch[1] : 'Съвети и ръководства',
@@ -58,13 +55,16 @@ function extractMetadata(astroContent, filename) {
 // Generate blog index content
 function generateBlogIndex(blogPosts) {
   // Sort posts by date (newest first)
-  const sortedPosts = [...blogPosts].reverse();
+  const sortedPosts = [...blogPosts].sort(
+    (a, b) => b.createdAt - a.createdAt
+  );
 
   const blogPostsArray = sortedPosts.map(post => `  {
     title: '${post.title.replace(/'/g, "\\'")}',
     excerpt: '${post.excerpt.replace(/'/g, "\\'")}',
     slug: '${post.slug}',
-    image: '${post.image}'
+    image: '${post.image}',
+    createdAt: ${post.createdAt.getTime()}
   }`).join(',\n');
 
   return `---
@@ -290,10 +290,15 @@ async function updateBlogIndex() {
       try {
         const filePath = path.join(BLOG_OUTPUT_DIR, filename);
         const content = fs.readFileSync(filePath, 'utf8');
+        const stats = fs.statSync(filePath);
+
         const metadata = extractMetadata(content, filename);
+        metadata.createdAt = stats.mtime; // или birthtime
+
         blogPosts.push(metadata);
+
         console.log(`📄 Processed: ${metadata.title}`);
-        console.log(`   Image: ${metadata.image}`);
+        console.log(`   Created: ${metadata.createdAt}`);
       } catch (error) {
         console.warn(`⚠️  Warning: Could not process ${filename}:`, error.message);
       }
