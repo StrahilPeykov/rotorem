@@ -1,157 +1,83 @@
-# .github/workflows/auto-publish-blog.yml
-name: 🚀 Auto-publish blog posts
+name: 🚀 Auto-generate & deploy blog
 
 on:
-  # Automatic schedule: Mondays and Thursdays at 9:00 AM UTC
+  # Scheduled: Monday and Thursday at 9:00 UTC
   schedule:
-    - cron: '0 9 * * 1'    # Monday at 9 AM UTC (11 AM Bulgaria time)
-    - cron: '0 9 * * 4'    # Thursday at 9 AM UTC (11 AM Bulgaria time)
-  
-  # Manual trigger (you can run it manually anytime)
-  workflow_dispatch:
-    inputs:
-      force_publish:
-        description: 'Force publish all scheduled posts'
-        required: false
-        default: false
-        type: boolean
+    - cron: '0 9 * * 1'
+    - cron: '0 9 * * 4'
 
-# Permissions needed to push changes back to repo
+  # Manual trigger
+  workflow_dispatch:
+
 permissions:
   contents: write
   pages: write
   id-token: write
 
 jobs:
-  publish-blog:
+  generate-and-deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
-      # 1. Checkout the repository
+      # 1️⃣ Checkout repo
       - name: 🛒 Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Full history for better git operations
+          fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      # 2. Enable pnpm
+      # 2️⃣ Enable pnpm
       - name: 🔧 Enable pnpm
         run: corepack enable
 
-      # 3. Setup Node.js (without pnpm cache since lock file is gitignored)
+      # 3️⃣ Setup Node.js
       - name: 🟢 Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
 
-      # 4. Install dependencies with pnpm
+      # 4️⃣ Install dependencies
       - name: 📦 Install dependencies
         run: pnpm install --no-frozen-lockfile
 
-      # 5. Check current blog schedule
-      - name: 📅 Check blog schedule
-        run: |
-          echo "📅 Current blog schedule:"
-          pnpm run blog:status
-          
-          echo ""
-          echo "📊 Repository status:"
-          echo "Current date: $(date)"
-          echo "Files in blog-input/: $(ls -la blog-input/ 2>/dev/null || echo 'No blog-input directory')"
-          echo "Tracking file exists: $(test -f .blog-tracking.json && echo 'Yes' || echo 'No')"
+      # 5️⃣ Generate blog index
+      - name: 📝 Generate blog index
+        run: node scripts/updateBlogIndex.js
 
-      # 6. Publish scheduled blog posts
-      - name: 🚀 Publish scheduled posts
-        id: publish
-        run: |
-          echo "🚀 Running blog publishing..."
-          
-          # Capture output to check if posts were published
-          output=$(pnpm run blog:publish 2>&1)
-          echo "$output"
-          
-          # Check if any posts were actually published
-          if echo "$output" | grep -q "Published.*posts today" && ! echo "$output" | grep -q "Published 0 posts today"; then
-            echo "posts_published=true" >> $GITHUB_OUTPUT
-            echo "✅ Posts were published!"
-          else
-            echo "posts_published=false" >> $GITHUB_OUTPUT
-            echo "📅 No posts were scheduled for today"
-          fi
-
-      # 7. Configure git for committing changes
-      - name: ⚙️ Configure Git
-        if: steps.publish.outputs.posts_published == 'true'
+      # 6️⃣ Commit updated index.astro if changes exist
+      - name: ⚙️ Commit updated blog index
         run: |
           git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action (Blog Publisher)"
-
-      # 8. Commit and push changes if posts were published
-      - name: 📝 Commit published posts
-        if: steps.publish.outputs.posts_published == 'true'
-        run: |
-          # Add all changes (new blog posts and updated tracking file)
-          git add .
-          
-          # Create commit message with timestamp
-          commit_msg="🚀 Auto-publish blog posts - $(date +'%Y-%m-%d %H:%M UTC')"
-          
-          # Check if there are changes to commit
+          git config --local user.name "GitHub Action (Blog Index Generator)"
+          git add src/pages/blog/index.astro
           if git diff --staged --quiet; then
             echo "📭 No changes to commit"
           else
-            echo "📝 Committing changes..."
-            git commit -m "$commit_msg"
-            
-            # Push changes back to repository
+            git commit -m "📝 Auto-update blog index - $(date +'%Y-%m-%d')"
             git push origin HEAD
-            echo "✅ Changes pushed to repository"
+            echo "✅ Committed updated index.astro"
           fi
 
-      # 9. Build the site (for deployment)
+      # 7️⃣ Build site
       - name: 🏗️ Build site
-        if: steps.publish.outputs.posts_published == 'true'
-        run: |
-          echo "🏗️ Building site after publishing posts..."
-          pnpm run build
+        run: pnpm run build
 
-      # 10. Deploy to Netlify (if posts were published)
+      # 8️⃣ Deploy to Netlify
       - name: 🌐 Deploy to Netlify
-        if: steps.publish.outputs.posts_published == 'true'
         uses: nwtgck/actions-netlify@v2
         with:
           publish-dir: './dist'
           production-deploy: true
           netlify-auth-token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           netlify-site-id: ${{ secrets.NETLIFY_SITE_ID }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "🚀 Auto-published blog posts - $(date +'%Y-%m-%d')"
+          deploy-message: "🚀 Auto-generated blog index - $(date +'%Y-%m-%d')"
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
 
-      # 11. Summary of what happened
+      # 9️⃣ Summary
       - name: 📊 Summary
         run: |
-          echo "📊 Blog Publishing Summary"
-          echo "=========================="
+          echo "📊 Blog auto-generation completed"
           echo "Date: $(date)"
-          echo "Posts published: ${{ steps.publish.outputs.posts_published }}"
-          
-          if [ "${{ steps.publish.outputs.posts_published }}" == "true" ]; then
-            echo "✅ New blog posts were published and site was deployed!"
-            echo ""
-            echo "📅 Next scheduled posts:"
-            pnpm run blog:status | grep -A 10 "Upcoming schedule" || echo "No upcoming posts scheduled"
-          else
-            echo "📅 No posts were scheduled for today"
-            echo ""
-            echo "📋 Current schedule:"
-            pnpm run blog:status
-          fi
-          
-          echo ""
-          echo "💡 To add more posts:"
-          echo "   1. Add HTML files to blog-input/ folder"
-          echo "   2. Run: pnpm run blog:schedule"
-          echo "   3. Commit and push changes"
+          echo "Check Netlify for the latest deployed site"
