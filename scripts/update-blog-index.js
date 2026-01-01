@@ -99,48 +99,9 @@ ${blogPostsArray}
         </h1>
         <div class="w-20 h-1 bg-accent mx-auto my-4"></div>
         <p class="text-xl text-gray-600">
-          Експертни съвети и ръководства от РотоРем Варна за поддръжка и ремонт на вашите уреди
+          Експертни съвети и ръководства от РотоРем Варна и София за поддръжка и ремонт на вашите уреди
         </p>
       </header>
-
-      <!-- Featured Post -->
-      {blogPosts.length > 0 && (
-        <div class="mb-16">
-          <h2 class="text-2xl font-semibold mb-6 text-gray-900">
-            Препоръчана статия
-          </h2>
-          <article class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-            <div class="md:flex">
-              <div class="md:w-1/3">
-                <img 
-                  src={blogPosts[0].image} 
-                  alt={blogPosts[0].title}
-                  class="w-full h-48 md:h-full object-cover"
-                  loading="lazy"
-                />
-              </div>
-              <div class="md:w-2/3 p-8">
-                <h3 class="text-2xl font-bold text-gray-900 mb-4">
-                  <a href={\`/blog/\${blogPosts[0].slug}\`} class="hover:text-primary transition-colors">
-                    {blogPosts[0].title}
-                  </a>
-                </h3>
-                <p class="text-gray-600 mb-6">
-                  {blogPosts[0].excerpt}
-                </p>
-                <div class="flex items-center justify-between">
-                  <a 
-                    href={\`/blog/\${blogPosts[0].slug}\`}
-                    class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-dark transition-colors font-medium"
-                  >
-                    Прочетете повече
-                  </a>
-                </div>
-              </div>
-            </div>
-          </article>
-        </div>
-      )}
 
       <!-- Blog Posts Grid -->
       <div class="mb-16">
@@ -149,7 +110,7 @@ ${blogPostsArray}
         </h2>
         
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {blogPosts.slice(1).map(post => (
+          {blogPosts.slice(0).map(post => (
             <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
               <div class="aspect-video overflow-hidden">
                 <img 
