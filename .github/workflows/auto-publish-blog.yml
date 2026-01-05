@@ -42,7 +42,8 @@ jobs:
 
       # 5️⃣ Generate blog index
       - name: 📝 Generate blog index
-        run: node scripts/updateBlogIndex.js
+        run: node scripts/update-blog-index.js
+
 
       # 6️⃣ Commit updated index.astro if changes exist
       - name: ⚙️ Commit updated blog index
