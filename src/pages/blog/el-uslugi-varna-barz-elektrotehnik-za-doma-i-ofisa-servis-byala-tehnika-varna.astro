@@ -5,9 +5,10 @@ import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const title = '</b> Ел услуги Варна – електротехник и сервиз техника';
-const description = '</b> Ел услуги Варна за дома и офиса. Електротехник Варна и сервиз бяла техника Варна от РотоРем Варна. Запазете час онлайн за бърз ремонт.';
+const title = 'Ел услуги Варна – електротехник и сервиз техника';
+const description = 'Ел услуги Варна за дома и офиса. Електротехник Варна и сервиз бяла техника Варна от РотоРем Варна. Запазете час онлайн за бърз ремонт.';
 const blogImage = '/img/blog/el-uslugi-varna-barz-elektrotehnik-za-doma-i-ofisa-servis-byala-tehnika-varna.jpg';
+const datePublished = '2025-10-11';
 ---
 
 <Layout title={title} description={description}>
@@ -18,7 +19,7 @@ const blogImage = '/img/blog/el-uslugi-varna-barz-elektrotehnik-za-doma-i-ofisa-
       <div class="text-center">
         
         <h1 class="text-3xl md:text-4xl font-bold mb-4 leading-tight">
-          </b> Ел услуги Варна – електротехник и сервиз техника
+          Ел услуги Варна – електротехник и сервиз техника
         </h1>
         
       </div>
@@ -32,7 +33,7 @@ const blogImage = '/img/blog/el-uslugi-varna-barz-elektrotehnik-za-doma-i-ofisa-
       <div class="mb-8">
         <img 
           src={blogImage} 
-          alt="</b> Ел услуги Варна – електротехник и сервиз техника"
+          alt="Ел услуги Варна – електротехник и сервиз техника"
           class="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg"
           loading="lazy"
         />
@@ -172,8 +173,8 @@ const blogImage = '/img/blog/el-uslugi-varna-barz-elektrotehnik-za-doma-i-ofisa-
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "headline": "</b> Ел услуги Варна – електротехник и сервиз техника",
-    "description": "</b> Ел услуги Варна за дома и офиса. Електротехник Варна и сервиз бяла техника Варна от РотоРем Варна. Запазете час онлайн за бърз ремонт.",
+    "headline": "Ел услуги Варна – електротехник и сервиз техника",
+    "description": "Ел услуги Варна за дома и офиса. Електротехник Варна и сервиз бяла техника Варна от РотоРем Варна. Запазете час онлайн за бърз ремонт.",
     "image": "https://www.rotorem.bg/img/blog/el-uslugi-varna-barz-elektrotehnik-za-doma-i-ofisa-servis-byala-tehnika-varna.jpg",
     "author": {
       "@type": "Organization", 
