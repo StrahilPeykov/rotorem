@@ -191,17 +191,6 @@
   to = "/"
   status = 301
 
-# Exclude favicons from being routed to index.html
-[[redirects]]
-  from = "/favicon-32x32.png"
-  to = "/favicon-32x32.png"
-  status = 200
-
-[[redirects]]
-  from = "/favicon-16x16.png"
-  to = "/favicon-16x16.png"
-  status = 200
-
 # Catch-all redirect for SPA routing (must be last)
 [[redirects]]
   from = "/*"
